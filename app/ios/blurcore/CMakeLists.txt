@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.18)
+project(blurcore_ios)
+set(CMAKE_CXX_STANDARD 17)
+add_subdirectory(../../native ${CMAKE_BINARY_DIR}/native)
+add_library(blurcore_ios SHARED ios_bridge.mm)
+target_link_libraries(blurcore_ios PRIVATE blurcore)

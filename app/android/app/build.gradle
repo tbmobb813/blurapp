@@ -1,0 +1,9 @@
+android {
+defaultConfig {
+externalNativeBuild.cmake { cppFlags "-std=c++17" }
+ndkVersion "27.0.12077973"
+}
+externalNativeBuild { cmake { path "../blurcore/CMakeLists.txt" } }
+packagingOptions { jniLibs { useLegacyPackaging = true } 
+}
+}

@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.10)
+project(blurcore_jni)
+set(CMAKE_CXX_STANDARD 17)
+add_subdirectory(../../native ${CMAKE_BINARY_DIR}/native)
+add_library(blurcore_jni SHARED jni_bridge.cpp)
+target_link_libraries(blurcore_jni PRIVATE blurcore)
