@@ -1,0 +1,31 @@
+name: Flutter CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Analyze
+        run: flutter analyze
+      - name: Test
+        run: flutter test
+      - name: Build APK (free flavor)
+        run: flutter build apk --debug --flavor free
+      - name: Build APK (pro flavor)
+        run: flutter build apk --debug --flavor pro
+      # Add iOS build steps if macOS runners are available
+      # - name: Build iOS (free flavor)
+      #   run: flutter build ios --simulator --flavor free
+      # - name: Build iOS (pro flavor)
+      #   run: flutter build ios --simulator --flavor pro

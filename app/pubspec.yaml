@@ -13,6 +13,8 @@ image_picker: ^1.1.2
 permission_handler: ^11.3.1
 share_plus: ^10.0.2
 # Optional later: camera, photo_manager
+ tflite_flutter: ^0.10.4
+ tflite_flutter_helper: ^0.4.0
 
 
 dev_dependencies:
