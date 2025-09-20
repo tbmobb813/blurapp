@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "/workspaces/blurapp/native"
+    "cmake.sourceDirectory": "/workspaces/blurapp/native",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

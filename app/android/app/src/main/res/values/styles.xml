@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Theme applied to the Android Application as soon as it is created.
+         On Android 12+, this theme is replaced by Theme.App.Starting in values-v31/styles.xml.
+         This Theme is only used starting with V2 of Flutter's Android embedding. -->
+    <style name="LaunchTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <!-- Show a splash screen on the activity. Automatically removed when
+             Flutter draws its first frame -->
+        <item name="android:windowBackground">@drawable/launch_background</item>
+    </style>
+    <!-- Theme applied to the Android Application as soon as it is created.
+         This theme is visible to the user while the Flutter UI initializes.
+         After that, this theme continues to determine the Window background
+         behind the Flutter UI. -->
+    <style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowBackground">?android:colorBackground</item>
+    </style>
+</resources>

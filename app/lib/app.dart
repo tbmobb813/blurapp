@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import '../theme/app_theme.dart';
-import '../features/editor/editor_screen.dart';
 
-void main() {
-  runApp(const BlurApp());
-}
+import 'features/editor/editor_screen.dart';
+import 'theme/app_theme.dart';
 
 class BlurApp extends StatelessWidget {
-  const BlurApp({Key? key}) : super(key: key);
+  const BlurApp({super.key});
 
   @override
   Widget build(BuildContext context) {
