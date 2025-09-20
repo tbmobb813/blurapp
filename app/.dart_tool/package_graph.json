@@ -9,6 +9,7 @@
       "dependencies": [
         "ffi",
         "flutter",
+        "gal",
         "image",
         "image_picker",
         "path_provider",
@@ -53,6 +54,13 @@
         "test_api",
         "vector_math",
         "vm_service"
+      ]
+    },
+    {
+      "name": "gal",
+      "version": "2.3.2",
+      "dependencies": [
+        "flutter"
       ]
     },
     {

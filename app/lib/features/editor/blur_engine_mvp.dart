@@ -260,24 +260,35 @@ class BlurEngineMVP {
     // Draw original image
     canvas.drawImage(original, Offset.zero, Paint());
 
-    // Create mask image
-    final ui.ImmutableBuffer maskBuffer =
-        await ui.ImmutableBuffer.fromUint8List(mask);
-    final ui.ImageDescriptor maskDescriptor = ui.ImageDescriptor.raw(
-      maskBuffer,
-      width: width,
-      height: height,
-      pixelFormat: ui.PixelFormat.rgba8888,
-    );
-    final ui.Codec maskCodec = await maskDescriptor.instantiateCodec();
-    await maskCodec.getNextFrame(); // Load mask frame
-
-    // Apply blurred image with mask
-    final Paint blendPaint = Paint()..blendMode = BlendMode.srcOver;
-
-    // TODO: Implement proper alpha masking
-    // For MVP, use simple approach
-    canvas.drawImage(blurred, Offset.zero, blendPaint);
+    // Create a simple mask-based compositing for MVP
+    // Use simpler approach that works with current Flutter API
+    
+    // For MVP, use a patch-based approach to apply blur where mask is active
+    final Paint blurPaint = Paint()..blendMode = BlendMode.srcOver;
+    
+    // Sample mask and apply blur in regions where mask value > threshold
+    for (int y = 0; y < height; y += 8) { // Sample every 8 pixels for performance
+      for (int x = 0; x < width; x += 8) {
+        final int maskIndex = y * width + x;
+        if (maskIndex < mask.length && mask[maskIndex] > 128) {
+          // Draw blurred patch
+          final Rect sourceRect = Rect.fromLTWH(
+            x.toDouble(),
+            y.toDouble(),
+            8.0,
+            8.0,
+          );
+          final Rect destRect = sourceRect;
+          
+          canvas.drawImageRect(
+            blurred,
+            sourceRect,
+            destRect,
+            blurPaint,
+          );
+        }
+      }
+    }
 
     final ui.Picture picture = recorder.endRecording();
     return await picture.toImage(width, height);

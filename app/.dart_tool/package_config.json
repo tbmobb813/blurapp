@@ -128,6 +128,12 @@
       "languageVersion": "3.7"
     },
     {
+      "name": "gal",
+      "rootUri": "file:///C:/Users/jsnni/AppData/Local/Pub/Cache/hosted/pub.dev/gal-2.3.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "http",
       "rootUri": "file:///C:/Users/jsnni/AppData/Local/Pub/Cache/hosted/pub.dev/http-1.5.0",
       "packageUri": "lib/",

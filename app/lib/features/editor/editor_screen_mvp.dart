@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'blur_engine_mvp.dart';
+import '../../services/image_saver_service.dart';
 
 /// MVP Editor Screen for Sprint 1
 ///
@@ -190,11 +191,33 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
       }
 
       if (resultBytes != null) {
-        // TODO: Save to gallery using image_saver_service
+        // Save to device gallery
+        final savedPath = await ImageSaverService.saveToGallery(
+          resultBytes,
+          filename: 'blurred_image_${DateTime.now().millisecondsSinceEpoch}',
+        );
+        
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Image exported successfully!')),
-          );
+          if (savedPath != null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: const Text('Image saved to gallery successfully!'),
+                action: SnackBarAction(
+                  label: 'View',
+                  onPressed: () {
+                    // Could open gallery app here in future
+                  },
+                ),
+              ),
+            );
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Failed to save image. Check gallery permissions.'),
+                backgroundColor: Colors.orange,
+              ),
+            );
+          }
         }
       } else {
         throw Exception('Failed to process image');
