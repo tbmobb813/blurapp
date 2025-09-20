@@ -262,12 +262,13 @@ class BlurEngineMVP {
 
     // Create a simple mask-based compositing for MVP
     // Use simpler approach that works with current Flutter API
-    
+
     // For MVP, use a patch-based approach to apply blur where mask is active
     final Paint blurPaint = Paint()..blendMode = BlendMode.srcOver;
-    
+
     // Sample mask and apply blur in regions where mask value > threshold
-    for (int y = 0; y < height; y += 8) { // Sample every 8 pixels for performance
+    for (int y = 0; y < height; y += 8) {
+      // Sample every 8 pixels for performance
       for (int x = 0; x < width; x += 8) {
         final int maskIndex = y * width + x;
         if (maskIndex < mask.length && mask[maskIndex] > 128) {
@@ -279,7 +280,7 @@ class BlurEngineMVP {
             8.0,
           );
           final Rect destRect = sourceRect;
-          
+
           canvas.drawImageRect(
             blurred,
             sourceRect,

@@ -3,8 +3,8 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'blur_engine_mvp.dart';
 import '../../services/image_saver_service.dart';
+import 'blur_engine_mvp.dart';
 
 /// MVP Editor Screen for Sprint 1
 ///
@@ -196,7 +196,7 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
           resultBytes,
           filename: 'blurred_image_${DateTime.now().millisecondsSinceEpoch}',
         );
-        
+
         if (mounted) {
           if (savedPath != null) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -213,7 +213,8 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
-                content: Text('Failed to save image. Check gallery permissions.'),
+                content:
+                    Text('Failed to save image. Check gallery permissions.'),
                 backgroundColor: Colors.orange,
               ),
             );
