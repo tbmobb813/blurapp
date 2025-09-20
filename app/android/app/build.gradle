@@ -46,7 +46,8 @@ android {
         targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        externalNativeBuild.cmake { cppFlags "-std=c++17" }
+        // Native build disabled for MVP - pure Flutter implementation
+        // externalNativeBuild.cmake { cppFlags "-std=c++17" }
         ndkVersion "27.0.12077973"
     }
 
@@ -56,11 +57,12 @@ android {
         }
     }
 
-    externalNativeBuild { 
-        cmake { 
-            path "../blurcore/CMakeLists.txt" 
-        } 
-    }
+    // Native build disabled for MVP - pure Flutter implementation
+    // externalNativeBuild { 
+    //     cmake { 
+    //         path "../blurcore/CMakeLists.txt" 
+    //     } 
+    // }
     
     packagingOptions { 
         jniLibs { 

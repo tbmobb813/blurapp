@@ -677,25 +677,61 @@ class SmartCompositingEngine {
 private:
     bool initialized_ = false;
     
-    // Color space conversion matrices
+    // Color space conversion matrices (OpenCV-dependent)
     struct ColorSpaceConverter {
         // RGB to HSV conversion for better hue/saturation preservation
-        static void RGBtoHSV(const cv::Mat& rgb, cv::Mat& hsv) {
-            cv::cvtColor(rgb, hsv, cv::COLOR_RGB2HSV);
+        static void RGBtoHSV(const std::vector<uint8_t>& rgb, std::vector<uint8_t>& hsv, int width, int height) {
+#ifdef ENABLE_OPENCV
+            cv::Mat rgb_mat(height, width, CV_8UC3, (void*)rgb.data());
+            cv::Mat hsv_mat;
+            cv::cvtColor(rgb_mat, hsv_mat, cv::COLOR_RGB2HSV);
+            hsv.resize(hsv_mat.total() * hsv_mat.elemSize());
+            std::memcpy(hsv.data(), hsv_mat.data, hsv.size());
+#else
+            // Fallback: copy input to output
+            hsv = rgb;
+#endif
         }
         
         // RGB to LAB for perceptual uniformity
-        static void RGBtoLAB(const cv::Mat& rgb, cv::Mat& lab) {
-            cv::cvtColor(rgb, lab, cv::COLOR_RGB2Lab);
+        static void RGBtoLAB(const std::vector<uint8_t>& rgb, std::vector<uint8_t>& lab, int width, int height) {
+#ifdef ENABLE_OPENCV
+            cv::Mat rgb_mat(height, width, CV_8UC3, (void*)rgb.data());
+            cv::Mat lab_mat;
+            cv::cvtColor(rgb_mat, lab_mat, cv::COLOR_RGB2Lab);
+            lab.resize(lab_mat.total() * lab_mat.elemSize());
+            std::memcpy(lab.data(), lab_mat.data, lab.size());
+#else
+            // Fallback: copy input to output
+            lab = rgb;
+#endif
         }
         
         // Convert back to RGB
-        static void HSVtoRGB(const cv::Mat& hsv, cv::Mat& rgb) {
-            cv::cvtColor(hsv, rgb, cv::COLOR_HSV2RGB);
+        static void HSVtoRGB(const std::vector<uint8_t>& hsv, std::vector<uint8_t>& rgb, int width, int height) {
+#ifdef ENABLE_OPENCV
+            cv::Mat hsv_mat(height, width, CV_8UC3, (void*)hsv.data());
+            cv::Mat rgb_mat;
+            cv::cvtColor(hsv_mat, rgb_mat, cv::COLOR_HSV2RGB);
+            rgb.resize(rgb_mat.total() * rgb_mat.elemSize());
+            std::memcpy(rgb.data(), rgb_mat.data, rgb.size());
+#else
+            // Fallback: copy input to output
+            rgb = hsv;
+#endif
         }
         
-        static void LABtoRGB(const cv::Mat& lab, cv::Mat& rgb) {
-            cv::cvtColor(lab, rgb, cv::COLOR_Lab2RGB);
+        static void LABtoRGB(const std::vector<uint8_t>& lab, std::vector<uint8_t>& rgb, int width, int height) {
+#ifdef ENABLE_OPENCV
+            cv::Mat lab_mat(height, width, CV_8UC3, (void*)lab.data());
+            cv::Mat rgb_mat;
+            cv::cvtColor(lab_mat, rgb_mat, cv::COLOR_Lab2RGB);
+            rgb.resize(rgb_mat.total() * rgb_mat.elemSize());
+            std::memcpy(rgb.data(), rgb_mat.data, rgb.size());
+#else
+            // Fallback: copy input to output
+            rgb = lab;
+#endif
         }
     };
 
