@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'features/editor/editor_screen.dart';
+import 'features/home/home_screen.dart';
 import 'theme/app_theme.dart';
 
 class BlurApp extends StatelessWidget {
@@ -11,7 +11,7 @@ class BlurApp extends StatelessWidget {
     return MaterialApp(
       title: 'BlurApp',
       theme: AppTheme.darkTheme,
-      home: const EditorScreen(),
+      home: const HomeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

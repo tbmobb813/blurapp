@@ -18,12 +18,6 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jsnni\.gradle\cach
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\jsnni\.gradle\caches\transforms-3\3cac0c1ea1f7ab8a09511bac0fce4617\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jsnni\.gradle\caches\transforms-3\089285d69a101d432df05f540d3c2222\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\jsnni\.gradle\caches\transforms-3\089285d69a101d432df05f540d3c2222\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
-MERGED from [org.tensorflow:tensorflow-lite:2.11.0] C:\Users\jsnni\.gradle\caches\transforms-3\e8a9dc8128c6a65890fd56999b9f0247\transformed\jetified-tensorflow-lite-2.11.0\AndroidManifest.xml:10:5-20
-MERGED from [org.tensorflow:tensorflow-lite:2.11.0] C:\Users\jsnni\.gradle\caches\transforms-3\e8a9dc8128c6a65890fd56999b9f0247\transformed\jetified-tensorflow-lite-2.11.0\AndroidManifest.xml:10:5-20
-MERGED from [org.tensorflow:tensorflow-lite-gpu:2.11.0] C:\Users\jsnni\.gradle\caches\transforms-3\f6f13eb564a6fe0b011e0bd01f04306c\transformed\jetified-tensorflow-lite-gpu-2.11.0\AndroidManifest.xml:10:5-20
-MERGED from [org.tensorflow:tensorflow-lite-gpu:2.11.0] C:\Users\jsnni\.gradle\caches\transforms-3\f6f13eb564a6fe0b011e0bd01f04306c\transformed\jetified-tensorflow-lite-gpu-2.11.0\AndroidManifest.xml:10:5-20
-MERGED from [org.tensorflow:tensorflow-lite-api:2.11.0] C:\Users\jsnni\.gradle\caches\transforms-3\3f0fe1e4147fcedf08acd0429797faf8\transformed\jetified-tensorflow-lite-api-2.11.0\AndroidManifest.xml:10:5-20
-MERGED from [org.tensorflow:tensorflow-lite-api:2.11.0] C:\Users\jsnni\.gradle\caches\transforms-3\3f0fe1e4147fcedf08acd0429797faf8\transformed\jetified-tensorflow-lite-api-2.11.0\AndroidManifest.xml:10:5-20
 	android:extractNativeLibs
 		INJECTED from C:\Users\jsnni\StudioProjects\blurapp\app\android\app\src\main\AndroidManifest.xml
 	android:appComponentFactory
@@ -45,7 +39,6 @@ MERGED from [:flutter_plugin_android_lifecycle] C:\Users\jsnni\StudioProjects\bl
 MERGED from [:path_provider_android] C:\Users\jsnni\StudioProjects\blurapp\app\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
 MERGED from [:permission_handler_android] C:\Users\jsnni\StudioProjects\blurapp\app\build\permission_handler_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
 MERGED from [:share_plus] C:\Users\jsnni\StudioProjects\blurapp\app\build\share_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-35:12
-MERGED from [:tflite_flutter] C:\Users\jsnni\StudioProjects\blurapp\app\build\tflite_flutter\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.fragment:fragment:1.7.1] C:\Users\jsnni\.gradle\caches\transforms-3\118fe71c7802cd6a6b205589579d235e\transformed\fragment-1.7.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.activity:activity:1.10.1] C:\Users\jsnni\.gradle\caches\transforms-3\184626107bab517c2e73c58251ba7986\transformed\jetified-activity-1.10.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\jsnni\.gradle\caches\transforms-3\54903b3495e42e2eb76d99612da3afaa\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -73,10 +66,7 @@ MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\jsnni\.gradle\cache
 MERGED from [androidx.window.extensions.core:core:1.0.0] C:\Users\jsnni\.gradle\caches\transforms-3\6f3b08caad17c7f59b6fa87a4add72d1\transformed\jetified-core-1.0.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\jsnni\.gradle\caches\transforms-3\34357bd0a9c31cc63d63bea4d80e8b72\transformed\jetified-annotation-experimental-1.4.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\jsnni\.gradle\caches\transforms-3\b080d8a98d9ce7d2078ea9ea8b24b56b\transformed\jetified-core-viewtree-1.0.0\AndroidManifest.xml:2:1-7:12
-MERGED from [org.tensorflow:tensorflow-lite:2.11.0] C:\Users\jsnni\.gradle\caches\transforms-3\e8a9dc8128c6a65890fd56999b9f0247\transformed\jetified-tensorflow-lite-2.11.0\AndroidManifest.xml:2:1-12:12
-MERGED from [org.tensorflow:tensorflow-lite-gpu:2.11.0] C:\Users\jsnni\.gradle\caches\transforms-3\f6f13eb564a6fe0b011e0bd01f04306c\transformed\jetified-tensorflow-lite-gpu-2.11.0\AndroidManifest.xml:2:1-12:12
 MERGED from [com.getkeepsafe.relinker:relinker:1.4.5] C:\Users\jsnni\.gradle\caches\transforms-3\bb99afb8b53bbffe90069d65e1af2fce\transformed\jetified-relinker-1.4.5\AndroidManifest.xml:2:1-7:12
-MERGED from [org.tensorflow:tensorflow-lite-api:2.11.0] C:\Users\jsnni\.gradle\caches\transforms-3\3f0fe1e4147fcedf08acd0429797faf8\transformed\jetified-tensorflow-lite-api-2.11.0\AndroidManifest.xml:2:1-12:12
 	package
 		INJECTED from C:\Users\jsnni\StudioProjects\blurapp\app\android\app\src\main\AndroidManifest.xml
 	android:versionName
@@ -151,8 +141,6 @@ MERGED from [:permission_handler_android] C:\Users\jsnni\StudioProjects\blurapp\
 MERGED from [:permission_handler_android] C:\Users\jsnni\StudioProjects\blurapp\app\build\permission_handler_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [:share_plus] C:\Users\jsnni\StudioProjects\blurapp\app\build\share_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [:share_plus] C:\Users\jsnni\StudioProjects\blurapp\app\build\share_plus\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:tflite_flutter] C:\Users\jsnni\StudioProjects\blurapp\app\build\tflite_flutter\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:tflite_flutter] C:\Users\jsnni\StudioProjects\blurapp\app\build\tflite_flutter\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [androidx.fragment:fragment:1.7.1] C:\Users\jsnni\.gradle\caches\transforms-3\118fe71c7802cd6a6b205589579d235e\transformed\fragment-1.7.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.fragment:fragment:1.7.1] C:\Users\jsnni\.gradle\caches\transforms-3\118fe71c7802cd6a6b205589579d235e\transformed\fragment-1.7.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.activity:activity:1.10.1] C:\Users\jsnni\.gradle\caches\transforms-3\184626107bab517c2e73c58251ba7986\transformed\jetified-activity-1.10.1\AndroidManifest.xml:20:5-44
@@ -207,21 +195,12 @@ MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\jsnni\.
 MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\jsnni\.gradle\caches\transforms-3\34357bd0a9c31cc63d63bea4d80e8b72\transformed\jetified-annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\jsnni\.gradle\caches\transforms-3\b080d8a98d9ce7d2078ea9ea8b24b56b\transformed\jetified-core-viewtree-1.0.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\jsnni\.gradle\caches\transforms-3\b080d8a98d9ce7d2078ea9ea8b24b56b\transformed\jetified-core-viewtree-1.0.0\AndroidManifest.xml:5:5-44
-MERGED from [org.tensorflow:tensorflow-lite:2.11.0] C:\Users\jsnni\.gradle\caches\transforms-3\e8a9dc8128c6a65890fd56999b9f0247\transformed\jetified-tensorflow-lite-2.11.0\AndroidManifest.xml:7:5-8:41
-MERGED from [org.tensorflow:tensorflow-lite:2.11.0] C:\Users\jsnni\.gradle\caches\transforms-3\e8a9dc8128c6a65890fd56999b9f0247\transformed\jetified-tensorflow-lite-2.11.0\AndroidManifest.xml:7:5-8:41
-MERGED from [org.tensorflow:tensorflow-lite-gpu:2.11.0] C:\Users\jsnni\.gradle\caches\transforms-3\f6f13eb564a6fe0b011e0bd01f04306c\transformed\jetified-tensorflow-lite-gpu-2.11.0\AndroidManifest.xml:7:5-8:41
-MERGED from [org.tensorflow:tensorflow-lite-gpu:2.11.0] C:\Users\jsnni\.gradle\caches\transforms-3\f6f13eb564a6fe0b011e0bd01f04306c\transformed\jetified-tensorflow-lite-gpu-2.11.0\AndroidManifest.xml:7:5-8:41
 MERGED from [com.getkeepsafe.relinker:relinker:1.4.5] C:\Users\jsnni\.gradle\caches\transforms-3\bb99afb8b53bbffe90069d65e1af2fce\transformed\jetified-relinker-1.4.5\AndroidManifest.xml:5:5-43
 MERGED from [com.getkeepsafe.relinker:relinker:1.4.5] C:\Users\jsnni\.gradle\caches\transforms-3\bb99afb8b53bbffe90069d65e1af2fce\transformed\jetified-relinker-1.4.5\AndroidManifest.xml:5:5-43
-MERGED from [org.tensorflow:tensorflow-lite-api:2.11.0] C:\Users\jsnni\.gradle\caches\transforms-3\3f0fe1e4147fcedf08acd0429797faf8\transformed\jetified-tensorflow-lite-api-2.11.0\AndroidManifest.xml:7:5-8:41
-MERGED from [org.tensorflow:tensorflow-lite-api:2.11.0] C:\Users\jsnni\.gradle\caches\transforms-3\3f0fe1e4147fcedf08acd0429797faf8\transformed\jetified-tensorflow-lite-api-2.11.0\AndroidManifest.xml:7:5-8:41
 	android:targetSdkVersion
 		INJECTED from C:\Users\jsnni\StudioProjects\blurapp\app\android\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from C:\Users\jsnni\StudioProjects\blurapp\app\android\app\src\main\AndroidManifest.xml
-		MERGED from C:\Users\jsnni\StudioProjects\blurapp\app\android\app\src\main\AndroidManifest.xml
-		MERGED from C:\Users\jsnni\StudioProjects\blurapp\app\android\app\src\main\AndroidManifest.xml
-		MERGED from C:\Users\jsnni\StudioProjects\blurapp\app\android\app\src\main\AndroidManifest.xml
 provider#io.flutter.plugins.imagepicker.ImagePickerFileProvider
 ADDED from [:image_picker_android] C:\Users\jsnni\StudioProjects\blurapp\app\build\image_picker_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:9-17:20
 	android:grantUriPermissions

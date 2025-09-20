@@ -13,8 +13,7 @@
         "image_picker",
         "path_provider",
         "permission_handler",
-        "share_plus",
-        "tflite_flutter"
+        "share_plus"
       ],
       "devDependencies": [
         "flutter_lints",
@@ -54,17 +53,6 @@
         "test_api",
         "vector_math",
         "vm_service"
-      ]
-    },
-    {
-      "name": "tflite_flutter",
-      "version": "0.11.0",
-      "dependencies": [
-        "ffi",
-        "flutter",
-        "path",
-        "plugin_platform_interface",
-        "quiver"
       ]
     },
     {
@@ -313,20 +301,6 @@
         "stream_channel",
         "string_scanner",
         "term_glyph"
-      ]
-    },
-    {
-      "name": "quiver",
-      "version": "3.2.2",
-      "dependencies": [
-        "matcher"
-      ]
-    },
-    {
-      "name": "plugin_platform_interface",
-      "version": "2.1.8",
-      "dependencies": [
-        "meta"
       ]
     },
     {
@@ -623,6 +597,13 @@
       "version": "3.0.6",
       "dependencies": [
         "typed_data"
+      ]
+    },
+    {
+      "name": "plugin_platform_interface",
+      "version": "2.1.8",
+      "dependencies": [
+        "meta"
       ]
     },
     {

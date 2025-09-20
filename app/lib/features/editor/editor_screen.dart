@@ -21,14 +21,14 @@ class _EditorScreenState extends State<EditorScreen> {
   Uint8List? _imageBytes;
   bool _loading = false;
   final _mask = PainterMask();
-  double _brushSize = 24;
+  final double _brushSize = 24;
   bool _eraseMode = false;
   bool _showOriginal = false;
   bool _exportAsPng = false;
   int _exportQuality = 90;
   BlurType _blurType = BlurType.gaussian;
   int _blurStrength = 12;
-  double _feather = 8;
+  final double _feather = 8;
 
   Future<void> _pickImage(ImageSource source) async {
     setState(() => _loading = true);
@@ -123,10 +123,47 @@ class _EditorScreenState extends State<EditorScreen> {
       final path = await ImageSaverService.saveImage(_imageBytes!,
           asPng: _exportAsPng, quality: _exportQuality);
       await Share.shareXFiles([XFile(path)], text: 'Blurred image');
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Image shared successfully!'),
+            backgroundColor: Colors.green,
+          ),
+        );
+      }
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Export failed: $e')),
+        );
+      }
+    } finally {
+      setState(() => _loading = false);
+    }
+  }
+
+  Future<void> _saveImage() async {
+    if (_imageBytes == null) return;
+    setState(() => _loading = true);
+
+    try {
+      final path = await ImageSaverService.saveImagePermanent(_imageBytes!,
+          asPng: _exportAsPng, quality: _exportQuality);
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Image saved to: ${path.split('/').last}'),
+            backgroundColor: Colors.green,
+            duration: const Duration(seconds: 3),
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Save failed: $e')),
         );
       }
     } finally {
@@ -351,8 +388,17 @@ class _EditorScreenState extends State<EditorScreen> {
                 ),
               ),
               ElevatedButton.icon(
+                icon: const Icon(Icons.save),
+                label: const Text('Save'),
+                onPressed: () {
+                  HapticFeedback.mediumImpact();
+                  _saveImage();
+                },
+              ),
+              const SizedBox(width: 8),
+              ElevatedButton.icon(
                 icon: const Icon(Icons.share),
-                label: const Text('Export/Share'),
+                label: const Text('Share'),
                 onPressed: () {
                   HapticFeedback.mediumImpact();
                   _exportImage();

@@ -1,35 +1,121 @@
 import 'dart:typed_data';
-
+import 'package:flutter/foundation.dart';
 import 'package:image/image.dart' as img;
 
 enum BlurType { gaussian, pixelate, mosaic }
 
+/// Performance-optimized blur pipeline with memory management
 class BlurPipeline {
-  static Uint8List applyBlur(
-      Uint8List imageBytes, BlurType type, int strength) {
+  // Memory and performance constants
+  static const int _maxImageDimension = 2048; // Max width/height for processing
+  static const int _maxImagePixels = 4 * 1024 * 1024; // 4MP max for performance
+  static const int _previewMaxDimension =
+      512; // For preview/real-time processing
+
+  /// Apply blur with automatic memory management and performance optimization
+  static Uint8List applyBlur(Uint8List imageBytes, BlurType type, int strength,
+      {bool isPreview = false}) {
     try {
       final image = img.decodeImage(imageBytes);
       if (image == null) return imageBytes;
 
+      // Memory safety: Check image size and downsample if needed
+      final processImage =
+          _prepareImageForProcessing(image, isPreview: isPreview);
+
       img.Image processedImage;
+
+      // Clamp strength values for safety and performance
+      final clampedStrength = _clampStrengthValue(strength, type);
 
       switch (type) {
         case BlurType.gaussian:
-          processedImage = _gaussianBlur(image, strength);
+          processedImage = _gaussianBlur(processImage, clampedStrength);
           break;
         case BlurType.pixelate:
-          processedImage = _pixelate(image, strength);
+          processedImage = _pixelate(processImage, clampedStrength);
           break;
         case BlurType.mosaic:
-          processedImage = _mosaic(image, strength);
+          processedImage = _mosaic(processImage, clampedStrength);
           break;
       }
 
-      return Uint8List.fromList(img.encodeJpg(processedImage, quality: 90));
+      // Encode with appropriate quality for memory efficiency
+      final quality = isPreview ? 75 : 90;
+      return Uint8List.fromList(
+          img.encodeJpg(processedImage, quality: quality));
     } catch (e) {
+      debugPrint('BlurPipeline error: $e');
       // If blur fails, return original image
       return imageBytes;
     }
+  }
+
+  /// Prepare image for processing with memory constraints
+  static img.Image _prepareImageForProcessing(img.Image image,
+      {bool isPreview = false}) {
+    final maxDimension = isPreview ? _previewMaxDimension : _maxImageDimension;
+    final maxPixels = isPreview
+        ? _previewMaxDimension * _previewMaxDimension
+        : _maxImagePixels;
+
+    // Check if image is too large
+    final totalPixels = image.width * image.height;
+    final needsResize = image.width > maxDimension ||
+        image.height > maxDimension ||
+        totalPixels > maxPixels;
+
+    if (!needsResize) {
+      return image;
+    }
+
+    // Calculate new dimensions while maintaining aspect ratio
+    double scale = 1.0;
+
+    if (image.width > maxDimension || image.height > maxDimension) {
+      scale = maxDimension /
+          (image.width > image.height ? image.width : image.height);
+    }
+
+    if (totalPixels > maxPixels) {
+      final pixelScale = sqrt(maxPixels / totalPixels);
+      scale = scale < pixelScale ? scale : pixelScale;
+    }
+
+    final newWidth = (image.width * scale).round();
+    final newHeight = (image.height * scale).round();
+
+    debugPrint(
+        'BlurPipeline: Resizing ${image.width}x${image.height} to ${newWidth}x$newHeight for processing');
+
+    return img.copyResize(image, width: newWidth, height: newHeight);
+  }
+
+  /// Clamp strength values for safety and optimal performance
+  static int _clampStrengthValue(int strength, BlurType type) {
+    switch (type) {
+      case BlurType.gaussian:
+        return strength.clamp(1, 50); // Gaussian blur radius limit
+      case BlurType.pixelate:
+      case BlurType.mosaic:
+        return strength.clamp(1, 32); // Block size limit
+    }
+  }
+
+  /// Helper function for square root (imported from dart:math would add dependency)
+  static double sqrt(num value) {
+    if (value < 0) return double.nan;
+    if (value == 0) return 0.0;
+
+    // Newton's method for square root
+    double x = value.toDouble();
+    double prev;
+    do {
+      prev = x;
+      x = (x + value / x) / 2;
+    } while ((x - prev).abs() > 0.001);
+
+    return x;
   }
 
   static img.Image _gaussianBlur(img.Image image, int strength) {

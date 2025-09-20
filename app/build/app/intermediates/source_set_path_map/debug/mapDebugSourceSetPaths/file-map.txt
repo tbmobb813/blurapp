@@ -31,4 +31,3 @@ com.example.blurapp-debug-29 C:\Users\jsnni\StudioProjects\blurapp\app\build\ima
 com.example.blurapp-debug-30 C:\Users\jsnni\StudioProjects\blurapp\app\build\path_provider_android\intermediates\packaged_res\debug\packageDebugResources
 com.example.blurapp-debug-31 C:\Users\jsnni\StudioProjects\blurapp\app\build\permission_handler_android\intermediates\packaged_res\debug\packageDebugResources
 com.example.blurapp-debug-32 C:\Users\jsnni\StudioProjects\blurapp\app\build\share_plus\intermediates\packaged_res\debug\packageDebugResources
-com.example.blurapp-debug-33 C:\Users\jsnni\StudioProjects\blurapp\app\build\tflite_flutter\intermediates\packaged_res\debug\packageDebugResources

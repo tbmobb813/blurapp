@@ -14,7 +14,8 @@ dependencies:
   share_plus: ^10.0.2
   image: ^4.2.0
   # Optional later: camera, photo_manager
-  tflite_flutter: ^0.11.0
+  # Note: TensorFlow Lite removed for MVP to keep app lightweight
+  # Can be re-added later when better platform support is available
 
 dev_dependencies:
   flutter_test: { sdk: flutter }
