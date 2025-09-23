@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../editor/editor_screen_mvp.dart';
+import '../../settings/privacy_settings_screen.dart';
 
 /// MVP Home Screen for Sprint 1
 ///
@@ -58,8 +59,24 @@ class _HomeScreenMVPState extends State<HomeScreenMVP> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const PrivacySettingsScreen(),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -74,7 +91,7 @@ class _HomeScreenMVPState extends State<HomeScreenMVP> {
               const SizedBox(height: 16),
 
               const Text(
-                'Blur App',
+                'BlurApp',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -86,7 +103,7 @@ class _HomeScreenMVPState extends State<HomeScreenMVP> {
               const SizedBox(height: 8),
 
               const Text(
-                'Privacy-first photo blur tool',
+                'Select a Photo to Blur',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white70,

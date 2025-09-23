@@ -51,11 +51,11 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
         const SizedBox(height: 16),
         Container(
           padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: theme.colorScheme.surface.withValues(alpha: 0.5),
+            decoration: BoxDecoration(
+            color: theme.colorScheme.surface.withOpacity(0.5),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: theme.colorScheme.outline.withValues(alpha: 0.3),
+              color: theme.colorScheme.outline.withOpacity(0.3),
             ),
           ),
           child: Column(

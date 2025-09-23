@@ -35,6 +35,7 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
 
   Future<void> _loadProcessingInfo() async {
     final info = await HybridBlurPipeline.getProcessingModeInfo();
+    if (!mounted) return;
     setState(() {
       _modeInfo = info;
     });
@@ -54,19 +55,23 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
         preferNative: true,
         isPreview: false,
       );
-
+      if (!mounted) return;
       setState(() {
         _processedImage = result;
         _lastProcessingMethod = _modeInfo?.displayMode ?? 'Unknown';
       });
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Processing error: $e')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Processing error: $e')),
+        );
+      }
     } finally {
-      setState(() {
-        _isProcessing = false;
-      });
+      if (mounted) {
+        setState(() {
+          _isProcessing = false;
+        });
+      }
     }
   }
 
@@ -81,7 +86,7 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
         20,
         isPreview: false,
       );
-
+      if (!mounted) return;
       setState(() {
         _processedImage = result;
         _lastProcessingMethod = _modeInfo?.hasAutoSegmentation == true
@@ -89,13 +94,17 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
             : 'Manual Fallback';
       });
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Segmentation error: $e')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Segmentation error: $e')),
+        );
+      }
     } finally {
-      setState(() {
-        _isProcessing = false;
-      });
+      if (mounted) {
+        setState(() {
+          _isProcessing = false;
+        });
+      }
     }
   }
 

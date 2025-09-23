@@ -201,22 +201,26 @@ void main() {
             final largeImageBytes =
                 createTestImage(width: 1200, height: 900, complex: true);
 
-            final tempPath = await ImageSaverService.saveImage(largeImageBytes);
-            final permanentPath =
-                await ImageSaverService.saveImagePermanent(largeImageBytes);
+            final String? tempPath = await ImageSaverService.saveImage(largeImageBytes);
+      final String? permanentPath =
+        await ImageSaverService.saveImagePermanent(largeImageBytes);
 
             stopwatch.stop();
 
-            expect(tempPath.isNotEmpty, isTrue);
-            expect(permanentPath.isNotEmpty, isTrue);
+            expect(tempPath != null && tempPath.isNotEmpty, isTrue);
+            expect(permanentPath != null && permanentPath.isNotEmpty, isTrue);
 
             // File operations should complete within reasonable time (10 seconds)
             expect(stopwatch.elapsedMilliseconds, lessThan(10000));
 
             // Cleanup test files
             try {
-              await File(tempPath).delete();
-              await File(permanentPath).delete();
+              if (tempPath != null && tempPath.isNotEmpty) {
+                await File(tempPath).delete();
+              }
+              if (permanentPath != null && permanentPath.isNotEmpty) {
+                await File(permanentPath).delete();
+              }
             } catch (e) {
               // Ignore cleanup errors in tests
             }
@@ -229,10 +233,10 @@ void main() {
           () async {
             // Create multiple test files
             final testImageBytes = createTestImage(width: 100, height: 100);
-            final paths = <String>[];
+            final paths = <String?>[];
 
             for (int i = 0; i < 10; i++) {
-              final path = await ImageSaverService.saveImage(testImageBytes);
+              final String? path = await ImageSaverService.saveImage(testImageBytes);
               paths.add(path);
             }
 
@@ -250,7 +254,7 @@ void main() {
             for (final path in paths) {
               // Files might or might not exist depending on cache clearing implementation
               // This test mainly verifies no exceptions are thrown during cache operations
-              expect(path.isNotEmpty, isTrue);
+              expect(path != null && path.isNotEmpty, isTrue);
             }
           },
           level: TestLevel.misc,

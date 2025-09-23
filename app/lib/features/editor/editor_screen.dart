@@ -122,6 +122,16 @@ class _EditorScreenState extends State<EditorScreen> {
     try {
       final path = await ImageSaverService.saveImage(_imageBytes!,
           asPng: _exportAsPng, quality: _exportQuality);
+
+      if (path == null) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Export failed: could not save image')),
+          );
+        }
+        return;
+      }
+
       await Share.shareXFiles([XFile(path)], text: 'Blurred image');
 
       if (mounted) {
@@ -152,13 +162,22 @@ class _EditorScreenState extends State<EditorScreen> {
           asPng: _exportAsPng, quality: _exportQuality);
 
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Image saved to: ${path.split('/').last}'),
-            backgroundColor: Colors.green,
-            duration: const Duration(seconds: 3),
-          ),
-        );
+        if (path != null && path.isNotEmpty) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Image saved to: ${path.split('/').last}'),
+              backgroundColor: Colors.green,
+              duration: const Duration(seconds: 3),
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Save failed: could not write image'),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        }
       }
     } catch (e) {
       if (mounted) {
@@ -235,7 +254,7 @@ class _EditorScreenState extends State<EditorScreen> {
                   _imageBytes!,
                   fit: BoxFit.contain,
                   height: 320,
-                  color: Colors.grey.withValues(alpha: 0.5),
+                  color: Colors.grey.withOpacity(0.5),
                   colorBlendMode: BlendMode.saturation,
                 )
               : Image.memory(_imageBytes!, fit: BoxFit.contain, height: 320),
@@ -301,8 +320,8 @@ class _EditorScreenState extends State<EditorScreen> {
       bottom: 0,
       left: 0,
       right: 0,
-      child: Container(
-        color: Colors.black.withValues(alpha: 0.85),
+        child: Container(
+          color: Colors.black.withOpacity(0.85),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -421,9 +440,9 @@ class _MaskPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     for (final stroke in mask.strokes) {
       final paint = Paint()
-        ..color = stroke.erase
-            ? Colors.transparent
-            : Colors.blue.withValues(alpha: 0.4)
+    ..color = stroke.erase
+      ? Colors.transparent
+      : Colors.blue.withOpacity(0.4)
         ..strokeWidth = stroke.size
         ..style = PaintingStyle.stroke
         ..strokeCap = StrokeCap.round;

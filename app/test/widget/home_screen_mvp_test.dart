@@ -13,9 +13,9 @@ void main() {
         ),
       );
 
-      // Verify app title is displayed
-      expect(find.text('Blur App'), findsOneWidget);
-      expect(find.text('Privacy-first photo blur tool'), findsOneWidget);
+  // Verify app title is displayed
+  expect(find.text('BlurApp'), findsOneWidget);
+  expect(find.text('Select a Photo to Blur'), findsOneWidget);
 
       // Verify action buttons are displayed
       expect(find.text('Choose from Gallery'), findsOneWidget);
@@ -88,11 +88,11 @@ void main() {
         ),
       );
 
-      // Verify main structure elements
-      expect(find.byType(Scaffold), findsOneWidget);
-      expect(find.byType(SafeArea), findsOneWidget);
-      expect(find.byType(Column), findsAtLeastNWidgets(1));
-      expect(find.byType(Container), findsAtLeastNWidgets(1));
+  // Verify main structure elements
+  expect(find.byType(Scaffold), findsOneWidget);
+  expect(find.byType(SafeArea), findsAtLeastNWidgets(1));
+  expect(find.byType(Column), findsAtLeastNWidgets(1));
+  expect(find.byType(Container), findsAtLeastNWidgets(1));
     });
   });
 }

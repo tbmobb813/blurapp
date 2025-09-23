@@ -24,7 +24,7 @@ void main() {
 
           // Check if we're in the settings page by looking for PrivacySettingsScreen content
           expect(find.text('Settings'), findsOneWidget);
-          expect(find.text('Privacy First'), findsOneWidget);
+          expect(find.text('Privacy First'), findsAtLeastNWidgets(1));
 
           // 3. Navigate back to Home
           await tester.tap(find.byIcon(Icons.arrow_back));
@@ -53,8 +53,8 @@ void main() {
           await tester.pump();
           await tester.pump(); // Extra pump for navigation
 
-          // Verify settings sections
-          expect(find.text('Privacy First'), findsOneWidget);
+          // Verify settings sections (may also appear on Home screen underneath)
+          expect(find.text('Privacy First'), findsAtLeastNWidgets(1));
           expect(find.text('Storage Management'), findsOneWidget);
           expect(find.text('About BlurApp'), findsOneWidget);
 

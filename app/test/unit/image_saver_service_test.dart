@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 import 'package:blurapp/services/image_saver_service.dart';
+import 'test_gallery_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:image/image.dart' as img;
 
@@ -37,9 +38,14 @@ void main() {
       BlurAppTestFramework.testCase(
         'ImageSaverService class can be instantiated',
         () {
+          // Inject a test provider so ImageSaverService doesn't call platform plugins
+          ImageSaverService.provider = TestGalleryProvider();
+
           final service = ImageSaverService();
           expect(service, isNotNull);
           expect(service.runtimeType, equals(ImageSaverService));
+          // Cleanup
+          ImageSaverService.provider = null;
         },
         level: TestLevel.core,
       );
