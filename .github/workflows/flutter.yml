@@ -70,6 +70,15 @@ jobs:
             exit 1
           fi
 
+          # --- Debug: print the production manifest(s) to help CI debugging ---
+          for mf in "${prod_manifests[@]}"; do
+            if [ -f "$mf" ]; then
+              echo "--- Production manifest: $mf ---"
+              sed -n '1,240p' "$mf" || true
+              echo "--- end manifest ---"
+            fi
+          done
+
           # Check iOS Info.plist for NSAllowsArbitraryLoads or other network allow-all keys
           itms=$(grep -R --include="Info.plist" -n "NSAppTransportSecurity\|NSAllowsArbitraryLoads" app ios 2>/dev/null | grep -v "temp_project" || true)
           if [ -n "$itms" ]; then
@@ -88,10 +97,24 @@ jobs:
           cd app
           /opt/flutter/bin/dart format --set-exit-if-changed .
 
-      - name: Static analysis
+      - name: Static analysis (verbose)
         run: |
           cd app
-          /opt/flutter/bin/flutter analyze
+          echo "=== Flutter version ==="
+          /opt/flutter/bin/flutter --version || true
+          echo "=== Running flutter analyze (verbose) ==="
+          /opt/flutter/bin/flutter analyze -v || true
+
+          echo "=== prod AndroidManifest (if present) ==="
+          MF="android/app/src/main/AndroidManifest.xml"
+          if [ -f "$MF" ]; then
+            echo "--- $MF ---"
+            sed -n '1,240p' "$MF" || true
+            echo "--- end $MF ---"
+          fi
+
+          echo "=== Search for deprecated withOpacity occurrences in lib ==="
+          grep -n --color=never "withOpacity" lib || true
 
       - name: Run tests
         run: |
