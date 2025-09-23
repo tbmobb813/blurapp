@@ -126,7 +126,8 @@ class _EditorScreenState extends State<EditorScreen> {
       if (path == null) {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Export failed: could not save image')),
+            const SnackBar(
+                content: Text('Export failed: could not save image')),
           );
         }
         return;
@@ -320,8 +321,8 @@ class _EditorScreenState extends State<EditorScreen> {
       bottom: 0,
       left: 0,
       right: 0,
-        child: Container(
-          color: Colors.black.withOpacity(0.85),
+      child: Container(
+        color: Colors.black.withOpacity(0.85),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -440,9 +441,8 @@ class _MaskPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     for (final stroke in mask.strokes) {
       final paint = Paint()
-    ..color = stroke.erase
-      ? Colors.transparent
-      : Colors.blue.withOpacity(0.4)
+        ..color =
+            stroke.erase ? Colors.transparent : Colors.blue.withOpacity(0.4)
         ..strokeWidth = stroke.size
         ..style = PaintingStyle.stroke
         ..strokeCap = StrokeCap.round;

@@ -201,9 +201,10 @@ void main() {
             final largeImageBytes =
                 createTestImage(width: 1200, height: 900, complex: true);
 
-            final String? tempPath = await ImageSaverService.saveImage(largeImageBytes);
-      final String? permanentPath =
-        await ImageSaverService.saveImagePermanent(largeImageBytes);
+            final String? tempPath =
+                await ImageSaverService.saveImage(largeImageBytes);
+            final String? permanentPath =
+                await ImageSaverService.saveImagePermanent(largeImageBytes);
 
             stopwatch.stop();
 
@@ -236,7 +237,8 @@ void main() {
             final paths = <String?>[];
 
             for (int i = 0; i < 10; i++) {
-              final String? path = await ImageSaverService.saveImage(testImageBytes);
+              final String? path =
+                  await ImageSaverService.saveImage(testImageBytes);
               paths.add(path);
             }
 

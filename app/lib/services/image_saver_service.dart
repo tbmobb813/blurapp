@@ -37,13 +37,16 @@ class ImageSaverService {
     try {
       // Check and request permissions via provider
       final gp = provider ?? ProductionGalleryProvider();
-      final hasPermission = await gp.hasGalleryAccess() || await gp.requestGalleryAccess();
+      final hasPermission =
+          await gp.hasGalleryAccess() || await gp.requestGalleryAccess();
       if (!hasPermission) {
-        debugPrint('$_tag: Gallery permission denied or plugin unavailable - falling back to temp storage');
+        debugPrint(
+            '$_tag: Gallery permission denied or plugin unavailable - falling back to temp storage');
         // Fall back to writing to system temp directory so tests and CI
         // environments without Gal/path_provider can still validate file ops.
         try {
-          final fallbackPath = await _writeToSystemTemp(bytes, filename: filename, asPng: true);
+          final fallbackPath =
+              await _writeToSystemTemp(bytes, filename: filename, asPng: true);
           return fallbackPath;
         } catch (e) {
           debugPrint('$_tag: Fallback to system temp failed: $e');
@@ -65,8 +68,10 @@ class ImageSaverService {
         tempFile = File(tempPath);
       } catch (e) {
         // If path_provider isn't available (tests), fall back to system temp
-        debugPrint('$_tag: getTemporaryDirectory failed, using system temp: $e');
-        final fallbackPath = await _writeToSystemTemp(bytes, filename: filename, asPng: true);
+        debugPrint(
+            '$_tag: getTemporaryDirectory failed, using system temp: $e');
+        final fallbackPath =
+            await _writeToSystemTemp(bytes, filename: filename, asPng: true);
         return fallbackPath;
       }
 
@@ -135,9 +140,11 @@ class ImageSaverService {
         final extension = asPng ? 'png' : 'jpg';
         filePath = '${dir.path}/$name.$extension';
       } catch (e) {
-        debugPrint('$_tag: getApplicationDocumentsDirectory failed, using system temp: $e');
+        debugPrint(
+            '$_tag: getApplicationDocumentsDirectory failed, using system temp: $e');
         // Fall back to system temp
-        filePath = await _writeToSystemTemp(bytes, filename: filename, asPng: asPng);
+        filePath =
+            await _writeToSystemTemp(bytes, filename: filename, asPng: asPng);
         return filePath;
       }
 
@@ -271,6 +278,7 @@ class ImageSaverService {
   static Future<String?> saveImagePermanent(Uint8List bytes,
       {String? filename, bool asPng = true, int quality = 95}) async {
     // Default behavior: save to documents for permanent storage
-    return saveToDocuments(bytes, filename: filename, asPng: asPng, quality: quality);
+    return saveToDocuments(bytes,
+        filename: filename, asPng: asPng, quality: quality);
   }
 }

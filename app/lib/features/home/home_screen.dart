@@ -144,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-  color: colorScheme.surface.withOpacity(0.5),
+        color: colorScheme.surface.withOpacity(0.5),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
           color: colorScheme.outline.withOpacity(0.3),

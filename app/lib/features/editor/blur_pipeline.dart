@@ -124,7 +124,7 @@ class BlurPipeline {
 
   static img.Image _pixelate(img.Image image, int strength) {
     // Create pixelate effect by scaling down and back up
-  final blockSize = strength.clamp(1, 32).toInt();
+    final blockSize = strength.clamp(1, 32).toInt();
     final smallWidth = (image.width / blockSize).round();
     final smallHeight = (image.height / blockSize).round();
 
