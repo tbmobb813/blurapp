@@ -27,3 +27,31 @@ Thank you for your interest in contributing! Please follow these guidelines:
 - No network permissions, analytics, or ads.
 - All processing must be offline.
 - See `.github/copilot-instructions.md` for architecture and conventions.
+
+## Build artifacts
+
+Please do not commit build outputs or IDE caches (for example any `build/` directories under `app/`, `android/`, `ios/`, `build/`, or platform plugin folders). These files are machine-specific and can break CI (they may include absolute paths or platform-specific binaries).
+
+To clean and rebuild locally:
+
+```bash
+# remove local build outputs
+flutter clean
+
+# fetch packages and run analyzer/tests
+flutter pub get
+flutter analyze
+flutter test
+
+# build the Android debug APK locally
+flutter build apk --debug
+```
+
+If you find machine-specific files accidentally committed, remove them from the index and push a commit:
+
+```bash
+git rm -r --cached path/to/committed/build_dir
+git commit -m "ci: remove committed build artifacts"
+git push origin your-branch
+```
+
