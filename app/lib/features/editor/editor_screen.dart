@@ -322,7 +322,7 @@ class _EditorScreenState extends State<EditorScreen> {
       left: 0,
       right: 0,
       child: Container(
-        color: Colors.black.withOpacity(0.85),
+  color: Colors.black.withOpacity(0.85),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -441,7 +441,7 @@ class _MaskPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     for (final stroke in mask.strokes) {
       final paint = Paint()
-        ..color =
+            ..color =
             stroke.erase ? Colors.transparent : Colors.blue.withOpacity(0.4)
         ..strokeWidth = stroke.size
         ..style = PaintingStyle.stroke

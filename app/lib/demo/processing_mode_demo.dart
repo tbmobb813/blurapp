@@ -220,9 +220,9 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
           fontSize: 12,
         ),
       ),
-      backgroundColor: available
-          ? Colors.green.withOpacity(0.1)
-          : Colors.grey.withOpacity(0.1),
+    backgroundColor: available
+      ? Colors.green.withOpacity(0.1)
+      : Colors.grey.withOpacity(0.1),
     );
   }
 
