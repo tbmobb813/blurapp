@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../core/utils/color_utils.dart';
 
 import '../../services/image_picker_service.dart';
 import '../../settings/privacy_settings_screen.dart';
@@ -144,10 +145,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-  color: colorScheme.surface.withOpacity(0.5),
+  color: withOpacitySafe(colorScheme.surface, 0.5),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
-          color: colorScheme.outline.withOpacity(0.3),
+          color: withOpacitySafe(colorScheme.outline, 0.3),
         ),
       ),
       child: Row(

@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import '../core/utils/color_utils.dart';
 
 import '../features/editor/blur_pipeline.dart';
 import '../native/hybrid_blur_bindings.dart';
@@ -221,8 +222,8 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
         ),
       ),
     backgroundColor: available
-      ? Colors.green.withOpacity(0.1)
-      : Colors.grey.withOpacity(0.1),
+  ? withOpacitySafe(Colors.green, 0.1)
+  : withOpacitySafe(Colors.grey, 0.1),
     );
   }
 

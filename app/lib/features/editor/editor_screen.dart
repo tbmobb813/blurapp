@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../core/utils/color_utils.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:share_plus/share_plus.dart';
@@ -255,7 +256,7 @@ class _EditorScreenState extends State<EditorScreen> {
                   _imageBytes!,
                   fit: BoxFit.contain,
                   height: 320,
-                  color: Colors.grey.withOpacity(0.5),
+                  color: withOpacitySafe(Colors.grey, 0.5),
                   colorBlendMode: BlendMode.saturation,
                 )
               : Image.memory(_imageBytes!, fit: BoxFit.contain, height: 320),
@@ -322,7 +323,7 @@ class _EditorScreenState extends State<EditorScreen> {
       left: 0,
       right: 0,
       child: Container(
-  color: Colors.black.withOpacity(0.85),
+  color: withOpacitySafe(Colors.black, 0.85),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -442,7 +443,7 @@ class _MaskPainter extends CustomPainter {
     for (final stroke in mask.strokes) {
       final paint = Paint()
             ..color =
-            stroke.erase ? Colors.transparent : Colors.blue.withOpacity(0.4)
+            stroke.erase ? Colors.transparent : withOpacitySafe(Colors.blue, 0.4)
         ..strokeWidth = stroke.size
         ..style = PaintingStyle.stroke
         ..strokeCap = StrokeCap.round;
