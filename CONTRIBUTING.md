@@ -1,3 +1,36 @@
+## Contributing guidelines (short)
+
+This project prioritizes privacy, offline-first behavior, and clean repository hygiene. A few quick rules to help maintainers and contributors:
+
+- Do not commit build outputs or generated artifacts. These can contain platform-specific absolute paths and other environment data that break CI or other developers' builds.
+- Run tests through the provided test bootstrap so platform plugins are replaced with test doubles. See `app/test/test_runner.dart` and `app/test/test_setup.dart`.
+
+How to remove accidentally committed build outputs
+
+1. Identify the tracked files. For example:
+
+   git ls-files | grep "\bapp/build\b" || true
+
+2. Remove them from the repository while keeping them locally:
+
+   git rm --cached -r app/build/
+   git commit -m "chore: remove tracked build outputs from repo"
+
+3. Push the commit to your branch. The CI guard (see below) will prevent build outputs from being tracked going forward.
+
+CI guard: tracked build outputs
+
+We added a CI workflow that fails if files under common build output locations are still tracked (for example: `app/build/`, `build/`, `.dart_tool/`). If the guard fails on your PR, remove the tracked outputs as shown above and push the fix.
+
+Running tests
+
+Use the repository test runner which applies the test bootstrap that injects test doubles and mocks for platform plugins:
+
+  dart run test:test_runner.dart
+
+If you need to run individual tests, ensure you call `initTestBootstrap()` first or run them via the provided test runner.
+
+Thanks for contributing — small changes and tests are welcome. If you're unsure, open a draft PR and request a review.
 # Contributing to blurapp
 
 Thank you for your interest in contributing! Please follow these guidelines:
