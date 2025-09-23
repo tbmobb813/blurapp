@@ -323,7 +323,7 @@ class _EditorScreenState extends State<EditorScreen> {
       left: 0,
       right: 0,
       child: Container(
-  color: withOpacitySafe(Colors.black, 0.85),
+        color: withOpacitySafe(Colors.black, 0.85),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
