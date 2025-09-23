@@ -65,6 +65,119 @@ jobs:
         run: |
           cd app
           flutter test --coverage
+
+  build-test:
+    runs-on: ubuntu-latest
+    needs: analyze-and-test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - name: Install dependencies
+        run: |
+          cd app
+          flutter pub get
+      - name: Analyze
+        run: |
+          cd app
+          flutter analyze
+      - name: Test
+        run: |
+          cd app
+          flutter test
+      - name: Build APK (debug)
+        run: |
+          cd app
+          flutter build apk --debug
+
+  native-build-test:
+    name: Native build & test
+    runs-on: ubuntu-latest
+    needs: build-test
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install build essentials
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake
+
+      - name: Build native blurcore and run native test
+        working-directory: native
+        run: |
+          mkdir -p build && cd build
+          cmake ..
+          cmake --build . --target blurcore_test -j$(nproc)
+          ./blurcore_test
+name: Flutter CI
+
+on:
+  push:
+    branches: [ main, comp/**, feat/**, fix/** ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  analyze-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 'stable'
+
+      - name: Cache Pub
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+            .dart_tool
+          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-
+
+      - name: Install dependencies
+        run: |
+          cd app
+          flutter pub get
+
+      - name: Privacy checks (fail if INTERNET permission or analytics deps)
+        run: |
+          set -e
+          # Check Android manifests for INTERNET permission
+          if grep -R --include="AndroidManifest.xml" -n "android.permission.INTERNET" .; then
+            echo "ERROR: INTERNET permission found in AndroidManifest.xml. This project is privacy-first and must not request INTERNET."; exit 1
+          fi
+
+          # Check iOS Info.plist for NSAllowsArbitraryLoads or other network allow-all keys
+          if grep -R --include="Info.plist" -n "NSAppTransportSecurity\|NSAllowsArbitraryLoads" .; then
+            echo "WARNING: Potential network-related keys found in Info.plist. Please verify they are required."; exit 1
+          fi
+
+          # Check pubspec.yaml for common analytics/crash packages
+          if grep -E "analytics|sentry|crashlytics|firebase_analytics|appcenter|rollbar" -n app/pubspec.yaml; then
+            echo "ERROR: Found analytics/crash packages in pubspec.yaml. Privacy policy requires no telemetry."; exit 1
+          fi
+
+      - name: Format check
+        run: |
+          cd app
+          flutter format --set-exit-if-changed .
+
+      - name: Static analysis
+        run: |
+          cd app
+          flutter analyze
+
+      - name: Run tests
+        run: |
+          cd app
+          flutter test --coverage
 name: Flutter CI
 
 on:
