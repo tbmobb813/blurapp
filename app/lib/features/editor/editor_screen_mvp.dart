@@ -578,7 +578,7 @@ class ImageDisplayPainter extends CustomPainter {
 
     // Draw brush strokes overlay
     final Paint brushPaint = Paint()
-  ..color = withOpacitySafe(Colors.red, 0.3)
+      ..color = withOpacitySafe(Colors.red, 0.3)
       ..style = PaintingStyle.fill;
 
     for (final stroke in brushStrokes) {
@@ -604,7 +604,7 @@ class ImageDisplayPainter extends CustomPainter {
     if (isProcessing) {
       canvas.drawRect(
         Rect.fromLTWH(0, 0, size.width, size.height),
-  Paint()..color = withOpacitySafe(Colors.black, 0.5),
+        Paint()..color = withOpacitySafe(Colors.black, 0.5),
       );
     }
   }

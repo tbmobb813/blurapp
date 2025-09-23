@@ -442,8 +442,9 @@ class _MaskPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     for (final stroke in mask.strokes) {
       final paint = Paint()
-            ..color =
-            stroke.erase ? Colors.transparent : withOpacitySafe(Colors.blue, 0.4)
+        ..color = stroke.erase
+            ? Colors.transparent
+            : withOpacitySafe(Colors.blue, 0.4)
         ..strokeWidth = stroke.size
         ..style = PaintingStyle.stroke
         ..strokeCap = StrokeCap.round;
