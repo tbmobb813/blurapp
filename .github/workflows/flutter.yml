@@ -32,7 +32,20 @@ jobs:
       - name: Install dependencies
         run: |
           cd app
-          flutter pub get
+          # Ensure Flutter tool has cached artifacts (may download engine artifacts)
+          /opt/flutter/bin/flutter precache || true
+
+          # Retry pub get up to 3 times to mitigate transient network/package server issues
+          attempt=0
+          until [ $attempt -ge 3 ]; do
+            /opt/flutter/bin/flutter pub get && break
+            attempt=$((attempt+1))
+            echo "flutter pub get failed, retry #$attempt"
+            sleep $((attempt*5))
+          done
+          if [ $attempt -ge 3 ]; then
+            echo "flutter pub get failed after $attempt attempts"; exit 1
+          fi
 
       - name: Privacy checks (fail if INTERNET permission or analytics deps)
         run: |
@@ -55,17 +68,17 @@ jobs:
       - name: Format check
         run: |
           cd app
-          dart format --set-exit-if-changed .
+          /opt/flutter/bin/dart format --set-exit-if-changed .
 
       - name: Static analysis
         run: |
           cd app
-          flutter analyze
+          /opt/flutter/bin/flutter analyze
 
       - name: Run tests
         run: |
           cd app
-          flutter test --coverage
+          /opt/flutter/bin/flutter test --coverage
 
   build-test:
     runs-on: ubuntu-latest
@@ -85,18 +98,29 @@ jobs:
       - name: Install dependencies
         run: |
           cd app
-          flutter pub get
+          /opt/flutter/bin/flutter precache || true
+
+          attempt=0
+          until [ $attempt -ge 3 ]; do
+            /opt/flutter/bin/flutter pub get && break
+            attempt=$((attempt+1))
+            echo "flutter pub get failed, retry #$attempt"
+            sleep $((attempt*5))
+          done
+          if [ $attempt -ge 3 ]; then
+            echo "flutter pub get failed after $attempt attempts"; exit 1
+          fi
 
       - name: Analyze and Test
         run: |
           cd app
-          flutter analyze
-          flutter test
+          /opt/flutter/bin/flutter analyze
+          /opt/flutter/bin/flutter test
 
       - name: Build APK (debug)
         run: |
           cd app
-          flutter build apk --debug
+          /opt/flutter/bin/flutter build apk --debug
 
   native-build-test:
     name: Native build & test
