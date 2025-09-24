@@ -159,8 +159,15 @@ jobs:
           /opt/flutter/bin/flutter test
 
       - name: Build APK (debug)
+        env:
+          # Request more heap for the Gradle/JVM steps (Jetify/transform can be memory-hungry)
+          JAVA_TOOL_OPTIONS: -Xmx4096m -XX:MaxMetaspaceSize=512m -Dfile.encoding=UTF-8 -XX:+HeapDumpOnOutOfMemoryError
+          GRADLE_OPTS: -Xmx4096m
         run: |
           cd app
+          # Also export these for subprocesses in case Gradle picks them up differently
+          export JAVA_TOOL_OPTIONS="$JAVA_TOOL_OPTIONS"
+          export GRADLE_OPTS="$GRADLE_OPTS"
           /opt/flutter/bin/flutter build apk --debug
 
   native-build-test:
