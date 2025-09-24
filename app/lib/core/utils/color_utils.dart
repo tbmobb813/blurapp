@@ -7,8 +7,9 @@ Color withOpacitySafe(Color color, double opacity) {
   // Clamp opacity between 0.0 and 1.0 and convert to 0-255 alpha
   final int a = ((opacity.clamp(0.0, 1.0) * 255).round()) & 0xFF;
 
-  // Preserve RGB components and set new alpha using the Color.value (ARGB int)
-  final int argb = color.value;
-  final int rgb = argb & 0x00FFFFFF;
-  return Color((a << 24) | rgb);
+  // Preserve RGB components and set new alpha using component accessors.
+  // This avoids using the deprecated `value` getter and follows analyzer
+  // recommendations (use .red/.green/.blue or toARGB32 when conversion is
+  // explicit).
+  return Color.fromARGB(a, color.red, color.green, color.blue);
 }
