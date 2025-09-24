@@ -1,3 +1,28 @@
+# Tests — helper reference
+
+This short guide explains test bootstrap and helpers used by unit/widget tests in this app.
+
+Key helpers
+
+- `initTestBootstrap()` (in `app/test/test_setup.dart`)
+  - Call this at the top of tests to initialize the test shim. It sets `ImageSaverService.provider` to `TestGalleryProvider` and provides a minimal `PathProviderBridge` shim so tests don't depend on platform plugins.
+
+- `TestGalleryProvider` (in `app/test/unit/test_gallery_provider.dart`)
+  - Implements `GalleryProvider` for tests and maps document/temporary directories to `Directory.systemTemp`. Simulates successful gallery operations.
+
+- `TestTempUtils` (in `app/test/unit/test_temp_utils.dart`)
+  - Small helper to create and safely delete files under `Directory.systemTemp`.
+  - Functions: `createTempFile(name, bytes)` and `safeDelete(File)`.
+
+Conventions
+
+- Tests should avoid depending on platform plugins. Use `initTestBootstrap()` to inject `TestGalleryProvider`.
+- Write temporary files into `Directory.systemTemp` (via `TestTempUtils`) and always clean them up with `safeDelete`.
+- Keep tests deterministic and small — prefer creating minimal valid image bytes (e.g. a 1×1 PNG via the `image` package) for image-processing paths.
+
+Why this exists
+
+- Centralizing temp-file creation and cleanup reduces duplication and flakiness across tests, and makes future improvements (age-based cache policy tests, cleanup boundaries) easier.
 # BlurApp Testing Framework
 
 This directory contains a standardized testing framework for the BlurApp project, providing consistent testing patterns across different levels of functionality.
@@ -29,261 +54,50 @@ BlurAppTestFramework.testCase(
 );
 ```
 
-### 🟡 CRITICAL Tests - User-Facing Features  
+# Test helpers & conventions
 
-**Priority:** HIGH - Should always pass  
-**Run Time:** < 500ms per test  
-**Coverage:** Primary user interactions, UI workflows, error handling
+This document is a short reference for the test helpers used by unit and
+widget tests in this app. It focuses on the small helpers added in this PR.
 
-Critical tests verify user-facing features that impact the core workflow:
+Key helpers
 
-- Complete user flows (image → edit → export)
-- UI state transitions
-- Error handling and recovery
-- Performance under normal usage
+- `initTestBootstrap()` — call this in test setup (see `app/test/test_setup.dart`).
+  It injects a `TestGalleryProvider` into `ImageSaverService` and provides a
+  minimal path-provider shim so tests don't depend on platform plugins.
 
-**Example:**
+- `TestGalleryProvider` — located at `app/test/unit/test_gallery_provider.dart`.
+  Maps document/temporary directories to `Directory.systemTemp` and simulates
+  successful gallery interactions for tests.
 
-```dart
-BlurAppTestFramework.widgetTest(
-  'user can complete full blur workflow',
-  (tester) async {
-    // Test complete user scenario
-  },
-  level: TestLevel.critical,
-);
-```
+- `TestTempUtils` — located at `app/test/unit/test_temp_utils.dart`.
+  Small helper to create and safely delete files under `Directory.systemTemp`.
+  Functions: `createTempFile(name, bytes)` and `safeDelete(File)`.
 
-### 🟢 MISC Tests - Supporting Features
+Conventions
 
-**Priority:** MEDIUM - Nice to have  
-**Run Time:** Variable  
-**Coverage:** Edge cases, performance, accessibility, optional features
+- Use `initTestBootstrap()` at the top of tests to avoid platform plugin
+  dependencies.
+- Use `TestTempUtils.createTempFile(...)` and `safeDelete(...)` for temp files
+  to keep tests deterministic and to centralize cleanup logic.
+- For image-processing paths prefer minimal valid image bytes (for example a
+  1x1 PNG generated with the `image` package) to avoid decode/encode flakiness.
 
-Miscellaneous tests cover supporting features and edge cases:
+Running tests
 
-- Boundary conditions and edge cases
-- Performance benchmarks
-- Accessibility compliance
-- Internationalization
-- Graceful degradation
-
-**Example:**
-
-```dart
-BlurAppTestFramework.performanceTest(
-  'image resizing completes within threshold',
-  () async {
-    // Test performance constraints
-  },
-  maxDuration: Duration(milliseconds: 50),
-);
-```
-
-## Framework Components
-
-### BlurAppTestFramework
-
-Main testing utility providing standardized test methods:
-
-- `testGroup()` - Grouped tests with setup
-- `testCase()` - Standard unit tests
-- `widgetTest()` - Widget testing with app wrapper
-- `asyncTest()` - Async operations with timeout
-- `performanceTest()` - Performance benchmarking
-- `integrationTest()` - End-to-end scenarios
-
-### TestHelpers
-
-Common utilities for test setup and assertions:
-
-- `createTestImageBytes()` - Generate test data
-- `waitForAsync()` - Wait for async operations
-- `pumpAndSettle()` - Widget tree updates
-- `tapAndSettle()` - UI interactions
-- `findTextWidget()` - Enhanced widget finding
-
-### BlurAppAssertions
-
-Domain-specific assertions for BlurApp:
-
-- `assertValidImageResult()` - Image processing validation
-- `assertValidBlurParams()` - Parameter validation
-- `assertUIStateTransition()` - UI state verification
-- `assertServiceInitialized()` - Service validation
-- `assertFileExists()` - File operation validation
-
-## Running Tests
-
-### Run All Tests
+Run unit tests:
 
 ```bash
-flutter test
-```
-
-### Run by Category
-
-```bash
-# Core tests only (fastest)
 flutter test test/unit/
-
-# Widget tests only
-flutter test test/widget_test.dart
-
-# Specific test file
-flutter test test/unit/blur_pipeline_test.dart
 ```
 
-### Test Runner
-
-Use the test runner for organized execution:
+Run a single test file:
 
 ```bash
-flutter test test/test_runner.dart
+flutter test test/unit/image_saver_cache_test.dart
 ```
 
-## Test Templates
+Purpose
 
-The `templates/` directory contains example test patterns:
-
-- `core_test_template.dart` - Core business logic patterns
-- `critical_test_template.dart` - User workflow patterns  
-- `misc_test_template.dart` - Edge case and performance patterns
-
-## Best Practices
-
-### Core Tests
-
-- ✅ Test pure functions and algorithms
-- ✅ Cover all critical code paths
-- ✅ Use deterministic test data
-- ✅ Keep tests fast (< 100ms)
-- ❌ No external dependencies
-- ❌ No UI testing
-- ❌ No network calls
-
-### Critical Tests  
-
-- ✅ Test complete user scenarios
-- ✅ Verify UI state changes
-- ✅ Include error handling
-- ✅ Use realistic test data
-- ❌ Don't test implementation details
-- ❌ Don't mock core business logic
-
-### Misc Tests
-
-- ✅ Test edge cases and boundaries
-- ✅ Include performance benchmarks
-- ✅ Test accessibility features
-- ✅ Verify graceful degradation
-- ⚠️ Can be skipped in CI if needed
-- ⚠️ Allowed to have longer timeouts
-
-## File Structure
-
-```
-test/
-├── test_framework.dart          # Core testing framework
-├── test_runner.dart            # Categorized test execution
-├── templates/                  # Example test patterns
-│   ├── core_test_template.dart
-│   ├── critical_test_template.dart
-│   └── misc_test_template.dart
-├── unit/                       # Core business logic tests
-│   ├── auto_detect_service_test.dart
-│   └── blur_pipeline_test.dart
-├── widget_test.dart           # Critical UI workflow tests
-└── integration/               # End-to-end scenarios (future)
-```
-
-## CI/CD Integration
-
-Recommended test execution for different environments:
-
-**Pre-commit Hook:**
-
-```bash
-flutter test test/unit/  # Core tests only
-```
-
-**Pull Request:**
-
-```bash
-flutter test test/unit/ test/widget_test.dart  # Core + Critical
-```
-
-**Release Pipeline:**
-
-```bash
-flutter test  # All tests
-```
-
-## Adding New Tests
-
-1. **Identify Test Level:**
-   - Core: Pure business logic
-   - Critical: User-facing workflows
-   - Misc: Edge cases and performance
-
-2. **Use Framework:**
-
-   ```dart
-   BlurAppTestFramework.testCase(
-     'descriptive test name',
-     () {
-       // Test implementation
-     },
-     level: TestLevel.core, // or critical, misc
-   );
-   ```
-
-3. **Follow Patterns:**
-   - Check templates for examples
-   - Use helper methods for setup
-   - Use assertions for validation
-   - Include appropriate timeout/skip options
-
-4. **Update Test Runner:**
-   - Add new test files to test_runner.dart
-   - Categorize appropriately
-
-## Troubleshooting
-
-### Common Issues
-
-**Binding not initialized:**
-
-```dart
-// Add this to test setup
-BlurAppTestFramework.setupTest();
-```
-
-**Widget not found:**
-
-```dart
-// Use helper for better error messages
-TestHelpers.findTextWidget('Button Text');
-```
-
-**Async operation timeout:**
-
-```dart
-// Increase timeout for slow operations
-BlurAppTestFramework.asyncTest(
-  'slow operation',
-  () async { /* ... */ },
-  timeout: Timeout(Duration(seconds: 60)),
-);
-```
-
-**Performance test failure:**
-
-```dart
-// Adjust performance expectations
-BlurAppTestFramework.performanceTest(
-  'operation performance',
-  () async { /* ... */ },
-  maxDuration: Duration(milliseconds: 200), // Adjust as needed
-);
-```
+Centralizing temp-file logic reduces duplication and makes it easier to add
+additional cache-policy tests in the future (for example age-based cleanup
+or limits).
