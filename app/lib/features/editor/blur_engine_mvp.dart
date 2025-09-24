@@ -164,9 +164,12 @@ class BlurEngineMVP {
     required int width,
     required int height,
   }) async {
-    // TODO: Integrate MediaPipe Face Detection
-    // For now, return a placeholder mask
-    debugPrint('$_tag: Face detection not yet implemented - using placeholder');
+    // NOTE: Face detection is implemented outside this engine in
+    // `AutoDetectService` (TFLite or manual fallback). This method
+    // remains a local placeholder for callers that do not use
+    // AutoDetectService and returns a simple center mask.
+    debugPrint(
+        '$_tag: Using local placeholder face mask (AutoDetectService recommended)');
 
     // Create a simple center mask as placeholder
     final Uint8List mask = Uint8List(width * height);

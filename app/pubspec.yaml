@@ -14,6 +14,8 @@ dependencies:
   share_plus: ^10.0.2
   image: ^4.2.0
   gal: ^2.3.0  # Gallery saver for MVP export functionality
+  # TensorFlow Lite for on-device inference (optional - graceful fallback in code)
+  tflite_flutter: ^0.9.0
   # Optional later: camera, photo_manager
   # Note: TensorFlow Lite removed for MVP to keep app lightweight
   # Can be re-added later when better platform support is available

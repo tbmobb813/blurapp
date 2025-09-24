@@ -1,9 +1,10 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import '../../core/utils/color_utils.dart';
 import 'package:flutter/services.dart';
 
+import '../../core/utils/color_utils.dart';
+import '../../services/auto_detect_service.dart';
 import '../../services/image_saver_service.dart';
 import 'blur_engine_mvp.dart';
 
@@ -291,27 +292,33 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
     });
 
     try {
-      final Uint8List? mask = await BlurEngineMVP.generateFaceMask(
-        imageBytes: widget.imageBytes,
-        width: _previewWidth,
-        height: _previewHeight,
+      // Prefer ML-based detection via AutoDetectService when available.
+      final service = await AutoDetectService.create(
+        modelPath: 'assets/models/face_detection_short_range.tflite',
       );
 
-      if (mask != null) {
-        // Convert mask to brush strokes (simplified approach)
+      final boxes = await service.detect(widget.imageBytes);
+
+      if (boxes.isNotEmpty) {
+        // Convert bounding boxes to brush strokes at preview resolution
         final List<BrushStroke> faceStrokes = [];
 
-        // Convert mask bitmap to brush strokes using the MVP helper
-        final converted = BlurEngineMVP.maskToBrushStrokes(
-          mask,
-          _previewWidth,
-          _previewHeight,
-          stride: 12,
-          threshold: 100,
-          baseSize: 36.0,
-        );
+        for (final rect in boxes) {
+          // Map rect center to preview coordinates
+          final double centerX = (rect.left + rect.right) / 2.0;
+          final double centerY = (rect.top + rect.bottom) / 2.0;
 
-        faceStrokes.addAll(converted);
+          // Scale to preview resolution
+          final double scaleX = _previewWidth / _originalImage!.width;
+          final double scaleY = _previewHeight / _originalImage!.height;
+
+          faceStrokes.add(BrushStroke(
+            points: [Point(centerX * scaleX, centerY * scaleY)],
+            size:
+                ((rect.width + rect.height) / 2.0) * ((scaleX + scaleY) / 2.0),
+            opacity: 255,
+          ));
+        }
 
         setState(() {
           _brushStrokes = faceStrokes;
@@ -331,6 +338,76 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
         _isProcessing = false;
       });
     }
+  }
+
+  Future<void> _autoDetectSegmentation() async {
+    if (_originalImage == null) return;
+
+    setState(() {
+      _isProcessing = true;
+    });
+
+    try {
+      final service = await AutoDetectService.create(
+        modelPath: 'assets/models/selfie_segmentation.tflite',
+      );
+
+      final Uint8List? maskBytes =
+          await service.detectSegmentation(widget.imageBytes);
+
+      if (maskBytes != null && maskBytes.isNotEmpty) {
+        // Scale mask from original size to preview resolution
+        final int srcW = _originalImage!.width;
+        final int srcH = _originalImage!.height;
+        final Uint8List scaled = _scaleMaskNearestNeighbor(
+            maskBytes, srcW, srcH, _previewWidth, _previewHeight);
+
+        // Convert mask to brush strokes and apply
+        final strokes = BlurEngineMVP.maskToBrushStrokes(
+            scaled, _previewWidth, _previewHeight,
+            stride: 8, threshold: 128, baseSize: 32.0);
+
+        setState(() {
+          _brushStrokes = strokes;
+        });
+
+        _updatePreview();
+      } else {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('No segmentation result')),
+          );
+        }
+      }
+    } catch (e) {
+      debugPrint('$_tag: Segmentation error: $e');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Segmentation failed: $e')),
+        );
+      }
+    } finally {
+      setState(() {
+        _isProcessing = false;
+      });
+    }
+  }
+
+  // Nearest-neighbor downscale for a grayscale mask (one byte per pixel)
+  Uint8List _scaleMaskNearestNeighbor(
+      Uint8List src, int srcW, int srcH, int dstW, int dstH) {
+    if (src.length < srcW * srcH) return Uint8List(dstW * dstH);
+    final Uint8List out = Uint8List(dstW * dstH);
+    for (int y = 0; y < dstH; y++) {
+      final double srcY = (y + 0.5) * srcH / dstH - 0.5;
+      final int sy = srcY.clamp(0, srcH - 1).round();
+      for (int x = 0; x < dstW; x++) {
+        final double srcX = (x + 0.5) * srcW / dstW - 0.5;
+        final int sx = srcX.clamp(0, srcW - 1).round();
+        out[y * dstW + x] = src[sy * srcW + sx];
+      }
+    }
+    return out;
   }
 
   @override
@@ -522,7 +599,15 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
               onPressed: _isProcessing ? null : _autoDetectFaces,
             ),
           ),
-          const SizedBox(width: 16),
+          const SizedBox(width: 8),
+          Expanded(
+            child: ElevatedButton.icon(
+              icon: const Icon(Icons.person_off),
+              label: const Text('Auto Segment'),
+              onPressed: _isProcessing ? null : _autoDetectSegmentation,
+            ),
+          ),
+          const SizedBox(width: 8),
           Expanded(
             child: ElevatedButton.icon(
               icon: const Icon(Icons.clear),
