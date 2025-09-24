@@ -1,0 +1,1086 @@
+﻿2025-09-23T23:48:09.4242944Z Current runner version: '2.328.0'
+2025-09-23T23:48:09.4267539Z ##[group]Runner Image Provisioner
+2025-09-23T23:48:09.4268401Z Hosted Compute Agent
+2025-09-23T23:48:09.4268958Z Version: 20250829.383
+2025-09-23T23:48:09.4269553Z Commit: 27cb235aab5b0e52e153a26cd86b4742e89dac5d
+2025-09-23T23:48:09.4270300Z Build Date: 2025-08-29T13:48:48Z
+2025-09-23T23:48:09.4270919Z ##[endgroup]
+2025-09-23T23:48:09.4271413Z ##[group]Operating System
+2025-09-23T23:48:09.4272016Z Ubuntu
+2025-09-23T23:48:09.4272471Z 24.04.3
+2025-09-23T23:48:09.4272927Z LTS
+2025-09-23T23:48:09.4273329Z ##[endgroup]
+2025-09-23T23:48:09.4274304Z ##[group]Runner Image
+2025-09-23T23:48:09.4274857Z Image: ubuntu-24.04
+2025-09-23T23:48:09.4275305Z Version: 20250907.24.1
+2025-09-23T23:48:09.4276389Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20250907.24/images/ubuntu/Ubuntu2404-Readme.md
+2025-09-23T23:48:09.4277915Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20250907.24
+2025-09-23T23:48:09.4278983Z ##[endgroup]
+2025-09-23T23:48:09.4280024Z ##[group]GITHUB_TOKEN Permissions
+2025-09-23T23:48:09.4281906Z Contents: read
+2025-09-23T23:48:09.4282451Z Metadata: read
+2025-09-23T23:48:09.4282955Z Packages: read
+2025-09-23T23:48:09.4283842Z ##[endgroup]
+2025-09-23T23:48:09.4286246Z Secret source: Actions
+2025-09-23T23:48:09.4286943Z Prepare workflow directory
+2025-09-23T23:48:09.4612772Z Prepare all required actions
+2025-09-23T23:48:09.4652869Z Getting action download info
+2025-09-23T23:48:09.8961813Z Download action repository 'actions/checkout@v4' (SHA:08eba0b27e820071cde6df949e0beb9ba4906955)
+2025-09-23T23:48:10.0991577Z Download action repository 'actions/cache@v4' (SHA:0400d5f644dc74513175e3cd8d07132dd4860809)
+2025-09-23T23:48:10.3372098Z Complete job name: analyze-and-test
+2025-09-23T23:48:10.4087030Z ##[group]Run actions/checkout@v4
+2025-09-23T23:48:10.4087868Z with:
+2025-09-23T23:48:10.4088278Z   repository: tbmobb813/blurapp
+2025-09-23T23:48:10.4088936Z   token: ***
+2025-09-23T23:48:10.4089334Z   ssh-strict: true
+2025-09-23T23:48:10.4089722Z   ssh-user: git
+2025-09-23T23:48:10.4090120Z   persist-credentials: true
+2025-09-23T23:48:10.4090552Z   clean: true
+2025-09-23T23:48:10.4090947Z   sparse-checkout-cone-mode: true
+2025-09-23T23:48:10.4091409Z   fetch-depth: 1
+2025-09-23T23:48:10.4091790Z   fetch-tags: false
+2025-09-23T23:48:10.4092230Z   show-progress: true
+2025-09-23T23:48:10.4092627Z   lfs: false
+2025-09-23T23:48:10.4092983Z   submodules: false
+2025-09-23T23:48:10.4093593Z   set-safe-directory: true
+2025-09-23T23:48:10.4094288Z ##[endgroup]
+2025-09-23T23:48:10.5252137Z Syncing repository: tbmobb813/blurapp
+2025-09-23T23:48:10.5255361Z ##[group]Getting Git version info
+2025-09-23T23:48:10.5256464Z Working directory is '/home/runner/work/blurapp/blurapp'
+2025-09-23T23:48:10.5258215Z [command]/usr/bin/git version
+2025-09-23T23:48:10.5326624Z git version 2.51.0
+2025-09-23T23:48:10.5357328Z ##[endgroup]
+2025-09-23T23:48:10.5374484Z Temporarily overriding HOME='/home/runner/work/_temp/54cecfc0-80f2-4a61-83b1-312600fc39fc' before making global git config changes
+2025-09-23T23:48:10.5378517Z Adding repository directory to the temporary git global config as a safe directory
+2025-09-23T23:48:10.5380911Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/blurapp/blurapp
+2025-09-23T23:48:10.5425084Z Deleting the contents of '/home/runner/work/blurapp/blurapp'
+2025-09-23T23:48:10.5429062Z ##[group]Initializing the repository
+2025-09-23T23:48:10.5433200Z [command]/usr/bin/git init /home/runner/work/blurapp/blurapp
+2025-09-23T23:48:10.5554006Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-09-23T23:48:10.5555533Z hint: is subject to change. To configure the initial branch name to use in all
+2025-09-23T23:48:10.5556506Z hint: of your new repositories, which will suppress this warning, call:
+2025-09-23T23:48:10.5557681Z hint:
+2025-09-23T23:48:10.5558312Z hint: 	git config --global init.defaultBranch <name>
+2025-09-23T23:48:10.5558963Z hint:
+2025-09-23T23:48:10.5560345Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-09-23T23:48:10.5561937Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-09-23T23:48:10.5563136Z hint:
+2025-09-23T23:48:10.5564050Z hint: 	git branch -m <name>
+2025-09-23T23:48:10.5564815Z hint:
+2025-09-23T23:48:10.5565842Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-09-23T23:48:10.5567462Z Initialized empty Git repository in /home/runner/work/blurapp/blurapp/.git/
+2025-09-23T23:48:10.5573107Z [command]/usr/bin/git remote add origin https://github.com/tbmobb813/blurapp
+2025-09-23T23:48:10.5616250Z ##[endgroup]
+2025-09-23T23:48:10.5617408Z ##[group]Disabling automatic garbage collection
+2025-09-23T23:48:10.5621219Z [command]/usr/bin/git config --local gc.auto 0
+2025-09-23T23:48:10.5651708Z ##[endgroup]
+2025-09-23T23:48:10.5652927Z ##[group]Setting up auth
+2025-09-23T23:48:10.5659595Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-09-23T23:48:10.5692479Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-09-23T23:48:10.6040330Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-09-23T23:48:10.6071543Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-09-23T23:48:10.6302702Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-09-23T23:48:10.6353722Z ##[endgroup]
+2025-09-23T23:48:10.6354901Z ##[group]Fetching the repository
+2025-09-23T23:48:10.6362400Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +fd040e0737cf27b1d4eedf92f2a985f25cd3e3fc:refs/remotes/pull/1/merge
+2025-09-23T23:48:14.3726581Z From https://github.com/tbmobb813/blurapp
+2025-09-23T23:48:14.3728346Z  * [new ref]         fd040e0737cf27b1d4eedf92f2a985f25cd3e3fc -> pull/1/merge
+2025-09-23T23:48:14.3761920Z ##[endgroup]
+2025-09-23T23:48:14.3763166Z ##[group]Determining the checkout info
+2025-09-23T23:48:14.3765668Z ##[endgroup]
+2025-09-23T23:48:14.3770011Z [command]/usr/bin/git sparse-checkout disable
+2025-09-23T23:48:14.3812443Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-09-23T23:48:14.3843919Z ##[group]Checking out the ref
+2025-09-23T23:48:14.3847197Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/1/merge
+2025-09-23T23:48:14.6407255Z Note: switching to 'refs/remotes/pull/1/merge'.
+2025-09-23T23:48:14.6408049Z 
+2025-09-23T23:48:14.6408593Z You are in 'detached HEAD' state. You can look around, make experimental
+2025-09-23T23:48:14.6409773Z changes and commit them, and you can discard any commits you make in this
+2025-09-23T23:48:14.6410994Z state without impacting any branches by switching back to a branch.
+2025-09-23T23:48:14.6411694Z 
+2025-09-23T23:48:14.6412261Z If you want to create a new branch to retain commits you create, you may
+2025-09-23T23:48:14.6413344Z do so (now or later) by using -c with the switch command. Example:
+2025-09-23T23:48:14.6414306Z 
+2025-09-23T23:48:14.6414813Z   git switch -c <new-branch-name>
+2025-09-23T23:48:14.6415688Z 
+2025-09-23T23:48:14.6416241Z Or undo this operation with:
+2025-09-23T23:48:14.6417069Z 
+2025-09-23T23:48:14.6417495Z   git switch -
+2025-09-23T23:48:14.6418114Z 
+2025-09-23T23:48:14.6419011Z Turn off this advice by setting config variable advice.detachedHead to false
+2025-09-23T23:48:14.6420251Z 
+2025-09-23T23:48:14.6421705Z HEAD is now at fd040e0 Merge 18e3fdac65263df089bcbeae8b476e6c28d7232c into 32f0128cf6e380c1a90784019777021a2d0e6fc6
+2025-09-23T23:48:14.6426860Z ##[endgroup]
+2025-09-23T23:48:14.6462742Z [command]/usr/bin/git log -1 --format=%H
+2025-09-23T23:48:14.6486052Z fd040e0737cf27b1d4eedf92f2a985f25cd3e3fc
+2025-09-23T23:48:14.6707801Z ##[group]Run sudo apt-get update
+2025-09-23T23:48:14.6709156Z [36;1msudo apt-get update[0m
+2025-09-23T23:48:14.6710509Z [36;1msudo apt-get install -y git curl unzip xz-utils[0m
+2025-09-23T23:48:14.6712647Z [36;1mgit clone https://github.com/flutter/flutter.git -b stable --depth 1 /opt/flutter[0m
+2025-09-23T23:48:14.6714748Z [36;1mecho "/opt/flutter/bin" >> $GITHUB_PATH[0m
+2025-09-23T23:48:14.6716319Z [36;1mecho "/opt/flutter/bin/cache/dart-sdk/bin" >> $GITHUB_PATH[0m
+2025-09-23T23:48:14.6717917Z [36;1m/opt/flutter/bin/flutter --version[0m
+2025-09-23T23:48:14.6778704Z shell: /usr/bin/bash -e {0}
+2025-09-23T23:48:14.6779750Z ##[endgroup]
+2025-09-23T23:48:14.7556452Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2025-09-23T23:48:14.7894965Z Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+2025-09-23T23:48:14.7898122Z Hit:6 https://packages.microsoft.com/repos/azure-cli noble InRelease
+2025-09-23T23:48:14.7919157Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2025-09-23T23:48:14.7956584Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+2025-09-23T23:48:14.8026872Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2025-09-23T23:48:14.8053847Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2025-09-23T23:48:14.9777900Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [36.2 kB]
+2025-09-23T23:48:14.9905066Z Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [53.7 kB]
+2025-09-23T23:48:14.9969144Z Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [10.3 kB]
+2025-09-23T23:48:15.0176175Z Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1436 kB]
+2025-09-23T23:48:15.0305371Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [281 kB]
+2025-09-23T23:48:15.0333594Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [175 kB]
+2025-09-23T23:48:15.0362514Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 c-n-f Metadata [15.3 kB]
+2025-09-23T23:48:15.0387612Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1485 kB]
+2025-09-23T23:48:15.0479676Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [299 kB]
+2025-09-23T23:48:15.0511392Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [377 kB]
+2025-09-23T23:48:15.0553316Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 c-n-f Metadata [31.1 kB]
+2025-09-23T23:48:15.0579209Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1941 kB]
+2025-09-23T23:48:15.0672338Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [436 kB]
+2025-09-23T23:48:15.1129295Z Get:21 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Components [212 B]
+2025-09-23T23:48:15.1139814Z Get:22 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 c-n-f Metadata [544 B]
+2025-09-23T23:48:15.1150966Z Get:23 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [32.0 kB]
+2025-09-23T23:48:15.1161694Z Get:24 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [5500 B]
+2025-09-23T23:48:15.1174212Z Get:25 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+2025-09-23T23:48:15.1184794Z Get:26 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 c-n-f Metadata [488 B]
+2025-09-23T23:48:15.1203122Z Get:27 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [7084 B]
+2025-09-23T23:48:15.1218456Z Get:28 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [19.2 kB]
+2025-09-23T23:48:15.1229484Z Get:29 http://azure.archive.ubuntu.com/ubuntu noble-backports/restricted amd64 Components [216 B]
+2025-09-23T23:48:15.1241527Z Get:30 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Components [212 B]
+2025-09-23T23:48:15.1339651Z Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1164 kB]
+2025-09-23T23:48:15.1405982Z Get:32 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [197 kB]
+2025-09-23T23:48:15.1427614Z Get:33 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [21.5 kB]
+2025-09-23T23:48:15.1440681Z Get:34 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 c-n-f Metadata [8744 B]
+2025-09-23T23:48:15.1897295Z Get:35 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [880 kB]
+2025-09-23T23:48:15.1954658Z Get:36 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [195 kB]
+2025-09-23T23:48:15.1976018Z Get:37 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [52.3 kB]
+2025-09-23T23:48:15.1989027Z Get:38 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 c-n-f Metadata [18.0 kB]
+2025-09-23T23:48:15.2001444Z Get:39 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1855 kB]
+2025-09-23T23:48:15.2099595Z Get:40 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [419 kB]
+2025-09-23T23:48:15.2139710Z Get:41 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Components [212 B]
+2025-09-23T23:48:15.2151402Z Get:42 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 c-n-f Metadata [520 B]
+2025-09-23T23:48:15.2162025Z Get:43 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [28.0 kB]
+2025-09-23T23:48:15.2178830Z Get:44 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [5228 B]
+2025-09-23T23:48:15.2190800Z Get:45 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Components [208 B]
+2025-09-23T23:48:15.2201105Z Get:46 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 c-n-f Metadata [384 B]
+2025-09-23T23:48:21.2686238Z Fetched 11.9 MB in 1s (8110 kB/s)
+2025-09-23T23:48:22.0779110Z Reading package lists...
+2025-09-23T23:48:22.1106635Z Reading package lists...
+2025-09-23T23:48:22.2680722Z Building dependency tree...
+2025-09-23T23:48:22.2688198Z Reading state information...
+2025-09-23T23:48:22.4452934Z git is already the newest version (1:2.51.0-0ppa2~ubuntu24.04.1).
+2025-09-23T23:48:22.4453855Z git set to manually installed.
+2025-09-23T23:48:22.4454374Z curl is already the newest version (8.5.0-2ubuntu10.6).
+2025-09-23T23:48:22.4455001Z unzip is already the newest version (6.0-28ubuntu4.1).
+2025-09-23T23:48:22.4455698Z xz-utils is already the newest version (5.6.1+really5.4.5-1ubuntu0.2).
+2025-09-23T23:48:22.4456395Z 0 upgraded, 0 newly installed, 0 to remove and 69 not upgraded.
+2025-09-23T23:48:22.4484337Z Cloning into '/opt/flutter'...
+2025-09-23T23:48:25.1014095Z Updating files:  94% (14019/14891)
+2025-09-23T23:48:25.1149654Z Updating files:  95% (14147/14891)
+2025-09-23T23:48:25.1279512Z Updating files:  96% (14296/14891)
+2025-09-23T23:48:25.1391117Z Updating files:  97% (14445/14891)
+2025-09-23T23:48:25.1476151Z Updating files:  98% (14594/14891)
+2025-09-23T23:48:25.1558432Z Updating files:  99% (14743/14891)
+2025-09-23T23:48:25.1559091Z Updating files: 100% (14891/14891)
+2025-09-23T23:48:25.1559641Z Updating files: 100% (14891/14891), done.
+2025-09-23T23:48:25.2165761Z Downloading Linux x64 Dart SDK from Flutter engine c29809135135e262a912cf583b2c90deb9ded610...
+2025-09-23T23:48:25.2264499Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2025-09-23T23:48:25.2265345Z                                  Dload  Upload   Total   Spent    Left  Speed
+2025-09-23T23:48:25.2267002Z 
+2025-09-23T23:48:25.6190561Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2025-09-23T23:48:26.6209457Z   1  207M    1 3733k    0     0  9508k      0  0:00:22 --:--:--  0:00:22 9500k
+2025-09-23T23:48:27.6184667Z   8  207M    8 16.7M    0     0  12.0M      0  0:00:17  0:00:01  0:00:16 12.0M
+2025-09-23T23:48:28.6192321Z  14  207M   14 29.7M    0     0  12.4M      0  0:00:16  0:00:02  0:00:14 12.4M
+2025-09-23T23:48:29.6176868Z  20  207M   20 42.1M    0     0  12.4M      0  0:00:16  0:00:03  0:00:13 12.4M
+2025-09-23T23:48:30.6189826Z  26  207M   26 54.1M    0     0  12.3M      0  0:00:16  0:00:04  0:00:12 12.3M
+2025-09-23T23:48:31.6176737Z  32  207M   32 66.6M    0     0  12.3M      0  0:00:16  0:00:05  0:00:11 12.6M
+2025-09-23T23:48:32.6210172Z  38  207M   38 79.8M    0     0  12.4M      0  0:00:16  0:00:06  0:00:10 12.6M
+2025-09-23T23:48:33.6205828Z  44  207M   44 92.5M    0     0  12.5M      0  0:00:16  0:00:07  0:00:09 12.5M
+2025-09-23T23:48:34.6209685Z  50  207M   50  105M    0     0  12.5M      0  0:00:16  0:00:08  0:00:08 12.6M
+2025-09-23T23:48:35.6177954Z  56  207M   56  117M    0     0  12.5M      0  0:00:16  0:00:09  0:00:07 12.6M
+2025-09-23T23:48:36.6201082Z  62  207M   62  130M    0     0  12.5M      0  0:00:16  0:00:10  0:00:06 12.6M
+2025-09-23T23:48:37.6176077Z  68  207M   68  141M    0     0  12.4M      0  0:00:16  0:00:11  0:00:05 12.4M
+2025-09-23T23:48:38.6176767Z  74  207M   74  154M    0     0  12.4M      0  0:00:16  0:00:12  0:00:04 12.3M
+2025-09-23T23:48:39.6200358Z  80  207M   80  167M    0     0  12.5M      0  0:00:16  0:00:13  0:00:03 12.4M
+2025-09-23T23:48:40.6186725Z  86  207M   86  180M    0     0  12.5M      0  0:00:16  0:00:14  0:00:02 12.5M
+2025-09-23T23:48:41.6186788Z  92  207M   92  192M    0     0  12.5M      0  0:00:16  0:00:15  0:00:01 12.4M
+2025-09-23T23:48:41.8729971Z  98  207M   98  204M    0     0  12.4M      0  0:00:16  0:00:16 --:--:-- 12.4M
+2025-09-23T23:48:41.8730755Z 100  207M  100  207M    0     0  12.4M      0  0:00:16  0:00:16 --:--:-- 12.4M
+2025-09-23T23:48:46.4395228Z Building flutter tool...
+2025-09-23T23:48:46.5619190Z Resolving dependencies...
+2025-09-23T23:48:47.4578342Z Downloading packages...
+2025-09-23T23:48:50.5386505Z + _fe_analyzer_shared 82.0.0 (89.0.0 available)
+2025-09-23T23:48:50.5387057Z + analyzer 7.4.5 (8.2.0 available)
+2025-09-23T23:48:50.5387431Z + archive 3.6.1 (4.0.7 available)
+2025-09-23T23:48:50.5387771Z + args 2.7.0
+2025-09-23T23:48:50.5388035Z + async 2.13.0
+2025-09-23T23:48:50.5388343Z + boolean_selector 2.1.2
+2025-09-23T23:48:50.5388722Z + browser_launcher 1.1.3
+2025-09-23T23:48:50.5389142Z + built_collection 5.1.1
+2025-09-23T23:48:50.5389546Z + built_value 8.10.1 (8.12.0 available)
+2025-09-23T23:48:50.5389996Z + checked_yaml 2.0.4
+2025-09-23T23:48:50.5390355Z + cli_config 0.2.0
+2025-09-23T23:48:50.5390559Z + clock 1.1.2
+2025-09-23T23:48:50.5390769Z + code_assets 0.19.4 (0.19.7 available)
+2025-09-23T23:48:50.5391064Z + code_builder 4.10.1 (4.11.0 available)
+2025-09-23T23:48:50.5391360Z + collection 1.19.1
+2025-09-23T23:48:50.5391602Z + completion 1.0.1 (1.0.2 available)
+2025-09-23T23:48:50.5391867Z + convert 3.1.2
+2025-09-23T23:48:50.5392079Z + coverage 1.14.1 (1.15.0 available)
+2025-09-23T23:48:50.5392346Z + crypto 3.0.6
+2025-09-23T23:48:50.5392540Z + csslib 1.0.2
+2025-09-23T23:48:50.5392726Z + dap 1.4.0
+2025-09-23T23:48:50.5392932Z + dart_service_protocol_shared 0.0.3
+2025-09-23T23:48:50.5393205Z + dart_style 3.1.0 (3.1.2 available)
+2025-09-23T23:48:50.5393754Z + dds 5.0.3 (5.1.0 available)
+2025-09-23T23:48:50.5394040Z + dds_service_extensions 2.0.2 (2.1.0 available)
+2025-09-23T23:48:50.5394348Z + devtools_shared 12.0.0
+2025-09-23T23:48:50.5394574Z + dtd 4.0.0
+2025-09-23T23:48:50.5394764Z + dwds 24.4.0+2 (25.1.0 available)
+2025-09-23T23:48:50.5395036Z + extension_discovery 2.1.0
+2025-09-23T23:48:50.5395269Z + fake_async 1.3.3
+2025-09-23T23:48:50.5395470Z + ffi 2.1.4
+2025-09-23T23:48:50.5395644Z + file 7.0.1
+2025-09-23T23:48:50.5395839Z + file_testing 3.0.2
+2025-09-23T23:48:50.5396043Z + fixnum 1.1.1
+2025-09-23T23:48:50.5396255Z + flutter_template_images 5.0.0
+2025-09-23T23:48:50.5396523Z + frontend_server_client 4.0.0
+2025-09-23T23:48:50.5396766Z + glob 2.1.3
+2025-09-23T23:48:50.5397221Z + graphs 2.3.2
+2025-09-23T23:48:50.5397595Z + hooks 0.19.5 (0.20.1 available)
+2025-09-23T23:48:50.5397869Z + hooks_runner 0.21.0 (0.22.1 available)
+2025-09-23T23:48:50.5398136Z + html 0.15.6
+2025-09-23T23:48:50.5398357Z + http 1.4.0 (1.5.0 available)
+2025-09-23T23:48:50.5398597Z + http_multi_server 3.2.2
+2025-09-23T23:48:50.5398838Z + http_parser 4.1.2
+2025-09-23T23:48:50.5399005Z + intl 0.20.2
+2025-09-23T23:48:50.5399155Z + io 1.0.5
+2025-09-23T23:48:50.5399312Z + js 0.7.2 (discontinued)
+2025-09-23T23:48:50.5399495Z + json_annotation 4.9.0
+2025-09-23T23:48:50.5399685Z + json_rpc_2 3.0.3 (4.0.0 available)
+2025-09-23T23:48:50.5399888Z + logging 1.3.0
+2025-09-23T23:48:50.5400049Z + matcher 0.12.17
+2025-09-23T23:48:50.5400204Z + meta 1.17.0
+2025-09-23T23:48:50.5400357Z + mime 2.0.0
+2025-09-23T23:48:50.5400508Z + multicast_dns 0.3.3
+2025-09-23T23:48:50.5473693Z + mustache_template 2.0.0 (2.0.1 available)
+2025-09-23T23:48:50.5474186Z + native_stack_traces 0.6.1
+2025-09-23T23:48:50.5474538Z + node_preamble 2.0.2
+2025-09-23T23:48:50.5474865Z + package_config 2.2.0
+2025-09-23T23:48:50.5475070Z + path 1.9.1
+2025-09-23T23:48:50.5475404Z + petitparser 6.1.0 (7.0.1 available)
+2025-09-23T23:48:50.5475826Z + platform 3.1.6
+2025-09-23T23:48:50.5476143Z + pool 1.5.1 (1.5.2 available)
+2025-09-23T23:48:50.5476518Z + process 5.0.4 (5.0.5 available)
+2025-09-23T23:48:50.5476873Z + pub_semver 2.2.0
+2025-09-23T23:48:50.5477173Z + pubspec_parse 1.5.0
+2025-09-23T23:48:50.5477500Z + shelf 1.4.2
+2025-09-23T23:48:50.5477863Z + shelf_packages_handler 3.0.2
+2025-09-23T23:48:50.5478197Z + shelf_proxy 1.0.4
+2025-09-23T23:48:50.5478485Z + shelf_static 1.1.3
+2025-09-23T23:48:50.5478816Z + shelf_web_socket 2.0.1 (3.0.0 available)
+2025-09-23T23:48:50.5479217Z + source_map_stack_trace 2.1.2
+2025-09-23T23:48:50.5479573Z + source_maps 0.10.13
+2025-09-23T23:48:50.5479898Z + source_span 1.10.1
+2025-09-23T23:48:50.5480193Z + sprintf 7.0.0
+2025-09-23T23:48:50.5480457Z + sse 4.1.8
+2025-09-23T23:48:50.5480745Z + stack_trace 1.12.1
+2025-09-23T23:48:50.5481065Z + standard_message_codec 0.0.1+4
+2025-09-23T23:48:50.5481425Z + stream_channel 2.1.4
+2025-09-23T23:48:50.5481740Z + string_scanner 1.4.1
+2025-09-23T23:48:50.5482051Z + sync_http 0.3.1
+2025-09-23T23:48:50.5482366Z + term_glyph 1.2.2
+2025-09-23T23:48:50.5482657Z + test 1.26.2 (1.26.3 available)
+2025-09-23T23:48:50.5483021Z + test_api 0.7.6 (0.7.7 available)
+2025-09-23T23:48:50.5483559Z + test_core 0.6.11 (0.6.12 available)
+2025-09-23T23:48:50.5483949Z + typed_data 1.4.0
+2025-09-23T23:48:50.5484247Z + unified_analytics 8.0.5
+2025-09-23T23:48:50.5484591Z + usage 4.1.1 (discontinued)
+2025-09-23T23:48:50.5484912Z + uuid 4.5.1
+2025-09-23T23:48:50.5485183Z + vm_service 15.0.2
+2025-09-23T23:48:50.5485479Z + vm_service_interface 2.0.1
+2025-09-23T23:48:50.5485835Z + vm_snapshot_analysis 0.7.6
+2025-09-23T23:48:50.5486182Z + watcher 1.1.2 (1.1.3 available)
+2025-09-23T23:48:50.5486523Z + web 1.1.1
+2025-09-23T23:48:50.5486788Z + web_socket 1.0.1
+2025-09-23T23:48:50.5487079Z + web_socket_channel 3.0.3
+2025-09-23T23:48:50.5487447Z + webdriver 3.1.0
+2025-09-23T23:48:50.5487757Z + webkit_inspection_protocol 1.2.1
+2025-09-23T23:48:50.5488147Z + xml 6.5.0 (6.6.1 available)
+2025-09-23T23:48:50.5488474Z + yaml 3.1.3
+2025-09-23T23:48:50.5488755Z + yaml_edit 2.2.2
+2025-09-23T23:48:50.5489107Z Changed 100 dependencies!
+2025-09-23T23:48:50.5489474Z 2 packages are discontinued.
+2025-09-23T23:48:50.5490031Z 26 packages have newer versions incompatible with dependency constraints.
+2025-09-23T23:48:50.5490667Z Try `dart pub outdated` for more information.
+2025-09-23T23:49:05.5869112Z Flutter 3.35.4 • channel stable • https://github.com/flutter/flutter.git
+2025-09-23T23:49:05.5869929Z Framework • revision d693b4b9db (7 days ago) • 2025-09-16 14:27:41 +0000
+2025-09-23T23:49:05.5870996Z Engine • hash feee8ee8fb8b975dd9990f86d3bda11e6e75faf3 (revision c298091351) (8 days ago) • 2025-09-15 14:04:24.000Z
+2025-09-23T23:49:05.5871641Z Tools • Dart 3.9.2 • DevTools 2.48.0
+2025-09-23T23:49:05.7070352Z ##[group]Run actions/cache@v4
+2025-09-23T23:49:05.7070810Z with:
+2025-09-23T23:49:05.7071015Z   path: ~/.pub-cache
+.dart_tool
+
+2025-09-23T23:49:05.7071439Z   key: Linux-pub-0a68e32fd6621510f90b80d47d1b0d58e9d8d621a99145c6d9f5c4deb12150f9
+2025-09-23T23:49:05.7071885Z   enableCrossOsArchive: false
+2025-09-23T23:49:05.7072130Z   fail-on-cache-miss: false
+2025-09-23T23:49:05.7072361Z   lookup-only: false
+2025-09-23T23:49:05.7072561Z   save-always: false
+2025-09-23T23:49:05.7072771Z ##[endgroup]
+2025-09-23T23:49:06.1479634Z Cache hit for: Linux-pub-0a68e32fd6621510f90b80d47d1b0d58e9d8d621a99145c6d9f5c4deb12150f9
+2025-09-23T23:49:07.5215208Z Received 1702178 of 22673698 (7.5%), 1.6 MBs/sec
+2025-09-23T23:49:08.5237754Z Received 18479394 of 22673698 (81.5%), 8.8 MBs/sec
+2025-09-23T23:49:09.5244773Z Received 18479394 of 22673698 (81.5%), 5.9 MBs/sec
+2025-09-23T23:49:10.5252853Z Received 18479394 of 22673698 (81.5%), 4.4 MBs/sec
+2025-09-23T23:49:11.5254516Z Received 18479394 of 22673698 (81.5%), 3.5 MBs/sec
+2025-09-23T23:49:12.5251479Z Received 18479394 of 22673698 (81.5%), 2.9 MBs/sec
+2025-09-23T23:49:13.5252022Z Received 18479394 of 22673698 (81.5%), 2.5 MBs/sec
+2025-09-23T23:49:13.7714615Z Received 22673698 of 22673698 (100.0%), 3.0 MBs/sec
+2025-09-23T23:49:13.7717351Z Cache Size: ~22 MB (22673698 B)
+2025-09-23T23:49:13.7751692Z [command]/usr/bin/tar -xf /home/runner/work/_temp/05480de3-03a5-4a62-a9cb-9771f556417a/cache.tzst -P -C /home/runner/work/blurapp/blurapp --use-compress-program unzstd
+2025-09-23T23:49:14.6078454Z Cache restored successfully
+2025-09-23T23:49:14.6241640Z Cache restored from key: Linux-pub-0a68e32fd6621510f90b80d47d1b0d58e9d8d621a99145c6d9f5c4deb12150f9
+2025-09-23T23:49:14.6402842Z ##[group]Run cd app
+2025-09-23T23:49:14.6403096Z [36;1mcd app[0m
+2025-09-23T23:49:14.6403668Z [36;1m# Ensure Flutter tool has cached artifacts (may download engine artifacts)[0m
+2025-09-23T23:49:14.6404074Z [36;1m/opt/flutter/bin/flutter precache || true[0m
+2025-09-23T23:49:14.6404355Z [36;1m[0m
+2025-09-23T23:49:14.6404646Z [36;1m# Retry pub get up to 3 times to mitigate transient network/package server issues[0m
+2025-09-23T23:49:14.6405022Z [36;1mattempt=0[0m
+2025-09-23T23:49:14.6405218Z [36;1muntil [ $attempt -ge 3 ]; do[0m
+2025-09-23T23:49:14.6405495Z [36;1m  /opt/flutter/bin/flutter pub get && break[0m
+2025-09-23T23:49:14.6405772Z [36;1m  attempt=$((attempt+1))[0m
+2025-09-23T23:49:14.6406039Z [36;1m  echo "flutter pub get failed, retry #$attempt"[0m
+2025-09-23T23:49:14.6406328Z [36;1m  sleep $((attempt*5))[0m
+2025-09-23T23:49:14.6406544Z [36;1mdone[0m
+2025-09-23T23:49:14.6406729Z [36;1mif [ $attempt -ge 3 ]; then[0m
+2025-09-23T23:49:14.6407156Z [36;1m  echo "flutter pub get failed after $attempt attempts"; exit 1[0m
+2025-09-23T23:49:14.6407459Z [36;1mfi[0m
+2025-09-23T23:49:14.6444031Z shell: /usr/bin/bash -e {0}
+2025-09-23T23:49:14.6444382Z ##[endgroup]
+2025-09-23T23:49:15.0375341Z Downloading Material fonts...                                      223ms
+2025-09-23T23:49:15.0980351Z Downloading Gradle Wrapper...                                       10ms
+2025-09-23T23:49:15.2545529Z Downloading android-arm-profile/linux-x64 tools...                 133ms
+2025-09-23T23:49:15.4329207Z Downloading android-arm-release/linux-x64 tools...                 112ms
+2025-09-23T23:49:15.6123759Z Downloading android-arm64-profile/linux-x64 tools...               117ms
+2025-09-23T23:49:15.7772823Z Downloading android-arm64-release/linux-x64 tools...                95ms
+2025-09-23T23:49:15.9409590Z Downloading android-x64-profile/linux-x64 tools...                  99ms
+2025-09-23T23:49:16.0962060Z Downloading android-x64-release/linux-x64 tools...                  87ms
+2025-09-23T23:49:24.0668451Z Downloading android-x86 tools...                                    7.9s
+2025-09-23T23:49:32.6167940Z Downloading android-x64 tools...                                    7.9s
+2025-09-23T23:49:40.9532881Z Downloading android-arm tools...                                    7.7s
+2025-09-23T23:49:44.7968996Z Downloading android-arm-profile tools...                            3.2s
+2025-09-23T23:49:47.8952205Z Downloading android-arm-release tools...                         2,833ms
+2025-09-23T23:50:00.0078126Z Downloading android-arm64 tools...                                 11.9s
+2025-09-23T23:50:04.1856636Z Downloading android-arm64-profile tools...                          3.2s
+2025-09-23T23:50:07.3494316Z Downloading android-arm64-release tools...                       2,895ms
+2025-09-23T23:50:10.7598598Z Downloading android-x64-profile tools...                            3.2s
+2025-09-23T23:50:14.0722534Z Downloading android-x64-release tools...                            3.0s
+2025-09-23T23:50:16.5756911Z Downloading Web SDK...                                           2,125ms
+2025-09-23T23:50:17.3171849Z Downloading package sky_engine...                                   50ms
+2025-09-23T23:50:17.3946963Z Downloading package flutter_gpu...                                   6ms
+2025-09-23T23:50:17.5372950Z Downloading flutter_patched_sdk tools...                           128ms
+2025-09-23T23:50:17.7580926Z Downloading flutter_patched_sdk_product tools...                   126ms
+2025-09-23T23:50:19.9945238Z Downloading linux-x64 tools...                                   2,143ms
+2025-09-23T23:50:23.3983306Z Downloading linux-x64-debug/linux-x64-flutter-gtk tools...       2,783ms
+2025-09-23T23:50:25.7443593Z Downloading linux-x64-profile/linux-x64-flutter-gtk tools...      1,574ms
+2025-09-23T23:50:27.5924151Z Downloading linux-x64-release/linux-x64-flutter-gtk tools...      1,422ms
+2025-09-23T23:50:28.0577859Z Downloading linux-x64/font-subset tools...                          64ms
+2025-09-23T23:50:28.4982806Z Resolving dependencies...
+2025-09-23T23:50:29.1341795Z Downloading packages...
+2025-09-23T23:50:29.1787002Z   async 2.11.0 (2.13.0 available)
+2025-09-23T23:50:29.1787517Z   boolean_selector 2.1.1 (2.1.2 available)
+2025-09-23T23:50:29.1787967Z > characters 1.4.0 (was 1.3.0) (1.4.1 available)
+2025-09-23T23:50:29.1788396Z > clock 1.1.2 (was 1.1.1)
+2025-09-23T23:50:29.1788772Z > collection 1.19.1 (was 1.18.0)
+2025-09-23T23:50:29.1789127Z > fake_async 1.3.3 (was 1.3.1)
+2025-09-23T23:50:29.1789464Z   ffi 2.1.3 (2.1.4 available)
+2025-09-23T23:50:29.1789822Z   file_selector_macos 0.9.4+2 (0.9.4+4 available)
+2025-09-23T23:50:29.1790226Z   flutter_lints 4.0.0 (6.0.0 available)
+2025-09-23T23:50:29.1790710Z   flutter_plugin_android_lifecycle 2.0.26 (2.0.30 available)
+2025-09-23T23:50:29.1791237Z   http_parser 4.0.2 (4.1.2 available)
+2025-09-23T23:50:29.1791645Z   image_picker 1.1.2 (1.2.0 available)
+2025-09-23T23:50:29.1792106Z   image_picker_android 0.8.12+21 (0.8.13+3 available)
+2025-09-23T23:50:29.1792601Z   image_picker_for_web 3.0.6 (3.1.0 available)
+2025-09-23T23:50:29.1793049Z   image_picker_ios 0.8.12+2 (0.8.13 available)
+2025-09-23T23:50:29.1793683Z   image_picker_linux 0.2.1+2 (0.2.2 available)
+2025-09-23T23:50:29.1794133Z   image_picker_macos 0.2.1+2 (0.2.2 available)
+2025-09-23T23:50:29.1794654Z   image_picker_platform_interface 2.10.1 (2.11.0 available)
+2025-09-23T23:50:29.1795192Z   image_picker_windows 0.2.1+1 (0.2.2 available)
+2025-09-23T23:50:29.1795632Z > leak_tracker 11.0.2 (was 10.0.5)
+2025-09-23T23:50:29.1796060Z > leak_tracker_flutter_testing 3.0.10 (was 3.0.5)
+2025-09-23T23:50:29.1796511Z > leak_tracker_testing 3.0.2 (was 3.0.1)
+2025-09-23T23:50:29.1796914Z   lints 4.0.0 (6.0.0 available)
+2025-09-23T23:50:29.1797274Z > matcher 0.12.17 (was 0.12.16+1)
+2025-09-23T23:50:29.1797710Z   material_color_utilities 0.11.1 (0.13.0 available)
+2025-09-23T23:50:29.1798179Z > meta 1.16.0 (was 1.15.0) (1.17.0 available)
+2025-09-23T23:50:29.1798585Z > path 1.9.1 (was 1.9.0)
+2025-09-23T23:50:29.1798978Z   path_provider_android 2.2.15 (2.2.18 available)
+2025-09-23T23:50:29.1799439Z   path_provider_foundation 2.4.1 (2.4.2 available)
+2025-09-23T23:50:29.1799917Z   permission_handler 11.4.0 (12.0.1 available)
+2025-09-23T23:50:29.1800411Z   permission_handler_android 12.1.0 (13.0.1 available)
+2025-09-23T23:50:29.1800882Z   petitparser 6.0.2 (7.0.1 available)
+2025-09-23T23:50:29.1801580Z   share_plus 10.1.4 (12.0.0 available)
+2025-09-23T23:50:29.1802047Z   share_plus_platform_interface 5.0.2 (6.1.0 available)
+2025-09-23T23:50:29.1802641Z < sky_engine 0.0.0 from sdk flutter (was 0.0.99 from sdk flutter)
+2025-09-23T23:50:29.1803176Z   source_span 1.10.0 (1.10.1 available)
+2025-09-23T23:50:29.1803788Z > stack_trace 1.12.1 (was 1.11.1)
+2025-09-23T23:50:29.1804169Z > stream_channel 2.1.4 (was 2.1.2)
+2025-09-23T23:50:29.1804552Z   string_scanner 1.2.0 (1.4.1 available)
+2025-09-23T23:50:29.1804958Z   term_glyph 1.2.1 (1.2.2 available)
+2025-09-23T23:50:29.1805365Z > test_api 0.7.6 (was 0.7.2) (0.7.7 available)
+2025-09-23T23:50:29.1805804Z   url_launcher_web 2.3.3 (2.4.1 available)
+2025-09-23T23:50:29.1806209Z > vector_math 2.2.0 (was 2.1.4)
+2025-09-23T23:50:29.1806585Z   vm_service 14.2.5 (15.0.2 available)
+2025-09-23T23:50:29.1806965Z   win32 5.10.1 (5.14.0 available)
+2025-09-23T23:50:29.1807325Z   xml 6.5.0 (6.6.1 available)
+2025-09-23T23:50:29.1807682Z Changed 15 dependencies!
+2025-09-23T23:50:29.1847214Z 34 packages have newer versions incompatible with dependency constraints.
+2025-09-23T23:50:29.1847943Z Try `flutter pub outdated` for more information.
+2025-09-23T23:50:29.5924590Z ##[group]Run set -e
+2025-09-23T23:50:29.5924874Z [36;1mset -e[0m
+2025-09-23T23:50:29.5925297Z [36;1m# Check only the known production AndroidManifest(s) to avoid false positives from plugin/example folders[0m
+2025-09-23T23:50:29.5925759Z [36;1mprod_manifests=([0m
+2025-09-23T23:50:29.5926016Z [36;1m  "app/android/app/src/main/AndroidManifest.xml"[0m
+2025-09-23T23:50:29.5926284Z [36;1m)[0m
+2025-09-23T23:50:29.5926447Z [36;1mmatches=""[0m
+2025-09-23T23:50:29.5926657Z [36;1mfor mf in "${prod_manifests[@]}"; do[0m
+2025-09-23T23:50:29.5926912Z [36;1m  if [ -f "$mf" ]; then[0m
+2025-09-23T23:50:29.5927200Z [36;1m    m=$(grep -n "android.permission.INTERNET" "$mf" || true)[0m
+2025-09-23T23:50:29.5927504Z [36;1m    if [ -n "$m" ]; then[0m
+2025-09-23T23:50:29.5927742Z [36;1m      matches="$matches\n$mf:$m"[0m
+2025-09-23T23:50:29.5927977Z [36;1m    fi[0m
+2025-09-23T23:50:29.5928137Z [36;1m  fi[0m
+2025-09-23T23:50:29.5928294Z [36;1mdone[0m
+2025-09-23T23:50:29.5928496Z [36;1mif [ -n "$matches" ]; then[0m
+2025-09-23T23:50:29.5929047Z [36;1m  echo "ERROR: INTERNET permission found in AndroidManifest.xml (prod paths). This project is privacy-first and must not request INTERNET."[0m
+2025-09-23T23:50:29.5929633Z [36;1m  echo "Matches found (path:line:content):"[0m
+2025-09-23T23:50:29.5929903Z [36;1m  printf "%b\n" "$matches"[0m
+2025-09-23T23:50:29.5930122Z [36;1m  exit 1[0m
+2025-09-23T23:50:29.5930282Z [36;1mfi[0m
+2025-09-23T23:50:29.5930435Z [36;1m[0m
+2025-09-23T23:50:29.5930696Z [36;1m# --- Debug: print the production manifest(s) to help CI debugging ---[0m
+2025-09-23T23:50:29.5931043Z [36;1mfor mf in "${prod_manifests[@]}"; do[0m
+2025-09-23T23:50:29.5931294Z [36;1m  if [ -f "$mf" ]; then[0m
+2025-09-23T23:50:29.5931541Z [36;1m    echo "--- Production manifest: $mf ---"[0m
+2025-09-23T23:50:29.5931811Z [36;1m    sed -n '1,240p' "$mf" || true[0m
+2025-09-23T23:50:29.5932048Z [36;1m    echo "--- end manifest ---"[0m
+2025-09-23T23:50:29.5932273Z [36;1m  fi[0m
+2025-09-23T23:50:29.5932430Z [36;1mdone[0m
+2025-09-23T23:50:29.5932585Z [36;1m[0m
+2025-09-23T23:50:29.5932887Z [36;1m# Check iOS Info.plist for NSAllowsArbitraryLoads or other network allow-all keys[0m
+2025-09-23T23:50:29.5934087Z [36;1mitms=$(grep -R --include="Info.plist" -n "NSAppTransportSecurity\|NSAllowsArbitraryLoads" app ios 2>/dev/null | grep -v "temp_project" || true)[0m
+2025-09-23T23:50:29.5934674Z [36;1mif [ -n "$itms" ]; then[0m
+2025-09-23T23:50:29.5935127Z [36;1m  echo "WARNING: Potential network-related keys found in Info.plist. Please verify they are required. Matches:"[0m
+2025-09-23T23:50:29.5935588Z [36;1m  echo "$itms"[0m
+2025-09-23T23:50:29.5935778Z [36;1m  exit 1[0m
+2025-09-23T23:50:29.5935938Z [36;1mfi[0m
+2025-09-23T23:50:29.5936093Z [36;1m[0m
+2025-09-23T23:50:29.5936328Z [36;1m# Check pubspec.yaml for common analytics/crash packages[0m
+2025-09-23T23:50:29.5937035Z [36;1mif grep -E "analytics|sentry|crashlytics|firebase_analytics|appcenter|rollbar" -n app/pubspec.yaml; then[0m
+2025-09-23T23:50:29.5937706Z [36;1m  echo "ERROR: Found analytics/crash packages in pubspec.yaml. Privacy policy requires no telemetry."; exit 1[0m
+2025-09-23T23:50:29.5938147Z [36;1mfi[0m
+2025-09-23T23:50:29.5968263Z shell: /usr/bin/bash -e {0}
+2025-09-23T23:50:29.5968485Z ##[endgroup]
+2025-09-23T23:50:29.6034228Z --- Production manifest: app/android/app/src/main/AndroidManifest.xml ---
+2025-09-23T23:50:29.6045857Z <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+2025-09-23T23:50:29.6046413Z     
+2025-09-23T23:50:29.6046673Z     <!-- Permissions -->
+2025-09-23T23:50:29.6047053Z     <uses-permission android:name="android.permission.CAMERA" />
+2025-09-23T23:50:29.6047676Z     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+2025-09-23T23:50:29.6048292Z     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+2025-09-23T23:50:29.6048642Z     
+2025-09-23T23:50:29.6049063Z     <!-- Modern gallery access permissions (Android 10+) -->
+2025-09-23T23:50:29.6049479Z     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+2025-09-23T23:50:29.6049927Z     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+2025-09-23T23:50:29.6050259Z     
+2025-09-23T23:50:29.6050407Z     <application
+2025-09-23T23:50:29.6050600Z         android:name="${applicationName}"
+2025-09-23T23:50:29.6050861Z         android:icon="@mipmap/ic_launcher"
+2025-09-23T23:50:29.6051102Z         android:label="BlurApp">
+2025-09-23T23:50:29.6051340Z         
+2025-09-23T23:50:29.6051486Z         <activity
+2025-09-23T23:50:29.6051665Z             android:name=".MainActivity"
+2025-09-23T23:50:29.6051925Z             android:theme="@style/LaunchTheme"
+2025-09-23T23:50:29.6052209Z             android:windowSoftInputMode="adjustResize"
+2025-09-23T23:50:29.6052678Z             android:exported="true">
+2025-09-23T23:50:29.6053044Z             
+2025-09-23T23:50:29.6053672Z             <!-- Specifies an Android theme to apply to this Activity as soon as
+2025-09-23T23:50:29.6054391Z                  the Android process has started. This theme is visible to the user
+2025-09-23T23:50:29.6055087Z                  while the Flutter UI initializes. After that, this theme continues
+2025-09-23T23:50:29.6055784Z                  to determine the Window background behind the Flutter UI. -->
+2025-09-23T23:50:29.6056311Z             <meta-data
+2025-09-23T23:50:29.6056768Z                 android:name="io.flutter.embedding.android.NormalTheme"
+2025-09-23T23:50:29.6057354Z                 android:resource="@style/NormalTheme" />
+2025-09-23T23:50:29.6057883Z                 
+2025-09-23T23:50:29.6058340Z             <!-- Displays an Android View that continues showing the launch screen
+2025-09-23T23:50:29.6059062Z                  Drawable until Flutter paints its first frame, then this splash
+2025-09-23T23:50:29.6059771Z                  screen fades out. A splash screen is useful to avoid any visual
+2025-09-23T23:50:29.6060473Z                  gap between the end of Android's launch screen and the painting of
+2025-09-23T23:50:29.6061058Z                  Flutter's first frame. -->
+2025-09-23T23:50:29.6061463Z             <meta-data
+2025-09-23T23:50:29.6061984Z                 android:name="io.flutter.embedding.android.SplashScreenDrawable"
+2025-09-23T23:50:29.6062665Z                 android:resource="@drawable/launch_background" />
+2025-09-23T23:50:29.6063127Z                 
+2025-09-23T23:50:29.6063662Z             <intent-filter android:autoVerify="true">
+2025-09-23T23:50:29.6064212Z                 <action android:name="android.intent.action.MAIN"/>
+2025-09-23T23:50:29.6064841Z                 <category android:name="android.intent.category.LAUNCHER"/>
+2025-09-23T23:50:29.6065376Z             </intent-filter>
+2025-09-23T23:50:29.6065718Z         </activity>
+2025-09-23T23:50:29.6066244Z         
+2025-09-23T23:50:29.6066424Z         <!-- Don't delete the meta-data below.
+2025-09-23T23:50:29.6066796Z              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
+2025-09-23T23:50:29.6067140Z         <meta-data
+2025-09-23T23:50:29.6067325Z             android:name="flutterEmbedding"
+2025-09-23T23:50:29.6067562Z             android:value="2" />
+2025-09-23T23:50:29.6067766Z     </application>
+2025-09-23T23:50:29.6067947Z </manifest>--- end manifest ---
+2025-09-23T23:50:29.6161926Z ##[group]Run cd app
+2025-09-23T23:50:29.6162154Z [36;1mcd app[0m
+2025-09-23T23:50:29.6162414Z [36;1m/opt/flutter/bin/dart format --set-exit-if-changed .[0m
+2025-09-23T23:50:29.6189544Z shell: /usr/bin/bash -e {0}
+2025-09-23T23:50:29.6189765Z ##[endgroup]
+2025-09-23T23:50:30.5148964Z Formatted 46 files (0 changed) in 0.79 seconds.
+2025-09-23T23:50:30.5426021Z ##[group]Run cd app
+2025-09-23T23:50:30.5426277Z [36;1mcd app[0m
+2025-09-23T23:50:30.5426470Z [36;1mecho "=== Flutter version ==="[0m
+2025-09-23T23:50:30.5426773Z [36;1m/opt/flutter/bin/flutter --version || true[0m
+2025-09-23T23:50:30.5427099Z [36;1mecho "=== Running flutter analyze (verbose) ==="[0m
+2025-09-23T23:50:30.5427408Z [36;1m/opt/flutter/bin/flutter analyze -v || true[0m
+2025-09-23T23:50:30.5427667Z [36;1m[0m
+2025-09-23T23:50:30.5427887Z [36;1mecho "=== prod AndroidManifest (if present) ==="[0m
+2025-09-23T23:50:30.5428217Z [36;1mMF="android/app/src/main/AndroidManifest.xml"[0m
+2025-09-23T23:50:30.5428770Z [36;1mif [ -f "$MF" ]; then[0m
+2025-09-23T23:50:30.5429055Z [36;1m  echo "--- $MF ---"[0m
+2025-09-23T23:50:30.5448869Z [36;1m  sed -n '1,240p' "$MF" || true[0m
+2025-09-23T23:50:30.5449152Z [36;1m  echo "--- end $MF ---"[0m
+2025-09-23T23:50:30.5449372Z [36;1mfi[0m
+2025-09-23T23:50:30.5449530Z [36;1m[0m
+2025-09-23T23:50:30.5449823Z [36;1mecho "=== Search for deprecated withOpacity occurrences in lib ==="[0m
+2025-09-23T23:50:30.5450220Z [36;1mgrep -n --color=never "withOpacity" lib || true[0m
+2025-09-23T23:50:30.5479983Z shell: /usr/bin/bash -e {0}
+2025-09-23T23:50:30.5480207Z ##[endgroup]
+2025-09-23T23:50:30.5526970Z === Flutter version ===
+2025-09-23T23:50:30.6739422Z Flutter 3.35.4 • channel stable • https://github.com/flutter/flutter.git
+2025-09-23T23:50:30.6740024Z Framework • revision d693b4b9db (7 days ago) • 2025-09-16 14:27:41 +0000
+2025-09-23T23:50:30.6740760Z Engine • hash feee8ee8fb8b975dd9990f86d3bda11e6e75faf3 (revision c298091351) (8 days ago) • 2025-09-15 14:04:24.000Z
+2025-09-23T23:50:30.6741610Z Tools • Dart 3.9.2 • DevTools 2.48.0
+2025-09-23T23:50:30.6779921Z === Running flutter analyze (verbose) ===
+2025-09-23T23:50:30.7790241Z [  +45 ms] executing: uname -m
+2025-09-23T23:50:30.7828481Z [   +4 ms] Exit code 0 from: uname -m
+2025-09-23T23:50:30.7830898Z [        ] x86_64
+2025-09-23T23:50:30.7892032Z [   +6 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+2025-09-23T23:50:30.7894380Z [        ] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+2025-09-23T23:50:30.7895290Z [        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.7896286Z [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.7898514Z [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.7900787Z [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+2025-09-23T23:50:30.7901971Z [        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+2025-09-23T23:50:30.7904265Z [        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+2025-09-23T23:50:30.7907224Z [        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.7908119Z [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.7909028Z [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.7910279Z [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.7915862Z [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.7916794Z [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.7921878Z [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+2025-09-23T23:50:30.7922789Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.7923817Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.7924992Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.7925844Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.7926655Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.7927452Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.7928303Z [        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.7929137Z [        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+2025-09-23T23:50:30.8001638Z [   +8 ms] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8003039Z [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8005600Z [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8006482Z [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+2025-09-23T23:50:30.8007337Z [        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+2025-09-23T23:50:30.8008222Z [        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+2025-09-23T23:50:30.8023228Z [   +1 ms] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8027470Z [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8028368Z [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8029263Z [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8030203Z [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8031142Z [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8032105Z [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+2025-09-23T23:50:30.8318802Z [  +29 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+2025-09-23T23:50:30.8319894Z [        ] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+2025-09-23T23:50:30.8321711Z [        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8322784Z [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8323993Z [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8325453Z [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+2025-09-23T23:50:30.8330693Z [        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+2025-09-23T23:50:30.8331553Z [        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+2025-09-23T23:50:30.8332368Z [        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+2025-09-23T23:50:30.8333327Z [        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8334300Z [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8334975Z [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8335817Z [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8336687Z [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8337560Z [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8338425Z [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+2025-09-23T23:50:30.8339453Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8339939Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8340378Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8340796Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8341216Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8341634Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8342071Z [        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+2025-09-23T23:50:30.8342526Z [        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+2025-09-23T23:50:30.8428948Z [   +9 ms] Skipping pub get: version match.
+2025-09-23T23:50:30.9094167Z [  +66 ms] Found plugin share_plus at /home/runner/.pub-cache/hosted/pub.dev/share_plus-10.1.4/
+2025-09-23T23:50:30.9223112Z [  +12 ms] Found plugin url_launcher_windows at /home/runner/.pub-cache/hosted/pub.dev/url_launcher_windows-3.1.4/
+2025-09-23T23:50:30.9277694Z [   +5 ms] Found plugin url_launcher_web at /home/runner/.pub-cache/hosted/pub.dev/url_launcher_web-2.3.3/
+2025-09-23T23:50:30.9306693Z [   +2 ms] Found plugin url_launcher_linux at /home/runner/.pub-cache/hosted/pub.dev/url_launcher_linux-3.2.1/
+2025-09-23T23:50:30.9397071Z [   +9 ms] Found plugin path_provider at /home/runner/.pub-cache/hosted/pub.dev/path_provider-2.1.5/
+2025-09-23T23:50:30.9413021Z [   +1 ms] Found plugin path_provider_windows at /home/runner/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/
+2025-09-23T23:50:30.9446612Z [   +3 ms] Found plugin path_provider_linux at /home/runner/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
+2025-09-23T23:50:30.9471177Z [   +2 ms] Found plugin path_provider_foundation at /home/runner/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/
+2025-09-23T23:50:30.9486384Z [   +1 ms] Found plugin path_provider_android at /home/runner/.pub-cache/hosted/pub.dev/path_provider_android-2.2.15/
+2025-09-23T23:50:30.9528041Z [   +4 ms] Found plugin permission_handler at /home/runner/.pub-cache/hosted/pub.dev/permission_handler-11.4.0/
+2025-09-23T23:50:30.9541714Z [   +1 ms] Found plugin permission_handler_windows at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_windows-0.2.1/
+2025-09-23T23:50:30.9566221Z [   +2 ms] Found plugin permission_handler_html at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_html-0.1.3+5/
+2025-09-23T23:50:30.9579770Z [   +1 ms] Found plugin permission_handler_apple at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_apple-9.4.7/
+2025-09-23T23:50:30.9604000Z [   +2 ms] Found plugin permission_handler_android at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_android-12.1.0/
+2025-09-23T23:50:30.9624048Z [   +2 ms] Found plugin image_picker at /home/runner/.pub-cache/hosted/pub.dev/image_picker-1.1.2/
+2025-09-23T23:50:30.9640374Z [   +1 ms] Found plugin image_picker_windows at /home/runner/.pub-cache/hosted/pub.dev/image_picker_windows-0.2.1+1/
+2025-09-23T23:50:30.9716162Z [   +7 ms] Found plugin file_selector_windows at /home/runner/.pub-cache/hosted/pub.dev/file_selector_windows-0.9.3+4/
+2025-09-23T23:50:30.9754062Z [   +3 ms] Found plugin image_picker_macos at /home/runner/.pub-cache/hosted/pub.dev/image_picker_macos-0.2.1+2/
+2025-09-23T23:50:30.9768675Z [   +1 ms] Found plugin file_selector_macos at /home/runner/.pub-cache/hosted/pub.dev/file_selector_macos-0.9.4+2/
+2025-09-23T23:50:30.9783169Z [   +1 ms] Found plugin image_picker_linux at /home/runner/.pub-cache/hosted/pub.dev/image_picker_linux-0.2.1+2/
+2025-09-23T23:50:30.9797513Z [   +1 ms] Found plugin file_selector_linux at /home/runner/.pub-cache/hosted/pub.dev/file_selector_linux-0.9.3+2/
+2025-09-23T23:50:30.9812343Z [   +1 ms] Found plugin image_picker_ios at /home/runner/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.12+2/
+2025-09-23T23:50:30.9827616Z [   +1 ms] Found plugin image_picker_for_web at /home/runner/.pub-cache/hosted/pub.dev/image_picker_for_web-3.0.6/
+2025-09-23T23:50:30.9851849Z [   +2 ms] Found plugin image_picker_android at /home/runner/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+21/
+2025-09-23T23:50:30.9867315Z [   +1 ms] Found plugin flutter_plugin_android_lifecycle at /home/runner/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.26/
+2025-09-23T23:50:30.9936799Z [   +7 ms] Found plugin gal at /home/runner/.pub-cache/hosted/pub.dev/gal-2.3.2/
+2025-09-23T23:50:31.0332794Z [  +39 ms] Found plugin share_plus at /home/runner/.pub-cache/hosted/pub.dev/share_plus-10.1.4/
+2025-09-23T23:50:31.0369522Z [   +3 ms] Found plugin url_launcher_windows at /home/runner/.pub-cache/hosted/pub.dev/url_launcher_windows-3.1.4/
+2025-09-23T23:50:31.0392445Z [   +2 ms] Found plugin url_launcher_web at /home/runner/.pub-cache/hosted/pub.dev/url_launcher_web-2.3.3/
+2025-09-23T23:50:31.0407412Z [   +1 ms] Found plugin url_launcher_linux at /home/runner/.pub-cache/hosted/pub.dev/url_launcher_linux-3.2.1/
+2025-09-23T23:50:31.0454511Z [   +4 ms] Found plugin path_provider at /home/runner/.pub-cache/hosted/pub.dev/path_provider-2.1.5/
+2025-09-23T23:50:31.0463277Z [        ] Found plugin path_provider_windows at /home/runner/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/
+2025-09-23T23:50:31.0483114Z [   +1 ms] Found plugin path_provider_linux at /home/runner/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
+2025-09-23T23:50:31.0497946Z [   +1 ms] Found plugin path_provider_foundation at /home/runner/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/
+2025-09-23T23:50:31.0519005Z [   +2 ms] Found plugin path_provider_android at /home/runner/.pub-cache/hosted/pub.dev/path_provider_android-2.2.15/
+2025-09-23T23:50:31.0551089Z [   +3 ms] Found plugin permission_handler at /home/runner/.pub-cache/hosted/pub.dev/permission_handler-11.4.0/
+2025-09-23T23:50:31.0561294Z [   +1 ms] Found plugin permission_handler_windows at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_windows-0.2.1/
+2025-09-23T23:50:31.0576931Z [   +1 ms] Found plugin permission_handler_html at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_html-0.1.3+5/
+2025-09-23T23:50:31.0584102Z [        ] Found plugin permission_handler_apple at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_apple-9.4.7/
+2025-09-23T23:50:31.0591467Z [        ] Found plugin permission_handler_android at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_android-12.1.0/
+2025-09-23T23:50:31.0599824Z [        ] Found plugin image_picker at /home/runner/.pub-cache/hosted/pub.dev/image_picker-1.1.2/
+2025-09-23T23:50:31.0609238Z [        ] Found plugin image_picker_windows at /home/runner/.pub-cache/hosted/pub.dev/image_picker_windows-0.2.1+1/
+2025-09-23T23:50:31.0639536Z [   +3 ms] Found plugin file_selector_windows at /home/runner/.pub-cache/hosted/pub.dev/file_selector_windows-0.9.3+4/
+2025-09-23T23:50:31.0653927Z [   +1 ms] Found plugin image_picker_macos at /home/runner/.pub-cache/hosted/pub.dev/image_picker_macos-0.2.1+2/
+2025-09-23T23:50:31.0663190Z [        ] Found plugin file_selector_macos at /home/runner/.pub-cache/hosted/pub.dev/file_selector_macos-0.9.4+2/
+2025-09-23T23:50:31.0671555Z [        ] Found plugin image_picker_linux at /home/runner/.pub-cache/hosted/pub.dev/image_picker_linux-0.2.1+2/
+2025-09-23T23:50:31.0680128Z [        ] Found plugin file_selector_linux at /home/runner/.pub-cache/hosted/pub.dev/file_selector_linux-0.9.3+2/
+2025-09-23T23:50:31.0688893Z [        ] Found plugin image_picker_ios at /home/runner/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.12+2/
+2025-09-23T23:50:31.0699743Z [   +1 ms] Found plugin image_picker_for_web at /home/runner/.pub-cache/hosted/pub.dev/image_picker_for_web-3.0.6/
+2025-09-23T23:50:31.0708152Z [        ] Found plugin image_picker_android at /home/runner/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+21/
+2025-09-23T23:50:31.0716726Z [        ] Found plugin flutter_plugin_android_lifecycle at /home/runner/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.26/
+2025-09-23T23:50:31.0755447Z [   +3 ms] Found plugin gal at /home/runner/.pub-cache/hosted/pub.dev/gal-2.3.2/
+2025-09-23T23:50:31.0860670Z [  +10 ms] Skipping generating web_plugin_registrant.dart because it is up-to-date.
+2025-09-23T23:50:31.1091963Z [  +23 ms] Found plugin share_plus at /home/runner/.pub-cache/hosted/pub.dev/share_plus-10.1.4/
+2025-09-23T23:50:31.1118367Z [   +2 ms] Found plugin url_launcher_windows at /home/runner/.pub-cache/hosted/pub.dev/url_launcher_windows-3.1.4/
+2025-09-23T23:50:31.1136403Z [   +1 ms] Found plugin url_launcher_web at /home/runner/.pub-cache/hosted/pub.dev/url_launcher_web-2.3.3/
+2025-09-23T23:50:31.1155000Z [   +1 ms] Found plugin url_launcher_linux at /home/runner/.pub-cache/hosted/pub.dev/url_launcher_linux-3.2.1/
+2025-09-23T23:50:31.1194285Z [   +4 ms] Found plugin path_provider at /home/runner/.pub-cache/hosted/pub.dev/path_provider-2.1.5/
+2025-09-23T23:50:31.1201716Z [        ] Found plugin path_provider_windows at /home/runner/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/
+2025-09-23T23:50:31.1220914Z [   +1 ms] Found plugin path_provider_linux at /home/runner/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
+2025-09-23T23:50:31.1233630Z [   +1 ms] Found plugin path_provider_foundation at /home/runner/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/
+2025-09-23T23:50:31.1241845Z [        ] Found plugin path_provider_android at /home/runner/.pub-cache/hosted/pub.dev/path_provider_android-2.2.15/
+2025-09-23T23:50:31.1270052Z [   +2 ms] Found plugin permission_handler at /home/runner/.pub-cache/hosted/pub.dev/permission_handler-11.4.0/
+2025-09-23T23:50:31.1278103Z [        ] Found plugin permission_handler_windows at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_windows-0.2.1/
+2025-09-23T23:50:31.1290635Z [   +1 ms] Found plugin permission_handler_html at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_html-0.1.3+5/
+2025-09-23T23:50:31.1297679Z [        ] Found plugin permission_handler_apple at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_apple-9.4.7/
+2025-09-23T23:50:31.1304551Z [        ] Found plugin permission_handler_android at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_android-12.1.0/
+2025-09-23T23:50:31.1312259Z [        ] Found plugin image_picker at /home/runner/.pub-cache/hosted/pub.dev/image_picker-1.1.2/
+2025-09-23T23:50:31.1322509Z [   +1 ms] Found plugin image_picker_windows at /home/runner/.pub-cache/hosted/pub.dev/image_picker_windows-0.2.1+1/
+2025-09-23T23:50:31.1349537Z [   +2 ms] Found plugin file_selector_windows at /home/runner/.pub-cache/hosted/pub.dev/file_selector_windows-0.9.3+4/
+2025-09-23T23:50:31.1364763Z [   +1 ms] Found plugin image_picker_macos at /home/runner/.pub-cache/hosted/pub.dev/image_picker_macos-0.2.1+2/
+2025-09-23T23:50:31.1372468Z [        ] Found plugin file_selector_macos at /home/runner/.pub-cache/hosted/pub.dev/file_selector_macos-0.9.4+2/
+2025-09-23T23:50:31.1379323Z [        ] Found plugin image_picker_linux at /home/runner/.pub-cache/hosted/pub.dev/image_picker_linux-0.2.1+2/
+2025-09-23T23:50:31.1388026Z [        ] Found plugin file_selector_linux at /home/runner/.pub-cache/hosted/pub.dev/file_selector_linux-0.9.3+2/
+2025-09-23T23:50:31.1396596Z [        ] Found plugin image_picker_ios at /home/runner/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.12+2/
+2025-09-23T23:50:31.1405062Z [        ] Found plugin image_picker_for_web at /home/runner/.pub-cache/hosted/pub.dev/image_picker_for_web-3.0.6/
+2025-09-23T23:50:31.1415133Z [        ] Found plugin image_picker_android at /home/runner/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+21/
+2025-09-23T23:50:31.1421395Z [        ] Found plugin flutter_plugin_android_lifecycle at /home/runner/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.26/
+2025-09-23T23:50:31.1447681Z [   +2 ms] Found plugin gal at /home/runner/.pub-cache/hosted/pub.dev/gal-2.3.2/
+2025-09-23T23:50:31.1474570Z [   +2 ms] Generating /home/runner/work/blurapp/blurapp/app/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
+2025-09-23T23:50:31.1486076Z [   +1 ms] Skipping generating GeneratedPluginRegistrant.java because it is up-to-date.
+2025-09-23T23:50:31.1535881Z [   +4 ms] Skipping generating generated_plugin_registrant.h because it is up-to-date.
+2025-09-23T23:50:31.1543905Z [        ] Skipping generating generated_plugin_registrant.cc because it is up-to-date.
+2025-09-23T23:50:31.1554805Z [   +1 ms] Skipping generating generated_plugins.cmake because it is up-to-date.
+2025-09-23T23:50:31.1572586Z [   +1 ms] Skipping generating GeneratedPluginRegistrant.h because it is up-to-date.
+2025-09-23T23:50:31.1582371Z [        ] Skipping generating GeneratedPluginRegistrant.m because it is up-to-date.
+2025-09-23T23:50:31.4124268Z [ +253 ms] dart /opt/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot --disable-server-feature-completion --disable-server-feature-search --sdk /opt/flutter/bin/cache/dart-sdk --suppress-analytics
+2025-09-23T23:50:31.4230485Z [  +11 ms] ==> {"id":"1","method":"server.setSubscriptions","params":{"subscriptions":["STATUS"]}}
+2025-09-23T23:50:31.4232232Z [        ] ==> {"id":"2","method":"analysis.setAnalysisRoots","params":{"included":["/home/runner/work/blurapp/blurapp/app"],"excluded":[]}}
+2025-09-23T23:50:31.4240527Z [        ] Analyzing app...
+2025-09-23T23:50:31.5248261Z [ +100 ms] <== {"event":"server.connected","params":{"version":"1.40.0","pid":3072}}
+2025-09-23T23:50:31.5373108Z [  +12 ms] <== {"id":"1"}
+2025-09-23T23:50:31.6213035Z [  +83 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/pubspec.yaml","errors":[]}}
+2025-09-23T23:50:31.6310378Z [   +9 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/analysis_options.yaml","errors":[]}}
+2025-09-23T23:50:31.6335130Z [   +2 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/temp_project/pubspec.yaml","errors":[]}}
+2025-09-23T23:50:31.6390115Z [   +5 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/temp_project/analysis_options.yaml","errors":[]}}
+2025-09-23T23:50:31.6460093Z [   +6 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/temp_project/android/app/src/main/AndroidManifest.xml","errors":[]}}
+2025-09-23T23:50:31.6474673Z [   +1 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/temp_project/android/app/src/profile/AndroidManifest.xml","errors":[]}}
+2025-09-23T23:50:31.6479714Z [        ] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/temp_project/android/app/src/debug/AndroidManifest.xml","errors":[]}}
+2025-09-23T23:50:31.6541889Z [   +6 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/android/app/src/main/AndroidManifest.xml","errors":[]}}
+2025-09-23T23:50:31.6584208Z [   +4 ms] <== {"event":"server.status","params":{"analysis":{"isAnalyzing":true}}}
+2025-09-23T23:50:40.8197856Z [+9161 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/temp_project/test/widget_test.dart","errors":[]}}
+2025-09-23T23:50:40.8568275Z [  +37 ms] <== {"id":"2"}
+2025-09-23T23:50:40.9707376Z [ +113 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/temp_project/lib/main.dart","errors":[]}}
+2025-09-23T23:50:41.0516640Z [  +80 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/helpers/performance_test_utils.dart","errors":[]}}
+2025-09-23T23:50:42.4094677Z [+1357 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/test_setup.dart","errors":[]}}
+2025-09-23T23:50:42.4737889Z [  +64 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart","errors":[]}}
+2025-09-23T23:50:42.5639163Z [  +89 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/test_runner.dart","errors":[]}}
+2025-09-23T23:50:42.6359958Z [  +72 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/performance/memory_management_test.dart","errors":[]}}
+2025-09-23T23:50:42.6859134Z [  +49 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart","errors":[]}}
+2025-09-23T23:50:42.7371058Z [  +51 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart","errors":[]}}
+2025-09-23T23:50:42.7516471Z [  +14 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/integration/user_workflow_test.dart","errors":[]}}
+2025-09-23T23:50:42.7752929Z [  +23 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/widget_test.dart","errors":[]}}
+2025-09-23T23:50:42.7860378Z [  +10 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/widget/home_screen_mvp_test.dart","errors":[]}}
+2025-09-23T23:50:42.8050275Z [  +19 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/phase1/mediapipe_foundation_test.dart","errors":[]}}
+2025-09-23T23:50:42.8111711Z [   +6 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/unit/blur_engine_mvp_test.dart","errors":[]}}
+2025-09-23T23:50:42.8136079Z [   +2 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/unit/test_gallery_provider.dart","errors":[]}}
+2025-09-23T23:50:42.8204145Z [   +6 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/unit/auto_detect_service_test.dart","errors":[]}}
+2025-09-23T23:50:42.8236760Z [   +3 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/unit/blur_pipeline_test.dart","errors":[]}}
+2025-09-23T23:50:44.8251466Z [+2001 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/unit/home_screen_test.dart","errors":[]}}
+2025-09-23T23:50:44.8709274Z [  +45 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/unit/image_saver_service_test.dart","errors":[]}}
+2025-09-23T23:50:44.8857539Z [  +14 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/test_framework.dart","errors":[]}}
+2025-09-23T23:50:44.9154388Z [  +29 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/templates/core_test_template.dart","errors":[]}}
+2025-09-23T23:50:44.9334419Z [  +18 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/templates/misc_test_template.dart","errors":[]}}
+2025-09-23T23:50:44.9460056Z [  +12 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/templates/critical_test_template.dart","errors":[]}}
+2025-09-23T23:50:44.9490499Z [   +3 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/app.dart","errors":[]}}
+2025-09-23T23:50:44.9884447Z [  +39 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/demo/processing_mode_demo.dart","errors":[]}}
+2025-09-23T23:50:44.9927054Z [   +4 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/services/gallery_provider.dart","errors":[]}}
+2025-09-23T23:50:45.0007251Z [   +8 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/services/image_picker_service.dart","errors":[]}}
+2025-09-23T23:50:45.0110816Z [  +10 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/services/image_saver_service.dart","errors":[]}}
+2025-09-23T23:50:45.0220520Z [  +10 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/services/auto_detect_service.dart","errors":[]}}
+2025-09-23T23:50:45.0306682Z [   +8 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/native/blur_bindings.dart","errors":[{"severity":"INFO","type":"TODO","location":{"file":"/home/runner/work/blurapp/blurapp/app/lib/native/blur_bindings.dart","offset":78,"length":61,"startLine":4,"startColumn":4,"endLine":4,"endColumn":65},"message":"TODO: Implement proper FFI bindings when native blur is ready","code":"todo","hasFix":false}]}}
+2025-09-23T23:50:45.0453045Z [  +14 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/native/hybrid_blur_bindings.dart","errors":[]}}
+2025-09-23T23:50:45.0487107Z [   +3 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/theme/typography_scale.dart","errors":[]}}
+2025-09-23T23:50:45.0534918Z [   +4 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/theme/toolbar_layout_spec.dart","errors":[]}}
+2025-09-23T23:50:45.0569015Z [   +3 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/theme/app_icons.dart","errors":[]}}
+2025-09-23T23:50:45.0632451Z [   +6 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/theme/app_theme.dart","errors":[]}}
+2025-09-23T23:50:45.0787558Z [  +15 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/main.dart","errors":[]}}
+2025-09-23T23:50:45.0894042Z [  +10 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/features/editor/blur_pipeline.dart","errors":[]}}
+2025-09-23T23:50:45.1244980Z [  +35 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/features/editor/editor_screen.dart","errors":[]}}
+2025-09-23T23:50:45.1590906Z [  +34 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/features/editor/editor_screen_mvp.dart","errors":[{"severity":"INFO","type":"TODO","location":{"file":"/home/runner/work/blurapp/blurapp/app/lib/features/editor/editor_screen_mvp.dart","offset":8110,"length":42,"startLine":304,"startColumn":12,"endLine":304,"endColumn":54},"message":"TODO: Convert mask bitmap to brush strokes","code":"todo","hasFix":false}]}}
+2025-09-23T23:50:45.1611681Z [   +2 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/features/editor/preview_controller.dart","errors":[]}}
+2025-09-23T23:50:45.1667924Z [   +5 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/features/editor/painter_mask.dart","errors":[]}}
+2025-09-23T23:50:45.1802641Z [  +13 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/features/editor/blur_engine_mvp.dart","errors":[{"severity":"INFO","type":"TODO","location":{"file":"/home/runner/work/blurapp/blurapp/app/lib/features/editor/blur_engine_mvp.dart","offset":4963,"length":40,"startLine":167,"startColumn":8,"endLine":167,"endColumn":48},"message":"TODO: Integrate MediaPipe Face Detection","code":"todo","hasFix":false}]}}
+2025-09-23T23:50:45.1987061Z [  +18 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/features/home/home_screen_mvp.dart","errors":[]}}
+2025-09-23T23:50:45.2175960Z [  +18 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/features/home/home_screen.dart","errors":[]}}
+2025-09-23T23:50:45.2424822Z [  +24 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/settings/privacy_settings_screen.dart","errors":[]}}
+2025-09-23T23:50:45.2476024Z [   +4 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/core/utils/color_utils.dart","errors":[{"severity":"INFO","type":"HINT","location":{"file":"/home/runner/work/blurapp/blurapp/app/lib/core/utils/color_utils.dart","offset":525,"length":5,"startLine":11,"startColumn":26,"endLine":11,"endColumn":31},"message":"'value' is deprecated and shouldn't be used. Use component accessors like .r or .g, or toARGB32 for an explicit conversion.","correction":"Try replacing the use of the deprecated member with the replacement.","code":"deprecated_member_use","url":"https://dart.dev/diagnostics/deprecated_member_use","hasFix":false}]}}
+2025-09-23T23:50:45.2499693Z [   +2 ms] <== {"event":"server.status","params":{"analysis":{"isAnalyzing":false}}}
+2025-09-23T23:50:45.2529034Z [   +2 ms] Analyzing app... (completed in 13.8s)
+2025-09-23T23:50:45.2552567Z [   +1 ms]    info • 'value' is deprecated and shouldn't be used. Use component accessors like .r or .g, or toARGB32 for an explicit conversion • lib/core/utils/color_utils.dart:11:26 • deprecated_member_use
+2025-09-23T23:50:45.2579879Z [   +3 ms] "flutter analyze" took 14,464ms.
+2025-09-23T23:50:45.2693783Z [  +10 ms] 1 issue found. (ran in 13.8s)
+2025-09-23T23:50:45.2700092Z [   +1 ms] 
+2025-09-23T23:50:45.2700618Z            #0      throwToolExit (package:flutter_tools/src/base/common.dart:34:3)
+2025-09-23T23:50:45.2701236Z [        ] Running 1 shutdown hook
+2025-09-23T23:50:45.2701902Z            #1      AnalyzeOnce.analyze (package:flutter_tools/src/commands/analyze_once.dart:150:7)
+2025-09-23T23:50:45.2702610Z            <asynchronous suspension>
+2025-09-23T23:50:45.2703297Z            #2      AnalyzeCommand.runCommand (package:flutter_tools/src/commands/analyze.dart:381:7)
+2025-09-23T23:50:45.2704726Z            <asynchronous suspension>
+2025-09-23T23:50:45.2705590Z            #3      FlutterCommand.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command.dart:1581:27)
+2025-09-23T23:50:45.2706628Z            <asynchronous suspension>
+2025-09-23T23:50:45.2707350Z            #4      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+2025-09-23T23:50:45.2708117Z            <asynchronous suspension>
+2025-09-23T23:50:45.2708755Z            #5      CommandRunner.runCommand (package:args/command_runner.dart:212:13)
+2025-09-23T23:50:45.2709428Z            <asynchronous suspension>
+2025-09-23T23:50:45.2710415Z            #6      FlutterCommandRunner.runCommand.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:503:9)
+2025-09-23T23:50:45.2711424Z            <asynchronous suspension>
+2025-09-23T23:50:45.2712149Z            #7      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+2025-09-23T23:50:45.2712901Z            <asynchronous suspension>
+2025-09-23T23:50:45.2713674Z            #8      FlutterCommandRunner.runCommand (package:flutter_tools/src/runner/flutter_command_runner.dart:438:5)
+2025-09-23T23:50:45.2714263Z            <asynchronous suspension>
+2025-09-23T23:50:45.2714737Z            #9      run.<anonymous closure>.<anonymous closure> (package:flutter_tools/runner.dart:98:11)
+2025-09-23T23:50:45.2715178Z            <asynchronous suspension>
+2025-09-23T23:50:45.2715581Z            #10     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+2025-09-23T23:50:45.2716231Z            <asynchronous suspension>
+2025-09-23T23:50:45.2716523Z            #11     main (package:flutter_tools/executable.dart:101:3)
+2025-09-23T23:50:45.2716833Z            <asynchronous suspension>
+2025-09-23T23:50:45.2716994Z 
+2025-09-23T23:50:45.2716998Z 
+2025-09-23T23:50:45.2717105Z [        ] Shutdown hooks complete
+2025-09-23T23:50:45.2717358Z [        ] exiting with code 1
+2025-09-23T23:50:45.2789347Z === prod AndroidManifest (if present) ===
+2025-09-23T23:50:45.2790233Z --- android/app/src/main/AndroidManifest.xml ---
+2025-09-23T23:50:45.2803563Z <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+2025-09-23T23:50:45.2804339Z     
+2025-09-23T23:50:45.2804648Z     <!-- Permissions -->
+2025-09-23T23:50:45.2805160Z     <uses-permission android:name="android.permission.CAMERA" />
+2025-09-23T23:50:45.2806197Z     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+2025-09-23T23:50:45.2807097Z     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+2025-09-23T23:50:45.2807713Z     
+2025-09-23T23:50:45.2808096Z     <!-- Modern gallery access permissions (Android 10+) -->
+2025-09-23T23:50:45.2808792Z     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+2025-09-23T23:50:45.2809591Z     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+2025-09-23T23:50:45.2810191Z     
+2025-09-23T23:50:45.2810459Z     <application
+2025-09-23T23:50:45.2810812Z         android:name="${applicationName}"
+2025-09-23T23:50:45.2811254Z         android:icon="@mipmap/ic_launcher"
+2025-09-23T23:50:45.2811762Z         android:label="BlurApp">
+2025-09-23T23:50:45.2812189Z         
+2025-09-23T23:50:45.2812468Z         <activity
+2025-09-23T23:50:45.2812788Z             android:name=".MainActivity"
+2025-09-23T23:50:45.2813243Z             android:theme="@style/LaunchTheme"
+2025-09-23T23:50:45.2813928Z             android:windowSoftInputMode="adjustResize"
+2025-09-23T23:50:45.2814392Z             android:exported="true">
+2025-09-23T23:50:45.2814775Z             
+2025-09-23T23:50:45.2815211Z             <!-- Specifies an Android theme to apply to this Activity as soon as
+2025-09-23T23:50:45.2815922Z                  the Android process has started. This theme is visible to the user
+2025-09-23T23:50:45.2816639Z                  while the Flutter UI initializes. After that, this theme continues
+2025-09-23T23:50:45.2817333Z                  to determine the Window background behind the Flutter UI. -->
+2025-09-23T23:50:45.2817872Z             <meta-data
+2025-09-23T23:50:45.2818340Z                 android:name="io.flutter.embedding.android.NormalTheme"
+2025-09-23T23:50:45.2818908Z                 android:resource="@style/NormalTheme" />
+2025-09-23T23:50:45.2819338Z                 
+2025-09-23T23:50:45.2819793Z             <!-- Displays an Android View that continues showing the launch screen
+2025-09-23T23:50:45.2820477Z                  Drawable until Flutter paints its first frame, then this splash
+2025-09-23T23:50:45.2821189Z                  screen fades out. A splash screen is useful to avoid any visual
+2025-09-23T23:50:45.2821865Z                  gap between the end of Android's launch screen and the painting of
+2025-09-23T23:50:45.2822433Z                  Flutter's first frame. -->
+2025-09-23T23:50:45.2822847Z             <meta-data
+2025-09-23T23:50:45.2823341Z                 android:name="io.flutter.embedding.android.SplashScreenDrawable"
+2025-09-23T23:50:45.2824146Z                 android:resource="@drawable/launch_background" />
+2025-09-23T23:50:45.2824607Z                 
+2025-09-23T23:50:45.2824949Z             <intent-filter android:autoVerify="true">
+2025-09-23T23:50:45.2825458Z                 <action android:name="android.intent.action.MAIN"/>
+2025-09-23T23:50:45.2826073Z                 <category android:name="android.intent.category.LAUNCHER"/>
+2025-09-23T23:50:45.2826625Z             </intent-filter>
+2025-09-23T23:50:45.2827090Z         </activity>
+2025-09-23T23:50:45.2827383Z         
+2025-09-23T23:50:45.2827920Z         <!-- Don't delete the meta-data below.
+2025-09-23T23:50:45.2828552Z              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
+2025-09-23T23:50:45.2829149Z         <meta-data
+2025-09-23T23:50:45.2829495Z             android:name="flutterEmbedding"
+2025-09-23T23:50:45.2829841Z             android:value="2" />
+2025-09-23T23:50:45.2830093Z     </application>
+2025-09-23T23:50:45.2830386Z </manifest>--- end android/app/src/main/AndroidManifest.xml ---
+2025-09-23T23:50:45.2830787Z === Search for deprecated withOpacity occurrences in lib ===
+2025-09-23T23:50:45.2831118Z grep: lib: Is a directory
+2025-09-23T23:50:45.2855646Z ##[group]Run cd app
+2025-09-23T23:50:45.2855881Z [36;1mcd app[0m
+2025-09-23T23:50:45.2856099Z [36;1m/opt/flutter/bin/flutter test --coverage[0m
+2025-09-23T23:50:45.2885101Z shell: /usr/bin/bash -e {0}
+2025-09-23T23:50:45.2885345Z ##[endgroup]
+2025-09-23T23:50:46.4152442Z 
+2025-09-23T23:50:55.4177449Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should detect OpenCV availability
+2025-09-23T23:50:55.4206240Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should detect GPU availability
+2025-09-23T23:50:55.4313889Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should apply advanced Gaussian blur
+2025-09-23T23:50:55.4350006Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should apply advanced Box blur
+2025-09-23T23:50:55.4391114Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should apply advanced Motion blur
+2025-09-23T23:50:55.4422381Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should apply selective blur with mask
+2025-09-23T23:50:55.4446567Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should handle zero sigma gracefully
+2025-09-23T23:50:55.4498480Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should get enhanced processing capabilities
+2025-09-23T23:50:55.4559907Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should validate version includes OpenCV info
+2025-09-23T23:50:55.7156160Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should handle large images efficiently
+2025-09-23T23:50:55.7197232Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should use legacy compatibility method
+2025-09-23T23:50:57.3394192Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] Blur Pipeline Performance [CORE] small image gaussian blur performance
+2025-09-23T23:50:57.4317784Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] Blur Pipeline Performance [CRITICAL] medium image pixelate performance
+2025-09-23T23:50:57.4766411Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] Blur Pipeline Performance [MISC] mosaic blur algorithm performance
+2025-09-23T23:50:58.5461345Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] Blur Pipeline Performance [CRITICAL] large image memory usage validation
+2025-09-23T23:50:58.8553599Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] Blur Pipeline Performance [MISC] multiple blur operations stability
+2025-09-23T23:50:58.8900808Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] AutoDetectService Performance [CORE] face detection suggestion generation performance
+2025-09-23T23:50:58.8902265Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-23T23:50:58.8902719Z AutoDetectService: Closed (manual fallback mode)
+2025-09-23T23:50:58.8903648Z ##[endgroup]
+2025-09-23T23:50:58.9712519Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] AutoDetectService Performance [MISC] segmentation mask generation performance
+2025-09-23T23:50:58.9714904Z AutoDetectService: Using manual fallback mode for assets/models/selfie_segmentation.tflite
+2025-09-23T23:50:58.9715511Z AutoDetectService: Closed (manual fallback mode)
+2025-09-23T23:50:58.9715966Z ##[endgroup]
+2025-09-23T23:50:59.0147540Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] AutoDetectService Performance [CORE] service memory usage during operations
+2025-09-23T23:50:59.0149627Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-23T23:50:59.0150523Z AutoDetectService: Closed (manual fallback mode)
+2025-09-23T23:50:59.0151261Z ##[endgroup]
+2025-09-23T23:50:59.0205297Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] Edge Cases and Stress Tests [MISC] invalid image data handling performance
+2025-09-23T23:50:59.0207026Z BlurPipeline error: RangeError (length): Invalid value: Not in inclusive range 0..3: 4
+2025-09-23T23:50:59.0207976Z ##[endgroup]
+2025-09-23T23:50:59.0525823Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] Edge Cases and Stress Tests [MISC] extreme blur strength values performance
+2025-09-23T23:50:59.0685745Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] Edge Cases and Stress Tests [MISC] minimal size image processing
+2025-09-23T23:50:59.3461938Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] Edge Cases and Stress Tests [CRITICAL] concurrent blur operations stress test
+2025-09-23T23:50:59.4867571Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] Memory Pressure Tests [MISC] image processing under memory pressure
+2025-09-23T23:50:59.9044602Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_management_test.dart: [MISC] Enhanced Memory Management Tests [CRITICAL] Memory Safety Features [CRITICAL] very large image processing with memory constraints
+2025-09-23T23:50:59.9047461Z BlurPipeline: Resizing 4000x3000 to 2048x1536 for processing
+2025-09-23T23:50:59.9048574Z ##[endgroup]
+2025-09-23T23:51:01.0375274Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] Image Processing Memory Tests [CORE] small image processing stays within memory limits
+2025-09-23T23:51:01.1712348Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_management_test.dart: [MISC] Enhanced Memory Management Tests [CRITICAL] Memory Safety Features [CORE] preview mode reduces memory usage
+2025-09-23T23:51:01.1714195Z BlurPipeline: Resizing 2000x1500 to 512x384 for processing
+2025-09-23T23:51:01.1716659Z ##[endgroup]
+2025-09-23T23:51:01.5284500Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_management_test.dart: [MISC] Enhanced Memory Management Tests [CRITICAL] Memory Safety Features [MISC] extreme strength values are safely clamped
+2025-09-23T23:51:01.6417767Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] Image Processing Memory Tests [CRITICAL] medium image processing performance
+2025-09-23T23:51:02.0190366Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_management_test.dart: [MISC] Enhanced Memory Management Tests [CRITICAL] Performance Optimizations [CRITICAL] large image processing completes within time limits
+2025-09-23T23:51:02.0677207Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] Image Processing Memory Tests [MISC] large image memory constraint validation
+2025-09-23T23:51:02.1033083Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] AutoDetectService Memory Tests [CORE] face detection suggestions use minimal memory
+2025-09-23T23:51:02.1035182Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-23T23:51:02.1035993Z AutoDetectService: Closed (manual fallback mode)
+2025-09-23T23:51:02.1036728Z ##[endgroup]
+2025-09-23T23:51:02.1697323Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] AutoDetectService Memory Tests [MISC] segmentation mask generation performance
+2025-09-23T23:51:02.1698987Z AutoDetectService: Using manual fallback mode for assets/models/selfie_segmentation.tflite
+2025-09-23T23:51:02.1699730Z AutoDetectService: Closed (manual fallback mode)
+2025-09-23T23:51:02.1700473Z ##[endgroup]
+2025-09-23T23:51:02.1917937Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] AutoDetectService Memory Tests [MISC] multiple service instances cleanup properly
+2025-09-23T23:51:02.1919800Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-23T23:51:02.1920669Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-23T23:51:02.1921297Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-23T23:51:02.1921876Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-23T23:51:02.1922450Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-23T23:51:02.1922892Z AutoDetectService: Closed (manual fallback mode)
+2025-09-23T23:51:02.1923186Z AutoDetectService: Closed (manual fallback mode)
+2025-09-23T23:51:02.1923683Z AutoDetectService: Closed (manual fallback mode)
+2025-09-23T23:51:02.1923980Z AutoDetectService: Closed (manual fallback mode)
+2025-09-23T23:51:02.1924266Z AutoDetectService: Closed (manual fallback mode)
+2025-09-23T23:51:02.1924816Z ##[endgroup]
+2025-09-23T23:51:02.2905418Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] Image Save/Load Operations [CRITICAL] image save operations handle large files efficiently
+2025-09-23T23:51:02.2908587Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-23T23:51:02.2915730Z ImageSaverService: getApplicationDocumentsDirectory failed, using system temp: NoSuchMethodError: The method 'getApplicationDocumentsDirectory' was called on null.
+2025-09-23T23:51:02.2917505Z Receiver: null
+2025-09-23T23:51:02.2918421Z Tried calling: getApplicationDocumentsDirectory()
+2025-09-23T23:51:02.2919435Z ##[endgroup]
+2025-09-23T23:51:02.3037955Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] Image Save/Load Operations [MISC] cache clearing handles large directories
+2025-09-23T23:51:02.3041027Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-23T23:51:02.3042208Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-23T23:51:02.3043796Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-23T23:51:02.3044895Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-23T23:51:02.3046004Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-23T23:51:02.3047113Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-23T23:51:02.3048232Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-23T23:51:02.3049597Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-23T23:51:02.3050740Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-23T23:51:02.3051892Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-23T23:51:02.3053130Z ImageSaverService: Error clearing cache: NoSuchMethodError: The method 'getTemporaryDirectory' was called on null.
+2025-09-23T23:51:02.3054175Z Receiver: null
+2025-09-23T23:51:02.3054543Z Tried calling: getTemporaryDirectory()
+2025-09-23T23:51:02.3055243Z ##[endgroup]
+2025-09-23T23:51:02.7384643Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] Image Save/Load Operations [CRITICAL] concurrent image processing maintains stability
+2025-09-23T23:51:02.7481259Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] Edge Cases and Limits [MISC] extremely small images are handled gracefully
+2025-09-23T23:51:02.7551580Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] Edge Cases and Limits [CORE] invalid image data fails gracefully without memory leaks
+2025-09-23T23:51:02.7553743Z BlurPipeline error: RangeError (length): Invalid value: Not in inclusive range 0..3: 4
+2025-09-23T23:51:02.7554644Z ##[endgroup]
+2025-09-23T23:51:02.8097749Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] Edge Cases and Limits [MISC] extreme blur strength values are handled safely
+2025-09-23T23:51:02.9624502Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_management_test.dart: [MISC] Enhanced Memory Management Tests [CRITICAL] Performance Optimizations [CRITICAL] preview processing is significantly faster
+2025-09-23T23:51:02.9626114Z BlurPipeline: Resizing 1200x800 to 512x341 for processing
+2025-09-23T23:51:02.9626907Z ##[endgroup]
+2025-09-23T23:51:03.4003102Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_management_test.dart: [MISC] Enhanced Memory Management Tests [CRITICAL] Performance Optimizations [MISC] memory usage scales predictably with image size
+2025-09-23T23:51:05.2140375Z ✅ /home/runner/work/blurapp/blurapp/app/test/integration/user_workflow_test.dart: [MISC] User Workflow Critical Tests [CRITICAL] complete app navigation flow works
+2025-09-23T23:51:05.4555291Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/integration/user_workflow_test.dart: [MISC] User Workflow Critical Tests [CRITICAL] settings screen functionality works
+2025-09-23T23:51:05.4557391Z ImageSaverService: Error clearing cache: NoSuchMethodError: The method 'getTemporaryDirectory' was called on null.
+2025-09-23T23:51:05.4558483Z Receiver: null
+2025-09-23T23:51:05.4559059Z Tried calling: getTemporaryDirectory()
+2025-09-23T23:51:05.4559913Z ##[endgroup]
+2025-09-23T23:51:05.4605592Z ✅ /home/runner/work/blurapp/blurapp/app/test/integration/user_workflow_test.dart: [MISC] User Workflow Critical Tests [CRITICAL] app architecture follows privacy-first principles
+2025-09-23T23:51:07.2488576Z ✅ /home/runner/work/blurapp/blurapp/app/test/widget_test.dart: [MISC] BlurApp Widget Tests [CRITICAL] app renders without crashing
+2025-09-23T23:51:07.3163089Z ✅ /home/runner/work/blurapp/blurapp/app/test/widget_test.dart: [MISC] BlurApp Widget Tests [CRITICAL] home screen is displayed as initial screen
+2025-09-23T23:51:07.3621586Z ✅ /home/runner/work/blurapp/blurapp/app/test/widget_test.dart: [MISC] BlurApp Widget Tests [CRITICAL] gallery and camera buttons are present
+2025-09-23T23:51:09.1015544Z ✅ /home/runner/work/blurapp/blurapp/app/test/widget/home_screen_mvp_test.dart: HomeScreenMVP Widget Tests should display app title and buttons
+2025-09-23T23:51:09.1576356Z ✅ /home/runner/work/blurapp/blurapp/app/test/widget/home_screen_mvp_test.dart: HomeScreenMVP Widget Tests should have app icon
+2025-09-23T23:51:09.2028617Z ✅ /home/runner/work/blurapp/blurapp/app/test/widget/home_screen_mvp_test.dart: HomeScreenMVP Widget Tests should have gallery and camera buttons
+2025-09-23T23:51:09.2485502Z ✅ /home/runner/work/blurapp/blurapp/app/test/widget/home_screen_mvp_test.dart: HomeScreenMVP Widget Tests buttons should be tappable
+2025-09-23T23:51:09.2940168Z ✅ /home/runner/work/blurapp/blurapp/app/test/widget/home_screen_mvp_test.dart: HomeScreenMVP Widget Tests should have proper layout structure
+2025-09-23T23:51:10.1994130Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_management_test.dart: [MISC] Enhanced Memory Management Tests [CORE] Edge Case Handling [MISC] ultra-high resolution image handling
+2025-09-23T23:51:10.1996980Z BlurPipeline: Resizing 8000x6000 to 2048x1536 for processing
+2025-09-23T23:51:10.2017742Z ##[endgroup]
+2025-09-23T23:51:10.5264259Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/phase1/mediapipe_foundation_test.dart: Phase 1: MediaPipe Foundation Tests Native Bridge Foundation native availability check with fallback
+2025-09-23T23:51:10.5269285Z NativeBlurBindings: Using Dart fallback
+2025-09-23T23:51:10.5274497Z ##[endgroup]
+2025-09-23T23:51:10.5306172Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase1/mediapipe_foundation_test.dart: Phase 1: MediaPipe Foundation Tests Native Bridge Foundation version information retrieval
+2025-09-23T23:51:10.5368551Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase1/mediapipe_foundation_test.dart: Phase 1: MediaPipe Foundation Tests Native Bridge Foundation processing capabilities detection
+2025-09-23T23:51:10.5511185Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/phase1/mediapipe_foundation_test.dart: Phase 1: MediaPipe Foundation Tests Hybrid Processing Pipeline intelligent fallback to dart processing
+2025-09-23T23:51:10.5512570Z HybridBlurPipeline: Using Dart fallback
+2025-09-23T23:51:10.5513204Z ##[endgroup]
+2025-09-23T23:51:10.5571989Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase1/mediapipe_foundation_test.dart: Phase 1: MediaPipe Foundation Tests Hybrid Processing Pipeline processing mode info compilation
+2025-09-23T23:51:10.5599760Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/phase1/mediapipe_foundation_test.dart: Phase 1: MediaPipe Foundation Tests Phase 1 Preparation Features segmentation initialization with model path
+2025-09-23T23:51:10.5601287Z NativeBlurBindings: Segmentation initialization failed
+2025-09-23T23:51:10.5601986Z ##[endgroup]
+2025-09-23T23:51:10.5649379Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/phase1/mediapipe_foundation_test.dart: Phase 1: MediaPipe Foundation Tests Phase 1 Preparation Features error handling for unavailable methods
+2025-09-23T23:51:10.5650564Z NativeBlurBindings error getting version: PlatformException(UNIMPLEMENTED, Method not implemented, null, null)
+2025-09-23T23:51:10.5651229Z ##[endgroup]
+2025-09-23T23:51:11.1223045Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_management_test.dart: [MISC] Enhanced Memory Management Tests [CORE] Edge Case Handling [CRITICAL] concurrent large image processing
+2025-09-23T23:51:11.7807440Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/blur_engine_mvp_test.dart: BlurEngineMVP Tests createBrushMask should generate valid mask
+2025-09-23T23:51:11.7889618Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/unit/blur_engine_mvp_test.dart: BlurEngineMVP Tests generateFaceMask should return placeholder mask
+2025-09-23T23:51:11.7890930Z BlurEngineMVP: Face detection not yet implemented - using placeholder
+2025-09-23T23:51:11.7891744Z ##[endgroup]
+2025-09-23T23:51:11.7914241Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/blur_engine_mvp_test.dart: BlurEngineMVP Tests BlurType enum should have expected values
+2025-09-23T23:51:11.7933657Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/blur_engine_mvp_test.dart: BlurEngineMVP Tests BrushStroke should create valid instances
+2025-09-23T23:51:11.7951197Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/blur_engine_mvp_test.dart: BlurEngineMVP Tests Point should create valid instances
+2025-09-23T23:51:12.0347240Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_management_test.dart: [MISC] Enhanced Memory Management Tests [CORE] Edge Case Handling [MISC] memory cleanup after processing
+2025-09-23T23:51:13.1886204Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/unit/auto_detect_service_test.dart: [MISC] AutoDetectService Manual Fallback Tests [CORE] can create face detection service
+2025-09-23T23:51:13.1894949Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-23T23:51:13.1895782Z AutoDetectService: Closed (manual fallback mode)
+2025-09-23T23:51:13.1896509Z ##[endgroup]
+2025-09-23T23:51:13.1935374Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/unit/auto_detect_service_test.dart: [MISC] AutoDetectService Manual Fallback Tests [CORE] can create segmentation service
+2025-09-23T23:51:13.1936918Z AutoDetectService: Using manual fallback mode for assets/models/selfie_segmentation.tflite
+2025-09-23T23:51:13.1937631Z AutoDetectService: Closed (manual fallback mode)
+2025-09-23T23:51:13.1938256Z ##[endgroup]
+2025-09-23T23:51:13.2029820Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/auto_detect_service_test.dart: [MISC] AutoDetectService Manual Fallback Tests [CORE] throws error for unknown model
+2025-09-23T23:51:13.3102944Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/unit/auto_detect_service_test.dart: [MISC] AutoDetectService Manual Fallback Tests [MISC] face detection returns suggested regions
+2025-09-23T23:51:13.3106010Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-23T23:51:13.3106808Z AutoDetectService: Closed (manual fallback mode)
+2025-09-23T23:51:13.3107543Z ##[endgroup]
+2025-09-23T23:51:13.3312672Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/unit/auto_detect_service_test.dart: [MISC] AutoDetectService Manual Fallback Tests [CORE] segmentation returns full image region
+2025-09-23T23:51:13.3323171Z AutoDetectService: Using manual fallback mode for assets/models/selfie_segmentation.tflite
+2025-09-23T23:51:13.3324377Z AutoDetectService: Closed (manual fallback mode)
+2025-09-23T23:51:13.3325287Z ##[endgroup]
+2025-09-23T23:51:13.3701972Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/unit/auto_detect_service_test.dart: [MISC] AutoDetectService Manual Fallback Tests [MISC] segmentation mask generation works
+2025-09-23T23:51:13.3703985Z AutoDetectService: Using manual fallback mode for assets/models/selfie_segmentation.tflite
+2025-09-23T23:51:13.3704744Z AutoDetectService: Closed (manual fallback mode)
+2025-09-23T23:51:13.3705432Z ##[endgroup]
+2025-09-23T23:51:13.3783339Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/unit/auto_detect_service_test.dart: [MISC] AutoDetectService Manual Fallback Tests [MISC] face detection service returns null for segmentation
+2025-09-23T23:51:13.3786388Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-23T23:51:13.3787196Z AutoDetectService: Closed (manual fallback mode)
+2025-09-23T23:51:13.3787869Z ##[endgroup]
+2025-09-23T23:51:13.3812747Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/unit/auto_detect_service_test.dart: [MISC] AutoDetectService Manual Fallback Tests [MISC] handles invalid image data gracefully
+2025-09-23T23:51:13.3815019Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-23T23:51:13.3815854Z AutoDetectService: Closed (manual fallback mode)
+2025-09-23T23:51:13.3816295Z ##[endgroup]
+2025-09-23T23:51:13.4110693Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/unit/auto_detect_service_test.dart: [MISC] AutoDetectService Manual Fallback Tests [MISC] landscape images get multiple face suggestions
+2025-09-23T23:51:13.4122480Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-23T23:51:13.4123829Z AutoDetectService: Closed (manual fallback mode)
+2025-09-23T23:51:13.4124586Z ##[endgroup]
+2025-09-23T23:51:13.5805300Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/blur_pipeline_test.dart: [MISC] BlurPipeline Core Algorithm Tests [CORE] gaussian blur produces valid output for all strengths
+2025-09-23T23:51:13.5829395Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/blur_pipeline_test.dart: [MISC] BlurPipeline Core Algorithm Tests [CORE] pixelate effect maintains image integrity
+2025-09-23T23:51:13.5852379Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/blur_pipeline_test.dart: [MISC] BlurPipeline Core Algorithm Tests [CORE] mosaic effect produces valid output
+2025-09-23T23:51:13.5874865Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/blur_pipeline_test.dart: [MISC] BlurPipeline Core Algorithm Tests [MISC] handles invalid blur type gracefully
+2025-09-23T23:51:13.5897468Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/blur_pipeline_test.dart: [MISC] BlurPipeline Core Algorithm Tests [MISC] handles edge case blur strength values
+2025-09-23T23:51:17.3867488Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/image_saver_service_test.dart: [MISC] ImageSaverService Enhanced Tests [CORE] image creation and encoding works correctly
+2025-09-23T23:51:17.3903747Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/image_saver_service_test.dart: [MISC] ImageSaverService Enhanced Tests [CORE] ImageSaverService class can be instantiated
+2025-09-23T23:51:17.4693252Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/image_saver_service_test.dart: [MISC] ImageSaverService Enhanced Tests [MISC] image format validation works
+2025-09-23T23:51:17.4829218Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/image_saver_service_test.dart: [MISC] ImageSaverService Enhanced Tests [MISC] quality parameter range validation
+2025-09-23T23:51:17.4857592Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/image_saver_service_test.dart: [MISC] ImageSaverService Enhanced Tests [MISC] timestamp generation creates unique values
+2025-09-23T23:51:17.4878246Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/image_saver_service_test.dart: [MISC] ImageSaverService Enhanced Tests [CORE] file extension logic works correctly
+2025-09-23T23:51:17.7574871Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/home_screen_test.dart: [MISC] HomeScreen Core Tests [CORE] home screen renders all essential UI elements
+2025-09-23T23:51:17.9319091Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/home_screen_test.dart: [MISC] HomeScreen Core Tests [CORE] picker buttons exist and are tappable
+2025-09-23T23:51:18.2077223Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/home_screen_test.dart: [MISC] HomeScreen Core Tests [CORE] settings navigation works
+2025-09-23T23:51:18.2401574Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/home_screen_test.dart: [MISC] HomeScreen Core Tests [MISC] privacy notice is displayed
+2025-09-23T23:51:18.8816192Z 
+2025-09-23T23:51:18.8823132Z 🎉 92 tests passed.
+2025-09-23T23:51:19.0902171Z Post job cleanup.
+2025-09-23T23:51:19.2159685Z Cache hit occurred on the primary key Linux-pub-0a68e32fd6621510f90b80d47d1b0d58e9d8d621a99145c6d9f5c4deb12150f9, not saving cache.
+2025-09-23T23:51:19.2265432Z Post job cleanup.
+2025-09-23T23:51:19.3189336Z [command]/usr/bin/git version
+2025-09-23T23:51:19.3225317Z git version 2.51.0
+2025-09-23T23:51:19.3275314Z Temporarily overriding HOME='/home/runner/work/_temp/57a68bc5-e5e0-4b3f-9afe-bf3e965d6762' before making global git config changes
+2025-09-23T23:51:19.3276922Z Adding repository directory to the temporary git global config as a safe directory
+2025-09-23T23:51:19.3281339Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/blurapp/blurapp
+2025-09-23T23:51:19.3317518Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-09-23T23:51:19.3349824Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-09-23T23:51:19.3570391Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-09-23T23:51:19.3589905Z http.https://github.com/.extraheader
+2025-09-23T23:51:19.3602859Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2025-09-23T23:51:19.3632044Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-09-23T23:51:19.3947817Z Cleaning up orphan processes

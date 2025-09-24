@@ -5,6 +5,13 @@ allprojects {
     }
 }
 
+// Provide a minimal 'flutter' map for older plugin build scripts that
+// reference `flutter.compileSdkVersion` (some published plugin versions
+// expect this property to exist). This avoids evaluation-time failures
+// like "Could not get unknown property 'flutter'..." when applying those
+// plugin build.gradle files from the pub cache.
+ext.flutter = [compileSdkVersion: 36, targetSdkVersion: 36]
+
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
@@ -15,4 +22,34 @@ subprojects {
 
 tasks.register("clean", Delete) {
     delete rootProject.layout.buildDirectory
+}
+
+// Ensure Android library modules from plugins have a compileSdk set.
+// Some plugins (published older versions) assume compileSdkVersion is set
+// in the top-level project; set it here to avoid Gradle evaluation errors
+// like "compileSdkVersion is not specified" when building on CI.
+subprojects {
+    // When Android plugins are applied to plugin modules, ensure they have
+    // a compileSdk/targetSdk set. Use plugins.withId so we configure only
+    // when the Android plugin is present, avoiding afterEvaluate on already
+    // evaluated projects which can throw exceptions.
+    plugins.withId('com.android.library') {
+        try {
+            android.compileSdk = 36
+            if (android.defaultConfig != null) {
+                android.defaultConfig.targetSdk = 36
+            }
+        } catch (ignored) {
+        }
+    }
+
+    plugins.withId('com.android.application') {
+        try {
+            android.compileSdk = 36
+            if (android.defaultConfig != null) {
+                android.defaultConfig.targetSdk = 36
+            }
+        } catch (ignored) {
+        }
+    }
 }

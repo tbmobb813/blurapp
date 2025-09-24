@@ -59,18 +59,21 @@ cd ~/Projects/blurapp/app/assets/models
 # mv ~/Downloads/face_detection_short_range.tflite .
 # mv ~/Downloads/selfie_segmentation.tflite .
 ```
+
 - **State Management:** Riverpod (recommended) or Bloc
 - **Database:** Isar or Hive (lightweight, offline)
 - **Media IO:** ffmpeg_kit_flutter, image, exif, camera
 - **Permissions:** permission_handler
 
 ## App IDs & Package Names
+
 - **Android:**
   - Application ID: `com.blurapp.free` (free), `com.blurapp.pro` (pro)
 - **iOS:**
   - Bundle ID: `com.blurapp.free` (free), `com.blurapp.pro` (pro)
 
 ## Build Flavors
+
 - **Android:**
   - Configure flavors in `android/app/build.gradle`:
     - `free` (default)
@@ -79,7 +82,9 @@ cd ~/Projects/blurapp/app/assets/models
   - Set up schemes for `Free` and `Pro` in Xcode
 
 ## Dependencies
+
 Add these to your `pubspec.yaml`:
+
 ```yaml
 dependencies:
   flutter:

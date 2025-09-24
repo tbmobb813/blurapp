@@ -1,0 +1,98 @@
+﻿2025-09-23T23:50:26.6824252Z ##[group]Run set -e
+2025-09-23T23:50:26.6824539Z [36;1mset -e[0m
+2025-09-23T23:50:26.6824963Z [36;1m# Check only the known production AndroidManifest(s) to avoid false positives from plugin/example folders[0m
+2025-09-23T23:50:26.6825426Z [36;1mprod_manifests=([0m
+2025-09-23T23:50:26.6825692Z [36;1m  "app/android/app/src/main/AndroidManifest.xml"[0m
+2025-09-23T23:50:26.6825970Z [36;1m)[0m
+2025-09-23T23:50:26.6826140Z [36;1mmatches=""[0m
+2025-09-23T23:50:26.6826351Z [36;1mfor mf in "${prod_manifests[@]}"; do[0m
+2025-09-23T23:50:26.6826612Z [36;1m  if [ -f "$mf" ]; then[0m
+2025-09-23T23:50:26.6826908Z [36;1m    m=$(grep -n "android.permission.INTERNET" "$mf" || true)[0m
+2025-09-23T23:50:26.6827225Z [36;1m    if [ -n "$m" ]; then[0m
+2025-09-23T23:50:26.6827461Z [36;1m      matches="$matches\n$mf:$m"[0m
+2025-09-23T23:50:26.6827696Z [36;1m    fi[0m
+2025-09-23T23:50:26.6827856Z [36;1m  fi[0m
+2025-09-23T23:50:26.6828022Z [36;1mdone[0m
+2025-09-23T23:50:26.6828199Z [36;1mif [ -n "$matches" ]; then[0m
+2025-09-23T23:50:26.6828779Z [36;1m  echo "ERROR: INTERNET permission found in AndroidManifest.xml (prod paths). This project is privacy-first and must not request INTERNET."[0m
+2025-09-23T23:50:26.6829368Z [36;1m  echo "Matches found (path:line:content):"[0m
+2025-09-23T23:50:26.6829646Z [36;1m  printf "%b\n" "$matches"[0m
+2025-09-23T23:50:26.6829864Z [36;1m  exit 1[0m
+2025-09-23T23:50:26.6830033Z [36;1mfi[0m
+2025-09-23T23:50:26.6830190Z [36;1m[0m
+2025-09-23T23:50:26.6830455Z [36;1m# --- Debug: print the production manifest(s) to help CI debugging ---[0m
+2025-09-23T23:50:26.6830814Z [36;1mfor mf in "${prod_manifests[@]}"; do[0m
+2025-09-23T23:50:26.6831320Z [36;1m  if [ -f "$mf" ]; then[0m
+2025-09-23T23:50:26.6831687Z [36;1m    echo "--- Production manifest: $mf ---"[0m
+2025-09-23T23:50:26.6831965Z [36;1m    sed -n '1,240p' "$mf" || true[0m
+2025-09-23T23:50:26.6832217Z [36;1m    echo "--- end manifest ---"[0m
+2025-09-23T23:50:26.6832447Z [36;1m  fi[0m
+2025-09-23T23:50:26.6832609Z [36;1mdone[0m
+2025-09-23T23:50:26.6832768Z [36;1m[0m
+2025-09-23T23:50:26.6833076Z [36;1m# Check iOS Info.plist for NSAllowsArbitraryLoads or other network allow-all keys[0m
+2025-09-23T23:50:26.6833804Z [36;1mitms=$(grep -R --include="Info.plist" -n "NSAppTransportSecurity\|NSAllowsArbitraryLoads" app ios 2>/dev/null | grep -v "temp_project" || true)[0m
+2025-09-23T23:50:26.6834372Z [36;1mif [ -n "$itms" ]; then[0m
+2025-09-23T23:50:26.6834825Z [36;1m  echo "WARNING: Potential network-related keys found in Info.plist. Please verify they are required. Matches:"[0m
+2025-09-23T23:50:26.6835285Z [36;1m  echo "$itms"[0m
+2025-09-23T23:50:26.6835479Z [36;1m  exit 1[0m
+2025-09-23T23:50:26.6835649Z [36;1mfi[0m
+2025-09-23T23:50:26.6835806Z [36;1m[0m
+2025-09-23T23:50:26.6836043Z [36;1m# Check pubspec.yaml for common analytics/crash packages[0m
+2025-09-23T23:50:26.6836568Z [36;1mif grep -E "analytics|sentry|crashlytics|firebase_analytics|appcenter|rollbar" -n app/pubspec.yaml; then[0m
+2025-09-23T23:50:26.6837251Z [36;1m  echo "ERROR: Found analytics/crash packages in pubspec.yaml. Privacy policy requires no telemetry."; exit 1[0m
+2025-09-23T23:50:26.6837698Z [36;1mfi[0m
+2025-09-23T23:50:26.6868383Z shell: /usr/bin/bash -e {0}
+2025-09-23T23:50:26.6868622Z ##[endgroup]
+2025-09-23T23:50:26.6939766Z --- Production manifest: app/android/app/src/main/AndroidManifest.xml ---
+2025-09-23T23:50:26.6951736Z <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+2025-09-23T23:50:26.6952374Z     
+2025-09-23T23:50:26.6952669Z     <!-- Permissions -->
+2025-09-23T23:50:26.6953044Z     <uses-permission android:name="android.permission.CAMERA" />
+2025-09-23T23:50:26.6953932Z     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+2025-09-23T23:50:26.6954433Z     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+2025-09-23T23:50:26.6954928Z     
+2025-09-23T23:50:26.6955296Z     <!-- Modern gallery access permissions (Android 10+) -->
+2025-09-23T23:50:26.6956273Z     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+2025-09-23T23:50:26.6957108Z     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+2025-09-23T23:50:26.6957727Z     
+2025-09-23T23:50:26.6957995Z     <application
+2025-09-23T23:50:26.6958333Z         android:name="${applicationName}"
+2025-09-23T23:50:26.6958785Z         android:icon="@mipmap/ic_launcher"
+2025-09-23T23:50:26.6959212Z         android:label="BlurApp">
+2025-09-23T23:50:26.6959430Z         
+2025-09-23T23:50:26.6959585Z         <activity
+2025-09-23T23:50:26.6959766Z             android:name=".MainActivity"
+2025-09-23T23:50:26.6960018Z             android:theme="@style/LaunchTheme"
+2025-09-23T23:50:26.6960330Z             android:windowSoftInputMode="adjustResize"
+2025-09-23T23:50:26.6960602Z             android:exported="true">
+2025-09-23T23:50:26.6960824Z             
+2025-09-23T23:50:26.6961268Z             <!-- Specifies an Android theme to apply to this Activity as soon as
+2025-09-23T23:50:26.6961705Z                  the Android process has started. This theme is visible to the user
+2025-09-23T23:50:26.6962118Z                  while the Flutter UI initializes. After that, this theme continues
+2025-09-23T23:50:26.6962517Z                  to determine the Window background behind the Flutter UI. -->
+2025-09-23T23:50:26.6962827Z             <meta-data
+2025-09-23T23:50:26.6963092Z                 android:name="io.flutter.embedding.android.NormalTheme"
+2025-09-23T23:50:26.6963433Z                 android:resource="@style/NormalTheme" />
+2025-09-23T23:50:26.6963682Z                 
+2025-09-23T23:50:26.6963942Z             <!-- Displays an Android View that continues showing the launch screen
+2025-09-23T23:50:26.6964359Z                  Drawable until Flutter paints its first frame, then this splash
+2025-09-23T23:50:26.6964753Z                  screen fades out. A splash screen is useful to avoid any visual
+2025-09-23T23:50:26.6965152Z                  gap between the end of Android's launch screen and the painting of
+2025-09-23T23:50:26.6965480Z                  Flutter's first frame. -->
+2025-09-23T23:50:26.6965718Z             <meta-data
+2025-09-23T23:50:26.6966011Z                 android:name="io.flutter.embedding.android.SplashScreenDrawable"
+2025-09-23T23:50:26.6966397Z                 android:resource="@drawable/launch_background" />
+2025-09-23T23:50:26.6966672Z                 
+2025-09-23T23:50:26.6966877Z             <intent-filter android:autoVerify="true">
+2025-09-23T23:50:26.6967192Z                 <action android:name="android.intent.action.MAIN"/>
+2025-09-23T23:50:26.6967552Z                 <category android:name="android.intent.category.LAUNCHER"/>
+2025-09-23T23:50:26.6967878Z             </intent-filter>
+2025-09-23T23:50:26.6968083Z         </activity>
+2025-09-23T23:50:26.6968245Z         
+2025-09-23T23:50:26.6968426Z         <!-- Don't delete the meta-data below.
+2025-09-23T23:50:26.6968797Z              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
+2025-09-23T23:50:26.6969146Z         <meta-data
+2025-09-23T23:50:26.6969339Z             android:name="flutterEmbedding"
+2025-09-23T23:50:26.6969586Z             android:value="2" />
+2025-09-23T23:50:26.6969793Z     </application>
+2025-09-23T23:50:26.6969990Z </manifest>--- end manifest ---

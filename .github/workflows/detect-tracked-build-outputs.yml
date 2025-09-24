@@ -1,0 +1,31 @@
+name: Prevent tracked build outputs
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+jobs:
+  guard-tracked-builds:
+    name: Detect tracked build outputs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fail if tracked build outputs exist
+        run: |
+          set -euo pipefail
+          echo "Checking for tracked build outputs..."
+          # Patterns to consider as accidental build outputs
+          patterns='^app/build/|/build/|^app/\.gradle/|^app/\.dart_tool/|^app/\.pub/'
+          matches=$(git ls-files | grep -E "$patterns" || true)
+          if [ -n "$matches" ]; then
+            echo "Found tracked build output files (first 100 shown):"
+            echo "$matches" | sed -n '1,100p'
+            echo
+            echo "Detected files that look like build outputs. Please remove them from the repository (git rm --cached) and ensure .gitignore prevents re-adding them."
+            exit 1
+          fi
+          echo "No tracked build outputs detected."

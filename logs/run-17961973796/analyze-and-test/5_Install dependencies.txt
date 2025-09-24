@@ -1,0 +1,97 @@
+﻿2025-09-23T23:49:13.0472958Z ##[group]Run cd app
+2025-09-23T23:49:13.0473211Z [36;1mcd app[0m
+2025-09-23T23:49:13.0473536Z [36;1m# Ensure Flutter tool has cached artifacts (may download engine artifacts)[0m
+2025-09-23T23:49:13.0473942Z [36;1m/opt/flutter/bin/flutter precache || true[0m
+2025-09-23T23:49:13.0474213Z [36;1m[0m
+2025-09-23T23:49:13.0474504Z [36;1m# Retry pub get up to 3 times to mitigate transient network/package server issues[0m
+2025-09-23T23:49:13.0474859Z [36;1mattempt=0[0m
+2025-09-23T23:49:13.0475058Z [36;1muntil [ $attempt -ge 3 ]; do[0m
+2025-09-23T23:49:13.0475330Z [36;1m  /opt/flutter/bin/flutter pub get && break[0m
+2025-09-23T23:49:13.0475602Z [36;1m  attempt=$((attempt+1))[0m
+2025-09-23T23:49:13.0475879Z [36;1m  echo "flutter pub get failed, retry #$attempt"[0m
+2025-09-23T23:49:13.0476158Z [36;1m  sleep $((attempt*5))[0m
+2025-09-23T23:49:13.0476377Z [36;1mdone[0m
+2025-09-23T23:49:13.0476566Z [36;1mif [ $attempt -ge 3 ]; then[0m
+2025-09-23T23:49:13.0476871Z [36;1m  echo "flutter pub get failed after $attempt attempts"; exit 1[0m
+2025-09-23T23:49:13.0477212Z [36;1mfi[0m
+2025-09-23T23:49:13.0509142Z shell: /usr/bin/bash -e {0}
+2025-09-23T23:49:13.0509388Z ##[endgroup]
+2025-09-23T23:49:13.4277999Z Downloading Material fonts...                                      239ms
+2025-09-23T23:49:13.4896531Z Downloading Gradle Wrapper...                                        9ms
+2025-09-23T23:49:13.6427014Z Downloading android-arm-profile/linux-x64 tools...                 137ms
+2025-09-23T23:49:13.8293870Z Downloading android-arm-release/linux-x64 tools...                 118ms
+2025-09-23T23:49:14.0153337Z Downloading android-arm64-profile/linux-x64 tools...               124ms
+2025-09-23T23:49:14.1821827Z Downloading android-arm64-release/linux-x64 tools...                98ms
+2025-09-23T23:49:14.3608271Z Downloading android-x64-profile/linux-x64 tools...                 114ms
+2025-09-23T23:49:14.5254769Z Downloading android-x64-release/linux-x64 tools...                  96ms
+2025-09-23T23:49:22.3391408Z Downloading android-x86 tools...                                    7.7s
+2025-09-23T23:49:30.3733333Z Downloading android-x64 tools...                                    7.4s
+2025-09-23T23:49:38.4345487Z Downloading android-arm tools...                                    7.4s
+2025-09-23T23:49:41.8532011Z Downloading android-arm-profile tools...                         2,784ms
+2025-09-23T23:49:44.8744551Z Downloading android-arm-release tools...                         2,756ms
+2025-09-23T23:49:57.2510409Z Downloading android-arm64 tools...                                 12.1s
+2025-09-23T23:50:01.4525934Z Downloading android-arm64-profile tools...                          3.2s
+2025-09-23T23:50:04.6361991Z Downloading android-arm64-release tools...                       2,904ms
+2025-09-23T23:50:08.0630872Z Downloading android-x64-profile tools...                            3.2s
+2025-09-23T23:50:11.2679219Z Downloading android-x64-release tools...                         2,933ms
+2025-09-23T23:50:13.7480449Z Downloading Web SDK...                                           2,098ms
+2025-09-23T23:50:14.4983506Z Downloading package sky_engine...                                   58ms
+2025-09-23T23:50:14.5797069Z Downloading package flutter_gpu...                                   9ms
+2025-09-23T23:50:14.7242640Z Downloading flutter_patched_sdk tools...                           129ms
+2025-09-23T23:50:14.9530914Z Downloading flutter_patched_sdk_product tools...                   135ms
+2025-09-23T23:50:17.1813840Z Downloading linux-x64 tools...                                   2,135ms
+2025-09-23T23:50:20.5103955Z Downloading linux-x64-debug/linux-x64-flutter-gtk tools...       2,720ms
+2025-09-23T23:50:22.8610156Z Downloading linux-x64-profile/linux-x64-flutter-gtk tools...      1,578ms
+2025-09-23T23:50:24.6989387Z Downloading linux-x64-release/linux-x64-flutter-gtk tools...      1,410ms
+2025-09-23T23:50:25.1626790Z Downloading linux-x64/font-subset tools...                          66ms
+2025-09-23T23:50:25.5853159Z Resolving dependencies...
+2025-09-23T23:50:26.2136726Z Downloading packages...
+2025-09-23T23:50:26.2588328Z   async 2.11.0 (2.13.0 available)
+2025-09-23T23:50:26.2588929Z   boolean_selector 2.1.1 (2.1.2 available)
+2025-09-23T23:50:26.2589484Z > characters 1.4.0 (was 1.3.0) (1.4.1 available)
+2025-09-23T23:50:26.2589972Z > clock 1.1.2 (was 1.1.1)
+2025-09-23T23:50:26.2590339Z > collection 1.19.1 (was 1.18.0)
+2025-09-23T23:50:26.2590719Z > fake_async 1.3.3 (was 1.3.1)
+2025-09-23T23:50:26.2591434Z   ffi 2.1.3 (2.1.4 available)
+2025-09-23T23:50:26.2591859Z   file_selector_macos 0.9.4+2 (0.9.4+4 available)
+2025-09-23T23:50:26.2592330Z   flutter_lints 4.0.0 (6.0.0 available)
+2025-09-23T23:50:26.2592882Z   flutter_plugin_android_lifecycle 2.0.26 (2.0.30 available)
+2025-09-23T23:50:26.2593429Z   http_parser 4.0.2 (4.1.2 available)
+2025-09-23T23:50:26.2593874Z   image_picker 1.1.2 (1.2.0 available)
+2025-09-23T23:50:26.2594346Z   image_picker_android 0.8.12+21 (0.8.13+3 available)
+2025-09-23T23:50:26.2594858Z   image_picker_for_web 3.0.6 (3.1.0 available)
+2025-09-23T23:50:26.2595353Z   image_picker_ios 0.8.12+2 (0.8.13 available)
+2025-09-23T23:50:26.2595824Z   image_picker_linux 0.2.1+2 (0.2.2 available)
+2025-09-23T23:50:26.2596317Z   image_picker_macos 0.2.1+2 (0.2.2 available)
+2025-09-23T23:50:26.2596887Z   image_picker_platform_interface 2.10.1 (2.11.0 available)
+2025-09-23T23:50:26.2597413Z   image_picker_windows 0.2.1+1 (0.2.2 available)
+2025-09-23T23:50:26.2597880Z > leak_tracker 11.0.2 (was 10.0.5)
+2025-09-23T23:50:26.2598355Z > leak_tracker_flutter_testing 3.0.10 (was 3.0.5)
+2025-09-23T23:50:26.2598839Z > leak_tracker_testing 3.0.2 (was 3.0.1)
+2025-09-23T23:50:26.2599262Z   lints 4.0.0 (6.0.0 available)
+2025-09-23T23:50:26.2599644Z > matcher 0.12.17 (was 0.12.16+1)
+2025-09-23T23:50:26.2600098Z   material_color_utilities 0.11.1 (0.13.0 available)
+2025-09-23T23:50:26.2600572Z > meta 1.16.0 (was 1.15.0) (1.17.0 available)
+2025-09-23T23:50:26.2600992Z > path 1.9.1 (was 1.9.0)
+2025-09-23T23:50:26.2601634Z   path_provider_android 2.2.15 (2.2.18 available)
+2025-09-23T23:50:26.2602165Z   path_provider_foundation 2.4.1 (2.4.2 available)
+2025-09-23T23:50:26.2602685Z   permission_handler 11.4.0 (12.0.1 available)
+2025-09-23T23:50:26.2603228Z   permission_handler_android 12.1.0 (13.0.1 available)
+2025-09-23T23:50:26.2603769Z   petitparser 6.0.2 (7.0.1 available)
+2025-09-23T23:50:26.2604208Z   share_plus 10.1.4 (12.0.0 available)
+2025-09-23T23:50:26.2604691Z   share_plus_platform_interface 5.0.2 (6.1.0 available)
+2025-09-23T23:50:26.2605311Z < sky_engine 0.0.0 from sdk flutter (was 0.0.99 from sdk flutter)
+2025-09-23T23:50:26.2605857Z   source_span 1.10.0 (1.10.1 available)
+2025-09-23T23:50:26.2606269Z > stack_trace 1.12.1 (was 1.11.1)
+2025-09-23T23:50:26.2606672Z > stream_channel 2.1.4 (was 2.1.2)
+2025-09-23T23:50:26.2607129Z   string_scanner 1.2.0 (1.4.1 available)
+2025-09-23T23:50:26.2607577Z   term_glyph 1.2.1 (1.2.2 available)
+2025-09-23T23:50:26.2608028Z > test_api 0.7.6 (was 0.7.2) (0.7.7 available)
+2025-09-23T23:50:26.2608500Z   url_launcher_web 2.3.3 (2.4.1 available)
+2025-09-23T23:50:26.2608959Z > vector_math 2.2.0 (was 2.1.4)
+2025-09-23T23:50:26.2609373Z   vm_service 14.2.5 (15.0.2 available)
+2025-09-23T23:50:26.2609797Z   win32 5.10.1 (5.14.0 available)
+2025-09-23T23:50:26.2610544Z   xml 6.5.0 (6.6.1 available)
+2025-09-23T23:50:26.2613938Z Changed 15 dependencies!
+2025-09-23T23:50:26.2629138Z 34 packages have newer versions incompatible with dependency constraints.
+2025-09-23T23:50:26.2629838Z Try `flutter pub outdated` for more information.

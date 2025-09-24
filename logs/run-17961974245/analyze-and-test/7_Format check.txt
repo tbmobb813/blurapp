@@ -1,0 +1,6 @@
+﻿2025-09-23T23:50:29.6161918Z ##[group]Run cd app
+2025-09-23T23:50:29.6162151Z [36;1mcd app[0m
+2025-09-23T23:50:29.6162412Z [36;1m/opt/flutter/bin/dart format --set-exit-if-changed .[0m
+2025-09-23T23:50:29.6189537Z shell: /usr/bin/bash -e {0}
+2025-09-23T23:50:29.6189763Z ##[endgroup]
+2025-09-23T23:50:30.5148930Z Formatted 46 files (0 changed) in 0.79 seconds.

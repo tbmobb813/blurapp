@@ -1,0 +1,444 @@
+﻿2025-09-23T23:51:29.4400769Z Current runner version: '2.328.0'
+2025-09-23T23:51:29.4425016Z ##[group]Runner Image Provisioner
+2025-09-23T23:51:29.4425844Z Hosted Compute Agent
+2025-09-23T23:51:29.4426480Z Version: 20250829.383
+2025-09-23T23:51:29.4427052Z Commit: 27cb235aab5b0e52e153a26cd86b4742e89dac5d
+2025-09-23T23:51:29.4427730Z Build Date: 2025-08-29T13:48:48Z
+2025-09-23T23:51:29.4428362Z ##[endgroup]
+2025-09-23T23:51:29.4428936Z ##[group]Operating System
+2025-09-23T23:51:29.4429463Z Ubuntu
+2025-09-23T23:51:29.4429974Z 24.04.3
+2025-09-23T23:51:29.4430427Z LTS
+2025-09-23T23:51:29.4430882Z ##[endgroup]
+2025-09-23T23:51:29.4431325Z ##[group]Runner Image
+2025-09-23T23:51:29.4431974Z Image: ubuntu-24.04
+2025-09-23T23:51:29.4432479Z Version: 20250907.24.1
+2025-09-23T23:51:29.4433763Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20250907.24/images/ubuntu/Ubuntu2404-Readme.md
+2025-09-23T23:51:29.4435413Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20250907.24
+2025-09-23T23:51:29.4436403Z ##[endgroup]
+2025-09-23T23:51:29.4437493Z ##[group]GITHUB_TOKEN Permissions
+2025-09-23T23:51:29.4439370Z Contents: read
+2025-09-23T23:51:29.4439988Z Metadata: read
+2025-09-23T23:51:29.4440491Z Packages: read
+2025-09-23T23:51:29.4440945Z ##[endgroup]
+2025-09-23T23:51:29.4443404Z Secret source: Actions
+2025-09-23T23:51:29.4444087Z Prepare workflow directory
+2025-09-23T23:51:29.4769065Z Prepare all required actions
+2025-09-23T23:51:29.4809249Z Getting action download info
+2025-09-23T23:51:29.8913971Z Download action repository 'actions/checkout@v4' (SHA:08eba0b27e820071cde6df949e0beb9ba4906955)
+2025-09-23T23:51:30.1581972Z Complete job name: build-test
+2025-09-23T23:51:30.2260957Z ##[group]Run actions/checkout@v4
+2025-09-23T23:51:30.2261776Z with:
+2025-09-23T23:51:30.2262173Z   repository: tbmobb813/blurapp
+2025-09-23T23:51:30.2262780Z   token: ***
+2025-09-23T23:51:30.2263336Z   ssh-strict: true
+2025-09-23T23:51:30.2263734Z   ssh-user: git
+2025-09-23T23:51:30.2264138Z   persist-credentials: true
+2025-09-23T23:51:30.2264590Z   clean: true
+2025-09-23T23:51:30.2264992Z   sparse-checkout-cone-mode: true
+2025-09-23T23:51:30.2265459Z   fetch-depth: 1
+2025-09-23T23:51:30.2265840Z   fetch-tags: false
+2025-09-23T23:51:30.2266227Z   show-progress: true
+2025-09-23T23:51:30.2266627Z   lfs: false
+2025-09-23T23:51:30.2266985Z   submodules: false
+2025-09-23T23:51:30.2267378Z   set-safe-directory: true
+2025-09-23T23:51:30.2268044Z ##[endgroup]
+2025-09-23T23:51:30.3353465Z Syncing repository: tbmobb813/blurapp
+2025-09-23T23:51:30.3355227Z ##[group]Getting Git version info
+2025-09-23T23:51:30.3355912Z Working directory is '/home/runner/work/blurapp/blurapp'
+2025-09-23T23:51:30.3356869Z [command]/usr/bin/git version
+2025-09-23T23:51:30.3437422Z git version 2.51.0
+2025-09-23T23:51:30.3463968Z ##[endgroup]
+2025-09-23T23:51:30.3478644Z Temporarily overriding HOME='/home/runner/work/_temp/ef4cfad7-85e2-4e65-aa51-781f1c042fb2' before making global git config changes
+2025-09-23T23:51:30.3480908Z Adding repository directory to the temporary git global config as a safe directory
+2025-09-23T23:51:30.3483867Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/blurapp/blurapp
+2025-09-23T23:51:30.3520685Z Deleting the contents of '/home/runner/work/blurapp/blurapp'
+2025-09-23T23:51:30.3524544Z ##[group]Initializing the repository
+2025-09-23T23:51:30.3528210Z [command]/usr/bin/git init /home/runner/work/blurapp/blurapp
+2025-09-23T23:51:30.3629147Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-09-23T23:51:30.3630387Z hint: is subject to change. To configure the initial branch name to use in all
+2025-09-23T23:51:30.3631338Z hint: of your new repositories, which will suppress this warning, call:
+2025-09-23T23:51:30.3632029Z hint:
+2025-09-23T23:51:30.3632699Z hint: 	git config --global init.defaultBranch <name>
+2025-09-23T23:51:30.3634183Z hint:
+2025-09-23T23:51:30.3634857Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-09-23T23:51:30.3635781Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-09-23T23:51:30.3636765Z hint:
+2025-09-23T23:51:30.3637145Z hint: 	git branch -m <name>
+2025-09-23T23:51:30.3637588Z hint:
+2025-09-23T23:51:30.3638175Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-09-23T23:51:30.3639536Z Initialized empty Git repository in /home/runner/work/blurapp/blurapp/.git/
+2025-09-23T23:51:30.3644730Z [command]/usr/bin/git remote add origin https://github.com/tbmobb813/blurapp
+2025-09-23T23:51:30.3681853Z ##[endgroup]
+2025-09-23T23:51:30.3683322Z ##[group]Disabling automatic garbage collection
+2025-09-23T23:51:30.3686759Z [command]/usr/bin/git config --local gc.auto 0
+2025-09-23T23:51:30.3715801Z ##[endgroup]
+2025-09-23T23:51:30.3717025Z ##[group]Setting up auth
+2025-09-23T23:51:30.3723549Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-09-23T23:51:30.3754307Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-09-23T23:51:30.4078492Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-09-23T23:51:30.4111111Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-09-23T23:51:30.4340122Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-09-23T23:51:30.4376510Z ##[endgroup]
+2025-09-23T23:51:30.4384512Z ##[group]Fetching the repository
+2025-09-23T23:51:30.4385924Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +fd040e0737cf27b1d4eedf92f2a985f25cd3e3fc:refs/remotes/pull/1/merge
+2025-09-23T23:51:34.4705150Z From https://github.com/tbmobb813/blurapp
+2025-09-23T23:51:34.4707070Z  * [new ref]         fd040e0737cf27b1d4eedf92f2a985f25cd3e3fc -> pull/1/merge
+2025-09-23T23:51:34.4784337Z ##[endgroup]
+2025-09-23T23:51:34.4785634Z ##[group]Determining the checkout info
+2025-09-23T23:51:34.4787318Z ##[endgroup]
+2025-09-23T23:51:34.4793816Z [command]/usr/bin/git sparse-checkout disable
+2025-09-23T23:51:34.4839245Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-09-23T23:51:34.4870939Z ##[group]Checking out the ref
+2025-09-23T23:51:34.4875937Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/1/merge
+2025-09-23T23:51:34.7638965Z Note: switching to 'refs/remotes/pull/1/merge'.
+2025-09-23T23:51:34.7640001Z 
+2025-09-23T23:51:34.7640493Z You are in 'detached HEAD' state. You can look around, make experimental
+2025-09-23T23:51:34.7641529Z changes and commit them, and you can discard any commits you make in this
+2025-09-23T23:51:34.7642609Z state without impacting any branches by switching back to a branch.
+2025-09-23T23:51:34.7643427Z 
+2025-09-23T23:51:34.7643897Z If you want to create a new branch to retain commits you create, you may
+2025-09-23T23:51:34.7644859Z do so (now or later) by using -c with the switch command. Example:
+2025-09-23T23:51:34.7645378Z 
+2025-09-23T23:51:34.7645631Z   git switch -c <new-branch-name>
+2025-09-23T23:51:34.7646022Z 
+2025-09-23T23:51:34.7646262Z Or undo this operation with:
+2025-09-23T23:51:34.7646644Z 
+2025-09-23T23:51:34.7646867Z   git switch -
+2025-09-23T23:51:34.7647205Z 
+2025-09-23T23:51:34.7647677Z Turn off this advice by setting config variable advice.detachedHead to false
+2025-09-23T23:51:34.7648341Z 
+2025-09-23T23:51:34.7649079Z HEAD is now at fd040e0 Merge 18e3fdac65263df089bcbeae8b476e6c28d7232c into 32f0128cf6e380c1a90784019777021a2d0e6fc6
+2025-09-23T23:51:34.7653909Z ##[endgroup]
+2025-09-23T23:51:34.7695160Z [command]/usr/bin/git log -1 --format=%H
+2025-09-23T23:51:34.7719543Z fd040e0737cf27b1d4eedf92f2a985f25cd3e3fc
+2025-09-23T23:51:34.7908172Z ##[group]Run sudo apt-get update
+2025-09-23T23:51:34.7908832Z [36;1msudo apt-get update[0m
+2025-09-23T23:51:34.7909183Z [36;1msudo apt-get install -y git curl unzip xz-utils[0m
+2025-09-23T23:51:34.7909780Z [36;1mgit clone https://github.com/flutter/flutter.git -b stable --depth 1 /opt/flutter[0m
+2025-09-23T23:51:34.7910263Z [36;1mecho "/opt/flutter/bin" >> $GITHUB_PATH[0m
+2025-09-23T23:51:34.7910653Z [36;1mecho "/opt/flutter/bin/cache/dart-sdk/bin" >> $GITHUB_PATH[0m
+2025-09-23T23:51:34.7911032Z [36;1m/opt/flutter/bin/flutter --version[0m
+2025-09-23T23:51:34.7965006Z shell: /usr/bin/bash -e {0}
+2025-09-23T23:51:34.7965320Z ##[endgroup]
+2025-09-23T23:51:34.9967181Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2025-09-23T23:51:35.0480978Z Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+2025-09-23T23:51:35.0486948Z Hit:6 https://packages.microsoft.com/repos/azure-cli noble InRelease
+2025-09-23T23:51:35.0488032Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+2025-09-23T23:51:35.0517131Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2025-09-23T23:51:35.0547398Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2025-09-23T23:51:35.0614366Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2025-09-23T23:51:35.2816281Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [36.2 kB]
+2025-09-23T23:51:35.2936128Z Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [10.3 kB]
+2025-09-23T23:51:35.2975081Z Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [53.7 kB]
+2025-09-23T23:51:35.3278166Z Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1436 kB]
+2025-09-23T23:51:35.3358086Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [281 kB]
+2025-09-23T23:51:35.3387377Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [175 kB]
+2025-09-23T23:51:35.3407431Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 c-n-f Metadata [15.3 kB]
+2025-09-23T23:51:35.3422186Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1485 kB]
+2025-09-23T23:51:35.3503463Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [299 kB]
+2025-09-23T23:51:35.3533548Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [377 kB]
+2025-09-23T23:51:35.3565470Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 c-n-f Metadata [31.1 kB]
+2025-09-23T23:51:35.3577384Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1941 kB]
+2025-09-23T23:51:35.3677601Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [436 kB]
+2025-09-23T23:51:35.4151409Z Get:21 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Components [212 B]
+2025-09-23T23:51:35.4163547Z Get:22 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 c-n-f Metadata [544 B]
+2025-09-23T23:51:35.4176100Z Get:23 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [32.0 kB]
+2025-09-23T23:51:35.4194216Z Get:24 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [5500 B]
+2025-09-23T23:51:35.4205319Z Get:25 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+2025-09-23T23:51:35.4220016Z Get:26 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 c-n-f Metadata [488 B]
+2025-09-23T23:51:35.4233393Z Get:27 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [7084 B]
+2025-09-23T23:51:35.4252166Z Get:28 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [19.2 kB]
+2025-09-23T23:51:35.4295957Z Get:29 http://azure.archive.ubuntu.com/ubuntu noble-backports/restricted amd64 Components [216 B]
+2025-09-23T23:51:35.4308724Z Get:30 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Components [212 B]
+2025-09-23T23:51:35.4390172Z Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1164 kB]
+2025-09-23T23:51:35.4458492Z Get:32 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [197 kB]
+2025-09-23T23:51:35.4479434Z Get:33 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [21.5 kB]
+2025-09-23T23:51:35.4492338Z Get:34 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 c-n-f Metadata [8744 B]
+2025-09-23T23:51:35.4910598Z Get:35 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [880 kB]
+2025-09-23T23:51:35.4969648Z Get:36 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [195 kB]
+2025-09-23T23:51:35.4992780Z Get:37 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [52.3 kB]
+2025-09-23T23:51:35.5007459Z Get:38 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 c-n-f Metadata [18.0 kB]
+2025-09-23T23:51:35.5021800Z Get:39 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1855 kB]
+2025-09-23T23:51:35.5130383Z Get:40 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [419 kB]
+2025-09-23T23:51:35.5158120Z Get:41 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Components [212 B]
+2025-09-23T23:51:35.5171489Z Get:42 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 c-n-f Metadata [520 B]
+2025-09-23T23:51:35.5188884Z Get:43 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [28.0 kB]
+2025-09-23T23:51:35.5206495Z Get:44 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [5228 B]
+2025-09-23T23:51:35.5218371Z Get:45 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Components [208 B]
+2025-09-23T23:51:35.5230618Z Get:46 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 c-n-f Metadata [384 B]
+2025-09-23T23:51:43.5483766Z Fetched 11.9 MB in 2s (7714 kB/s)
+2025-09-23T23:51:44.2669523Z Reading package lists...
+2025-09-23T23:51:44.3011897Z Reading package lists...
+2025-09-23T23:51:44.4886796Z Building dependency tree...
+2025-09-23T23:51:44.4894483Z Reading state information...
+2025-09-23T23:51:44.6958886Z git is already the newest version (1:2.51.0-0ppa2~ubuntu24.04.1).
+2025-09-23T23:51:44.6959271Z git set to manually installed.
+2025-09-23T23:51:44.6959570Z curl is already the newest version (8.5.0-2ubuntu10.6).
+2025-09-23T23:51:44.6959899Z unzip is already the newest version (6.0-28ubuntu4.1).
+2025-09-23T23:51:44.6960268Z xz-utils is already the newest version (5.6.1+really5.4.5-1ubuntu0.2).
+2025-09-23T23:51:44.6960667Z 0 upgraded, 0 newly installed, 0 to remove and 69 not upgraded.
+2025-09-23T23:51:44.6990656Z Cloning into '/opt/flutter'...
+2025-09-23T23:51:47.9075658Z Updating files:  93% (13963/14891)
+2025-09-23T23:51:47.9166605Z Updating files:  94% (13998/14891)
+2025-09-23T23:51:47.9301625Z Updating files:  95% (14147/14891)
+2025-09-23T23:51:47.9431623Z Updating files:  96% (14296/14891)
+2025-09-23T23:51:47.9541876Z Updating files:  97% (14445/14891)
+2025-09-23T23:51:47.9629063Z Updating files:  98% (14594/14891)
+2025-09-23T23:51:47.9712798Z Updating files:  99% (14743/14891)
+2025-09-23T23:51:47.9713677Z Updating files: 100% (14891/14891)
+2025-09-23T23:51:47.9714115Z Updating files: 100% (14891/14891), done.
+2025-09-23T23:51:48.0322770Z Downloading Linux x64 Dart SDK from Flutter engine c29809135135e262a912cf583b2c90deb9ded610...
+2025-09-23T23:51:48.0408626Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2025-09-23T23:51:48.0410197Z                                  Dload  Upload   Total   Spent    Left  Speed
+2025-09-23T23:51:48.0410979Z 
+2025-09-23T23:51:48.3763559Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2025-09-23T23:51:49.3756359Z   1  207M    1 2606k    0     0  7767k      0  0:00:27 --:--:--  0:00:27 7756k
+2025-09-23T23:51:50.3763941Z   6  207M    6 14.2M    0     0  10.7M      0  0:00:19  0:00:01  0:00:18 10.7M
+2025-09-23T23:51:51.3774499Z  12  207M   12 26.8M    0     0  11.4M      0  0:00:18  0:00:02  0:00:16 11.4M
+2025-09-23T23:51:52.3795076Z  18  207M   18 39.1M    0     0  11.7M      0  0:00:17  0:00:03  0:00:14 11.7M
+2025-09-23T23:51:53.3758206Z  24  207M   24 51.3M    0     0  11.8M      0  0:00:17  0:00:04  0:00:13 11.8M
+2025-09-23T23:51:54.3747747Z  30  207M   30 63.5M    0     0  11.9M      0  0:00:17  0:00:05  0:00:12 12.1M
+2025-09-23T23:51:55.3775695Z  36  207M   36 75.6M    0     0  11.9M      0  0:00:17  0:00:06  0:00:11 12.2M
+2025-09-23T23:51:56.3811242Z  42  207M   42 88.2M    0     0  12.0M      0  0:00:17  0:00:07  0:00:10 12.2M
+2025-09-23T23:51:57.3761466Z  48  207M   48  100M    0     0  12.0M      0  0:00:17  0:00:08  0:00:09 12.2M
+2025-09-23T23:51:58.3787435Z  53  207M   53  111M    0     0  11.9M      0  0:00:17  0:00:09  0:00:08 12.1M
+2025-09-23T23:51:59.3781779Z  60  207M   60  124M    0     0  12.0M      0  0:00:17  0:00:10  0:00:07 12.2M
+2025-09-23T23:52:00.3808077Z  65  207M   65  136M    0     0  12.0M      0  0:00:17  0:00:11  0:00:06 12.2M
+2025-09-23T23:52:01.3755514Z  71  207M   71  148M    0     0  12.0M      0  0:00:17  0:00:12  0:00:05 12.0M
+2025-09-23T23:52:02.3750859Z  77  207M   77  160M    0     0  12.0M      0  0:00:17  0:00:13  0:00:04 11.9M
+2025-09-23T23:52:03.3768949Z  82  207M   82  171M    0     0  11.9M      0  0:00:17  0:00:14  0:00:03 11.9M
+2025-09-23T23:52:04.3800467Z  88  207M   88  184M    0     0  11.9M      0  0:00:17  0:00:15  0:00:02 11.8M
+2025-09-23T23:52:05.3086395Z  94  207M   94  196M    0     0  12.0M      0  0:00:17  0:00:16  0:00:01 11.9M
+2025-09-23T23:52:05.3087450Z 100  207M  100  207M    0     0  12.0M      0  0:00:17  0:00:17 --:--:-- 11.9M
+2025-09-23T23:52:09.9016217Z Building flutter tool...
+2025-09-23T23:52:10.0267703Z Resolving dependencies...
+2025-09-23T23:52:11.0631096Z Downloading packages...
+2025-09-23T23:52:14.2214076Z + _fe_analyzer_shared 82.0.0 (89.0.0 available)
+2025-09-23T23:52:14.2214702Z + analyzer 7.4.5 (8.2.0 available)
+2025-09-23T23:52:14.2215162Z + archive 3.6.1 (4.0.7 available)
+2025-09-23T23:52:14.2215654Z + args 2.7.0
+2025-09-23T23:52:14.2216088Z + async 2.13.0
+2025-09-23T23:52:14.2216489Z + boolean_selector 2.1.2
+2025-09-23T23:52:14.2216901Z + browser_launcher 1.1.3
+2025-09-23T23:52:14.2217328Z + built_collection 5.1.1
+2025-09-23T23:52:14.2217732Z + built_value 8.10.1 (8.12.0 available)
+2025-09-23T23:52:14.2218239Z + checked_yaml 2.0.4
+2025-09-23T23:52:14.2218597Z + cli_config 0.2.0
+2025-09-23T23:52:14.2218897Z + clock 1.1.2
+2025-09-23T23:52:14.2219243Z + code_assets 0.19.4 (0.19.7 available)
+2025-09-23T23:52:14.2219723Z + code_builder 4.10.1 (4.11.0 available)
+2025-09-23T23:52:14.2220188Z + collection 1.19.1
+2025-09-23T23:52:14.2220510Z + completion 1.0.1 (1.0.2 available)
+2025-09-23T23:52:14.2220874Z + convert 3.1.2
+2025-09-23T23:52:14.2221181Z + coverage 1.14.1 (1.15.0 available)
+2025-09-23T23:52:14.2221577Z + crypto 3.0.6
+2025-09-23T23:52:14.2221882Z + csslib 1.0.2
+2025-09-23T23:52:14.2222126Z + dap 1.4.0
+2025-09-23T23:52:14.2222399Z + dart_service_protocol_shared 0.0.3
+2025-09-23T23:52:14.2222754Z + dart_style 3.1.0 (3.1.2 available)
+2025-09-23T23:52:14.2223110Z + dds 5.0.3 (5.1.0 available)
+2025-09-23T23:52:14.2223786Z + dds_service_extensions 2.0.2 (2.1.0 available)
+2025-09-23T23:52:14.2224223Z + devtools_shared 12.0.0
+2025-09-23T23:52:14.2224468Z + dtd 4.0.0
+2025-09-23T23:52:14.2224676Z + dwds 24.4.0+2 (25.1.0 available)
+2025-09-23T23:52:14.2224959Z + extension_discovery 2.1.0
+2025-09-23T23:52:14.2225206Z + fake_async 1.3.3
+2025-09-23T23:52:14.2225426Z + ffi 2.1.4
+2025-09-23T23:52:14.2225618Z + file 7.0.1
+2025-09-23T23:52:14.2225823Z + file_testing 3.0.2
+2025-09-23T23:52:14.2226043Z + fixnum 1.1.1
+2025-09-23T23:52:14.2226267Z + flutter_template_images 5.0.0
+2025-09-23T23:52:14.2226550Z + frontend_server_client 4.0.0
+2025-09-23T23:52:14.2227070Z + glob 2.1.3
+2025-09-23T23:52:14.2227272Z + graphs 2.3.2
+2025-09-23T23:52:14.2227626Z + hooks 0.19.5 (0.20.1 available)
+2025-09-23T23:52:14.2227901Z + hooks_runner 0.21.0 (0.22.1 available)
+2025-09-23T23:52:14.2228186Z + html 0.15.6
+2025-09-23T23:52:14.2228398Z + http 1.4.0 (1.5.0 available)
+2025-09-23T23:52:14.2228655Z + http_multi_server 3.2.2
+2025-09-23T23:52:14.2228903Z + http_parser 4.1.2
+2025-09-23T23:52:14.2229115Z + intl 0.20.2
+2025-09-23T23:52:14.2229312Z + io 1.0.5
+2025-09-23T23:52:14.2229504Z + js 0.7.2 (discontinued)
+2025-09-23T23:52:14.2229701Z + json_annotation 4.9.0
+2025-09-23T23:52:14.2229895Z + json_rpc_2 3.0.3 (4.0.0 available)
+2025-09-23T23:52:14.2230275Z + logging 1.3.0
+2025-09-23T23:52:14.2230558Z + matcher 0.12.17
+2025-09-23T23:52:14.2230830Z + meta 1.17.0
+2025-09-23T23:52:14.2231081Z + mime 2.0.0
+2025-09-23T23:52:14.2231324Z + multicast_dns 0.3.3
+2025-09-23T23:52:14.2231526Z + mustache_template 2.0.0 (2.0.1 available)
+2025-09-23T23:52:14.2231757Z + native_stack_traces 0.6.1
+2025-09-23T23:52:14.2231958Z + node_preamble 2.0.2
+2025-09-23T23:52:14.2232137Z + package_config 2.2.0
+2025-09-23T23:52:14.2232320Z + path 1.9.1
+2025-09-23T23:52:14.2232493Z + petitparser 6.1.0 (7.0.1 available)
+2025-09-23T23:52:14.2232718Z + platform 3.1.6
+2025-09-23T23:52:14.2232891Z + pool 1.5.1 (1.5.2 available)
+2025-09-23T23:52:14.2233097Z + process 5.0.4 (5.0.5 available)
+2025-09-23T23:52:14.2233517Z + pub_semver 2.2.0
+2025-09-23T23:52:14.2233695Z + pubspec_parse 1.5.0
+2025-09-23T23:52:14.2233896Z + shelf 1.4.2
+2025-09-23T23:52:14.2234155Z + shelf_packages_handler 3.0.2
+2025-09-23T23:52:14.2234352Z + shelf_proxy 1.0.4
+2025-09-23T23:52:14.2234520Z + shelf_static 1.1.3
+2025-09-23T23:52:14.2234711Z + shelf_web_socket 2.0.1 (3.0.0 available)
+2025-09-23T23:52:14.2234939Z + source_map_stack_trace 2.1.2
+2025-09-23T23:52:14.2235136Z + source_maps 0.10.13
+2025-09-23T23:52:14.2235314Z + source_span 1.10.1
+2025-09-23T23:52:14.2235478Z + sprintf 7.0.0
+2025-09-23T23:52:14.2235641Z + sse 4.1.8
+2025-09-23T23:52:14.2235800Z + stack_trace 1.12.1
+2025-09-23T23:52:14.2235988Z + standard_message_codec 0.0.1+4
+2025-09-23T23:52:14.2236196Z + stream_channel 2.1.4
+2025-09-23T23:52:14.2236375Z + string_scanner 1.4.1
+2025-09-23T23:52:14.2236547Z + sync_http 0.3.1
+2025-09-23T23:52:14.2236937Z + term_glyph 1.2.2
+2025-09-23T23:52:14.2237215Z + test 1.26.2 (1.26.3 available)
+2025-09-23T23:52:14.2237568Z + test_api 0.7.6 (0.7.7 available)
+2025-09-23T23:52:14.2237950Z + test_core 0.6.11 (0.6.12 available)
+2025-09-23T23:52:14.2238312Z + typed_data 1.4.0
+2025-09-23T23:52:14.2238615Z + unified_analytics 8.0.5
+2025-09-23T23:52:14.2238963Z + usage 4.1.1 (discontinued)
+2025-09-23T23:52:14.2239298Z + uuid 4.5.1
+2025-09-23T23:52:14.2239462Z + vm_service 15.0.2
+2025-09-23T23:52:14.2239640Z + vm_service_interface 2.0.1
+2025-09-23T23:52:14.2239838Z + vm_snapshot_analysis 0.7.6
+2025-09-23T23:52:14.2240040Z + watcher 1.1.2 (1.1.3 available)
+2025-09-23T23:52:14.2240235Z + web 1.1.1
+2025-09-23T23:52:14.2240393Z + web_socket 1.0.1
+2025-09-23T23:52:14.2240575Z + web_socket_channel 3.0.3
+2025-09-23T23:52:14.2240764Z + webdriver 3.1.0
+2025-09-23T23:52:14.2240958Z + webkit_inspection_protocol 1.2.1
+2025-09-23T23:52:14.2241170Z + xml 6.5.0 (6.6.1 available)
+2025-09-23T23:52:14.2241358Z + yaml 3.1.3
+2025-09-23T23:52:14.2241510Z + yaml_edit 2.2.2
+2025-09-23T23:52:14.2241716Z Changed 100 dependencies!
+2025-09-23T23:52:14.2241918Z 2 packages are discontinued.
+2025-09-23T23:52:14.2248043Z 26 packages have newer versions incompatible with dependency constraints.
+2025-09-23T23:52:14.2248760Z Try `dart pub outdated` for more information.
+2025-09-23T23:52:29.8427824Z Flutter 3.35.4 • channel stable • https://github.com/flutter/flutter.git
+2025-09-23T23:52:29.8430175Z Framework • revision d693b4b9db (7 days ago) • 2025-09-16 14:27:41 +0000
+2025-09-23T23:52:29.8431180Z Engine • hash feee8ee8fb8b975dd9990f86d3bda11e6e75faf3 (revision c298091351) (8 days ago) • 2025-09-15 14:04:24.000Z
+2025-09-23T23:52:29.8431832Z Tools • Dart 3.9.2 • DevTools 2.48.0
+2025-09-23T23:52:29.8593029Z ##[group]Run cd app
+2025-09-23T23:52:29.8593575Z [36;1mcd app[0m
+2025-09-23T23:52:29.8594024Z [36;1m/opt/flutter/bin/flutter precache || true[0m
+2025-09-23T23:52:29.8594299Z [36;1m[0m
+2025-09-23T23:52:29.8594455Z [36;1mattempt=0[0m
+2025-09-23T23:52:29.8594657Z [36;1muntil [ $attempt -ge 3 ]; do[0m
+2025-09-23T23:52:29.8594927Z [36;1m  /opt/flutter/bin/flutter pub get && break[0m
+2025-09-23T23:52:29.8595206Z [36;1m  attempt=$((attempt+1))[0m
+2025-09-23T23:52:29.8595474Z [36;1m  echo "flutter pub get failed, retry #$attempt"[0m
+2025-09-23T23:52:29.8595749Z [36;1m  sleep $((attempt*5))[0m
+2025-09-23T23:52:29.8595948Z [36;1mdone[0m
+2025-09-23T23:52:29.8596131Z [36;1mif [ $attempt -ge 3 ]; then[0m
+2025-09-23T23:52:29.8596436Z [36;1m  echo "flutter pub get failed after $attempt attempts"; exit 1[0m
+2025-09-23T23:52:29.8596728Z [36;1mfi[0m
+2025-09-23T23:52:29.8631260Z shell: /usr/bin/bash -e {0}
+2025-09-23T23:52:29.8631496Z ##[endgroup]
+2025-09-23T23:52:30.2250089Z Downloading Material fonts...                                      220ms
+2025-09-23T23:52:30.2824266Z Downloading Gradle Wrapper...                                        8ms
+2025-09-23T23:52:30.4312188Z Downloading android-arm-profile/linux-x64 tools...                 134ms
+2025-09-23T23:52:30.6247006Z Downloading android-arm-release/linux-x64 tools...                 118ms
+2025-09-23T23:52:30.8066367Z Downloading android-arm64-profile/linux-x64 tools...               120ms
+2025-09-23T23:52:30.9751449Z Downloading android-arm64-release/linux-x64 tools...               100ms
+2025-09-23T23:52:31.1443856Z Downloading android-x64-profile/linux-x64 tools...                 107ms
+2025-09-23T23:52:31.3099514Z Downloading android-x64-release/linux-x64 tools...                  98ms
+2025-09-23T23:52:37.5166976Z Downloading android-x86 tools...                                    6.1s
+2025-09-23T23:52:44.4056962Z Downloading android-x64 tools...                                    6.3s
+2025-09-23T23:52:51.6581633Z Downloading android-arm tools...                                    6.6s
+2025-09-23T23:52:54.9318786Z Downloading android-arm-profile tools...                         2,637ms
+2025-09-23T23:52:57.7569165Z Downloading android-arm-release tools...                         2,558ms
+2025-09-23T23:53:08.0721287Z Downloading android-arm64 tools...                                 10.1s
+2025-09-23T23:53:11.6680617Z Downloading android-arm64-profile tools...                       2,581ms
+2025-09-23T23:53:14.2183075Z Downloading android-arm64-release tools...                       2,280ms
+2025-09-23T23:53:17.0896536Z Downloading android-x64-profile tools...                         2,618ms
+2025-09-23T23:53:19.9972109Z Downloading android-x64-release tools...                         2,633ms
+2025-09-23T23:53:22.2598030Z Downloading Web SDK...                                           1,880ms
+2025-09-23T23:53:23.0022422Z Downloading package sky_engine...                                   51ms
+2025-09-23T23:53:23.0827510Z Downloading package flutter_gpu...                                   7ms
+2025-09-23T23:53:23.2312062Z Downloading flutter_patched_sdk tools...                           135ms
+2025-09-23T23:53:23.4629200Z Downloading flutter_patched_sdk_product tools...                   139ms
+2025-09-23T23:53:25.3353710Z Downloading linux-x64 tools...                                   1,780ms
+2025-09-23T23:53:28.4143969Z Downloading linux-x64-debug/linux-x64-flutter-gtk tools...       2,476ms
+2025-09-23T23:53:30.6316123Z Downloading linux-x64-profile/linux-x64-flutter-gtk tools...      1,450ms
+2025-09-23T23:53:32.3011656Z Downloading linux-x64-release/linux-x64-flutter-gtk tools...      1,244ms
+2025-09-23T23:53:32.7682831Z Downloading linux-x64/font-subset tools...                          73ms
+2025-09-23T23:53:33.1811738Z Resolving dependencies...
+2025-09-23T23:53:33.9958008Z Downloading packages...
+2025-09-23T23:53:36.3332299Z   async 2.11.0 (2.13.0 available)
+2025-09-23T23:53:36.3333631Z   boolean_selector 2.1.1 (2.1.2 available)
+2025-09-23T23:53:36.3334166Z > characters 1.4.0 (was 1.3.0) (1.4.1 available)
+2025-09-23T23:53:36.3334618Z > clock 1.1.2 (was 1.1.1)
+2025-09-23T23:53:36.3335266Z > collection 1.19.1 (was 1.18.0)
+2025-09-23T23:53:36.3335637Z > fake_async 1.3.3 (was 1.3.1)
+2025-09-23T23:53:36.3335992Z   ffi 2.1.3 (2.1.4 available)
+2025-09-23T23:53:36.3336383Z   file_selector_macos 0.9.4+2 (0.9.4+4 available)
+2025-09-23T23:53:36.3336850Z   flutter_lints 4.0.0 (6.0.0 available)
+2025-09-23T23:53:36.3337350Z   flutter_plugin_android_lifecycle 2.0.26 (2.0.30 available)
+2025-09-23T23:53:36.3337880Z   http_parser 4.0.2 (4.1.2 available)
+2025-09-23T23:53:36.3338281Z   image_picker 1.1.2 (1.2.0 available)
+2025-09-23T23:53:36.3338733Z   image_picker_android 0.8.12+21 (0.8.13+3 available)
+2025-09-23T23:53:36.3339238Z   image_picker_for_web 3.0.6 (3.1.0 available)
+2025-09-23T23:53:36.3339696Z   image_picker_ios 0.8.12+2 (0.8.13 available)
+2025-09-23T23:53:36.3340170Z   image_picker_linux 0.2.1+2 (0.2.2 available)
+2025-09-23T23:53:36.3340666Z   image_picker_macos 0.2.1+2 (0.2.2 available)
+2025-09-23T23:53:36.3341208Z   image_picker_platform_interface 2.10.1 (2.11.0 available)
+2025-09-23T23:53:36.3341795Z   image_picker_windows 0.2.1+1 (0.2.2 available)
+2025-09-23T23:53:36.3342261Z > leak_tracker 11.0.2 (was 10.0.5)
+2025-09-23T23:53:36.3342691Z > leak_tracker_flutter_testing 3.0.10 (was 3.0.5)
+2025-09-23T23:53:36.3343342Z > leak_tracker_testing 3.0.2 (was 3.0.1)
+2025-09-23T23:53:36.3343775Z   lints 4.0.0 (6.0.0 available)
+2025-09-23T23:53:36.3344147Z > matcher 0.12.17 (was 0.12.16+1)
+2025-09-23T23:53:36.3344582Z   material_color_utilities 0.11.1 (0.13.0 available)
+2025-09-23T23:53:36.3345063Z > meta 1.16.0 (was 1.15.0) (1.17.0 available)
+2025-09-23T23:53:36.3345479Z > path 1.9.1 (was 1.9.0)
+2025-09-23T23:53:36.3345867Z   path_provider_android 2.2.15 (2.2.18 available)
+2025-09-23T23:53:36.3346367Z   path_provider_foundation 2.4.1 (2.4.2 available)
+2025-09-23T23:53:36.3346874Z   permission_handler 11.4.0 (12.0.1 available)
+2025-09-23T23:53:36.3347408Z   permission_handler_android 12.1.0 (13.0.1 available)
+2025-09-23T23:53:36.3347893Z   petitparser 6.0.2 (7.0.1 available)
+2025-09-23T23:53:36.3348318Z   share_plus 10.1.4 (12.0.0 available)
+2025-09-23T23:53:36.3348784Z   share_plus_platform_interface 5.0.2 (6.1.0 available)
+2025-09-23T23:53:36.3349410Z < sky_engine 0.0.0 from sdk flutter (was 0.0.99 from sdk flutter)
+2025-09-23T23:53:36.3349970Z   source_span 1.10.0 (1.10.1 available)
+2025-09-23T23:53:36.3350384Z > stack_trace 1.12.1 (was 1.11.1)
+2025-09-23T23:53:36.3350783Z > stream_channel 2.1.4 (was 2.1.2)
+2025-09-23T23:53:36.3351183Z   string_scanner 1.2.0 (1.4.1 available)
+2025-09-23T23:53:36.3351615Z   term_glyph 1.2.1 (1.2.2 available)
+2025-09-23T23:53:36.3352042Z > test_api 0.7.6 (was 0.7.2) (0.7.7 available)
+2025-09-23T23:53:36.3352498Z   url_launcher_web 2.3.3 (2.4.1 available)
+2025-09-23T23:53:36.3352929Z > vector_math 2.2.0 (was 2.1.4)
+2025-09-23T23:53:36.3353511Z   vm_service 14.2.5 (15.0.2 available)
+2025-09-23T23:53:36.3353935Z   win32 5.10.1 (5.14.0 available)
+2025-09-23T23:53:36.3354313Z   xml 6.5.0 (6.6.1 available)
+2025-09-23T23:53:36.3354698Z Changed 15 dependencies!
+2025-09-23T23:53:36.3361931Z 34 packages have newer versions incompatible with dependency constraints.
+2025-09-23T23:53:36.3362598Z Try `flutter pub outdated` for more information.
+2025-09-23T23:53:36.7542017Z ##[group]Run cd app
+2025-09-23T23:53:36.7542276Z [36;1mcd app[0m
+2025-09-23T23:53:36.7542472Z [36;1m/opt/flutter/bin/flutter analyze[0m
+2025-09-23T23:53:36.7542728Z [36;1m/opt/flutter/bin/flutter test[0m
+2025-09-23T23:53:36.7573457Z shell: /usr/bin/bash -e {0}
+2025-09-23T23:53:36.7573688Z ##[endgroup]
+2025-09-23T23:53:51.8758018Z Analyzing app...                                                
+2025-09-23T23:53:51.8764989Z 
+2025-09-23T23:53:51.8784535Z    info • 'value' is deprecated and shouldn't be used. Use component accessors like .r or .g, or toARGB32 for an explicit conversion • lib/core/utils/color_utils.dart:11:26 • deprecated_member_use
+2025-09-23T23:53:51.8793100Z 
+2025-09-23T23:53:51.8935503Z 1 issue found. (ran in 14.4s)
+2025-09-23T23:53:51.9015631Z ##[error]Process completed with exit code 1.
+2025-09-23T23:53:51.9142616Z Post job cleanup.
+2025-09-23T23:53:52.0093404Z [command]/usr/bin/git version
+2025-09-23T23:53:52.0137164Z git version 2.51.0
+2025-09-23T23:53:52.0180884Z Temporarily overriding HOME='/home/runner/work/_temp/92d57348-4f71-4e47-8ce6-a8a3b21da1d7' before making global git config changes
+2025-09-23T23:53:52.0182050Z Adding repository directory to the temporary git global config as a safe directory
+2025-09-23T23:53:52.0186702Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/blurapp/blurapp
+2025-09-23T23:53:52.0220247Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-09-23T23:53:52.0252584Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-09-23T23:53:52.0481674Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-09-23T23:53:52.0502480Z http.https://github.com/.extraheader
+2025-09-23T23:53:52.0515139Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2025-09-23T23:53:52.0545194Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-09-23T23:53:52.0874398Z Cleaning up orphan processes
