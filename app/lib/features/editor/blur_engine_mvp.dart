@@ -189,6 +189,42 @@ class BlurEngineMVP {
     return mask;
   }
 
+  /// Convert a grayscale mask (0-255 per pixel) into a list of brush strokes.
+  ///
+  /// This is a simple heuristic used by the MVP to convert detected mask
+  /// regions into a set of discrete brush strokes that the editor UI can
+  /// display and edit. It samples the mask at a given `stride` and emits a
+  /// stroke for any sampled pixel above `threshold`. The `baseSize` controls
+  /// the visual size of the generated strokes.
+  static List<BrushStroke> maskToBrushStrokes(
+    Uint8List mask,
+    int width,
+    int height, {
+    int stride = 8,
+    int threshold = 128,
+    double baseSize = 30.0,
+  }) {
+    final List<BrushStroke> strokes = [];
+
+    if (mask.length < width * height) return strokes;
+
+    for (int y = 0; y < height; y += stride) {
+      for (int x = 0; x < width; x += stride) {
+        final int idx = y * width + x;
+        final int v = mask[idx];
+        if (v > threshold) {
+          strokes.add(BrushStroke(
+            points: [Point(x.toDouble(), y.toDouble())],
+            size: baseSize,
+            opacity: v,
+          ));
+        }
+      }
+    }
+
+    return strokes;
+  }
+
   // Private helper methods
 
   static Future<ui.Image> _applyGaussianBlur(

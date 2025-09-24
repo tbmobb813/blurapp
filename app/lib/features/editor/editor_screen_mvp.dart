@@ -301,13 +301,17 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
         // Convert mask to brush strokes (simplified approach)
         final List<BrushStroke> faceStrokes = [];
 
-        // TODO: Convert mask bitmap to brush strokes
-        // For now, add a placeholder stroke
-        faceStrokes.add(const BrushStroke(
-          points: [Point(_previewWidth / 2, _previewHeight / 2)],
-          size: 100.0,
-          opacity: 255,
-        ));
+        // Convert mask bitmap to brush strokes using the MVP helper
+        final converted = BlurEngineMVP.maskToBrushStrokes(
+          mask,
+          _previewWidth,
+          _previewHeight,
+          stride: 12,
+          threshold: 100,
+          baseSize: 36.0,
+        );
+
+        faceStrokes.addAll(converted);
 
         setState(() {
           _brushStrokes = faceStrokes;
