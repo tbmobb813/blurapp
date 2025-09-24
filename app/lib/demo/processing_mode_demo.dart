@@ -60,7 +60,9 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
       });
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Processing error: $e')));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Processing error: $e')));
       }
     } finally {
       if (mounted) {
@@ -77,15 +79,23 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
     });
 
     try {
-      final result = await HybridBlurPipeline.processWithAutoSegmentation(widget.imageBytes, 20, isPreview: false);
+      final result = await HybridBlurPipeline.processWithAutoSegmentation(
+        widget.imageBytes,
+        20,
+        isPreview: false,
+      );
       if (!mounted) return;
       setState(() {
         _processedImage = result;
-        _lastProcessingMethod = _modeInfo?.hasAutoSegmentation == true ? 'AI Segmentation' : 'Manual Fallback';
+        _lastProcessingMethod = _modeInfo?.hasAutoSegmentation == true
+            ? 'AI Segmentation'
+            : 'Manual Fallback';
       });
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Segmentation error: $e')));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Segmentation error: $e')));
       }
     } finally {
       if (mounted) {
@@ -132,7 +142,11 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
         child: Padding(
           padding: EdgeInsets.all(16.0),
           child: Row(
-            children: [CircularProgressIndicator(), SizedBox(width: 16), Text('Loading processing capabilities...')],
+            children: [
+              CircularProgressIndicator(),
+              SizedBox(width: 16),
+              Text('Loading processing capabilities...'),
+            ],
           ),
         ),
       );
@@ -146,7 +160,9 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
           children: [
             Text(
               'Processing Mode: ${_modeInfo!.displayMode}',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             Text('Native Version: ${_modeInfo!.nativeVersion}'),
@@ -162,9 +178,21 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
     return Wrap(
       spacing: 8,
       children: [
-        _buildCapabilityChip('Native Support', _modeInfo!.hasNativeSupport, Icons.memory),
-        _buildCapabilityChip('Auto Segmentation', _modeInfo!.hasAutoSegmentation, Icons.auto_fix_high),
-        _buildCapabilityChip('GPU Acceleration', _modeInfo!.hasGpuAcceleration, Icons.speed),
+        _buildCapabilityChip(
+          'Native Support',
+          _modeInfo!.hasNativeSupport,
+          Icons.memory,
+        ),
+        _buildCapabilityChip(
+          'Auto Segmentation',
+          _modeInfo!.hasAutoSegmentation,
+          Icons.auto_fix_high,
+        ),
+        _buildCapabilityChip(
+          'GPU Acceleration',
+          _modeInfo!.hasGpuAcceleration,
+          Icons.speed,
+        ),
         _buildCapabilityChip(
           'Privacy First',
           true, // Always true for this app
@@ -176,9 +204,21 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
 
   Widget _buildCapabilityChip(String label, bool available, IconData icon) {
     return Chip(
-      avatar: Icon(icon, size: 16, color: available ? Colors.green : Colors.grey),
-      label: Text(label, style: TextStyle(color: available ? Colors.green : Colors.grey, fontSize: 12)),
-      backgroundColor: available ? withOpacitySafe(Colors.green, 0.1) : withOpacitySafe(Colors.grey, 0.1),
+      avatar: Icon(
+        icon,
+        size: 16,
+        color: available ? Colors.green : Colors.grey,
+      ),
+      label: Text(
+        label,
+        style: TextStyle(
+          color: available ? Colors.green : Colors.grey,
+          fontSize: 12,
+        ),
+      ),
+      backgroundColor: available
+          ? withOpacitySafe(Colors.green, 0.1)
+          : withOpacitySafe(Colors.grey, 0.1),
     );
   }
 
@@ -189,7 +229,10 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Test Processing Methods', style: Theme.of(context).textTheme.titleMedium),
+            Text(
+              'Test Processing Methods',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
             const SizedBox(height: 16),
             Row(
               children: [
@@ -203,7 +246,9 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
                 const SizedBox(width: 8),
                 Expanded(
                   child: ElevatedButton.icon(
-                    onPressed: _isProcessing ? null : _processWithAutoSegmentation,
+                    onPressed: _isProcessing
+                        ? null
+                        : _processWithAutoSegmentation,
                     icon: const Icon(Icons.auto_fix_high),
                     label: const Text('Auto Segment'),
                   ),
@@ -235,8 +280,13 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
                 if (_lastProcessingMethod.isNotEmpty) ...[
                   const Spacer(),
                   Chip(
-                    label: Text(_lastProcessingMethod, style: const TextStyle(fontSize: 12)),
-                    backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+                    label: Text(
+                      _lastProcessingMethod,
+                      style: const TextStyle(fontSize: 12),
+                    ),
+                    backgroundColor: Theme.of(
+                      context,
+                    ).colorScheme.primaryContainer,
                   ),
                 ],
               ],
@@ -244,12 +294,20 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
             const SizedBox(height: 16),
             Expanded(
               child: _processedImage != null
-                  ? Image.memory(_processedImage!, fit: BoxFit.contain, width: double.infinity)
+                  ? Image.memory(
+                      _processedImage!,
+                      fit: BoxFit.contain,
+                      width: double.infinity,
+                    )
                   : const Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.image_outlined, size: 64, color: Colors.grey),
+                          Icon(
+                            Icons.image_outlined,
+                            size: 64,
+                            color: Colors.grey,
+                          ),
                           SizedBox(height: 16),
                           Text(
                             'No processed image yet.\nTap a button above to test processing.',

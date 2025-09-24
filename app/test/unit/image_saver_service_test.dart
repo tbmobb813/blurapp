@@ -15,29 +15,40 @@ void main() {
       return Uint8List.fromList(img.encodePng(image));
     }
 
-    BlurAppTestFramework.testCase('image creation and encoding works correctly', () {
-      final imageBytes = createTestImage();
+    BlurAppTestFramework.testCase(
+      'image creation and encoding works correctly',
+      () {
+        final imageBytes = createTestImage();
 
-      expect(imageBytes.isNotEmpty, isTrue);
-      expect(imageBytes.length, greaterThan(100)); // PNG should be larger than 100 bytes
+        expect(imageBytes.isNotEmpty, isTrue);
+        expect(
+          imageBytes.length,
+          greaterThan(100),
+        ); // PNG should be larger than 100 bytes
 
-      // Verify it's a valid PNG
-      final decodedImage = img.decodePng(imageBytes);
-      expect(decodedImage, isNotNull);
-      expect(decodedImage!.width, equals(100));
-      expect(decodedImage.height, equals(100));
-    }, level: TestLevel.core);
+        // Verify it's a valid PNG
+        final decodedImage = img.decodePng(imageBytes);
+        expect(decodedImage, isNotNull);
+        expect(decodedImage!.width, equals(100));
+        expect(decodedImage.height, equals(100));
+      },
+      level: TestLevel.core,
+    );
 
-    BlurAppTestFramework.testCase('ImageSaverService class can be instantiated', () {
-      // Inject a test provider so ImageSaverService doesn't call platform plugins
-      ImageSaverService.provider = TestGalleryProvider();
+    BlurAppTestFramework.testCase(
+      'ImageSaverService class can be instantiated',
+      () {
+        // Inject a test provider so ImageSaverService doesn't call platform plugins
+        ImageSaverService.provider = TestGalleryProvider();
 
-      final service = ImageSaverService();
-      expect(service, isNotNull);
-      expect(service.runtimeType, equals(ImageSaverService));
-      // Cleanup
-      ImageSaverService.provider = null;
-    }, level: TestLevel.core);
+        final service = ImageSaverService();
+        expect(service, isNotNull);
+        expect(service.runtimeType, equals(ImageSaverService));
+        // Cleanup
+        ImageSaverService.provider = null;
+      },
+      level: TestLevel.core,
+    );
 
     BlurAppTestFramework.testCase('image format validation works', () {
       final imageBytes = createTestImage();
@@ -47,7 +58,9 @@ void main() {
       expect(pngImage, isNotNull);
 
       // Test JPEG encoding
-      final jpegBytes = Uint8List.fromList(img.encodeJpg(pngImage!, quality: 85));
+      final jpegBytes = Uint8List.fromList(
+        img.encodeJpg(pngImage!, quality: 85),
+      );
       final jpegImage = img.decodeJpg(jpegBytes);
       expect(jpegImage, isNotNull);
     }, level: TestLevel.misc);
@@ -67,14 +80,18 @@ void main() {
       expect(highQuality.length, greaterThan(lowQuality.length));
     }, level: TestLevel.misc);
 
-    BlurAppTestFramework.testCase('timestamp generation creates unique values', () {
-      final timestamp1 = DateTime.now().millisecondsSinceEpoch;
-      // Small delay
-      final timestamp2 = DateTime.now().millisecondsSinceEpoch;
+    BlurAppTestFramework.testCase(
+      'timestamp generation creates unique values',
+      () {
+        final timestamp1 = DateTime.now().millisecondsSinceEpoch;
+        // Small delay
+        final timestamp2 = DateTime.now().millisecondsSinceEpoch;
 
-      // Timestamps should be sequential
-      expect(timestamp2, greaterThanOrEqualTo(timestamp1));
-    }, level: TestLevel.misc);
+        // Timestamps should be sequential
+        expect(timestamp2, greaterThanOrEqualTo(timestamp1));
+      },
+      level: TestLevel.misc,
+    );
 
     BlurAppTestFramework.testCase('file extension logic works correctly', () {
       // Test filename generation logic (without actual file system)

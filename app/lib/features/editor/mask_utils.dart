@@ -1,7 +1,13 @@
 import 'dart:typed_data';
 
 /// Nearest-neighbor downscale for a grayscale mask (one byte per pixel)
-Uint8List scaleMaskNearestNeighbor(Uint8List src, int srcW, int srcH, int dstW, int dstH) {
+Uint8List scaleMaskNearestNeighbor(
+  Uint8List src,
+  int srcW,
+  int srcH,
+  int dstW,
+  int dstH,
+) {
   if (src.length < srcW * srcH) return Uint8List(dstW * dstH);
   final Uint8List out = Uint8List(dstW * dstH);
   for (int y = 0; y < dstH; y++) {

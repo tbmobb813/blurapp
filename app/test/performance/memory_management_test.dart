@@ -27,42 +27,62 @@ void main() {
     }
 
     group('[CRITICAL] Memory Safety Features', () {
-      BlurAppTestFramework.testCase('very large image processing with memory constraints', () {
-        // Create a very large image that would normally cause memory issues
-        final largeImageBytes = createLargeTestImage(width: 4000, height: 3000);
-
-        final memoryMeasurement = PerformanceTestUtils.measureMemoryUsage(() {
-          final result = BlurPipeline.applyBlur(largeImageBytes, BlurType.gaussian, 10);
-          expect(result.isNotEmpty, isTrue);
-
-          // The result should be processed (downsized) successfully
-          final processedImage = img.decodeImage(result);
-          expect(processedImage, isNotNull);
-
-          // Should be downsized for memory efficiency
-          expect(processedImage!.width, lessThanOrEqualTo(2048));
-          expect(processedImage.height, lessThanOrEqualTo(2048));
-        });
-
-        // Memory usage should be controlled even for very large images
-        if (memoryMeasurement.isValid) {
-          PerformanceTestUtils.validateMemoryUsage(
-            memoryMeasurement,
-            PerformanceTestUtils.largeImageMemoryLimit,
-            context: 'very large image processing',
+      BlurAppTestFramework.testCase(
+        'very large image processing with memory constraints',
+        () {
+          // Create a very large image that would normally cause memory issues
+          final largeImageBytes = createLargeTestImage(
+            width: 4000,
+            height: 3000,
           );
-        }
-      }, level: TestLevel.critical);
+
+          final memoryMeasurement = PerformanceTestUtils.measureMemoryUsage(() {
+            final result = BlurPipeline.applyBlur(
+              largeImageBytes,
+              BlurType.gaussian,
+              10,
+            );
+            expect(result.isNotEmpty, isTrue);
+
+            // The result should be processed (downsized) successfully
+            final processedImage = img.decodeImage(result);
+            expect(processedImage, isNotNull);
+
+            // Should be downsized for memory efficiency
+            expect(processedImage!.width, lessThanOrEqualTo(2048));
+            expect(processedImage.height, lessThanOrEqualTo(2048));
+          });
+
+          // Memory usage should be controlled even for very large images
+          if (memoryMeasurement.isValid) {
+            PerformanceTestUtils.validateMemoryUsage(
+              memoryMeasurement,
+              PerformanceTestUtils.largeImageMemoryLimit,
+              context: 'very large image processing',
+            );
+          }
+        },
+        level: TestLevel.critical,
+      );
 
       BlurAppTestFramework.testCase('preview mode reduces memory usage', () {
         final largeImageBytes = createLargeTestImage(width: 2000, height: 1500);
 
         // Test normal processing
-        final normalResult = BlurPipeline.applyBlur(largeImageBytes, BlurType.pixelate, 8);
+        final normalResult = BlurPipeline.applyBlur(
+          largeImageBytes,
+          BlurType.pixelate,
+          8,
+        );
         final normalImage = img.decodeImage(normalResult)!;
 
         // Test preview processing
-        final previewResult = BlurPipeline.applyBlur(largeImageBytes, BlurType.pixelate, 8, isPreview: true);
+        final previewResult = BlurPipeline.applyBlur(
+          largeImageBytes,
+          BlurType.pixelate,
+          8,
+          isPreview: true,
+        );
         final previewImage = img.decodeImage(previewResult)!;
 
         // Preview should be smaller
@@ -72,98 +92,146 @@ void main() {
         expect(previewImage.height, lessThanOrEqualTo(512));
       }, level: TestLevel.core);
 
-      BlurAppTestFramework.testCase('extreme strength values are safely clamped', () {
-        final imageBytes = createLargeTestImage(width: 400, height: 300);
+      BlurAppTestFramework.testCase(
+        'extreme strength values are safely clamped',
+        () {
+          final imageBytes = createLargeTestImage(width: 400, height: 300);
 
-        // Test extreme negative value
-        final negativeResult = BlurPipeline.applyBlur(imageBytes, BlurType.gaussian, -100);
-        expect(negativeResult.isNotEmpty, isTrue);
+          // Test extreme negative value
+          final negativeResult = BlurPipeline.applyBlur(
+            imageBytes,
+            BlurType.gaussian,
+            -100,
+          );
+          expect(negativeResult.isNotEmpty, isTrue);
 
-        // Test extreme positive value
-        final extremeResult = BlurPipeline.applyBlur(imageBytes, BlurType.gaussian, 10000);
-        expect(extremeResult.isNotEmpty, isTrue);
+          // Test extreme positive value
+          final extremeResult = BlurPipeline.applyBlur(
+            imageBytes,
+            BlurType.gaussian,
+            10000,
+          );
+          expect(extremeResult.isNotEmpty, isTrue);
 
-        // Both should process without errors due to clamping
-        final negativeImage = img.decodeImage(negativeResult);
-        final extremeImage = img.decodeImage(extremeResult);
-        expect(negativeImage, isNotNull);
-        expect(extremeImage, isNotNull);
-      }, level: TestLevel.misc);
+          // Both should process without errors due to clamping
+          final negativeImage = img.decodeImage(negativeResult);
+          final extremeImage = img.decodeImage(extremeResult);
+          expect(negativeImage, isNotNull);
+          expect(extremeImage, isNotNull);
+        },
+        level: TestLevel.misc,
+      );
     });
 
     group('[CRITICAL] Performance Optimizations', () {
-      BlurAppTestFramework.testCase('large image processing completes within time limits', () {
-        final largeImageBytes = createLargeTestImage(width: 1920, height: 1080);
+      BlurAppTestFramework.testCase(
+        'large image processing completes within time limits',
+        () {
+          final largeImageBytes = createLargeTestImage(
+            width: 1920,
+            height: 1080,
+          );
 
-        final timeMeasurement = PerformanceTestUtils.measureExecutionTime(() {
-          return BlurPipeline.applyBlur(largeImageBytes, BlurType.mosaic, 15);
-        });
-
-        // Even large images should complete within reasonable time due to optimization
-        PerformanceTestUtils.validateExecutionTime(
-          timeMeasurement,
-          PerformanceTestUtils.largeImageProcessingLimit,
-          context: 'optimized large image processing',
-        );
-      }, level: TestLevel.critical);
-
-      BlurAppTestFramework.testCase('preview processing is significantly faster', () {
-        final imageBytes = createLargeTestImage(width: 1200, height: 800);
-
-        // Measure normal processing time
-        final normalTime = PerformanceTestUtils.measureExecutionTime(() {
-          return BlurPipeline.applyBlur(imageBytes, BlurType.gaussian, 12);
-        });
-
-        // Measure preview processing time
-        final previewTime = PerformanceTestUtils.measureExecutionTime(() {
-          return BlurPipeline.applyBlur(imageBytes, BlurType.gaussian, 12, isPreview: true);
-        });
-
-        // Preview should be faster (allow some variance for small differences)
-        expect(previewTime.milliseconds, lessThanOrEqualTo(normalTime.milliseconds + 100));
-
-        // Preview should complete quickly
-        expect(previewTime.milliseconds, lessThan(2000));
-      }, level: TestLevel.critical);
-
-      BlurAppTestFramework.testCase('memory usage scales predictably with image size', () {
-        final sizes = [
-          [200, 200], // Small
-          [400, 400], // Medium
-          [800, 600], // Large (but within limits)
-        ];
-
-        final memoryUsages = <int>[];
-
-        for (final size in sizes) {
-          final imageBytes = createLargeTestImage(width: size[0], height: size[1]);
-
-          final measurement = PerformanceTestUtils.measureMemoryUsage(() {
-            return BlurPipeline.applyBlur(imageBytes, BlurType.gaussian, 8);
+          final timeMeasurement = PerformanceTestUtils.measureExecutionTime(() {
+            return BlurPipeline.applyBlur(largeImageBytes, BlurType.mosaic, 15);
           });
 
-          if (measurement.isValid) {
-            memoryUsages.add(measurement.difference);
-          }
-        }
+          // Even large images should complete within reasonable time due to optimization
+          PerformanceTestUtils.validateExecutionTime(
+            timeMeasurement,
+            PerformanceTestUtils.largeImageProcessingLimit,
+            context: 'optimized large image processing',
+          );
+        },
+        level: TestLevel.critical,
+      );
 
-        // If we have valid measurements, larger images shouldn't use exponentially more memory
-        if (memoryUsages.length >= 2) {
-          // Due to optimization, memory usage should be controlled
-          for (final usage in memoryUsages) {
-            expect(usage, lessThan(PerformanceTestUtils.largeImageMemoryLimit));
+      BlurAppTestFramework.testCase(
+        'preview processing is significantly faster',
+        () {
+          final imageBytes = createLargeTestImage(width: 1200, height: 800);
+
+          // Measure normal processing time
+          final normalTime = PerformanceTestUtils.measureExecutionTime(() {
+            return BlurPipeline.applyBlur(imageBytes, BlurType.gaussian, 12);
+          });
+
+          // Measure preview processing time
+          final previewTime = PerformanceTestUtils.measureExecutionTime(() {
+            return BlurPipeline.applyBlur(
+              imageBytes,
+              BlurType.gaussian,
+              12,
+              isPreview: true,
+            );
+          });
+
+          // Preview should be faster (allow some variance for small differences)
+          expect(
+            previewTime.milliseconds,
+            lessThanOrEqualTo(normalTime.milliseconds + 100),
+          );
+
+          // Preview should complete quickly
+          expect(previewTime.milliseconds, lessThan(2000));
+        },
+        level: TestLevel.critical,
+      );
+
+      BlurAppTestFramework.testCase(
+        'memory usage scales predictably with image size',
+        () {
+          final sizes = [
+            [200, 200], // Small
+            [400, 400], // Medium
+            [800, 600], // Large (but within limits)
+          ];
+
+          final memoryUsages = <int>[];
+
+          for (final size in sizes) {
+            final imageBytes = createLargeTestImage(
+              width: size[0],
+              height: size[1],
+            );
+
+            final measurement = PerformanceTestUtils.measureMemoryUsage(() {
+              return BlurPipeline.applyBlur(imageBytes, BlurType.gaussian, 8);
+            });
+
+            if (measurement.isValid) {
+              memoryUsages.add(measurement.difference);
+            }
           }
-        }
-      }, level: TestLevel.misc);
+
+          // If we have valid measurements, larger images shouldn't use exponentially more memory
+          if (memoryUsages.length >= 2) {
+            // Due to optimization, memory usage should be controlled
+            for (final usage in memoryUsages) {
+              expect(
+                usage,
+                lessThan(PerformanceTestUtils.largeImageMemoryLimit),
+              );
+            }
+          }
+        },
+        level: TestLevel.misc,
+      );
     });
 
     group('[CORE] Edge Case Handling', () {
       BlurAppTestFramework.testCase('ultra-high resolution image handling', () {
         // Test with unrealistic resolution to verify safety limits
-        final ultraHighResBytes = createLargeTestImage(width: 8000, height: 6000);
+        final ultraHighResBytes = createLargeTestImage(
+          width: 8000,
+          height: 6000,
+        );
 
-        final result = BlurPipeline.applyBlur(ultraHighResBytes, BlurType.pixelate, 20);
+        final result = BlurPipeline.applyBlur(
+          ultraHighResBytes,
+          BlurType.pixelate,
+          20,
+        );
         expect(result.isNotEmpty, isTrue);
 
         final processedImage = img.decodeImage(result);
@@ -181,7 +249,11 @@ void main() {
         final timeMeasurement = PerformanceTestUtils.measureExecutionTime(() {
           // Simulate concurrent-like processing
           for (int i = 0; i < 3; i++) {
-            final result = BlurPipeline.applyBlur(imageBytes, BlurType.gaussian, 5 + i);
+            final result = BlurPipeline.applyBlur(
+              imageBytes,
+              BlurType.gaussian,
+              5 + i,
+            );
             results.add(result);
           }
         });
@@ -209,7 +281,11 @@ void main() {
 
         // Process multiple images
         for (int i = 0; i < 5; i++) {
-          final result = BlurPipeline.applyBlur(imageBytes, BlurType.mosaic, 10);
+          final result = BlurPipeline.applyBlur(
+            imageBytes,
+            BlurType.mosaic,
+            10,
+          );
           expect(result.isNotEmpty, isTrue);
         }
 
@@ -218,7 +294,10 @@ void main() {
         // Memory usage should be reasonable even after multiple large image operations
         if (initialMemory > 0 && finalMemory > 0) {
           final memoryIncrease = finalMemory - initialMemory;
-          expect(memoryIncrease, lessThan(PerformanceTestUtils.largeImageMemoryLimit));
+          expect(
+            memoryIncrease,
+            lessThan(PerformanceTestUtils.largeImageMemoryLimit),
+          );
         }
       }, level: TestLevel.misc);
     });

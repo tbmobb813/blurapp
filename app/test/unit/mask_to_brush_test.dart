@@ -15,7 +15,14 @@ void main() {
       mask[2 * w + 2] = 180;
       mask[5 * w + 4] = 255;
 
-      final strokes = BlurEngineMVP.maskToBrushStrokes(mask, w, h, stride: 1, threshold: 128, baseSize: 12.0);
+      final strokes = BlurEngineMVP.maskToBrushStrokes(
+        mask,
+        w,
+        h,
+        stride: 1,
+        threshold: 128,
+        baseSize: 12.0,
+      );
 
       expect(strokes, isNotEmpty);
       // Expect at least 3 strokes for the 3 pixels we set

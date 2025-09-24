@@ -77,14 +77,28 @@ class AutoDetectService {
 
     final faceSize = (image.width * 0.3).clamp(100.0, 400.0);
 
-    suggestions.add(Rect.fromCenter(center: Offset(centerX, upperThirdY), width: faceSize, height: faceSize));
+    suggestions.add(
+      Rect.fromCenter(
+        center: Offset(centerX, upperThirdY),
+        width: faceSize,
+        height: faceSize,
+      ),
+    );
 
     if (image.width > image.height * 1.5) {
       suggestions.add(
-        Rect.fromCenter(center: Offset(image.width * 0.25, upperThirdY), width: faceSize * 0.8, height: faceSize * 0.8),
+        Rect.fromCenter(
+          center: Offset(image.width * 0.25, upperThirdY),
+          width: faceSize * 0.8,
+          height: faceSize * 0.8,
+        ),
       );
       suggestions.add(
-        Rect.fromCenter(center: Offset(image.width * 0.75, upperThirdY), width: faceSize * 0.8, height: faceSize * 0.8),
+        Rect.fromCenter(
+          center: Offset(image.width * 0.75, upperThirdY),
+          width: faceSize * 0.8,
+          height: faceSize * 0.8,
+        ),
       );
     }
 
@@ -92,10 +106,14 @@ class AutoDetectService {
   }
 
   List<Rect> _suggestBackgroundRegions(img.Image image) {
-    return [Rect.fromLTWH(0, 0, image.width.toDouble(), image.height.toDouble())];
+    return [
+      Rect.fromLTWH(0, 0, image.width.toDouble(), image.height.toDouble()),
+    ];
   }
 
-  Future<Uint8List?> _generateFallbackSegmentationMask(Uint8List imageBytes) async {
+  Future<Uint8List?> _generateFallbackSegmentationMask(
+    Uint8List imageBytes,
+  ) async {
     final image = img.decodeImage(imageBytes);
     if (image == null) return null;
 

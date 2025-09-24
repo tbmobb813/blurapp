@@ -4,7 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('HomeScreenMVP Widget Tests', () {
-    testWidgets('should display app title and buttons', (WidgetTester tester) async {
+    testWidgets('should display app title and buttons', (
+      WidgetTester tester,
+    ) async {
       // Build our app and trigger a frame
       await tester.pumpWidget(const MaterialApp(home: HomeScreenMVP()));
 
@@ -18,7 +20,10 @@ void main() {
 
       // Verify privacy section is displayed
       expect(find.text('Privacy First'), findsOneWidget);
-      expect(find.textContaining('All processing happens on your device'), findsOneWidget);
+      expect(
+        find.textContaining('All processing happens on your device'),
+        findsOneWidget,
+      );
     });
 
     testWidgets('should have app icon', (WidgetTester tester) async {
@@ -29,7 +34,9 @@ void main() {
       expect(find.byIcon(Icons.blur_on), findsOneWidget);
     });
 
-    testWidgets('should have gallery and camera buttons', (WidgetTester tester) async {
+    testWidgets('should have gallery and camera buttons', (
+      WidgetTester tester,
+    ) async {
       // Build our app and trigger a frame
       await tester.pumpWidget(const MaterialApp(home: HomeScreenMVP()));
 
@@ -60,7 +67,9 @@ void main() {
       // trigger image picker which requires platform mocking
     });
 
-    testWidgets('should have proper layout structure', (WidgetTester tester) async {
+    testWidgets('should have proper layout structure', (
+      WidgetTester tester,
+    ) async {
       // Build our app and trigger a frame
       await tester.pumpWidget(const MaterialApp(home: HomeScreenMVP()));
 

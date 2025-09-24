@@ -18,7 +18,10 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Settings'), backgroundColor: theme.colorScheme.surface),
+      appBar: AppBar(
+        title: const Text('Settings'),
+        backgroundColor: theme.colorScheme.surface,
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -41,7 +44,10 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
       children: [
         Text(
           'Privacy First',
-          style: theme.textTheme.headlineSmall?.copyWith(color: theme.colorScheme.primary, fontWeight: FontWeight.bold),
+          style: theme.textTheme.headlineSmall?.copyWith(
+            color: theme.colorScheme.primary,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         const SizedBox(height: 16),
         Container(
@@ -49,18 +55,26 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
           decoration: BoxDecoration(
             color: withOpacitySafe(theme.colorScheme.surface, 0.5),
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: withOpacitySafe(theme.colorScheme.outline, 0.3)),
+            border: Border.all(
+              color: withOpacitySafe(theme.colorScheme.outline, 0.3),
+            ),
           ),
           child: Column(
             children: [
               Row(
                 children: [
-                  Icon(Icons.shield_outlined, color: theme.colorScheme.primary, size: 24),
+                  Icon(
+                    Icons.shield_outlined,
+                    color: theme.colorScheme.primary,
+                    size: 24,
+                  ),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
                       'All editing happens offline on your device',
-                      style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
+                      style: theme.textTheme.bodyLarge?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ],
@@ -71,7 +85,9 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
                 '• No personal data is collected\n'
                 '• No internet connection required for editing\n'
                 '• No account creation or sign-in needed',
-                style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface),
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.colorScheme.onSurface,
+                ),
               ),
             ],
           ),
@@ -83,7 +99,9 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
           onChanged: (val) {
             setState(() => crashReportingEnabled = val);
           },
-          subtitle: const Text('Help improve app stability. No personal or image data is ever sent.'),
+          subtitle: const Text(
+            'Help improve app stability. No personal or image data is ever sent.',
+          ),
           secondary: const Icon(Icons.bug_report_outlined),
         ),
       ],
@@ -96,7 +114,10 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
       children: [
         Text(
           'Storage Management',
-          style: theme.textTheme.headlineSmall?.copyWith(color: theme.colorScheme.primary, fontWeight: FontWeight.bold),
+          style: theme.textTheme.headlineSmall?.copyWith(
+            color: theme.colorScheme.primary,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         const SizedBox(height: 16),
         ListTile(
@@ -104,7 +125,11 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
           title: const Text('Clear temporary cache'),
           subtitle: const Text('Remove temporary files created during editing'),
           trailing: _clearingCache
-              ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2))
+              ? const SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                )
               : const Icon(Icons.chevron_right),
           onTap: _clearingCache ? null : _clearCache,
         ),
@@ -112,7 +137,9 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
         ListTile(
           leading: const Icon(Icons.info_outline),
           title: const Text('About storage'),
-          subtitle: const Text('Saved images are stored in your Documents folder'),
+          subtitle: const Text(
+            'Saved images are stored in your Documents folder',
+          ),
           trailing: const Icon(Icons.chevron_right),
           onTap: () => _showStorageInfo(),
         ),
@@ -126,7 +153,10 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
       children: [
         Text(
           'About BlurApp',
-          style: theme.textTheme.headlineSmall?.copyWith(color: theme.colorScheme.primary, fontWeight: FontWeight.bold),
+          style: theme.textTheme.headlineSmall?.copyWith(
+            color: theme.colorScheme.primary,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         const SizedBox(height: 16),
         const ListTile(
@@ -153,13 +183,18 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
       await ImageSaverService.clearCache();
 
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(const SnackBar(content: Text('Cache cleared successfully!'), backgroundColor: Colors.green));
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Cache cleared successfully!'),
+            backgroundColor: Colors.green,
+          ),
+        );
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Failed to clear cache: $e')));
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Failed to clear cache: $e')));
       }
     } finally {
       if (mounted) {
@@ -179,7 +214,12 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
           'Temporary files used during editing are automatically cleaned up, '
           'but you can manually clear the cache if needed.',
         ),
-        actions: [TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('OK'))],
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('OK'),
+          ),
+        ],
       ),
     );
   }
@@ -202,7 +242,12 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
             'Your photos remain completely private and under your control.',
           ),
         ),
-        actions: [TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('OK'))],
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('OK'),
+          ),
+        ],
       ),
     );
   }

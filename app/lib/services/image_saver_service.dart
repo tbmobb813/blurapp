@@ -29,17 +29,28 @@ class ImageSaverService {
   /// [quality] - JPEG quality (0-100), ignored for PNG
   ///
   /// Returns the gallery path or null if failed
-  static Future<String?> saveToGallery(Uint8List bytes, {String? filename, int quality = 95}) async {
+  static Future<String?> saveToGallery(
+    Uint8List bytes, {
+    String? filename,
+    int quality = 95,
+  }) async {
     try {
       // Check and request permissions via provider
       final gp = provider ?? ProductionGalleryProvider();
-      final hasPermission = await gp.hasGalleryAccess() || await gp.requestGalleryAccess();
+      final hasPermission =
+          await gp.hasGalleryAccess() || await gp.requestGalleryAccess();
       if (!hasPermission) {
-        debugPrint('$_tag: Gallery permission denied or plugin unavailable - falling back to temp storage');
+        debugPrint(
+          '$_tag: Gallery permission denied or plugin unavailable - falling back to temp storage',
+        );
         // Fall back to writing to system temp directory so tests and CI
         // environments without Gal/path_provider can still validate file ops.
         try {
-          final fallbackPath = await _writeToSystemTemp(bytes, filename: filename, asPng: true);
+          final fallbackPath = await _writeToSystemTemp(
+            bytes,
+            filename: filename,
+            asPng: true,
+          );
           return fallbackPath;
         } catch (e) {
           debugPrint('$_tag: Fallback to system temp failed: $e');
@@ -61,8 +72,14 @@ class ImageSaverService {
         tempFile = File(tempPath);
       } catch (e) {
         // If path_provider isn't available (tests), fall back to system temp
-        debugPrint('$_tag: getTemporaryDirectory failed, using system temp: $e');
-        final fallbackPath = await _writeToSystemTemp(bytes, filename: filename, asPng: true);
+        debugPrint(
+          '$_tag: getTemporaryDirectory failed, using system temp: $e',
+        );
+        final fallbackPath = await _writeToSystemTemp(
+          bytes,
+          filename: filename,
+          asPng: true,
+        );
         return fallbackPath;
       }
 
@@ -131,9 +148,15 @@ class ImageSaverService {
         final extension = asPng ? 'png' : 'jpg';
         filePath = '${dir.path}/$name.$extension';
       } catch (e) {
-        debugPrint('$_tag: getApplicationDocumentsDirectory failed, using system temp: $e');
+        debugPrint(
+          '$_tag: getApplicationDocumentsDirectory failed, using system temp: $e',
+        );
         // Fall back to system temp
-        filePath = await _writeToSystemTemp(bytes, filename: filename, asPng: asPng);
+        filePath = await _writeToSystemTemp(
+          bytes,
+          filename: filename,
+          asPng: asPng,
+        );
         return filePath;
       }
 
@@ -146,7 +169,9 @@ class ImageSaverService {
       } else {
         final image = img.decodeImage(bytes);
         if (image == null) throw Exception('Invalid image data');
-        processedBytes = Uint8List.fromList(img.encodeJpg(image, quality: quality));
+        processedBytes = Uint8List.fromList(
+          img.encodeJpg(image, quality: quality),
+        );
       }
 
       final file = File(filePath);
@@ -161,7 +186,11 @@ class ImageSaverService {
   }
 
   /// Helper that writes bytes to a system temp file when path_provider isn't available.
-  static Future<String> _writeToSystemTemp(Uint8List bytes, {String? filename, bool asPng = true}) async {
+  static Future<String> _writeToSystemTemp(
+    Uint8List bytes, {
+    String? filename,
+    bool asPng = true,
+  }) async {
     final timestamp = DateTime.now().millisecondsSinceEpoch;
     final name = filename ?? 'blurred_$timestamp';
     final extension = asPng ? 'png' : 'jpg';
@@ -197,7 +226,9 @@ class ImageSaverService {
 
       for (final file in files) {
         if (file is File &&
-            (file.path.contains('blurred_') || file.path.contains('blur_export') || file.path.contains('blur_temp'))) {
+            (file.path.contains('blurred_') ||
+                file.path.contains('blur_export') ||
+                file.path.contains('blur_temp'))) {
           try {
             await file.delete();
             deletedCount++;
@@ -223,7 +254,9 @@ class ImageSaverService {
 
       for (final file in files) {
         if (file is File &&
-            (file.path.contains('blurred_') || file.path.contains('blur_export') || file.path.contains('blur_temp'))) {
+            (file.path.contains('blurred_') ||
+                file.path.contains('blur_export') ||
+                file.path.contains('blur_temp'))) {
           try {
             final stat = await file.stat();
             totalSize += stat.size;
@@ -245,11 +278,19 @@ class ImageSaverService {
   static bool _isPng(Uint8List bytes) {
     if (bytes.length < 8) return false;
     // PNG signature: 89 50 4E 47 0D 0A 1A 0A
-    return bytes[0] == 0x89 && bytes[1] == 0x50 && bytes[2] == 0x4E && bytes[3] == 0x47;
+    return bytes[0] == 0x89 &&
+        bytes[1] == 0x50 &&
+        bytes[2] == 0x4E &&
+        bytes[3] == 0x47;
   }
 
   // Backwards-compatible convenience wrappers used by UI code/tests
-  static Future<String?> saveImage(Uint8List bytes, {String? filename, bool asPng = true, int quality = 95}) async {
+  static Future<String?> saveImage(
+    Uint8List bytes, {
+    String? filename,
+    bool asPng = true,
+    int quality = 95,
+  }) async {
     // Default behavior: save to gallery
     return saveToGallery(bytes, filename: filename, quality: quality);
   }
@@ -261,6 +302,11 @@ class ImageSaverService {
     int quality = 95,
   }) async {
     // Default behavior: save to documents for permanent storage
-    return saveToDocuments(bytes, filename: filename, asPng: asPng, quality: quality);
+    return saveToDocuments(
+      bytes,
+      filename: filename,
+      asPng: asPng,
+      quality: quality,
+    );
   }
 }

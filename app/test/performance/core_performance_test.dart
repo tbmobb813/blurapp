@@ -10,7 +10,11 @@ import '../helpers/performance_test_utils.dart';
 void main() {
   BlurAppTestFramework.testGroup('Core Performance Tests', () {
     // Helper function to create test images of different sizes
-    Uint8List createTestImage({int width = 100, int height = 100, bool complex = false}) {
+    Uint8List createTestImage({
+      int width = 100,
+      int height = 100,
+      bool complex = false,
+    }) {
       final image = img.Image(width: width, height: height);
 
       if (complex) {
@@ -32,22 +36,30 @@ void main() {
     }
 
     group('[CORE] Blur Pipeline Performance', () {
-      BlurAppTestFramework.testCase('small image gaussian blur performance', () {
-        final imageBytes = createTestImage(width: 200, height: 200);
+      BlurAppTestFramework.testCase(
+        'small image gaussian blur performance',
+        () {
+          final imageBytes = createTestImage(width: 200, height: 200);
 
-        final timeMeasurement = PerformanceTestUtils.measureExecutionTime(() {
-          return BlurPipeline.applyBlur(imageBytes, BlurType.gaussian, 5);
-        });
+          final timeMeasurement = PerformanceTestUtils.measureExecutionTime(() {
+            return BlurPipeline.applyBlur(imageBytes, BlurType.gaussian, 5);
+          });
 
-        PerformanceTestUtils.validateExecutionTime(
-          timeMeasurement,
-          PerformanceTestUtils.smallImageProcessingLimit,
-          context: 'small image gaussian blur',
-        );
-      }, level: TestLevel.core);
+          PerformanceTestUtils.validateExecutionTime(
+            timeMeasurement,
+            PerformanceTestUtils.smallImageProcessingLimit,
+            context: 'small image gaussian blur',
+          );
+        },
+        level: TestLevel.core,
+      );
 
       BlurAppTestFramework.testCase('medium image pixelate performance', () {
-        final imageBytes = createTestImage(width: 600, height: 400, complex: true);
+        final imageBytes = createTestImage(
+          width: 600,
+          height: 400,
+          complex: true,
+        );
 
         final timeMeasurement = PerformanceTestUtils.measureExecutionTime(() {
           return BlurPipeline.applyBlur(imageBytes, BlurType.pixelate, 8);
@@ -61,7 +73,11 @@ void main() {
       }, level: TestLevel.critical);
 
       BlurAppTestFramework.testCase('mosaic blur algorithm performance', () {
-        final imageBytes = createTestImage(width: 400, height: 300, complex: true);
+        final imageBytes = createTestImage(
+          width: 400,
+          height: 300,
+          complex: true,
+        );
 
         final timeMeasurement = PerformanceTestUtils.measureExecutionTime(() {
           return BlurPipeline.applyBlur(imageBytes, BlurType.mosaic, 12);
@@ -112,92 +128,125 @@ void main() {
     });
 
     group('[CORE] AutoDetectService Performance', () {
-      BlurAppTestFramework.asyncTest('face detection suggestion generation performance', () async {
-        final service = await AutoDetectService.create(modelPath: 'assets/models/face_detection_short_range.tflite');
-
-        final imageBytes = createTestImage(width: 400, height: 600);
-
-        final timeMeasurement = await PerformanceTestUtils.measureAsyncExecutionTime(() async {
-          return await service.detect(imageBytes);
-        });
-
-        PerformanceTestUtils.validateExecutionTime(
-          timeMeasurement,
-          PerformanceTestUtils.serviceOperationLimit,
-          context: 'face detection suggestions',
-        );
-
-        service.close();
-      }, level: TestLevel.core);
-
-      BlurAppTestFramework.asyncTest('segmentation mask generation performance', () async {
-        final service = await AutoDetectService.create(modelPath: 'assets/models/selfie_segmentation.tflite');
-
-        final imageBytes = createTestImage(width: 512, height: 512, complex: true);
-
-        final timeMeasurement = await PerformanceTestUtils.measureAsyncExecutionTime(() async {
-          return await service.detectSegmentation(imageBytes);
-        });
-
-        PerformanceTestUtils.validateExecutionTime(
-          timeMeasurement,
-          PerformanceTestUtils.serviceOperationLimit,
-          context: 'segmentation mask generation',
-        );
-
-        service.close();
-      }, level: TestLevel.misc);
-
-      BlurAppTestFramework.asyncTest('service memory usage during operations', () async {
-        final service = await AutoDetectService.create(modelPath: 'assets/models/face_detection_short_range.tflite');
-
-        final imageBytes = createTestImage(width: 600, height: 400);
-
-        final memoryMeasurement = await PerformanceTestUtils.measureAsyncMemoryUsage(() async {
-          final suggestions = await service.detect(imageBytes);
-          expect(suggestions.isNotEmpty, isTrue);
-        });
-
-        if (memoryMeasurement.isValid) {
-          PerformanceTestUtils.validateMemoryUsage(
-            memoryMeasurement,
-            PerformanceTestUtils.serviceMemoryLimit,
-            context: 'AutoDetectService operations',
+      BlurAppTestFramework.asyncTest(
+        'face detection suggestion generation performance',
+        () async {
+          final service = await AutoDetectService.create(
+            modelPath: 'assets/models/face_detection_short_range.tflite',
           );
-        }
 
-        service.close();
-      }, level: TestLevel.core);
+          final imageBytes = createTestImage(width: 400, height: 600);
+
+          final timeMeasurement =
+              await PerformanceTestUtils.measureAsyncExecutionTime(() async {
+                return await service.detect(imageBytes);
+              });
+
+          PerformanceTestUtils.validateExecutionTime(
+            timeMeasurement,
+            PerformanceTestUtils.serviceOperationLimit,
+            context: 'face detection suggestions',
+          );
+
+          service.close();
+        },
+        level: TestLevel.core,
+      );
+
+      BlurAppTestFramework.asyncTest(
+        'segmentation mask generation performance',
+        () async {
+          final service = await AutoDetectService.create(
+            modelPath: 'assets/models/selfie_segmentation.tflite',
+          );
+
+          final imageBytes = createTestImage(
+            width: 512,
+            height: 512,
+            complex: true,
+          );
+
+          final timeMeasurement =
+              await PerformanceTestUtils.measureAsyncExecutionTime(() async {
+                return await service.detectSegmentation(imageBytes);
+              });
+
+          PerformanceTestUtils.validateExecutionTime(
+            timeMeasurement,
+            PerformanceTestUtils.serviceOperationLimit,
+            context: 'segmentation mask generation',
+          );
+
+          service.close();
+        },
+        level: TestLevel.misc,
+      );
+
+      BlurAppTestFramework.asyncTest(
+        'service memory usage during operations',
+        () async {
+          final service = await AutoDetectService.create(
+            modelPath: 'assets/models/face_detection_short_range.tflite',
+          );
+
+          final imageBytes = createTestImage(width: 600, height: 400);
+
+          final memoryMeasurement =
+              await PerformanceTestUtils.measureAsyncMemoryUsage(() async {
+                final suggestions = await service.detect(imageBytes);
+                expect(suggestions.isNotEmpty, isTrue);
+              });
+
+          if (memoryMeasurement.isValid) {
+            PerformanceTestUtils.validateMemoryUsage(
+              memoryMeasurement,
+              PerformanceTestUtils.serviceMemoryLimit,
+              context: 'AutoDetectService operations',
+            );
+          }
+
+          service.close();
+        },
+        level: TestLevel.core,
+      );
     });
 
     group('[CORE] Edge Cases and Stress Tests', () {
-      BlurAppTestFramework.testCase('invalid image data handling performance', () {
-        final invalidBytes = Uint8List.fromList([1, 2, 3, 4]);
+      BlurAppTestFramework.testCase(
+        'invalid image data handling performance',
+        () {
+          final invalidBytes = Uint8List.fromList([1, 2, 3, 4]);
 
-        final timeMeasurement = PerformanceTestUtils.measureExecutionTime(() {
-          return BlurPipeline.applyBlur(invalidBytes, BlurType.gaussian, 5);
-        });
+          final timeMeasurement = PerformanceTestUtils.measureExecutionTime(() {
+            return BlurPipeline.applyBlur(invalidBytes, BlurType.gaussian, 5);
+          });
 
-        // Error handling should be fast
-        expect(timeMeasurement.milliseconds, lessThan(100));
-      }, level: TestLevel.misc);
+          // Error handling should be fast
+          expect(timeMeasurement.milliseconds, lessThan(100));
+        },
+        level: TestLevel.misc,
+      );
 
-      BlurAppTestFramework.testCase('extreme blur strength values performance', () {
-        final imageBytes = createTestImage(width: 200, height: 200);
+      BlurAppTestFramework.testCase(
+        'extreme blur strength values performance',
+        () {
+          final imageBytes = createTestImage(width: 200, height: 200);
 
-        final timeMeasurement = PerformanceTestUtils.measureExecutionTime(() {
-          // Test extreme values that should be clamped
-          BlurPipeline.applyBlur(imageBytes, BlurType.pixelate, -10);
-          BlurPipeline.applyBlur(imageBytes, BlurType.pixelate, 1000);
-        });
+          final timeMeasurement = PerformanceTestUtils.measureExecutionTime(() {
+            // Test extreme values that should be clamped
+            BlurPipeline.applyBlur(imageBytes, BlurType.pixelate, -10);
+            BlurPipeline.applyBlur(imageBytes, BlurType.pixelate, 1000);
+          });
 
-        // Extreme values should still process quickly due to clamping
-        PerformanceTestUtils.validateExecutionTime(
-          timeMeasurement,
-          PerformanceTestUtils.smallImageProcessingLimit,
-          context: 'extreme blur strength values',
-        );
-      }, level: TestLevel.misc);
+          // Extreme values should still process quickly due to clamping
+          PerformanceTestUtils.validateExecutionTime(
+            timeMeasurement,
+            PerformanceTestUtils.smallImageProcessingLimit,
+            context: 'extreme blur strength values',
+          );
+        },
+        level: TestLevel.misc,
+      );
 
       BlurAppTestFramework.testCase('minimal size image processing', () {
         final tinyImageBytes = createTestImage(width: 1, height: 1);
@@ -211,55 +260,72 @@ void main() {
         expect(timeMeasurement.milliseconds, lessThan(150));
       }, level: TestLevel.misc);
 
-      BlurAppTestFramework.testCase('concurrent blur operations stress test', () {
-        final imageBytes = createTestImage(width: 200, height: 200);
-        final results = <Uint8List>[];
+      BlurAppTestFramework.testCase(
+        'concurrent blur operations stress test',
+        () {
+          final imageBytes = createTestImage(width: 200, height: 200);
+          final results = <Uint8List>[];
 
-        final timeMeasurement = PerformanceTestUtils.measureExecutionTime(() {
-          // Simulate multiple concurrent-like operations
-          for (int i = 0; i < 10; i++) {
-            final result = BlurPipeline.applyBlur(imageBytes, BlurType.gaussian, i % 5 + 1);
-            results.add(result);
+          final timeMeasurement = PerformanceTestUtils.measureExecutionTime(() {
+            // Simulate multiple concurrent-like operations
+            for (int i = 0; i < 10; i++) {
+              final result = BlurPipeline.applyBlur(
+                imageBytes,
+                BlurType.gaussian,
+                i % 5 + 1,
+              );
+              results.add(result);
+            }
+          });
+
+          expect(results.length, equals(10));
+          for (final result in results) {
+            expect(result.isNotEmpty, isTrue);
           }
-        });
 
-        expect(results.length, equals(10));
-        for (final result in results) {
-          expect(result.isNotEmpty, isTrue);
-        }
-
-        // Multiple operations should complete in reasonable time
-        PerformanceTestUtils.validateExecutionTime(
-          timeMeasurement,
-          PerformanceTestUtils.mediumImageProcessingLimit,
-          context: 'concurrent blur operations simulation',
-        );
-      }, level: TestLevel.critical);
+          // Multiple operations should complete in reasonable time
+          PerformanceTestUtils.validateExecutionTime(
+            timeMeasurement,
+            PerformanceTestUtils.mediumImageProcessingLimit,
+            context: 'concurrent blur operations simulation',
+          );
+        },
+        level: TestLevel.critical,
+      );
     });
 
     group('[CORE] Memory Pressure Tests', () {
-      BlurAppTestFramework.testCase('image processing under memory pressure', () {
-        // Create memory pressure
-        final memoryChunks = PerformanceTestUtils.createMemoryPressure(sizeInMB: 50);
-
-        try {
-          final imageBytes = createTestImage(width: 400, height: 300);
-
-          final timeMeasurement = PerformanceTestUtils.measureExecutionTime(() {
-            return BlurPipeline.applyBlur(imageBytes, BlurType.gaussian, 8);
-          });
-
-          // Operations should still complete under memory pressure
-          PerformanceTestUtils.validateExecutionTime(
-            timeMeasurement,
-            PerformanceTestUtils.mediumImageProcessingLimit * 2, // Allow extra time under pressure
-            context: 'image processing under memory pressure',
+      BlurAppTestFramework.testCase(
+        'image processing under memory pressure',
+        () {
+          // Create memory pressure
+          final memoryChunks = PerformanceTestUtils.createMemoryPressure(
+            sizeInMB: 50,
           );
-        } finally {
-          // Always cleanup memory pressure
-          PerformanceTestUtils.releaseMemoryPressure(memoryChunks);
-        }
-      }, level: TestLevel.misc);
+
+          try {
+            final imageBytes = createTestImage(width: 400, height: 300);
+
+            final timeMeasurement = PerformanceTestUtils.measureExecutionTime(
+              () {
+                return BlurPipeline.applyBlur(imageBytes, BlurType.gaussian, 8);
+              },
+            );
+
+            // Operations should still complete under memory pressure
+            PerformanceTestUtils.validateExecutionTime(
+              timeMeasurement,
+              PerformanceTestUtils.mediumImageProcessingLimit *
+                  2, // Allow extra time under pressure
+              context: 'image processing under memory pressure',
+            );
+          } finally {
+            // Always cleanup memory pressure
+            PerformanceTestUtils.releaseMemoryPressure(memoryChunks);
+          }
+        },
+        level: TestLevel.misc,
+      );
     });
   });
 }

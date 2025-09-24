@@ -12,7 +12,9 @@ void main() {
       img.fill(image, color: img.ColorRgb8(128, 128, 128));
       final bytes = Uint8List.fromList(img.encodePng(image));
 
-      final service = await AutoDetectService.create(modelPath: 'assets/models/nonexistent.tflite');
+      final service = await AutoDetectService.create(
+        modelPath: 'assets/models/nonexistent.tflite',
+      );
 
       final mask = await service.detectSegmentation(bytes);
 

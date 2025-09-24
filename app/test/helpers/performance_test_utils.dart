@@ -37,12 +37,16 @@ class PerformanceTestUtils {
     return MemoryMeasurement(
       before: memoryBefore,
       after: memoryAfter,
-      difference: memoryBefore > 0 && memoryAfter > 0 ? memoryAfter - memoryBefore : 0,
+      difference: memoryBefore > 0 && memoryAfter > 0
+          ? memoryAfter - memoryBefore
+          : 0,
     );
   }
 
   /// Measure async memory usage before and after an operation
-  static Future<MemoryMeasurement> measureAsyncMemoryUsage(Future Function() operation) async {
+  static Future<MemoryMeasurement> measureAsyncMemoryUsage(
+    Future Function() operation,
+  ) async {
     final memoryBefore = getCurrentMemoryUsage();
     await operation();
     final memoryAfter = getCurrentMemoryUsage();
@@ -50,7 +54,9 @@ class PerformanceTestUtils {
     return MemoryMeasurement(
       before: memoryBefore,
       after: memoryAfter,
-      difference: memoryBefore > 0 && memoryAfter > 0 ? memoryAfter - memoryBefore : 0,
+      difference: memoryBefore > 0 && memoryAfter > 0
+          ? memoryAfter - memoryBefore
+          : 0,
     );
   }
 
@@ -60,20 +66,32 @@ class PerformanceTestUtils {
     operation();
     stopwatch.stop();
 
-    return TimeMeasurement(milliseconds: stopwatch.elapsedMilliseconds, microseconds: stopwatch.elapsedMicroseconds);
+    return TimeMeasurement(
+      milliseconds: stopwatch.elapsedMilliseconds,
+      microseconds: stopwatch.elapsedMicroseconds,
+    );
   }
 
   /// Measure async execution time of an operation
-  static Future<TimeMeasurement> measureAsyncExecutionTime(Future Function() operation) async {
+  static Future<TimeMeasurement> measureAsyncExecutionTime(
+    Future Function() operation,
+  ) async {
     final stopwatch = Stopwatch()..start();
     await operation();
     stopwatch.stop();
 
-    return TimeMeasurement(milliseconds: stopwatch.elapsedMilliseconds, microseconds: stopwatch.elapsedMicroseconds);
+    return TimeMeasurement(
+      milliseconds: stopwatch.elapsedMilliseconds,
+      microseconds: stopwatch.elapsedMicroseconds,
+    );
   }
 
   /// Validate that memory usage is within acceptable limits
-  static void validateMemoryUsage(MemoryMeasurement measurement, int limitBytes, {String? context}) {
+  static void validateMemoryUsage(
+    MemoryMeasurement measurement,
+    int limitBytes, {
+    String? context,
+  }) {
     if (measurement.difference > 0) {
       expect(
         measurement.difference,
@@ -86,7 +104,11 @@ class PerformanceTestUtils {
   }
 
   /// Validate that execution time is within acceptable limits
-  static void validateExecutionTime(TimeMeasurement measurement, int limitMilliseconds, {String? context}) {
+  static void validateExecutionTime(
+    TimeMeasurement measurement,
+    int limitMilliseconds, {
+    String? context,
+  }) {
     expect(
       measurement.milliseconds,
       lessThan(limitMilliseconds),
@@ -141,7 +163,11 @@ class MemoryMeasurement {
   final int after;
   final int difference;
 
-  const MemoryMeasurement({required this.before, required this.after, required this.difference});
+  const MemoryMeasurement({
+    required this.before,
+    required this.after,
+    required this.difference,
+  });
 
   bool get isValid => before > 0 && after > 0;
 
@@ -157,7 +183,10 @@ class TimeMeasurement {
   final int milliseconds;
   final int microseconds;
 
-  const TimeMeasurement({required this.milliseconds, required this.microseconds});
+  const TimeMeasurement({
+    required this.milliseconds,
+    required this.microseconds,
+  });
 
   @override
   String toString() => 'TimeMeasurement(${milliseconds}ms, $microsecondsμs)';
