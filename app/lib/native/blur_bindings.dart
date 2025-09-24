@@ -25,7 +25,7 @@ class FfiBlur {
   /// stub that returns success so higher-level code can be exercised in tests.
   int apply(Uint8List pixels, int width, int height, List<int> rects, int mode,
       int strength) {
-  // For now, do a basic validation to help catch incorrect usage in tests.
+    // For now, do a basic validation to help catch incorrect usage in tests.
     if (pixels.length < width * height * 4) return 1;
     // No-op success
     return 0;

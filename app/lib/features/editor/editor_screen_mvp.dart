@@ -7,6 +7,7 @@ import '../../core/utils/color_utils.dart';
 import '../../services/auto_detect_service.dart';
 import '../../services/image_saver_service.dart';
 import 'blur_engine_mvp.dart';
+import 'mask_utils.dart';
 
 /// MVP Editor Screen for Sprint 1
 ///
@@ -359,7 +360,7 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
         // Scale mask from original size to preview resolution
         final int srcW = _originalImage!.width;
         final int srcH = _originalImage!.height;
-        final Uint8List scaled = _scaleMaskNearestNeighbor(
+        final Uint8List scaled = scaleMaskNearestNeighbor(
             maskBytes, srcW, srcH, _previewWidth, _previewHeight);
 
         // Convert mask to brush strokes and apply
@@ -393,22 +394,7 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
     }
   }
 
-  // Nearest-neighbor downscale for a grayscale mask (one byte per pixel)
-  Uint8List _scaleMaskNearestNeighbor(
-      Uint8List src, int srcW, int srcH, int dstW, int dstH) {
-    if (src.length < srcW * srcH) return Uint8List(dstW * dstH);
-    final Uint8List out = Uint8List(dstW * dstH);
-    for (int y = 0; y < dstH; y++) {
-      final double srcY = (y + 0.5) * srcH / dstH - 0.5;
-      final int sy = srcY.clamp(0, srcH - 1).round();
-      for (int x = 0; x < dstW; x++) {
-        final double srcX = (x + 0.5) * srcW / dstW - 0.5;
-        final int sx = srcX.clamp(0, srcW - 1).round();
-        out[y * dstW + x] = src[sy * srcW + sx];
-      }
-    }
-    return out;
-  }
+  // ...existing code...
 
   @override
   Widget build(BuildContext context) {
