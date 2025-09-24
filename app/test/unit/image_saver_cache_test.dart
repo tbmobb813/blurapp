@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'dart:typed_data';
+// ...existing code...
 
 import 'package:blurapp/services/image_saver_service.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -7,6 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../test_framework.dart';
 import '../test_setup.dart';
 import 'test_gallery_provider.dart';
+import 'test_temp_utils.dart';
 
 /// Provider that throws when asked for temporary directory to exercise error
 /// handling paths in ImageSaverService.clearCache
@@ -27,19 +28,12 @@ void main() {
         // Ensure we're using TestGalleryProvider which maps temp to system temp
         ImageSaverService.provider = TestGalleryProvider();
 
-        final tmp = Directory.systemTemp;
-
-        // Create files that should be considered cache
-        final f1 = File('${tmp.path}/blurred_test1.png');
-        final f2 = File('${tmp.path}/blur_export_123.tmp');
-        final f3 = File('${tmp.path}/blur_temp_abc.dat');
-        // Unrelated file that should remain
-        final other = File('${tmp.path}/unrelated_file.txt');
-
-        await f1.writeAsBytes(Uint8List.fromList([1, 2, 3]));
-        await f2.writeAsBytes(Uint8List.fromList([4, 5]));
-        await f3.writeAsBytes(Uint8List.fromList([6]));
-        await other.writeAsBytes(Uint8List.fromList([7, 8, 9, 10]));
+  // Create files that should be considered cache
+  final f1 = await TestTempUtils.createTempFile('blurred_test1.png', [1, 2, 3]);
+  final f2 = await TestTempUtils.createTempFile('blur_export_123.tmp', [4, 5]);
+  final f3 = await TestTempUtils.createTempFile('blur_temp_abc.dat', [6]);
+  // Unrelated file that should remain
+  final other = await TestTempUtils.createTempFile('unrelated_file.txt', [7, 8, 9, 10]);
 
         // Sanity: files exist
         expect(await f1.exists(), isTrue);
@@ -62,9 +56,7 @@ void main() {
             reason: 'unrelated files should not be deleted');
 
         // Cleanup
-        try {
-          await other.delete();
-        } catch (_) {}
+        await TestTempUtils.safeDelete(other);
       },
     );
 
@@ -74,28 +66,17 @@ void main() {
         initTestBootstrap();
 
         ImageSaverService.provider = TestGalleryProvider();
-        final tmp = Directory.systemTemp;
+  final a = await TestTempUtils.createTempFile('blurred_size_a.png', List<int>.filled(10, 1));
+  final b = await TestTempUtils.createTempFile('blur_export_size_b.tmp', List<int>.filled(20, 2));
 
-        final a = File('${tmp.path}/blurred_size_a.png');
-        final b = File('${tmp.path}/blur_export_size_b.tmp');
+  final size = await ImageSaverService.getCacheSize();
 
-        final bytesA = Uint8List.fromList(List<int>.filled(10, 1));
-        final bytesB = Uint8List.fromList(List<int>.filled(20, 2));
-
-        await a.writeAsBytes(bytesA);
-        await b.writeAsBytes(bytesB);
-
-        final size = await ImageSaverService.getCacheSize();
-
-        expect(size, equals(bytesA.length + bytesB.length));
+  final expected = await a.length() + await b.length();
+  expect(size, equals(expected));
 
         // Cleanup
-        try {
-          await a.delete();
-        } catch (_) {}
-        try {
-          await b.delete();
-        } catch (_) {}
+        await TestTempUtils.safeDelete(a);
+        await TestTempUtils.safeDelete(b);
       },
     );
 
@@ -118,13 +99,8 @@ void main() {
         initTestBootstrap();
 
         ImageSaverService.provider = TestGalleryProvider();
-        final tmp = Directory.systemTemp;
-
-        final a = File('${tmp.path}/blurred_after_a.png');
-        final b = File('${tmp.path}/blur_export_after_b.tmp');
-
-        await a.writeAsBytes(Uint8List.fromList(List<int>.filled(7, 1)));
-        await b.writeAsBytes(Uint8List.fromList(List<int>.filled(3, 2)));
+        final a = await TestTempUtils.createTempFile('blurred_after_a.png', List<int>.filled(7, 1));
+        final b = await TestTempUtils.createTempFile('blur_export_after_b.tmp', List<int>.filled(3, 2));
 
         final sizeBefore = await ImageSaverService.getCacheSize();
         expect(sizeBefore, greaterThan(0));
@@ -135,12 +111,8 @@ void main() {
         expect(sizeAfter, equals(0));
 
         // Cleanup any leftovers (defensive)
-        try {
-          if (await a.exists()) await a.delete();
-        } catch (_) {}
-        try {
-          if (await b.exists()) await b.delete();
-        } catch (_) {}
+        await TestTempUtils.safeDelete(a);
+        await TestTempUtils.safeDelete(b);
       },
     );
   });
