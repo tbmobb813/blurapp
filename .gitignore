@@ -14,3 +14,11 @@
 .dart_tool/
 build/
 pubspec.lock
+
+# Ignore CI log fetch artifacts and downloaded zips
+logs/
+*.zip
+run-*.zip
+
+# Local scripts and temp outputs
+scripts/
