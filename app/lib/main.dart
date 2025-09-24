@@ -34,8 +34,6 @@ void main() async {
 }
 
 class _PathProviderImpl {
-  Future<Directory> getTemporaryDirectory() =>
-      path_provider.getTemporaryDirectory();
-  Future<Directory> getApplicationDocumentsDirectory() =>
-      path_provider.getApplicationDocumentsDirectory();
+  Future<Directory> getTemporaryDirectory() => path_provider.getTemporaryDirectory();
+  Future<Directory> getApplicationDocumentsDirectory() => path_provider.getApplicationDocumentsDirectory();
 }

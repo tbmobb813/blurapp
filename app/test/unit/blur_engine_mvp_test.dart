@@ -13,11 +13,7 @@ void main() {
       ];
 
       // Act
-      final Uint8List mask = await BlurEngineMVP.createBrushMask(
-        width: width,
-        height: height,
-        brushStrokes: strokes,
-      );
+      final Uint8List mask = await BlurEngineMVP.createBrushMask(width: width, height: height, brushStrokes: strokes);
 
       // Assert
       expect(mask.length, equals(width * height));
@@ -28,12 +24,7 @@ void main() {
       // Arrange
       const int width = 100;
       const int height = 100;
-      final Uint8List dummyImageBytes = Uint8List.fromList([
-        0x89,
-        0x50,
-        0x4E,
-        0x47,
-      ]); // PNG header
+      final Uint8List dummyImageBytes = Uint8List.fromList([0x89, 0x50, 0x4E, 0x47]); // PNG header
 
       // Act
       final Uint8List? mask = await BlurEngineMVP.generateFaceMask(
@@ -57,11 +48,7 @@ void main() {
 
     test('BrushStroke should create valid instances', () {
       // Arrange & Act
-      const stroke = BrushStroke(
-        points: [Point(10, 20), Point(30, 40)],
-        size: 15.5,
-        opacity: 128,
-      );
+      const stroke = BrushStroke(points: [Point(10, 20), Point(30, 40)], size: 15.5, opacity: 128);
 
       // Assert
       expect(stroke.points.length, equals(2));

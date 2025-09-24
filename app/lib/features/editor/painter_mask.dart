@@ -7,12 +7,7 @@ class PainterMask extends ChangeNotifier {
   MaskStroke? _currentStroke;
 
   void startStroke(Offset point, double size, bool erase) {
-    _currentStroke = MaskStroke(
-      points: [point],
-      size: size,
-      erase: erase,
-      type: MaskType.brush,
-    );
+    _currentStroke = MaskStroke(points: [point], size: size, erase: erase, type: MaskType.brush);
     notifyListeners();
   }
 
@@ -33,13 +28,7 @@ class PainterMask extends ChangeNotifier {
 
   void addShape(Rect rect, double feather, MaskType type, bool erase) {
     strokes.add(
-      MaskStroke(
-        points: [rect.topLeft, rect.bottomRight],
-        size: feather,
-        erase: erase,
-        type: type,
-        rect: rect,
-      ),
+      MaskStroke(points: [rect.topLeft, rect.bottomRight], size: feather, erase: erase, type: type, rect: rect),
     );
     notifyListeners();
   }
@@ -82,11 +71,5 @@ class MaskStroke {
   MaskType type;
   Rect? rect;
 
-  MaskStroke({
-    required this.points,
-    required this.size,
-    required this.erase,
-    required this.type,
-    this.rect,
-  });
+  MaskStroke({required this.points, required this.size, required this.erase, required this.type, this.rect});
 }

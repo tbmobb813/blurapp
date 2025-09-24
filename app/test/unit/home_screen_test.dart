@@ -6,28 +6,19 @@ import '../test_framework.dart';
 
 void main() {
   BlurAppTestFramework.testGroup('HomeScreen Core Tests', () {
-    BlurAppTestFramework.widgetTest(
-      'home screen renders all essential UI elements',
-      (tester) async {
-        await tester.pumpWidget(const MaterialApp(home: HomeScreen()));
+    BlurAppTestFramework.widgetTest('home screen renders all essential UI elements', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: HomeScreen()));
 
-        // Verify essential UI elements are present
-        expect(find.text('BlurApp'), findsOneWidget);
-        expect(find.text('Select a Photo to Blur'), findsOneWidget);
-        expect(
-          find.text('Choose from gallery or take a new photo'),
-          findsOneWidget,
-        );
-        expect(find.text('Choose from Gallery'), findsOneWidget);
-        expect(find.text('Take Photo'), findsOneWidget);
-        expect(find.byIcon(Icons.settings), findsOneWidget);
-      },
-      level: TestLevel.core,
-    );
+      // Verify essential UI elements are present
+      expect(find.text('BlurApp'), findsOneWidget);
+      expect(find.text('Select a Photo to Blur'), findsOneWidget);
+      expect(find.text('Choose from gallery or take a new photo'), findsOneWidget);
+      expect(find.text('Choose from Gallery'), findsOneWidget);
+      expect(find.text('Take Photo'), findsOneWidget);
+      expect(find.byIcon(Icons.settings), findsOneWidget);
+    }, level: TestLevel.core);
 
-    BlurAppTestFramework.widgetTest('picker buttons exist and are tappable', (
-      tester,
-    ) async {
+    BlurAppTestFramework.widgetTest('picker buttons exist and are tappable', (tester) async {
       await tester.pumpWidget(const MaterialApp(home: HomeScreen()));
 
       // Wait for initial render
@@ -47,9 +38,7 @@ void main() {
       expect(tester.takeException(), isNull);
     }, level: TestLevel.core);
 
-    BlurAppTestFramework.widgetTest('settings navigation works', (
-      tester,
-    ) async {
+    BlurAppTestFramework.widgetTest('settings navigation works', (tester) async {
       await tester.pumpWidget(const MaterialApp(home: HomeScreen()));
 
       // Wait for initial render
@@ -67,18 +56,11 @@ void main() {
       expect(find.text('Privacy First'), findsOneWidget);
     }, level: TestLevel.core);
 
-    BlurAppTestFramework.widgetTest('privacy notice is displayed', (
-      tester,
-    ) async {
+    BlurAppTestFramework.widgetTest('privacy notice is displayed', (tester) async {
       await tester.pumpWidget(const MaterialApp(home: HomeScreen()));
 
       // Verify privacy notice is visible
-      expect(
-        find.text(
-          'All editing happens offline on your device. No photos are uploaded.',
-        ),
-        findsOneWidget,
-      );
+      expect(find.text('All editing happens offline on your device. No photos are uploaded.'), findsOneWidget);
       expect(find.byIcon(Icons.privacy_tip_outlined), findsOneWidget);
     }, level: TestLevel.misc);
   });

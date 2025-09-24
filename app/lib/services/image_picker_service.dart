@@ -83,10 +83,7 @@ class ImagePickerService {
   }
 
   /// Show permission dialog to help user understand why we need access
-  static void showPermissionDialog(
-    BuildContext context,
-    String permissionType,
-  ) {
+  static void showPermissionDialog(BuildContext context, String permissionType) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -96,10 +93,7 @@ class ImagePickerService {
           'All editing happens offline on your device.',
         ),
         actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Cancel'),
-          ),
+          TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Cancel')),
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();

@@ -29,16 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('BlurApp'),
         backgroundColor: colorScheme.surface,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () => _navigateToSettings(),
-          ),
-        ],
+        actions: [IconButton(icon: const Icon(Icons.settings), onPressed: () => _navigateToSettings())],
       ),
-      body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : _buildMainContent(),
+      body: _isLoading ? const Center(child: CircularProgressIndicator()) : _buildMainContent(),
     );
   }
 
@@ -69,17 +62,13 @@ class _HomeScreenState extends State<HomeScreen> {
         const SizedBox(height: 16),
         Text(
           'Select a Photo to Blur',
-          style: theme.textTheme.headlineMedium?.copyWith(
-            color: theme.colorScheme.onSurface,
-          ),
+          style: theme.textTheme.headlineMedium?.copyWith(color: theme.colorScheme.onSurface),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 8),
         Text(
           'Choose from gallery or take a new photo',
-          style: theme.textTheme.bodyLarge?.copyWith(
-            color: theme.colorScheme.onSurface,
-          ),
+          style: theme.textTheme.bodyLarge?.copyWith(color: theme.colorScheme.onSurface),
           textAlign: TextAlign.center,
         ),
       ],
@@ -95,20 +84,12 @@ class _HomeScreenState extends State<HomeScreen> {
           onPressed: () => _pickFromGallery(),
         ),
         const SizedBox(height: 16),
-        _buildPickerButton(
-          icon: Icons.camera_alt,
-          label: 'Take Photo',
-          onPressed: () => _pickFromCamera(),
-        ),
+        _buildPickerButton(icon: Icons.camera_alt, label: 'Take Photo', onPressed: () => _pickFromCamera()),
       ],
     );
   }
 
-  Widget _buildPickerButton({
-    required IconData icon,
-    required String label,
-    required VoidCallback onPressed,
-  }) {
+  Widget _buildPickerButton({required IconData icon, required String label, required VoidCallback onPressed}) {
     final theme = Theme.of(context);
 
     return SizedBox(
@@ -117,18 +98,11 @@ class _HomeScreenState extends State<HomeScreen> {
       child: ElevatedButton.icon(
         onPressed: onPressed,
         icon: Icon(icon, size: 24),
-        label: Text(
-          label,
-          style: theme.textTheme.bodyLarge?.copyWith(
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+        label: Text(label, style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w600)),
         style: ElevatedButton.styleFrom(
           backgroundColor: theme.colorScheme.primary,
           foregroundColor: theme.colorScheme.onPrimary,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
       ),
     );
@@ -147,18 +121,12 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       child: Row(
         children: [
-          Icon(
-            Icons.privacy_tip_outlined,
-            color: colorScheme.primary,
-            size: 20,
-          ),
+          Icon(Icons.privacy_tip_outlined, color: colorScheme.primary, size: 20),
           const SizedBox(width: 12),
           Expanded(
             child: Text(
               'All editing happens offline on your device. No photos are uploaded.',
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: colorScheme.onSurface,
-              ),
+              style: theme.textTheme.bodySmall?.copyWith(color: colorScheme.onSurface),
             ),
           ),
         ],
@@ -207,14 +175,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _navigateToEditor() {
-    Navigator.of(
-      context,
-    ).push(MaterialPageRoute(builder: (context) => const EditorScreen()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const EditorScreen()));
   }
 
   void _navigateToSettings() {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => const PrivacySettingsScreen()),
-    );
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PrivacySettingsScreen()));
   }
 }

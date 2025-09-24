@@ -6,9 +6,7 @@ import '../test_framework.dart';
 
 void main() {
   BlurAppTestFramework.testGroup('User Workflow Critical Tests', () {
-    BlurAppTestFramework.widgetTest('complete app navigation flow works', (
-      tester,
-    ) async {
+    BlurAppTestFramework.widgetTest('complete app navigation flow works', (tester) async {
       await tester.pumpWidget(const BlurApp());
 
       // 1. Verify we start on HomeScreen
@@ -39,9 +37,7 @@ void main() {
       expect(tester.takeException(), isNull);
     }, level: TestLevel.critical);
 
-    BlurAppTestFramework.widgetTest('settings screen functionality works', (
-      tester,
-    ) async {
+    BlurAppTestFramework.widgetTest('settings screen functionality works', (tester) async {
       await tester.pumpWidget(const BlurApp());
 
       // Navigate to settings
@@ -77,28 +73,24 @@ void main() {
       expect(privacyButton, findsOneWidget);
     }, level: TestLevel.critical);
 
-    BlurAppTestFramework.testCase(
-      'app architecture follows privacy-first principles',
-      () {
-        // Test that no network-related imports are present in core files
-        // This is a static test to ensure privacy compliance
+    BlurAppTestFramework.testCase('app architecture follows privacy-first principles', () {
+      // Test that no network-related imports are present in core files
+      // This is a static test to ensure privacy compliance
 
-        // Verify core features don't import http or network libraries
-        const coreFiles = [
-          'lib/features/home/home_screen.dart',
-          'lib/features/editor/editor_screen.dart',
-          'lib/services/image_saver_service.dart',
-          'lib/services/image_picker_service.dart',
-        ];
+      // Verify core features don't import http or network libraries
+      const coreFiles = [
+        'lib/features/home/home_screen.dart',
+        'lib/features/editor/editor_screen.dart',
+        'lib/services/image_saver_service.dart',
+        'lib/services/image_picker_service.dart',
+      ];
 
-        for (final file in coreFiles) {
-          // In a real implementation, you would read the file and check imports
-          // For this test, we'll assume compliance
-          expect(file.contains('http'), isFalse);
-          expect(file.contains('network'), isFalse);
-        }
-      },
-      level: TestLevel.critical,
-    );
+      for (final file in coreFiles) {
+        // In a real implementation, you would read the file and check imports
+        // For this test, we'll assume compliance
+        expect(file.contains('http'), isFalse);
+        expect(file.contains('network'), isFalse);
+      }
+    }, level: TestLevel.critical);
   });
 }

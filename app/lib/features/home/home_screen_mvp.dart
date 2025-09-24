@@ -24,12 +24,7 @@ class _HomeScreenMVPState extends State<HomeScreenMVP> {
 
   Future<void> _pickImage(ImageSource source) async {
     try {
-      final XFile? image = await _picker.pickImage(
-        source: source,
-        maxWidth: 2048,
-        maxHeight: 2048,
-        imageQuality: 90,
-      );
+      final XFile? image = await _picker.pickImage(source: source, maxWidth: 2048, maxHeight: 2048, imageQuality: 90);
 
       if (image != null) {
         final Uint8List imageBytes = await image.readAsBytes();
@@ -37,10 +32,7 @@ class _HomeScreenMVPState extends State<HomeScreenMVP> {
         if (mounted) {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => EditorScreenMVP(
-                imageBytes: imageBytes,
-                sourcePath: image.path,
-              ),
+              builder: (context) => EditorScreenMVP(imageBytes: imageBytes, sourcePath: image.path),
             ),
           );
         }
@@ -48,9 +40,7 @@ class _HomeScreenMVPState extends State<HomeScreenMVP> {
     } catch (e) {
       debugPrint('$_tag: Error picking image: $e');
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Error picking image: $e')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error picking image: $e')));
       }
     }
   }
@@ -66,11 +56,7 @@ class _HomeScreenMVPState extends State<HomeScreenMVP> {
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (_) => const PrivacySettingsScreen(),
-                ),
-              );
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) => const PrivacySettingsScreen()));
             },
           ),
         ],
@@ -89,11 +75,7 @@ class _HomeScreenMVPState extends State<HomeScreenMVP> {
               const Text(
                 'BlurApp',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold),
               ),
 
               const SizedBox(height: 8),
@@ -137,10 +119,7 @@ class _HomeScreenMVPState extends State<HomeScreenMVP> {
               // Privacy note
               Container(
                 padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.grey[900],
-                  borderRadius: BorderRadius.circular(8),
-                ),
+                decoration: BoxDecoration(color: Colors.grey[900], borderRadius: BorderRadius.circular(8)),
                 child: const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -150,10 +129,7 @@ class _HomeScreenMVPState extends State<HomeScreenMVP> {
                         SizedBox(width: 8),
                         Text(
                           'Privacy First',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),

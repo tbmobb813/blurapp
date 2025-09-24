@@ -78,9 +78,7 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
     } catch (e) {
       debugPrint('$_tag: Error loading image: $e');
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Error loading image: $e')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error loading image: $e')));
       }
     }
   }
@@ -145,11 +143,7 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
           builder: (context) => const AlertDialog(
             content: Column(
               mainAxisSize: MainAxisSize.min,
-              children: [
-                CircularProgressIndicator(),
-                SizedBox(height: 16),
-                Text('Exporting image...'),
-              ],
+              children: [CircularProgressIndicator(), SizedBox(height: 16), Text('Exporting image...')],
             ),
           ),
         );
@@ -165,9 +159,7 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
           final double scaleY = _originalImage!.height / _previewHeight;
 
           return BrushStroke(
-            points: stroke.points
-                .map((point) => Point(point.x * scaleX, point.y * scaleY))
-                .toList(),
+            points: stroke.points.map((point) => Point(point.x * scaleX, point.y * scaleY)).toList(),
             size: stroke.size * ((scaleX + scaleY) / 2),
             opacity: stroke.opacity,
           );
@@ -209,9 +201,7 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
-                content: Text(
-                  'Failed to save image. Check gallery permissions.',
-                ),
+                content: Text('Failed to save image. Check gallery permissions.'),
                 backgroundColor: Colors.orange,
               ),
             );
@@ -226,9 +216,7 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
       }
       debugPrint('$_tag: Export error: $e');
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Export failed: $e')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Export failed: $e')));
       }
     } finally {
       setState(() {
@@ -242,11 +230,7 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
 
     setState(() {
       _brushStrokes.add(
-        BrushStroke(
-          points: [Point(localPosition.dx, localPosition.dy)],
-          size: _brushSize,
-          opacity: _brushOpacity,
-        ),
+        BrushStroke(points: [Point(localPosition.dx, localPosition.dy)], size: _brushSize, opacity: _brushOpacity),
       );
     });
   }
@@ -257,10 +241,7 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
     setState(() {
       final lastStroke = _brushStrokes.last;
       _brushStrokes[_brushStrokes.length - 1] = BrushStroke(
-        points: [
-          ...lastStroke.points,
-          Point(localPosition.dx, localPosition.dy),
-        ],
+        points: [...lastStroke.points, Point(localPosition.dx, localPosition.dy)],
         size: lastStroke.size,
         opacity: lastStroke.opacity,
       );
@@ -290,9 +271,7 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
 
     try {
       // Prefer ML-based detection via AutoDetectService when available.
-      final service = await AutoDetectService.create(
-        modelPath: 'assets/models/face_detection_short_range.tflite',
-      );
+      final service = await AutoDetectService.create(modelPath: 'assets/models/face_detection_short_range.tflite');
 
       final boxes = await service.detect(widget.imageBytes);
 
@@ -312,9 +291,7 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
           faceStrokes.add(
             BrushStroke(
               points: [Point(centerX * scaleX, centerY * scaleY)],
-              size:
-                  ((rect.width + rect.height) / 2.0) *
-                  ((scaleX + scaleY) / 2.0),
+              size: ((rect.width + rect.height) / 2.0) * ((scaleX + scaleY) / 2.0),
               opacity: 255,
             ),
           );
@@ -329,9 +306,7 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
     } catch (e) {
       debugPrint('$_tag: Face detection error: $e');
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Face detection failed: $e')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Face detection failed: $e')));
       }
     } finally {
       setState(() {
@@ -348,25 +323,15 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
     });
 
     try {
-      final service = await AutoDetectService.create(
-        modelPath: 'assets/models/selfie_segmentation.tflite',
-      );
+      final service = await AutoDetectService.create(modelPath: 'assets/models/selfie_segmentation.tflite');
 
-      final Uint8List? maskBytes = await service.detectSegmentation(
-        widget.imageBytes,
-      );
+      final Uint8List? maskBytes = await service.detectSegmentation(widget.imageBytes);
 
       if (maskBytes != null && maskBytes.isNotEmpty) {
         // Scale mask from original size to preview resolution
         final int srcW = _originalImage!.width;
         final int srcH = _originalImage!.height;
-        final Uint8List scaled = scaleMaskNearestNeighbor(
-          maskBytes,
-          srcW,
-          srcH,
-          _previewWidth,
-          _previewHeight,
-        );
+        final Uint8List scaled = scaleMaskNearestNeighbor(maskBytes, srcW, srcH, _previewWidth, _previewHeight);
 
         // Convert mask to brush strokes and apply
         final strokes = BlurEngineMVP.maskToBrushStrokes(
@@ -385,17 +350,13 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
         _updatePreview();
       } else {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('No segmentation result')),
-          );
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('No segmentation result')));
         }
       }
     } catch (e) {
       debugPrint('$_tag: Segmentation error: $e');
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Segmentation failed: $e')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Segmentation failed: $e')));
       }
     } finally {
       setState(() {
@@ -414,12 +375,7 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
         title: const Text('Blur Editor'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.save),
-            onPressed: _isProcessing ? null : _exportImage,
-          ),
-        ],
+        actions: [IconButton(icon: const Icon(Icons.save), onPressed: _isProcessing ? null : _exportImage)],
       ),
       body: Column(
         children: [
@@ -429,13 +385,7 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
           // Controls
           Container(
             color: Colors.grey[900],
-            child: Column(
-              children: [
-                _buildBlurControls(),
-                _buildBrushControls(),
-                _buildActionButtons(),
-              ],
-            ),
+            child: Column(children: [_buildBlurControls(), _buildBrushControls(), _buildActionButtons()]),
           ),
         ],
       ),
@@ -444,9 +394,7 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
 
   Widget _buildImageDisplay() {
     if (_originalImage == null) {
-      return const Center(
-        child: CircularProgressIndicator(color: Colors.white),
-      );
+      return const Center(child: CircularProgressIndicator(color: Colors.white));
     }
 
     return GestureDetector(
@@ -543,10 +491,7 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
             children: [
               const Text(
                 'Brush Tool',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               ),
               const Spacer(),
               Switch(
@@ -652,12 +597,7 @@ class ImageDisplayPainter extends CustomPainter {
     final Rect imageRect = _calculateImageRect(imageToShow, size);
     canvas.drawImageRect(
       imageToShow,
-      Rect.fromLTWH(
-        0,
-        0,
-        imageToShow.width.toDouble(),
-        imageToShow.height.toDouble(),
-      ),
+      Rect.fromLTWH(0, 0, imageToShow.width.toDouble(), imageToShow.height.toDouble()),
       imageRect,
       imagePaint,
     );
@@ -671,11 +611,8 @@ class ImageDisplayPainter extends CustomPainter {
       for (final point in stroke.points) {
         // Scale point to display coordinates
         final Offset displayPoint = Offset(
-          imageRect.left +
-              (point.x / _EditorScreenMVPState._previewWidth) * imageRect.width,
-          imageRect.top +
-              (point.y / _EditorScreenMVPState._previewHeight) *
-                  imageRect.height,
+          imageRect.left + (point.x / _EditorScreenMVPState._previewWidth) * imageRect.width,
+          imageRect.top + (point.y / _EditorScreenMVPState._previewHeight) * imageRect.height,
         );
 
         canvas.drawCircle(
