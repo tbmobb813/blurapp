@@ -19,9 +19,7 @@ class BlurAppTestFramework {
 
   /// Creates a test app wrapper for widget testing
   static Widget createTestApp(Widget child) {
-    return MaterialApp(
-      home: Scaffold(body: child),
-    );
+    return MaterialApp(home: Scaffold(body: child));
   }
 
   /// Standard test group wrapper with consistent setup
@@ -47,8 +45,12 @@ class BlurAppTestFramework {
     bool skip = false,
     Timeout? timeout,
   }) {
-    test('${level.prefix} $description', body,
-        skip: skip, timeout: timeout ?? const Timeout(Duration(seconds: 30)));
+    test(
+      '${level.prefix} $description',
+      body,
+      skip: skip,
+      timeout: timeout ?? const Timeout(Duration(seconds: 30)),
+    );
   }
 
   /// Widget test wrapper with standard app setup
@@ -72,10 +74,15 @@ class BlurAppTestFramework {
     bool skip = false,
     Timeout timeout = const Timeout(Duration(seconds: 30)),
   }) {
-    test('${level.prefix} $description', () async {
-      setupTest();
-      await body();
-    }, skip: skip, timeout: timeout);
+    test(
+      '${level.prefix} $description',
+      () async {
+        setupTest();
+        await body();
+      },
+      skip: skip,
+      timeout: timeout,
+    );
   }
 
   /// Performance test wrapper
@@ -91,9 +98,12 @@ class BlurAppTestFramework {
       await body();
       stopwatch.stop();
 
-      expect(stopwatch.elapsed, lessThan(maxDuration),
-          reason:
-              'Performance test exceeded ${maxDuration.inMilliseconds}ms limit');
+      expect(
+        stopwatch.elapsed,
+        lessThan(maxDuration),
+        reason:
+            'Performance test exceeded ${maxDuration.inMilliseconds}ms limit',
+      );
     }, skip: skip);
   }
 
@@ -135,24 +145,32 @@ class TestHelpers {
   }
 
   /// Pumps widget tree and waits for animations
-  static Future<void> pumpAndSettle(WidgetTester tester,
-      [Duration? duration]) async {
+  static Future<void> pumpAndSettle(
+    WidgetTester tester, [
+    Duration? duration,
+  ]) async {
     await tester.pumpAndSettle(duration ?? const Duration(milliseconds: 100));
   }
 
   /// Finds widget by text with better error messages
   static Finder findTextWidget(String text) {
     final finder = find.text(text);
-    expect(finder, findsOneWidget,
-        reason: 'Could not find widget with text: "$text"');
+    expect(
+      finder,
+      findsOneWidget,
+      reason: 'Could not find widget with text: "$text"',
+    );
     return finder;
   }
 
   /// Finds widget by key with better error messages
   static Finder findKeyWidget(Key key) {
     final finder = find.byKey(key);
-    expect(finder, findsOneWidget,
-        reason: 'Could not find widget with key: $key');
+    expect(
+      finder,
+      findsOneWidget,
+      reason: 'Could not find widget with key: $key',
+    );
     return finder;
   }
 
@@ -164,14 +182,20 @@ class TestHelpers {
 
   /// Enters text and waits for effects
   static Future<void> enterTextAndSettle(
-      WidgetTester tester, Finder finder, String text) async {
+    WidgetTester tester,
+    Finder finder,
+    String text,
+  ) async {
     await tester.enterText(finder, text);
     await pumpAndSettle(tester);
   }
 
   /// Verifies widget properties
-  static void verifyWidgetProperties<T extends Widget>(WidgetTester tester,
-      Finder finder, Map<String, dynamic> expectedProperties) {
+  static void verifyWidgetProperties<T extends Widget>(
+    WidgetTester tester,
+    Finder finder,
+    Map<String, dynamic> expectedProperties,
+  ) {
     final widget = tester.widget<T>(finder);
 
     for (final entry in expectedProperties.entries) {
@@ -180,9 +204,12 @@ class TestHelpers {
 
       // Use reflection or manual property checking
       // This is a simplified version - expand based on needs
-      expect(widget.toString().contains(expectedValue.toString()), isTrue,
-          reason:
-              'Widget property $property does not match expected value $expectedValue');
+      expect(
+        widget.toString().contains(expectedValue.toString()),
+        isTrue,
+        reason:
+            'Widget property $property does not match expected value $expectedValue',
+      );
     }
   }
 }
@@ -192,40 +219,64 @@ class BlurAppAssertions {
   /// Asserts image processing result is valid
   static void assertValidImageResult(List<int>? result) {
     expect(result, isNotNull, reason: 'Image result should not be null');
-    expect(result!.isNotEmpty, isTrue,
-        reason: 'Image result should not be empty');
+    expect(
+      result!.isNotEmpty,
+      isTrue,
+      reason: 'Image result should not be empty',
+    );
   }
 
   /// Asserts blur parameters are within valid range
   static void assertValidBlurParams(int strength, {int min = 1, int max = 50}) {
-    expect(strength, greaterThanOrEqualTo(min),
-        reason: 'Blur strength should be >= $min');
-    expect(strength, lessThanOrEqualTo(max),
-        reason: 'Blur strength should be <= $max');
+    expect(
+      strength,
+      greaterThanOrEqualTo(min),
+      reason: 'Blur strength should be >= $min',
+    );
+    expect(
+      strength,
+      lessThanOrEqualTo(max),
+      reason: 'Blur strength should be <= $max',
+    );
   }
 
   /// Asserts UI state transitions
   static void assertUIStateTransition(
-      WidgetTester tester, String fromState, String toState) {
+    WidgetTester tester,
+    String fromState,
+    String toState,
+  ) {
     // Look for state indicators in UI
-    expect(find.text(fromState), findsNothing,
-        reason: 'UI should have transitioned from $fromState');
-    expect(find.text(toState), findsOneWidget,
-        reason: 'UI should have transitioned to $toState');
+    expect(
+      find.text(fromState),
+      findsNothing,
+      reason: 'UI should have transitioned from $fromState',
+    );
+    expect(
+      find.text(toState),
+      findsOneWidget,
+      reason: 'UI should have transitioned to $toState',
+    );
   }
 
   /// Asserts service initialization
   static void assertServiceInitialized(dynamic service) {
     expect(service, isNotNull, reason: 'Service should be initialized');
-    expect(service.toString().contains('closed'), isFalse,
-        reason: 'Service should not be closed after initialization');
+    expect(
+      service.toString().contains('closed'),
+      isFalse,
+      reason: 'Service should not be closed after initialization',
+    );
   }
 
   /// Asserts file operations
   static void assertFileExists(String? path) {
     expect(path, isNotNull, reason: 'File path should not be null');
     expect(path!.isNotEmpty, isTrue, reason: 'File path should not be empty');
-    expect(path.endsWith('.jpg') || path.endsWith('.png'), isTrue,
-        reason: 'File should have valid image extension');
+    expect(
+      path.endsWith('.jpg') || path.endsWith('.png'),
+      isTrue,
+      reason: 'File should have valid image extension',
+    );
   }
 }

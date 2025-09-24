@@ -8,7 +8,11 @@ class PainterMask extends ChangeNotifier {
 
   void startStroke(Offset point, double size, bool erase) {
     _currentStroke = MaskStroke(
-        points: [point], size: size, erase: erase, type: MaskType.brush);
+      points: [point],
+      size: size,
+      erase: erase,
+      type: MaskType.brush,
+    );
     notifyListeners();
   }
 
@@ -28,13 +32,15 @@ class PainterMask extends ChangeNotifier {
   }
 
   void addShape(Rect rect, double feather, MaskType type, bool erase) {
-    strokes.add(MaskStroke(
-      points: [rect.topLeft, rect.bottomRight],
-      size: feather,
-      erase: erase,
-      type: type,
-      rect: rect,
-    ));
+    strokes.add(
+      MaskStroke(
+        points: [rect.topLeft, rect.bottomRight],
+        size: feather,
+        erase: erase,
+        type: type,
+        rect: rect,
+      ),
+    );
     notifyListeners();
   }
 
@@ -55,12 +61,14 @@ class PainterMask extends ChangeNotifier {
     // This is a simplified implementation
     // In a real app, you'd decode the mask image and convert to strokes
     // For now, we'll just add a placeholder stroke
-    strokes.add(MaskStroke(
-      points: [const Offset(0, 0), const Offset(100, 100)],
-      size: 1.0,
-      erase: false,
-      type: MaskType.segmentation,
-    ));
+    strokes.add(
+      MaskStroke(
+        points: [const Offset(0, 0), const Offset(100, 100)],
+        size: 1.0,
+        erase: false,
+        type: MaskType.segmentation,
+      ),
+    );
     notifyListeners();
   }
 }

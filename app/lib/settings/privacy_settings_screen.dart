@@ -137,8 +137,9 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
         ListTile(
           leading: const Icon(Icons.info_outline),
           title: const Text('About storage'),
-          subtitle:
-              const Text('Saved images are stored in your Documents folder'),
+          subtitle: const Text(
+            'Saved images are stored in your Documents folder',
+          ),
           trailing: const Icon(Icons.chevron_right),
           onTap: () => _showStorageInfo(),
         ),
@@ -191,9 +192,9 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to clear cache: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Failed to clear cache: $e')));
       }
     } finally {
       if (mounted) {

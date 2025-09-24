@@ -65,11 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Column(
       children: [
-        Icon(
-          AppIcons.blur,
-          size: 80,
-          color: colorScheme.primary,
-        ),
+        Icon(AppIcons.blur, size: 80, color: colorScheme.primary),
         const SizedBox(height: 16),
         Text(
           'Select a Photo to Blur',
@@ -147,9 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
       decoration: BoxDecoration(
         color: withOpacitySafe(colorScheme.surface, 0.5),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: withOpacitySafe(colorScheme.outline, 0.3),
-        ),
+        border: Border.all(color: withOpacitySafe(colorScheme.outline, 0.3)),
       ),
       child: Row(
         children: [
@@ -213,18 +207,14 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _navigateToEditor() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const EditorScreen(),
-      ),
-    );
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (context) => const EditorScreen()));
   }
 
   void _navigateToSettings() {
     Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const PrivacySettingsScreen(),
-      ),
+      MaterialPageRoute(builder: (context) => const PrivacySettingsScreen()),
     );
   }
 }

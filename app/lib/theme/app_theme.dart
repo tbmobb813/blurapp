@@ -23,13 +23,22 @@ class AppTheme {
     ),
     textTheme: const TextTheme(
       displayLarge: TextStyle(
-          fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
+        fontSize: 32,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
       headlineMedium: TextStyle(
-          fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+      ),
       bodyLarge: TextStyle(fontSize: 16, color: Colors.white70),
       bodyMedium: TextStyle(fontSize: 14, color: Colors.white60),
       labelLarge: TextStyle(
-          fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        color: Colors.white,
+      ),
     ),
     iconTheme: const IconThemeData(color: Color(0xFF4F8EFF), size: 24),
     elevatedButtonTheme: ElevatedButtonThemeData(

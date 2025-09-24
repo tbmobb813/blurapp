@@ -18,11 +18,11 @@ void main() {
         // Mock the method channel to simulate native not available
         TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
             .setMockMethodCallHandler(channel, (MethodCall methodCall) async {
-          if (methodCall.method == 'isMediaPipeAvailable') {
-            return false; // Simulate MediaPipe not available
-          }
-          return null;
-        });
+              if (methodCall.method == 'isMediaPipeAvailable') {
+                return false; // Simulate MediaPipe not available
+              }
+              return null;
+            });
 
         resultReceived = await NativeBlurBindings.isNativeAvailable();
 
@@ -36,11 +36,11 @@ void main() {
       test('version information retrieval', () async {
         TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
             .setMockMethodCallHandler(channel, (MethodCall methodCall) async {
-          if (methodCall.method == 'getVersion') {
-            return 'BlurCore v1.1.0 (MediaPipe disabled - fallback mode)';
-          }
-          return null;
-        });
+              if (methodCall.method == 'getVersion') {
+                return 'BlurCore v1.1.0 (MediaPipe disabled - fallback mode)';
+              }
+              return null;
+            });
 
         final version = await NativeBlurBindings.getVersion();
         expect(version, contains('BlurCore'));
@@ -54,18 +54,18 @@ void main() {
       test('processing capabilities detection', () async {
         TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
             .setMockMethodCallHandler(channel, (MethodCall methodCall) async {
-          if (methodCall.method == 'getProcessingCapabilities') {
-            return {
-              'nativeAvailable': false,
-              'segmentationAvailable': false,
-              'version': 'BlurCore v1.1.0 (stub)',
-              'supportedBlurTypes': ['gaussian'],
-              'maxImageSize': 2048,
-              'gpu': false,
-            };
-          }
-          return null;
-        });
+              if (methodCall.method == 'getProcessingCapabilities') {
+                return {
+                  'nativeAvailable': false,
+                  'segmentationAvailable': false,
+                  'version': 'BlurCore v1.1.0 (stub)',
+                  'supportedBlurTypes': ['gaussian'],
+                  'maxImageSize': 2048,
+                  'gpu': false,
+                };
+              }
+              return null;
+            });
 
         final capabilities =
             await NativeBlurBindings.getProcessingCapabilities();
@@ -85,15 +85,16 @@ void main() {
         // Mock native as unavailable
         TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
             .setMockMethodCallHandler(channel, (MethodCall methodCall) async {
-          if (methodCall.method == 'isMediaPipeAvailable') {
-            return false;
-          }
-          return null;
-        });
+              if (methodCall.method == 'isMediaPipeAvailable') {
+                return false;
+              }
+              return null;
+            });
 
         // Create test image bytes
-        final testImageBytes =
-            Uint8List.fromList(List.generate(100, (i) => i % 256));
+        final testImageBytes = Uint8List.fromList(
+          List.generate(100, (i) => i % 256),
+        );
 
         final result = await HybridBlurPipeline.processImage(
           testImageBytes,
@@ -114,23 +115,23 @@ void main() {
         // Mock all native calls
         TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
             .setMockMethodCallHandler(channel, (MethodCall methodCall) async {
-          switch (methodCall.method) {
-            case 'isMediaPipeAvailable':
-              return false;
-            case 'getVersion':
-              return 'BlurCore v1.1.0 (stub)';
-            case 'getSupportedBlurTypes':
-              return [0]; // Gaussian only
-            case 'getProcessingCapabilities':
-              return {
-                'nativeAvailable': false,
-                'segmentationAvailable': false,
-                'gpu': false,
-              };
-            default:
-              return null;
-          }
-        });
+              switch (methodCall.method) {
+                case 'isMediaPipeAvailable':
+                  return false;
+                case 'getVersion':
+                  return 'BlurCore v1.1.0 (stub)';
+                case 'getSupportedBlurTypes':
+                  return [0]; // Gaussian only
+                case 'getProcessingCapabilities':
+                  return {
+                    'nativeAvailable': false,
+                    'segmentationAvailable': false,
+                    'gpu': false,
+                  };
+                default:
+                  return null;
+              }
+            });
 
         final modeInfo = await HybridBlurPipeline.getProcessingModeInfo();
 
@@ -150,13 +151,13 @@ void main() {
       test('segmentation initialization with model path', () async {
         TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
             .setMockMethodCallHandler(channel, (MethodCall methodCall) async {
-          if (methodCall.method == 'initializeSegmentation') {
-            final modelPath = methodCall.arguments['modelPath'] as String;
-            expect(modelPath, contains('selfie_segmentation'));
-            return false; // Not implemented yet in Phase 1
-          }
-          return null;
-        });
+              if (methodCall.method == 'initializeSegmentation') {
+                final modelPath = methodCall.arguments['modelPath'] as String;
+                expect(modelPath, contains('selfie_segmentation'));
+                return false; // Not implemented yet in Phase 1
+              }
+              return null;
+            });
 
         final success = await NativeBlurBindings.initializeSegmentation();
         expect(success, isFalse); // Expected for Phase 1 stub
@@ -169,12 +170,12 @@ void main() {
       test('error handling for unavailable methods', () async {
         TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
             .setMockMethodCallHandler(channel, (MethodCall methodCall) async {
-          // Simulate method not implemented
-          throw PlatformException(
-            code: 'UNIMPLEMENTED',
-            message: 'Method not implemented',
-          );
-        });
+              // Simulate method not implemented
+              throw PlatformException(
+                code: 'UNIMPLEMENTED',
+                message: 'Method not implemented',
+              );
+            });
 
         // Should handle errors gracefully
         final available = await NativeBlurBindings.isNativeAvailable();
