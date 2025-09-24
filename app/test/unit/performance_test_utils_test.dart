@@ -43,7 +43,7 @@ void main() {
   );
 
   test('MemoryMeasurement.toString contains formatted byte values', () {
-    final mm = MemoryMeasurement(before: 1024, after: 2048, difference: 1024);
+    const mm = MemoryMeasurement(before: 1024, after: 2048, difference: 1024);
     final s = mm.toString();
     expect(s, contains('1.0KB'));
     expect(s, contains('2.0KB'));
