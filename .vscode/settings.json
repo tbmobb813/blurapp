@@ -1,4 +1,4 @@
 {
-    "cmake.sourceDirectory": "/workspaces/blurapp/native",
+    "cmake.sourceDirectory": "/home/jason/Projects/blurapp/app/temp_project/linux/runner",
     "java.configuration.updateBuildConfiguration": "automatic"
 }

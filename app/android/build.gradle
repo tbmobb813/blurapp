@@ -1,3 +1,14 @@
+buildscript {
+    ext.kotlin_version = '1.9.23'
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
 allprojects {
     repositories {
         google()
@@ -15,6 +26,35 @@ ext.flutter = [compileSdkVersion: 36, targetSdkVersion: 36]
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+
+// AGP 8.6+ requires library modules to declare a namespace. Some older plugin
+// modules may not set a namespace; attempt to set a default one to avoid
+// configuration-time failures (namespace not specified). This is a safe
+// fallback for CI/local builds and mirrors logic used earlier to set compileSdk.
+subprojects {
+    plugins.withId('com.android.library') {
+        // Some older plugin modules (in the pub cache) don't declare a namespace.
+        // Attempt to set a safe default namespace in a defensive way.
+        try {
+            def hasNamespace = false
+            try {
+                hasNamespace = android.hasProperty('namespace') && (android.namespace != null && android.namespace.toString().trim().length() > 0)
+            } catch (ignoredInner) {
+                // property access may throw; treat as missing
+                hasNamespace = false
+            }
+
+            if (!hasNamespace) {
+                try {
+                    android.namespace = "io.flutter.plugins.${project.name}"
+                } catch (ignoredSet) {
+                    // ignore if we can't set namespace on some plugin modules
+                }
+            }
+        } catch (ignored) {
+        }
+    }
 }
 subprojects {
     project.evaluationDependsOn(':app')
