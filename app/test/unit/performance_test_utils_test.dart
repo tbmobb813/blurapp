@@ -30,14 +30,17 @@ void main() {
     expect(tm.microseconds, greaterThanOrEqualTo(0));
   });
 
-  test('measureAsyncExecutionTime measures a delayed async operation', () async {
-    final tm = await PerformanceTestUtils.measureAsyncExecutionTime(() async {
-      await Future.delayed(const Duration(milliseconds: 20));
-    });
+  test(
+    'measureAsyncExecutionTime measures a delayed async operation',
+    () async {
+      final tm = await PerformanceTestUtils.measureAsyncExecutionTime(() async {
+        await Future.delayed(const Duration(milliseconds: 20));
+      });
 
-    // Should take at least part of the delay; allow some jitter
-    expect(tm.milliseconds, greaterThanOrEqualTo(10));
-  });
+      // Should take at least part of the delay; allow some jitter
+      expect(tm.milliseconds, greaterThanOrEqualTo(10));
+    },
+  );
 
   test('MemoryMeasurement.toString contains formatted byte values', () {
     final mm = MemoryMeasurement(before: 1024, after: 2048, difference: 1024);
