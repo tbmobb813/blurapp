@@ -19,187 +19,180 @@ import '../test_framework.dart';
 /// - Include performance benchmarks
 
 void main() {
-  BlurAppTestFramework.testGroup(
-    'Miscellaneous Feature Tests',
-    () {
-      // Example: Edge case test
-      BlurAppTestFramework.testCase(
-        'handles extremely large image dimensions gracefully',
-        () {
-          final largeImageData = List.generate(10000000, (i) => i % 255);
+  BlurAppTestFramework.testGroup('Miscellaneous Feature Tests', () {
+    // Example: Edge case test
+    BlurAppTestFramework.testCase(
+      'handles extremely large image dimensions gracefully',
+      () {
+        final largeImageData = List.generate(10000000, (i) => i % 255);
 
-          expect(() => _processLargeImage(largeImageData), returnsNormally);
+        expect(() => _processLargeImage(largeImageData), returnsNormally);
 
-          // Should not crash but may return null for memory protection
-          final result = _processLargeImage(largeImageData);
-          expect(result == null || result.isNotEmpty, isTrue);
-        },
-        level: TestLevel.misc,
-      );
+        // Should not crash but may return null for memory protection
+        final result = _processLargeImage(largeImageData);
+        expect(result == null || result.isNotEmpty, isTrue);
+      },
+      level: TestLevel.misc,
+    );
 
-      // Example: Boundary condition test
-      BlurAppTestFramework.testCase(
-        'blur strength boundaries work correctly',
-        () {
-          // Test minimum boundary
-          expect(() => _applyBlur(0), throwsRangeError);
-          expect(() => _applyBlur(1), returnsNormally);
+    // Example: Boundary condition test
+    BlurAppTestFramework.testCase(
+      'blur strength boundaries work correctly',
+      () {
+        // Test minimum boundary
+        expect(() => _applyBlur(0), throwsRangeError);
+        expect(() => _applyBlur(1), returnsNormally);
 
-          // Test maximum boundary
-          expect(() => _applyBlur(50), returnsNormally);
-          expect(() => _applyBlur(51), throwsRangeError);
+        // Test maximum boundary
+        expect(() => _applyBlur(50), returnsNormally);
+        expect(() => _applyBlur(51), throwsRangeError);
 
-          // Test negative values
-          expect(() => _applyBlur(-1), throwsRangeError);
-        },
-        level: TestLevel.misc,
-      );
+        // Test negative values
+        expect(() => _applyBlur(-1), throwsRangeError);
+      },
+      level: TestLevel.misc,
+    );
 
-      // Example: Performance test
-      BlurAppTestFramework.performanceTest(
-        'image resizing completes within performance threshold',
-        () async {
-          final testImage = TestHelpers.createTestImageBytes();
+    // Example: Performance test
+    BlurAppTestFramework.performanceTest(
+      'image resizing completes within performance threshold',
+      () async {
+        final testImage = TestHelpers.createTestImageBytes();
 
-          // This should complete quickly
-          final result = await _resizeImage(testImage, 0.5);
-          expect(result, isNotNull);
-          expect(result.length, lessThan(testImage.length));
-        },
-        maxDuration: const Duration(milliseconds: 50),
-      );
+        // This should complete quickly
+        final result = await _resizeImage(testImage, 0.5);
+        expect(result, isNotNull);
+        expect(result.length, lessThan(testImage.length));
+      },
+      maxDuration: const Duration(milliseconds: 50),
+    );
 
-      // Example: Accessibility test
-      BlurAppTestFramework.widgetTest(
-        'UI elements have proper accessibility labels',
-        (tester) async {
-          await tester.pumpWidget(BlurAppTestFramework.createTestApp(
-            const _MockAccessibilityScreen(),
-          ));
+    // Example: Accessibility test
+    BlurAppTestFramework.widgetTest(
+      'UI elements have proper accessibility labels',
+      (tester) async {
+        await tester.pumpWidget(
+          BlurAppTestFramework.createTestApp(const _MockAccessibilityScreen()),
+        );
 
-          // Check semantic labels
-          expect(find.bySemanticsLabel('Apply blur effect'), findsOneWidget);
-          expect(find.bySemanticsLabel('Blur strength slider'), findsOneWidget);
-          expect(find.bySemanticsLabel('Export image'), findsOneWidget);
+        // Check semantic labels
+        expect(find.bySemanticsLabel('Apply blur effect'), findsOneWidget);
+        expect(find.bySemanticsLabel('Blur strength slider'), findsOneWidget);
+        expect(find.bySemanticsLabel('Export image'), findsOneWidget);
 
-          // Test screen reader navigation
-          expect(tester.takeException(), isNull);
-        },
-        level: TestLevel.misc,
-      );
+        // Test screen reader navigation
+        expect(tester.takeException(), isNull);
+      },
+      level: TestLevel.misc,
+    );
 
-      // Example: Configuration test
-      BlurAppTestFramework.testCase(
-        'supports various image format configurations',
-        () {
-          final formats = ['jpg', 'png', 'webp'];
+    // Example: Configuration test
+    BlurAppTestFramework.testCase(
+      'supports various image format configurations',
+      () {
+        final formats = ['jpg', 'png', 'webp'];
 
-          for (final format in formats) {
-            expect(() => _validateImageFormat(format), returnsNormally);
+        for (final format in formats) {
+          expect(() => _validateImageFormat(format), returnsNormally);
 
-            final config = _getFormatConfig(format);
-            expect(config.isSupported, isTrue);
-            expect(config.quality, greaterThan(0));
-          }
-        },
-        level: TestLevel.misc,
-      );
+          final config = _getFormatConfig(format);
+          expect(config.isSupported, isTrue);
+          expect(config.quality, greaterThan(0));
+        }
+      },
+      level: TestLevel.misc,
+    );
 
-      // Example: Graceful degradation test
-      BlurAppTestFramework.testCase(
-        'gracefully handles unsupported features on older devices',
-        () {
-          // Simulate older device capabilities
-          final oldDevice = _MockDeviceCapabilities(
-            hasAdvancedBlur: false,
-            hasHardwareAcceleration: false,
+    // Example: Graceful degradation test
+    BlurAppTestFramework.testCase(
+      'gracefully handles unsupported features on older devices',
+      () {
+        // Simulate older device capabilities
+        final oldDevice = _MockDeviceCapabilities(
+          hasAdvancedBlur: false,
+          hasHardwareAcceleration: false,
+        );
+
+        // Should fall back to basic implementation
+        final result = _getBlurImplementation(oldDevice);
+        expect(result.type, equals('basic'));
+        expect(result.isWorking, isTrue);
+      },
+      level: TestLevel.misc,
+    );
+
+    // Example: Memory management test
+    BlurAppTestFramework.asyncTest(
+      'properly releases resources after processing',
+      () async {
+        final initialMemory = _getCurrentMemoryUsage();
+
+        // Process multiple images
+        for (int i = 0; i < 10; i++) {
+          final processor = _ImageProcessor();
+          await processor.process(TestHelpers.createTestImageBytes());
+          processor.dispose();
+        }
+
+        // Allow garbage collection
+        await TestHelpers.waitForAsync(500);
+
+        final finalMemory = _getCurrentMemoryUsage();
+
+        // Memory should not have grown significantly
+        expect(finalMemory - initialMemory, lessThan(1024 * 1024)); // < 1MB
+      },
+      level: TestLevel.misc,
+    );
+
+    // Example: Internationalization test
+    BlurAppTestFramework.widgetTest(
+      'UI adapts to different locales correctly',
+      (tester) async {
+        final locales = [
+          const Locale('en', 'US'),
+          const Locale('es', 'ES'),
+          const Locale('ja', 'JP'),
+        ];
+
+        for (final locale in locales) {
+          await tester.pumpWidget(
+            MaterialApp(locale: locale, home: const _MockLocalizedScreen()),
           );
 
-          // Should fall back to basic implementation
-          final result = _getBlurImplementation(oldDevice);
-          expect(result.type, equals('basic'));
-          expect(result.isWorking, isTrue);
-        },
-        level: TestLevel.misc,
-      );
+          // Verify text is localized
+          expect(find.text('Blur'), findsOneWidget);
 
-      // Example: Memory management test
-      BlurAppTestFramework.asyncTest(
-        'properly releases resources after processing',
-        () async {
-          final initialMemory = _getCurrentMemoryUsage();
+          // Verify layout doesn't break with longer text
+          expect(tester.takeException(), isNull);
+        }
+      },
+      level: TestLevel.misc,
+    );
 
-          // Process multiple images
-          for (int i = 0; i < 10; i++) {
-            final processor = _ImageProcessor();
-            await processor.process(TestHelpers.createTestImageBytes());
-            processor.dispose();
-          }
+    // Example: Theme adaptability test
+    BlurAppTestFramework.widgetTest('UI adapts correctly to different themes', (
+      tester,
+    ) async {
+      final themes = [
+        ThemeData.light(),
+        ThemeData.dark(),
+        ThemeData.from(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
+        ),
+      ];
 
-          // Allow garbage collection
-          await TestHelpers.waitForAsync(500);
+      for (final theme in themes) {
+        await tester.pumpWidget(
+          MaterialApp(theme: theme, home: const _MockThemedScreen()),
+        );
 
-          final finalMemory = _getCurrentMemoryUsage();
-
-          // Memory should not have grown significantly
-          expect(finalMemory - initialMemory, lessThan(1024 * 1024)); // < 1MB
-        },
-        level: TestLevel.misc,
-      );
-
-      // Example: Internationalization test
-      BlurAppTestFramework.widgetTest(
-        'UI adapts to different locales correctly',
-        (tester) async {
-          final locales = [
-            const Locale('en', 'US'),
-            const Locale('es', 'ES'),
-            const Locale('ja', 'JP'),
-          ];
-
-          for (final locale in locales) {
-            await tester.pumpWidget(MaterialApp(
-              locale: locale,
-              home: const _MockLocalizedScreen(),
-            ));
-
-            // Verify text is localized
-            expect(find.text('Blur'), findsOneWidget);
-
-            // Verify layout doesn't break with longer text
-            expect(tester.takeException(), isNull);
-          }
-        },
-        level: TestLevel.misc,
-      );
-
-      // Example: Theme adaptability test
-      BlurAppTestFramework.widgetTest(
-        'UI adapts correctly to different themes',
-        (tester) async {
-          final themes = [
-            ThemeData.light(),
-            ThemeData.dark(),
-            ThemeData.from(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
-            ),
-          ];
-
-          for (final theme in themes) {
-            await tester.pumpWidget(MaterialApp(
-              theme: theme,
-              home: const _MockThemedScreen(),
-            ));
-
-            // Verify colors adapt to theme
-            final container = tester.widget<Container>(find.byType(Container));
-            expect(container.decoration, isNotNull);
-          }
-        },
-        level: TestLevel.misc,
-      );
-    },
-  );
+        // Verify colors adapt to theme
+        final container = tester.widget<Container>(find.byType(Container));
+        expect(container.decoration, isNotNull);
+      }
+    }, level: TestLevel.misc);
+  });
 }
 
 // Mock implementations and helpers
@@ -285,24 +278,15 @@ class _MockAccessibilityScreen extends StatelessWidget {
       children: [
         Semantics(
           label: 'Apply blur effect',
-          child: ElevatedButton(
-            onPressed: () {},
-            child: const Text('Blur'),
-          ),
+          child: ElevatedButton(onPressed: () {}, child: const Text('Blur')),
         ),
         Semantics(
           label: 'Blur strength slider',
-          child: Slider(
-            value: 0.5,
-            onChanged: (value) {},
-          ),
+          child: Slider(value: 0.5, onChanged: (value) {}),
         ),
         Semantics(
           label: 'Export image',
-          child: ElevatedButton(
-            onPressed: () {},
-            child: const Text('Export'),
-          ),
+          child: ElevatedButton(onPressed: () {}, child: const Text('Export')),
         ),
       ],
     );
@@ -314,9 +298,7 @@ class _MockLocalizedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Blur Editor'),
-    );
+    return const Center(child: Text('Blur Editor'));
   }
 }
 
@@ -326,9 +308,7 @@ class _MockThemedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
-      ),
+      decoration: BoxDecoration(color: Theme.of(context).colorScheme.surface),
       child: const Text('Themed Content'),
     );
   }

@@ -1,5 +1,10 @@
 name: Flutter CI
 
+env:
+  # Use the named channel/branch to avoid pinning to a tag that may not exist on upstream.
+  # 'stable' will track the current stable branch of Flutter and is suitable for CI.
+  FLUTTER_VERSION: 'stable'
+
 on:
   push:
     branches: [ main, 'comp/**', 'feat/**', 'fix/**' ]
@@ -12,11 +17,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up Java 21 (Temurin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'gradle'
+
       - name: Set up Flutter
         run: |
           sudo apt-get update
           sudo apt-get install -y git curl unzip xz-utils
-          git clone https://github.com/flutter/flutter.git -b stable --depth 1 /opt/flutter
+          git clone https://github.com/flutter/flutter.git -b $FLUTTER_VERSION --depth 1 /opt/flutter
           echo "/opt/flutter/bin" >> $GITHUB_PATH
           echo "/opt/flutter/bin/cache/dart-sdk/bin" >> $GITHUB_PATH
           /opt/flutter/bin/flutter --version
@@ -127,11 +139,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up Java 21 (Temurin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'gradle'
+
       - name: Set up Flutter
         run: |
           sudo apt-get update
           sudo apt-get install -y git curl unzip xz-utils
-          git clone https://github.com/flutter/flutter.git -b stable --depth 1 /opt/flutter
+          git clone https://github.com/flutter/flutter.git -b $FLUTTER_VERSION --depth 1 /opt/flutter
           echo "/opt/flutter/bin" >> $GITHUB_PATH
           echo "/opt/flutter/bin/cache/dart-sdk/bin" >> $GITHUB_PATH
           /opt/flutter/bin/flutter --version
@@ -152,6 +171,8 @@ jobs:
             echo "flutter pub get failed after $attempt attempts"; exit 1
           fi
 
+      # Java 21 is configured earlier in the job; no need to re-run setup-java here
+
       - name: Analyze and Test
         run: |
           cd app
@@ -169,6 +190,8 @@ jobs:
           export JAVA_TOOL_OPTIONS="$JAVA_TOOL_OPTIONS"
           export GRADLE_OPTS="$GRADLE_OPTS"
           /opt/flutter/bin/flutter build apk --debug
+
+      # Java 21 is already configured earlier in the job
 
   native-build-test:
     name: Native build & test

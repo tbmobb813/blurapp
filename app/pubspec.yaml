@@ -3,17 +3,22 @@ publish_to: 'none'
 version: 0.0.1+1
 
 environment:
-  sdk: '>=3.4.0 <4.0.0'
+  sdk: '>=3.8.0 <4.0.0'
 
 dependencies:
   flutter: { sdk: flutter }
-  ffi: ^2.1.2
-  path_provider: ^2.1.3
-  image_picker: ^1.1.2
-  permission_handler: ^11.3.1
-  share_plus: ^10.0.2
-  image: ^4.2.0
-  gal: ^2.3.0  # Gallery saver for MVP export functionality
+  ffi: ^2.1.4
+  path_provider: ^2.1.5
+  image_picker: ^1.2.0
+  permission_handler: ^12.0.1
+  share_plus: ^12.0.0
+  image: ^4.5.4
+  gal: ^2.3.2  # Gallery saver for MVP export functionality
+  # TensorFlow Lite for on-device inference (optional - graceful fallback in code)
+  # Use a newer tflite_flutter that declares an Android namespace (fixes
+  # AGP 8.6+ configuration-time "Namespace not specified" failures).
+  # See: https://pub.dev/packages/tflite_flutter
+  tflite_flutter: ^0.11.0
   # Optional later: camera, photo_manager
   # Note: TensorFlow Lite removed for MVP to keep app lightweight
   # Can be re-added later when better platform support is available

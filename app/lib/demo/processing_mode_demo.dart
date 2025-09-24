@@ -13,10 +13,7 @@ import '../native/hybrid_blur_bindings.dart';
 class ProcessingModeDemo extends StatefulWidget {
   final Uint8List imageBytes;
 
-  const ProcessingModeDemo({
-    super.key,
-    required this.imageBytes,
-  });
+  const ProcessingModeDemo({super.key, required this.imageBytes});
 
   @override
   State<ProcessingModeDemo> createState() => _ProcessingModeDemoState();
@@ -63,9 +60,9 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
       });
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Processing error: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Processing error: $e')));
       }
     } finally {
       if (mounted) {
@@ -96,9 +93,9 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
       });
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Segmentation error: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Segmentation error: $e')));
       }
     } finally {
       if (mounted) {
@@ -132,9 +129,7 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
             const SizedBox(height: 16),
 
             // Result Display
-            Expanded(
-              child: _buildResultDisplay(),
-            ),
+            Expanded(child: _buildResultDisplay()),
           ],
         ),
       ),
@@ -165,9 +160,9 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
           children: [
             Text(
               'Processing Mode: ${_modeInfo!.displayMode}',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             Text('Native Version: ${_modeInfo!.nativeVersion}'),
@@ -251,8 +246,9 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
                 const SizedBox(width: 8),
                 Expanded(
                   child: ElevatedButton.icon(
-                    onPressed:
-                        _isProcessing ? null : _processWithAutoSegmentation,
+                    onPressed: _isProcessing
+                        ? null
+                        : _processWithAutoSegmentation,
                     icon: const Icon(Icons.auto_fix_high),
                     label: const Text('Auto Segment'),
                   ),
@@ -280,10 +276,7 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
           children: [
             Row(
               children: [
-                Text(
-                  'Result',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
+                Text('Result', style: Theme.of(context).textTheme.titleMedium),
                 if (_lastProcessingMethod.isNotEmpty) ...[
                   const Spacer(),
                   Chip(
@@ -291,8 +284,9 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
                       _lastProcessingMethod,
                       style: const TextStyle(fontSize: 12),
                     ),
-                    backgroundColor:
-                        Theme.of(context).colorScheme.primaryContainer,
+                    backgroundColor: Theme.of(
+                      context,
+                    ).colorScheme.primaryContainer,
                   ),
                 ],
               ],

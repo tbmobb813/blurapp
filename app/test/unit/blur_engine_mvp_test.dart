@@ -9,11 +9,7 @@ void main() {
       const int width = 100;
       const int height = 100;
       final List<BrushStroke> strokes = [
-        const BrushStroke(
-          points: [Point(50, 50)],
-          size: 20,
-          opacity: 255,
-        ),
+        const BrushStroke(points: [Point(50, 50)], size: 20, opacity: 255),
       ];
 
       // Act
@@ -32,8 +28,12 @@ void main() {
       // Arrange
       const int width = 100;
       const int height = 100;
-      final Uint8List dummyImageBytes =
-          Uint8List.fromList([0x89, 0x50, 0x4E, 0x47]); // PNG header
+      final Uint8List dummyImageBytes = Uint8List.fromList([
+        0x89,
+        0x50,
+        0x4E,
+        0x47,
+      ]); // PNG header
 
       // Act
       final Uint8List? mask = await BlurEngineMVP.generateFaceMask(

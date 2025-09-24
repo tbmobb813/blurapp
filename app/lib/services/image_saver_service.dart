@@ -41,12 +41,16 @@ class ImageSaverService {
           await gp.hasGalleryAccess() || await gp.requestGalleryAccess();
       if (!hasPermission) {
         debugPrint(
-            '$_tag: Gallery permission denied or plugin unavailable - falling back to temp storage');
+          '$_tag: Gallery permission denied or plugin unavailable - falling back to temp storage',
+        );
         // Fall back to writing to system temp directory so tests and CI
         // environments without Gal/path_provider can still validate file ops.
         try {
-          final fallbackPath =
-              await _writeToSystemTemp(bytes, filename: filename, asPng: true);
+          final fallbackPath = await _writeToSystemTemp(
+            bytes,
+            filename: filename,
+            asPng: true,
+          );
           return fallbackPath;
         } catch (e) {
           debugPrint('$_tag: Fallback to system temp failed: $e');
@@ -69,9 +73,13 @@ class ImageSaverService {
       } catch (e) {
         // If path_provider isn't available (tests), fall back to system temp
         debugPrint(
-            '$_tag: getTemporaryDirectory failed, using system temp: $e');
-        final fallbackPath =
-            await _writeToSystemTemp(bytes, filename: filename, asPng: true);
+          '$_tag: getTemporaryDirectory failed, using system temp: $e',
+        );
+        final fallbackPath = await _writeToSystemTemp(
+          bytes,
+          filename: filename,
+          asPng: true,
+        );
         return fallbackPath;
       }
 
@@ -141,10 +149,14 @@ class ImageSaverService {
         filePath = '${dir.path}/$name.$extension';
       } catch (e) {
         debugPrint(
-            '$_tag: getApplicationDocumentsDirectory failed, using system temp: $e');
+          '$_tag: getApplicationDocumentsDirectory failed, using system temp: $e',
+        );
         // Fall back to system temp
-        filePath =
-            await _writeToSystemTemp(bytes, filename: filename, asPng: asPng);
+        filePath = await _writeToSystemTemp(
+          bytes,
+          filename: filename,
+          asPng: asPng,
+        );
         return filePath;
       }
 
@@ -157,8 +169,9 @@ class ImageSaverService {
       } else {
         final image = img.decodeImage(bytes);
         if (image == null) throw Exception('Invalid image data');
-        processedBytes =
-            Uint8List.fromList(img.encodeJpg(image, quality: quality));
+        processedBytes = Uint8List.fromList(
+          img.encodeJpg(image, quality: quality),
+        );
       }
 
       final file = File(filePath);
@@ -173,8 +186,11 @@ class ImageSaverService {
   }
 
   /// Helper that writes bytes to a system temp file when path_provider isn't available.
-  static Future<String> _writeToSystemTemp(Uint8List bytes,
-      {String? filename, bool asPng = true}) async {
+  static Future<String> _writeToSystemTemp(
+    Uint8List bytes, {
+    String? filename,
+    bool asPng = true,
+  }) async {
     final timestamp = DateTime.now().millisecondsSinceEpoch;
     final name = filename ?? 'blurred_$timestamp';
     final extension = asPng ? 'png' : 'jpg';
@@ -269,16 +285,28 @@ class ImageSaverService {
   }
 
   // Backwards-compatible convenience wrappers used by UI code/tests
-  static Future<String?> saveImage(Uint8List bytes,
-      {String? filename, bool asPng = true, int quality = 95}) async {
+  static Future<String?> saveImage(
+    Uint8List bytes, {
+    String? filename,
+    bool asPng = true,
+    int quality = 95,
+  }) async {
     // Default behavior: save to gallery
     return saveToGallery(bytes, filename: filename, quality: quality);
   }
 
-  static Future<String?> saveImagePermanent(Uint8List bytes,
-      {String? filename, bool asPng = true, int quality = 95}) async {
+  static Future<String?> saveImagePermanent(
+    Uint8List bytes, {
+    String? filename,
+    bool asPng = true,
+    int quality = 95,
+  }) async {
     // Default behavior: save to documents for permanent storage
-    return saveToDocuments(bytes,
-        filename: filename, asPng: asPng, quality: quality);
+    return saveToDocuments(
+      bytes,
+      filename: filename,
+      asPng: asPng,
+      quality: quality,
+    );
   }
 }

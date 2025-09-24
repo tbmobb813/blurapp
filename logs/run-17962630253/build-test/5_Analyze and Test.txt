@@ -1,0 +1,198 @@
+﻿2025-09-24T00:32:44.4900146Z ##[group]Run cd app
+2025-09-24T00:32:44.4900447Z [36;1mcd app[0m
+2025-09-24T00:32:44.4900653Z [36;1m/opt/flutter/bin/flutter analyze[0m
+2025-09-24T00:32:44.4900915Z [36;1m/opt/flutter/bin/flutter test[0m
+2025-09-24T00:32:44.4930506Z shell: /usr/bin/bash -e {0}
+2025-09-24T00:32:44.4930727Z ##[endgroup]
+2025-09-24T00:33:00.6916070Z Analyzing app...                                                
+2025-09-24T00:33:00.6933079Z No issues found! (ran in 15.4s)
+2025-09-24T00:33:01.8752477Z 
+2025-09-24T00:33:18.6455070Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should detect OpenCV availability
+2025-09-24T00:33:18.6494195Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should detect GPU availability
+2025-09-24T00:33:18.6618976Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should apply advanced Gaussian blur
+2025-09-24T00:33:18.6673178Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should apply advanced Box blur
+2025-09-24T00:33:18.6726774Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should apply advanced Motion blur
+2025-09-24T00:33:18.6767636Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should apply selective blur with mask
+2025-09-24T00:33:18.6797110Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should handle zero sigma gracefully
+2025-09-24T00:33:18.6841563Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should get enhanced processing capabilities
+2025-09-24T00:33:18.6872303Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should validate version includes OpenCV info
+2025-09-24T00:33:18.9690761Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should handle large images efficiently
+2025-09-24T00:33:18.9747556Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart: Phase 2: OpenCV Blur Engine Tests should use legacy compatibility method
+2025-09-24T00:33:19.9460473Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] Blur Pipeline Performance [CORE] small image gaussian blur performance
+2025-09-24T00:33:20.0396656Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] Blur Pipeline Performance [CRITICAL] medium image pixelate performance
+2025-09-24T00:33:20.0939430Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] Blur Pipeline Performance [MISC] mosaic blur algorithm performance
+2025-09-24T00:33:21.1581676Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] Blur Pipeline Performance [CRITICAL] large image memory usage validation
+2025-09-24T00:33:21.4783909Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] Blur Pipeline Performance [MISC] multiple blur operations stability
+2025-09-24T00:33:21.5134927Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] AutoDetectService Performance [CORE] face detection suggestion generation performance
+2025-09-24T00:33:21.5137012Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-24T00:33:21.5137823Z AutoDetectService: Closed (manual fallback mode)
+2025-09-24T00:33:21.5138514Z ##[endgroup]
+2025-09-24T00:33:21.5874959Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] AutoDetectService Performance [MISC] segmentation mask generation performance
+2025-09-24T00:33:21.5877650Z AutoDetectService: Using manual fallback mode for assets/models/selfie_segmentation.tflite
+2025-09-24T00:33:21.5878413Z AutoDetectService: Closed (manual fallback mode)
+2025-09-24T00:33:21.5879431Z ##[endgroup]
+2025-09-24T00:33:21.6314124Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] AutoDetectService Performance [CORE] service memory usage during operations
+2025-09-24T00:33:21.6315912Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-24T00:33:21.6316682Z AutoDetectService: Closed (manual fallback mode)
+2025-09-24T00:33:21.6317345Z ##[endgroup]
+2025-09-24T00:33:21.6379424Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] Edge Cases and Stress Tests [MISC] invalid image data handling performance
+2025-09-24T00:33:21.6381105Z BlurPipeline error: RangeError (length): Invalid value: Not in inclusive range 0..3: 4
+2025-09-24T00:33:21.6382044Z ##[endgroup]
+2025-09-24T00:33:21.6727943Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] Edge Cases and Stress Tests [MISC] extreme blur strength values performance
+2025-09-24T00:33:21.6893423Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] Edge Cases and Stress Tests [MISC] minimal size image processing
+2025-09-24T00:33:21.9847539Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] Edge Cases and Stress Tests [CRITICAL] concurrent blur operations stress test
+2025-09-24T00:33:22.1163636Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart: [MISC] Core Performance Tests [CORE] Memory Pressure Tests [MISC] image processing under memory pressure
+2025-09-24T00:33:23.0540864Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] Image Processing Memory Tests [CORE] small image processing stays within memory limits
+2025-09-24T00:33:23.1040066Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_management_test.dart: [MISC] Enhanced Memory Management Tests [CRITICAL] Memory Safety Features [CRITICAL] very large image processing with memory constraints
+2025-09-24T00:33:23.1041751Z BlurPipeline: Resizing 4000x3000 to 2048x1536 for processing
+2025-09-24T00:33:23.1042584Z ##[endgroup]
+2025-09-24T00:33:23.6694087Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] Image Processing Memory Tests [CRITICAL] medium image processing performance
+2025-09-24T00:33:24.1348129Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] Image Processing Memory Tests [MISC] large image memory constraint validation
+2025-09-24T00:33:24.1696622Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] AutoDetectService Memory Tests [CORE] face detection suggestions use minimal memory
+2025-09-24T00:33:24.1698613Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-24T00:33:24.1699597Z AutoDetectService: Closed (manual fallback mode)
+2025-09-24T00:33:24.1700299Z ##[endgroup]
+2025-09-24T00:33:24.2373180Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] AutoDetectService Memory Tests [MISC] segmentation mask generation performance
+2025-09-24T00:33:24.2379792Z AutoDetectService: Using manual fallback mode for assets/models/selfie_segmentation.tflite
+2025-09-24T00:33:24.2381065Z AutoDetectService: Closed (manual fallback mode)
+2025-09-24T00:33:24.2381823Z ##[endgroup]
+2025-09-24T00:33:24.2600385Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] AutoDetectService Memory Tests [MISC] multiple service instances cleanup properly
+2025-09-24T00:33:24.2602345Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-24T00:33:24.2603411Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-24T00:33:24.2604444Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-24T00:33:24.2605403Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-24T00:33:24.2606369Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-24T00:33:24.2607132Z AutoDetectService: Closed (manual fallback mode)
+2025-09-24T00:33:24.2607658Z AutoDetectService: Closed (manual fallback mode)
+2025-09-24T00:33:24.2608200Z AutoDetectService: Closed (manual fallback mode)
+2025-09-24T00:33:24.2608753Z AutoDetectService: Closed (manual fallback mode)
+2025-09-24T00:33:24.2609467Z AutoDetectService: Closed (manual fallback mode)
+2025-09-24T00:33:24.2610206Z ##[endgroup]
+2025-09-24T00:33:24.2704909Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_management_test.dart: [MISC] Enhanced Memory Management Tests [CRITICAL] Memory Safety Features [CORE] preview mode reduces memory usage
+2025-09-24T00:33:24.2707676Z BlurPipeline: Resizing 2000x1500 to 512x384 for processing
+2025-09-24T00:33:24.2708564Z ##[endgroup]
+2025-09-24T00:33:24.3651561Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] Image Save/Load Operations [CRITICAL] image save operations handle large files efficiently
+2025-09-24T00:33:24.3653590Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-24T00:33:24.3655111Z ImageSaverService: getApplicationDocumentsDirectory failed, using system temp: NoSuchMethodError: The method 'getApplicationDocumentsDirectory' was called on null.
+2025-09-24T00:33:24.3656605Z Receiver: null
+2025-09-24T00:33:24.3656961Z Tried calling: getApplicationDocumentsDirectory()
+2025-09-24T00:33:24.3657786Z ##[endgroup]
+2025-09-24T00:33:24.3800753Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] Image Save/Load Operations [MISC] cache clearing handles large directories
+2025-09-24T00:33:24.3802676Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-24T00:33:24.3804037Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-24T00:33:24.3805162Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-24T00:33:24.3806300Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-24T00:33:24.3807434Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-24T00:33:24.3808540Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-24T00:33:24.3809939Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-24T00:33:24.3811012Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-24T00:33:24.3812132Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-24T00:33:24.3813233Z ImageSaverService: Gallery permission denied or plugin unavailable - falling back to temp storage
+2025-09-24T00:33:24.3814783Z ImageSaverService: Error clearing cache: NoSuchMethodError: The method 'getTemporaryDirectory' was called on null.
+2025-09-24T00:33:24.3815643Z Receiver: null
+2025-09-24T00:33:24.3815978Z Tried calling: getTemporaryDirectory()
+2025-09-24T00:33:24.3817186Z ##[endgroup]
+2025-09-24T00:33:24.7457020Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_management_test.dart: [MISC] Enhanced Memory Management Tests [CRITICAL] Memory Safety Features [MISC] extreme strength values are safely clamped
+2025-09-24T00:33:24.8707081Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] Image Save/Load Operations [CRITICAL] concurrent image processing maintains stability
+2025-09-24T00:33:24.8812404Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] Edge Cases and Limits [MISC] extremely small images are handled gracefully
+2025-09-24T00:33:24.8897671Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] Edge Cases and Limits [CORE] invalid image data fails gracefully without memory leaks
+2025-09-24T00:33:24.8899815Z BlurPipeline error: RangeError (length): Invalid value: Not in inclusive range 0..3: 4
+2025-09-24T00:33:24.8901306Z ##[endgroup]
+2025-09-24T00:33:24.9684354Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart: [MISC] Memory & Performance Tests [PERFORMANCE] Edge Cases and Limits [MISC] extreme blur strength values are handled safely
+2025-09-24T00:33:25.4326277Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_management_test.dart: [MISC] Enhanced Memory Management Tests [CRITICAL] Performance Optimizations [CRITICAL] large image processing completes within time limits
+2025-09-24T00:33:26.6274291Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_management_test.dart: [MISC] Enhanced Memory Management Tests [CRITICAL] Performance Optimizations [CRITICAL] preview processing is significantly faster
+2025-09-24T00:33:26.6276341Z BlurPipeline: Resizing 1200x800 to 512x341 for processing
+2025-09-24T00:33:26.6277782Z ##[endgroup]
+2025-09-24T00:33:26.8833763Z ✅ /home/runner/work/blurapp/blurapp/app/test/integration/user_workflow_test.dart: [MISC] User Workflow Critical Tests [CRITICAL] complete app navigation flow works
+2025-09-24T00:33:27.1423284Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_management_test.dart: [MISC] Enhanced Memory Management Tests [CRITICAL] Performance Optimizations [MISC] memory usage scales predictably with image size
+2025-09-24T00:33:27.1834365Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/integration/user_workflow_test.dart: [MISC] User Workflow Critical Tests [CRITICAL] settings screen functionality works
+2025-09-24T00:33:27.1839455Z ImageSaverService: Error clearing cache: NoSuchMethodError: The method 'getTemporaryDirectory' was called on null.
+2025-09-24T00:33:27.1840471Z Receiver: null
+2025-09-24T00:33:27.1840828Z Tried calling: getTemporaryDirectory()
+2025-09-24T00:33:27.1841625Z ##[endgroup]
+2025-09-24T00:33:27.1883340Z ✅ /home/runner/work/blurapp/blurapp/app/test/integration/user_workflow_test.dart: [MISC] User Workflow Critical Tests [CRITICAL] app architecture follows privacy-first principles
+2025-09-24T00:33:28.6024380Z ✅ /home/runner/work/blurapp/blurapp/app/test/widget_test.dart: [MISC] BlurApp Widget Tests [CRITICAL] app renders without crashing
+2025-09-24T00:33:28.6664923Z ✅ /home/runner/work/blurapp/blurapp/app/test/widget_test.dart: [MISC] BlurApp Widget Tests [CRITICAL] home screen is displayed as initial screen
+2025-09-24T00:33:28.7200909Z ✅ /home/runner/work/blurapp/blurapp/app/test/widget_test.dart: [MISC] BlurApp Widget Tests [CRITICAL] gallery and camera buttons are present
+2025-09-24T00:33:30.0260033Z ✅ /home/runner/work/blurapp/blurapp/app/test/widget/home_screen_mvp_test.dart: HomeScreenMVP Widget Tests should display app title and buttons
+2025-09-24T00:33:30.0911780Z ✅ /home/runner/work/blurapp/blurapp/app/test/widget/home_screen_mvp_test.dart: HomeScreenMVP Widget Tests should have app icon
+2025-09-24T00:33:30.1419815Z ✅ /home/runner/work/blurapp/blurapp/app/test/widget/home_screen_mvp_test.dart: HomeScreenMVP Widget Tests should have gallery and camera buttons
+2025-09-24T00:33:30.1926525Z ✅ /home/runner/work/blurapp/blurapp/app/test/widget/home_screen_mvp_test.dart: HomeScreenMVP Widget Tests buttons should be tappable
+2025-09-24T00:33:30.2406597Z ✅ /home/runner/work/blurapp/blurapp/app/test/widget/home_screen_mvp_test.dart: HomeScreenMVP Widget Tests should have proper layout structure
+2025-09-24T00:33:30.8755019Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/phase1/mediapipe_foundation_test.dart: Phase 1: MediaPipe Foundation Tests Native Bridge Foundation native availability check with fallback
+2025-09-24T00:33:30.8756817Z NativeBlurBindings: Using Dart fallback
+2025-09-24T00:33:30.8757576Z ##[endgroup]
+2025-09-24T00:33:30.8790562Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase1/mediapipe_foundation_test.dart: Phase 1: MediaPipe Foundation Tests Native Bridge Foundation version information retrieval
+2025-09-24T00:33:30.8854860Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase1/mediapipe_foundation_test.dart: Phase 1: MediaPipe Foundation Tests Native Bridge Foundation processing capabilities detection
+2025-09-24T00:33:30.8990811Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/phase1/mediapipe_foundation_test.dart: Phase 1: MediaPipe Foundation Tests Hybrid Processing Pipeline intelligent fallback to dart processing
+2025-09-24T00:33:30.8991802Z HybridBlurPipeline: Using Dart fallback
+2025-09-24T00:33:30.8992198Z ##[endgroup]
+2025-09-24T00:33:30.9051461Z ✅ /home/runner/work/blurapp/blurapp/app/test/phase1/mediapipe_foundation_test.dart: Phase 1: MediaPipe Foundation Tests Hybrid Processing Pipeline processing mode info compilation
+2025-09-24T00:33:30.9079420Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/phase1/mediapipe_foundation_test.dart: Phase 1: MediaPipe Foundation Tests Phase 1 Preparation Features segmentation initialization with model path
+2025-09-24T00:33:30.9080339Z NativeBlurBindings: Segmentation initialization failed
+2025-09-24T00:33:30.9081414Z ##[endgroup]
+2025-09-24T00:33:30.9138585Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/phase1/mediapipe_foundation_test.dart: Phase 1: MediaPipe Foundation Tests Phase 1 Preparation Features error handling for unavailable methods
+2025-09-24T00:33:30.9140652Z NativeBlurBindings error getting version: PlatformException(UNIMPLEMENTED, Method not implemented, null, null)
+2025-09-24T00:33:30.9141731Z ##[endgroup]
+2025-09-24T00:33:31.6061021Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/blur_engine_mvp_test.dart: BlurEngineMVP Tests createBrushMask should generate valid mask
+2025-09-24T00:33:31.6171895Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/unit/blur_engine_mvp_test.dart: BlurEngineMVP Tests generateFaceMask should return placeholder mask
+2025-09-24T00:33:31.6174637Z BlurEngineMVP: Face detection not yet implemented - using placeholder
+2025-09-24T00:33:31.6181170Z ##[endgroup]
+2025-09-24T00:33:31.6215371Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/blur_engine_mvp_test.dart: BlurEngineMVP Tests BlurType enum should have expected values
+2025-09-24T00:33:31.6247793Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/blur_engine_mvp_test.dart: BlurEngineMVP Tests BrushStroke should create valid instances
+2025-09-24T00:33:31.6278006Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/blur_engine_mvp_test.dart: BlurEngineMVP Tests Point should create valid instances
+2025-09-24T00:33:32.2554446Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/unit/auto_detect_service_test.dart: [MISC] AutoDetectService Manual Fallback Tests [CORE] can create face detection service
+2025-09-24T00:33:32.2556006Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-24T00:33:32.2557444Z AutoDetectService: Closed (manual fallback mode)
+2025-09-24T00:33:32.2558187Z ##[endgroup]
+2025-09-24T00:33:32.2584620Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/unit/auto_detect_service_test.dart: [MISC] AutoDetectService Manual Fallback Tests [CORE] can create segmentation service
+2025-09-24T00:33:32.2586820Z AutoDetectService: Using manual fallback mode for assets/models/selfie_segmentation.tflite
+2025-09-24T00:33:32.2587725Z AutoDetectService: Closed (manual fallback mode)
+2025-09-24T00:33:32.2588729Z ##[endgroup]
+2025-09-24T00:33:32.2657122Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/auto_detect_service_test.dart: [MISC] AutoDetectService Manual Fallback Tests [CORE] throws error for unknown model
+2025-09-24T00:33:32.3413425Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/unit/auto_detect_service_test.dart: [MISC] AutoDetectService Manual Fallback Tests [MISC] face detection returns suggested regions
+2025-09-24T00:33:32.3417299Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-24T00:33:32.3418108Z AutoDetectService: Closed (manual fallback mode)
+2025-09-24T00:33:32.3418774Z ##[endgroup]
+2025-09-24T00:33:32.3576733Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/unit/auto_detect_service_test.dart: [MISC] AutoDetectService Manual Fallback Tests [CORE] segmentation returns full image region
+2025-09-24T00:33:32.3577734Z AutoDetectService: Using manual fallback mode for assets/models/selfie_segmentation.tflite
+2025-09-24T00:33:32.3578177Z AutoDetectService: Closed (manual fallback mode)
+2025-09-24T00:33:32.3578580Z ##[endgroup]
+2025-09-24T00:33:32.3880566Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/unit/auto_detect_service_test.dart: [MISC] AutoDetectService Manual Fallback Tests [MISC] segmentation mask generation works
+2025-09-24T00:33:32.3882136Z AutoDetectService: Using manual fallback mode for assets/models/selfie_segmentation.tflite
+2025-09-24T00:33:32.3882904Z AutoDetectService: Closed (manual fallback mode)
+2025-09-24T00:33:32.3883664Z ##[endgroup]
+2025-09-24T00:33:32.3949652Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/unit/auto_detect_service_test.dart: [MISC] AutoDetectService Manual Fallback Tests [MISC] face detection service returns null for segmentation
+2025-09-24T00:33:32.3951806Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-24T00:33:32.3952614Z AutoDetectService: Closed (manual fallback mode)
+2025-09-24T00:33:32.3953294Z ##[endgroup]
+2025-09-24T00:33:32.3978037Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/unit/auto_detect_service_test.dart: [MISC] AutoDetectService Manual Fallback Tests [MISC] handles invalid image data gracefully
+2025-09-24T00:33:32.3979714Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-24T00:33:32.3980516Z AutoDetectService: Closed (manual fallback mode)
+2025-09-24T00:33:32.3981294Z ##[endgroup]
+2025-09-24T00:33:32.4237025Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/unit/auto_detect_service_test.dart: [MISC] AutoDetectService Manual Fallback Tests [MISC] landscape images get multiple face suggestions
+2025-09-24T00:33:32.4238711Z AutoDetectService: Using manual fallback mode for assets/models/face_detection_short_range.tflite
+2025-09-24T00:33:32.4239780Z AutoDetectService: Closed (manual fallback mode)
+2025-09-24T00:33:32.4240454Z ##[endgroup]
+2025-09-24T00:33:33.0538603Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/blur_pipeline_test.dart: [MISC] BlurPipeline Core Algorithm Tests [CORE] gaussian blur produces valid output for all strengths
+2025-09-24T00:33:33.0564932Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/blur_pipeline_test.dart: [MISC] BlurPipeline Core Algorithm Tests [CORE] pixelate effect maintains image integrity
+2025-09-24T00:33:33.0586678Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/blur_pipeline_test.dart: [MISC] BlurPipeline Core Algorithm Tests [CORE] mosaic effect produces valid output
+2025-09-24T00:33:33.0611585Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/blur_pipeline_test.dart: [MISC] BlurPipeline Core Algorithm Tests [MISC] handles invalid blur type gracefully
+2025-09-24T00:33:33.0633012Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/blur_pipeline_test.dart: [MISC] BlurPipeline Core Algorithm Tests [MISC] handles edge case blur strength values
+2025-09-24T00:33:33.6737370Z ##[group]✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_management_test.dart: [MISC] Enhanced Memory Management Tests [CORE] Edge Case Handling [MISC] ultra-high resolution image handling
+2025-09-24T00:33:33.6738324Z BlurPipeline: Resizing 8000x6000 to 2048x1536 for processing
+2025-09-24T00:33:33.6738778Z ##[endgroup]
+2025-09-24T00:33:34.5658294Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_management_test.dart: [MISC] Enhanced Memory Management Tests [CORE] Edge Case Handling [CRITICAL] concurrent large image processing
+2025-09-24T00:33:35.4579521Z ✅ /home/runner/work/blurapp/blurapp/app/test/performance/memory_management_test.dart: [MISC] Enhanced Memory Management Tests [CORE] Edge Case Handling [MISC] memory cleanup after processing
+2025-09-24T00:33:36.7908277Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/image_saver_service_test.dart: [MISC] ImageSaverService Enhanced Tests [CORE] image creation and encoding works correctly
+2025-09-24T00:33:36.7957154Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/image_saver_service_test.dart: [MISC] ImageSaverService Enhanced Tests [CORE] ImageSaverService class can be instantiated
+2025-09-24T00:33:36.8691377Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/image_saver_service_test.dart: [MISC] ImageSaverService Enhanced Tests [MISC] image format validation works
+2025-09-24T00:33:36.8844927Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/image_saver_service_test.dart: [MISC] ImageSaverService Enhanced Tests [MISC] quality parameter range validation
+2025-09-24T00:33:36.8877472Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/image_saver_service_test.dart: [MISC] ImageSaverService Enhanced Tests [MISC] timestamp generation creates unique values
+2025-09-24T00:33:36.8900670Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/image_saver_service_test.dart: [MISC] ImageSaverService Enhanced Tests [CORE] file extension logic works correctly
+2025-09-24T00:33:37.2522195Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/home_screen_test.dart: [MISC] HomeScreen Core Tests [CORE] home screen renders all essential UI elements
+2025-09-24T00:33:37.4137233Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/home_screen_test.dart: [MISC] HomeScreen Core Tests [CORE] picker buttons exist and are tappable
+2025-09-24T00:33:37.7002586Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/home_screen_test.dart: [MISC] HomeScreen Core Tests [CORE] settings navigation works
+2025-09-24T00:33:37.7383671Z ✅ /home/runner/work/blurapp/blurapp/app/test/unit/home_screen_test.dart: [MISC] HomeScreen Core Tests [MISC] privacy notice is displayed
+2025-09-24T00:33:37.7691387Z 
+2025-09-24T00:33:37.7698150Z 🎉 92 tests passed.

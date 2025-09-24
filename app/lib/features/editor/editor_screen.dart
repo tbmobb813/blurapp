@@ -51,7 +51,8 @@ class _EditorScreenState extends State<EditorScreen> {
 
     try {
       final service = await AutoDetectService.create(
-          modelPath: 'assets/models/face_detection_short_range.tflite');
+        modelPath: 'assets/models/face_detection_short_range.tflite',
+      );
 
       final rects = await service.detect(_imageBytes!);
       for (final rect in rects) {
@@ -67,9 +68,9 @@ class _EditorScreenState extends State<EditorScreen> {
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Face detection failed: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Face detection failed: $e')));
       }
     } finally {
       setState(() => _loading = false);
@@ -82,7 +83,8 @@ class _EditorScreenState extends State<EditorScreen> {
 
     try {
       final service = await AutoDetectService.create(
-          modelPath: 'assets/models/selfie_segmentation.tflite');
+        modelPath: 'assets/models/selfie_segmentation.tflite',
+      );
 
       final maskBytes = await service.detectSegmentation(_imageBytes!);
       if (maskBytes != null) {
@@ -111,8 +113,11 @@ class _EditorScreenState extends State<EditorScreen> {
   void _applyBlur() {
     if (_imageBytes == null) return;
     setState(() {
-      _imageBytes =
-          BlurPipeline.applyBlur(_imageBytes!, _blurType, _blurStrength);
+      _imageBytes = BlurPipeline.applyBlur(
+        _imageBytes!,
+        _blurType,
+        _blurStrength,
+      );
     });
   }
 
@@ -121,20 +126,26 @@ class _EditorScreenState extends State<EditorScreen> {
     setState(() => _loading = true);
 
     try {
-      final path = await ImageSaverService.saveImage(_imageBytes!,
-          asPng: _exportAsPng, quality: _exportQuality);
+      final path = await ImageSaverService.saveImage(
+        _imageBytes!,
+        asPng: _exportAsPng,
+        quality: _exportQuality,
+      );
 
       if (path == null) {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-                content: Text('Export failed: could not save image')),
+              content: Text('Export failed: could not save image'),
+            ),
           );
         }
         return;
       }
 
-      await Share.shareXFiles([XFile(path)], text: 'Blurred image');
+      await SharePlus.instance.share(
+        ShareParams(text: 'Blurred image', files: [XFile(path)]),
+      );
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -146,9 +157,9 @@ class _EditorScreenState extends State<EditorScreen> {
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Export failed: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Export failed: $e')));
       }
     } finally {
       setState(() => _loading = false);
@@ -160,8 +171,11 @@ class _EditorScreenState extends State<EditorScreen> {
     setState(() => _loading = true);
 
     try {
-      final path = await ImageSaverService.saveImagePermanent(_imageBytes!,
-          asPng: _exportAsPng, quality: _exportQuality);
+      final path = await ImageSaverService.saveImagePermanent(
+        _imageBytes!,
+        asPng: _exportAsPng,
+        quality: _exportQuality,
+      );
 
       if (mounted) {
         if (path != null && path.isNotEmpty) {
@@ -183,9 +197,9 @@ class _EditorScreenState extends State<EditorScreen> {
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Save failed: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Save failed: $e')));
       }
     } finally {
       setState(() => _loading = false);
@@ -198,18 +212,15 @@ class _EditorScreenState extends State<EditorScreen> {
       appBar: AppBar(
         title: const Text('Blur Editor', style: TypographyScale.title),
         actions: [
-          IconButton(
-            icon: const Icon(AppIcons.settings),
-            onPressed: () {},
-          ),
+          IconButton(icon: const Icon(AppIcons.settings), onPressed: () {}),
         ],
       ),
       body: Center(
         child: _loading
             ? const CircularProgressIndicator()
             : _imageBytes == null
-                ? _buildImagePicker()
-                : _buildEditor(),
+            ? _buildImagePicker()
+            : _buildEditor(),
       ),
     );
   }

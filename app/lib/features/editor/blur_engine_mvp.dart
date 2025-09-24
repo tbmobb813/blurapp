@@ -5,11 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/painting.dart';
 
 /// Blur types for MVP
-enum BlurType {
-  gaussian,
-  pixelate,
-  mosaic,
-}
+enum BlurType { gaussian, pixelate, mosaic }
 
 /// MVP Blur Engine for Sprint 1
 ///
@@ -52,7 +48,8 @@ class BlurEngineMVP {
       final int targetHeight = workingHeight ?? imageHeight;
 
       debugPrint(
-          '$_tag: Processing ${imageWidth}x$imageHeight image at ${targetWidth}x$targetHeight working resolution');
+        '$_tag: Processing ${imageWidth}x$imageHeight image at ${targetWidth}x$targetHeight working resolution',
+      );
 
       // Create blur effect based on type
       ui.Image blurredImage;
@@ -78,8 +75,9 @@ class BlurEngineMVP {
       );
 
       // Convert back to bytes
-      final ByteData? byteData =
-          await result.toByteData(format: ui.ImageByteFormat.png);
+      final ByteData? byteData = await result.toByteData(
+        format: ui.ImageByteFormat.png,
+      );
       if (byteData == null) {
         debugPrint('$_tag: Failed to encode result image');
         return null;
@@ -120,23 +118,24 @@ class BlurEngineMVP {
     // Draw brush strokes
     for (final stroke in brushStrokes) {
       final Paint paint = Paint()
-        ..color =
-            Color.fromARGB(255, stroke.opacity, stroke.opacity, stroke.opacity)
+        ..color = Color.fromARGB(
+          255,
+          stroke.opacity,
+          stroke.opacity,
+          stroke.opacity,
+        )
         ..style = PaintingStyle.fill;
 
       for (final point in stroke.points) {
-        canvas.drawCircle(
-          Offset(point.x, point.y),
-          stroke.size,
-          paint,
-        );
+        canvas.drawCircle(Offset(point.x, point.y), stroke.size, paint);
       }
     }
 
     final ui.Picture picture = recorder.endRecording();
     final ui.Image image = await picture.toImage(width, height);
-    final ByteData? byteData =
-        await image.toByteData(format: ui.ImageByteFormat.rawRgba);
+    final ByteData? byteData = await image.toByteData(
+      format: ui.ImageByteFormat.rawRgba,
+    );
 
     // Convert RGBA to grayscale mask
     if (byteData != null) {
@@ -164,9 +163,13 @@ class BlurEngineMVP {
     required int width,
     required int height,
   }) async {
-    // TODO: Integrate MediaPipe Face Detection
-    // For now, return a placeholder mask
-    debugPrint('$_tag: Face detection not yet implemented - using placeholder');
+    // NOTE: Face detection is implemented outside this engine in
+    // `AutoDetectService` (TFLite or manual fallback). This method
+    // remains a local placeholder for callers that do not use
+    // AutoDetectService and returns a simple center mask.
+    debugPrint(
+      '$_tag: Using local placeholder face mask (AutoDetectService recommended)',
+    );
 
     // Create a simple center mask as placeholder
     final Uint8List mask = Uint8List(width * height);
@@ -189,14 +192,56 @@ class BlurEngineMVP {
     return mask;
   }
 
+  /// Convert a grayscale mask (0-255 per pixel) into a list of brush strokes.
+  ///
+  /// This is a simple heuristic used by the MVP to convert detected mask
+  /// regions into a set of discrete brush strokes that the editor UI can
+  /// display and edit. It samples the mask at a given `stride` and emits a
+  /// stroke for any sampled pixel above `threshold`. The `baseSize` controls
+  /// the visual size of the generated strokes.
+  static List<BrushStroke> maskToBrushStrokes(
+    Uint8List mask,
+    int width,
+    int height, {
+    int stride = 8,
+    int threshold = 128,
+    double baseSize = 30.0,
+  }) {
+    final List<BrushStroke> strokes = [];
+
+    if (mask.length < width * height) return strokes;
+
+    for (int y = 0; y < height; y += stride) {
+      for (int x = 0; x < width; x += stride) {
+        final int idx = y * width + x;
+        final int v = mask[idx];
+        if (v > threshold) {
+          strokes.add(
+            BrushStroke(
+              points: [Point(x.toDouble(), y.toDouble())],
+              size: baseSize,
+              opacity: v,
+            ),
+          );
+        }
+      }
+    }
+
+    return strokes;
+  }
+
   // Private helper methods
 
   static Future<ui.Image> _applyGaussianBlur(
-      ui.Image image, double strength) async {
+    ui.Image image,
+    double strength,
+  ) async {
     // Use ImageFilter for GPU acceleration
     final double sigma = strength * 10.0; // Scale strength to reasonable sigma
-    final ui.ImageFilter filter =
-        ui.ImageFilter.blur(sigmaX: sigma, sigmaY: sigma);
+    final ui.ImageFilter filter = ui.ImageFilter.blur(
+      sigmaX: sigma,
+      sigmaY: sigma,
+    );
 
     final ui.PictureRecorder recorder = ui.PictureRecorder();
     final Canvas canvas = Canvas(recorder);
@@ -210,12 +255,16 @@ class BlurEngineMVP {
   }
 
   static Future<ui.Image> _applyPixelate(
-      ui.Image image, double strength) async {
+    ui.Image image,
+    double strength,
+  ) async {
     // Pixelate by scaling down and up
     final double scale = 1.0 - (strength * 0.95); // Keep some detail
     final int smallWidth = (image.width * scale).round().clamp(1, image.width);
-    final int smallHeight =
-        (image.height * scale).round().clamp(1, image.height);
+    final int smallHeight = (image.height * scale).round().clamp(
+      1,
+      image.height,
+    );
 
     final ui.PictureRecorder recorder = ui.PictureRecorder();
     final Canvas canvas = Canvas(recorder);
@@ -223,11 +272,16 @@ class BlurEngineMVP {
     // Scale down
     canvas.scale(smallWidth / image.width, smallHeight / image.height);
     canvas.drawImage(
-        image, Offset.zero, Paint()..filterQuality = FilterQuality.none);
+      image,
+      Offset.zero,
+      Paint()..filterQuality = FilterQuality.none,
+    );
 
     final ui.Picture smallPicture = recorder.endRecording();
-    final ui.Image smallImage =
-        await smallPicture.toImage(smallWidth, smallHeight);
+    final ui.Image smallImage = await smallPicture.toImage(
+      smallWidth,
+      smallHeight,
+    );
 
     // Scale back up
     final ui.PictureRecorder recorder2 = ui.PictureRecorder();
@@ -235,7 +289,10 @@ class BlurEngineMVP {
 
     canvas2.scale(image.width / smallWidth, image.height / smallHeight);
     canvas2.drawImage(
-        smallImage, Offset.zero, Paint()..filterQuality = FilterQuality.none);
+      smallImage,
+      Offset.zero,
+      Paint()..filterQuality = FilterQuality.none,
+    );
 
     final ui.Picture largePicture = recorder2.endRecording();
     return await largePicture.toImage(image.width, image.height);
@@ -281,12 +338,7 @@ class BlurEngineMVP {
           );
           final Rect destRect = sourceRect;
 
-          canvas.drawImageRect(
-            blurred,
-            sourceRect,
-            destRect,
-            blurPaint,
-          );
+          canvas.drawImageRect(blurred, sourceRect, destRect, blurPaint);
         }
       }
     }

@@ -48,9 +48,9 @@ class _HomeScreenMVPState extends State<HomeScreenMVP> {
     } catch (e) {
       debugPrint('$_tag: Error picking image: $e');
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error picking image: $e')),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Error picking image: $e')));
       }
     }
   }
@@ -83,11 +83,7 @@ class _HomeScreenMVPState extends State<HomeScreenMVP> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               // App logo/title
-              const Icon(
-                Icons.blur_on,
-                size: 80,
-                color: Colors.white,
-              ),
+              const Icon(Icons.blur_on, size: 80, color: Colors.white),
               const SizedBox(height: 16),
 
               const Text(
@@ -105,10 +101,7 @@ class _HomeScreenMVPState extends State<HomeScreenMVP> {
               const Text(
                 'Select a Photo to Blur',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white70,
-                  fontSize: 16,
-                ),
+                style: TextStyle(color: Colors.white70, fontSize: 16),
               ),
 
               const SizedBox(height: 48),
@@ -169,10 +162,7 @@ class _HomeScreenMVPState extends State<HomeScreenMVP> {
                       '• All processing happens on your device\n'
                       '• No photos are uploaded to the internet\n'
                       '• No accounts or tracking required',
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 14,
-                      ),
+                      style: TextStyle(color: Colors.white70, fontSize: 14),
                     ),
                   ],
                 ),

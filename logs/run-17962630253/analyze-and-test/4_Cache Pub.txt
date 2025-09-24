@@ -1,0 +1,17 @@
+﻿2025-09-24T00:29:46.1391699Z ##[group]Run actions/cache@v4
+2025-09-24T00:29:46.1391963Z with:
+2025-09-24T00:29:46.1392160Z   path: ~/.pub-cache
+.dart_tool
+
+2025-09-24T00:29:46.1392562Z   key: Linux-pub-0a68e32fd6621510f90b80d47d1b0d58e9d8d621a99145c6d9f5c4deb12150f9
+2025-09-24T00:29:46.1392996Z   enableCrossOsArchive: false
+2025-09-24T00:29:46.1393511Z   fail-on-cache-miss: false
+2025-09-24T00:29:46.1393763Z   lookup-only: false
+2025-09-24T00:29:46.1393965Z   save-always: false
+2025-09-24T00:29:46.1394167Z ##[endgroup]
+2025-09-24T00:29:46.3975909Z Cache hit for: Linux-pub-0a68e32fd6621510f90b80d47d1b0d58e9d8d621a99145c6d9f5c4deb12150f9
+2025-09-24T00:29:47.2992685Z Received 22673698 of 22673698 (100.0%), 30.6 MBs/sec
+2025-09-24T00:29:47.2993783Z Cache Size: ~22 MB (22673698 B)
+2025-09-24T00:29:47.3028107Z [command]/usr/bin/tar -xf /home/runner/work/_temp/e5c97c85-3cca-4ca1-8b7d-85ef78266f38/cache.tzst -P -C /home/runner/work/blurapp/blurapp --use-compress-program unzstd
+2025-09-24T00:29:48.1374523Z Cache restored successfully
+2025-09-24T00:29:48.1501073Z Cache restored from key: Linux-pub-0a68e32fd6621510f90b80d47d1b0d58e9d8d621a99145c6d9f5c4deb12150f9

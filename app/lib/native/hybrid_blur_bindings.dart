@@ -58,8 +58,9 @@ class NativeBlurBindings {
     }
 
     try {
-      final result =
-          await _channel.invokeMethod<List<dynamic>>('getSupportedBlurTypes');
+      final result = await _channel.invokeMethod<List<dynamic>>(
+        'getSupportedBlurTypes',
+      );
       _supportedBlurTypes = result?.cast<int>() ?? [];
       return _supportedBlurTypes!;
     } catch (e) {
@@ -81,7 +82,8 @@ class NativeBlurBindings {
 
       final success = result ?? false;
       debugPrint(
-          'NativeBlurBindings: Segmentation initialization ${success ? "succeeded" : "failed"}');
+        'NativeBlurBindings: Segmentation initialization ${success ? "succeeded" : "failed"}',
+      );
       return success;
     } catch (e) {
       debugPrint('NativeBlurBindings error initializing segmentation: $e');
@@ -97,10 +99,7 @@ class NativeBlurBindings {
     try {
       final result = await _channel.invokeMethod<Uint8List>(
         'processImageBasic',
-        {
-          'imageBytes': imageBytes,
-          'blurStrength': blurStrength,
-        },
+        {'imageBytes': imageBytes, 'blurStrength': blurStrength},
       );
       return result;
     } catch (e) {
@@ -112,10 +111,9 @@ class NativeBlurBindings {
   /// Generate segmentation mask using MediaPipe (Phase 1 target)
   static Future<Uint8List?> segmentImage(Uint8List imageBytes) async {
     try {
-      final result = await _channel.invokeMethod<Uint8List>(
-        'segmentImage',
-        {'imageBytes': imageBytes},
-      );
+      final result = await _channel.invokeMethod<Uint8List>('segmentImage', {
+        'imageBytes': imageBytes,
+      });
 
       // Empty result means segmentation not yet implemented
       if (result == null || result.isEmpty) {
@@ -160,11 +158,7 @@ class NativeBlurBindings {
     try {
       final result = await _channel.invokeMethod<Uint8List>(
         'applyAdvancedBlur',
-        {
-          'imageBytes': imageBytes,
-          'sigma': sigma,
-          'blurType': blurType,
-        },
+        {'imageBytes': imageBytes, 'sigma': sigma, 'blurType': blurType},
       );
       return result;
     } catch (e) {
@@ -181,15 +175,13 @@ class NativeBlurBindings {
     double backgroundSigma = 5.0,
   }) async {
     try {
-      final result = await _channel.invokeMethod<Uint8List>(
-        'applySelectiveBlur',
-        {
-          'imageBytes': imageBytes,
-          'maskBytes': maskBytes,
-          'foregroundSigma': foregroundSigma,
-          'backgroundSigma': backgroundSigma,
-        },
-      );
+      final result = await _channel
+          .invokeMethod<Uint8List>('applySelectiveBlur', {
+            'imageBytes': imageBytes,
+            'maskBytes': maskBytes,
+            'foregroundSigma': foregroundSigma,
+            'backgroundSigma': backgroundSigma,
+          });
       return result;
     } catch (e) {
       debugPrint('NativeBlurBindings error in selective blur: $e');
@@ -228,16 +220,13 @@ class NativeBlurBindings {
     int kernelSize = 3,
   }) async {
     try {
-      final result = await _channel.invokeMethod<Uint8List>(
-        'refineMask',
-        {
-          'maskBytes': maskBytes,
-          'width': width,
-          'height': height,
-          'operation': operation,
-          'kernelSize': kernelSize,
-        },
-      );
+      final result = await _channel.invokeMethod<Uint8List>('refineMask', {
+        'maskBytes': maskBytes,
+        'width': width,
+        'height': height,
+        'operation': operation,
+        'kernelSize': kernelSize,
+      });
       return result;
     } catch (e) {
       debugPrint('NativeBlurBindings error in mask refinement: $e');
@@ -253,15 +242,12 @@ class NativeBlurBindings {
     double blurSigma = 1.0,
   }) async {
     try {
-      final result = await _channel.invokeMethod<Uint8List>(
-        'smoothMaskEdges',
-        {
-          'maskBytes': maskBytes,
-          'width': width,
-          'height': height,
-          'blurSigma': blurSigma,
-        },
-      );
+      final result = await _channel.invokeMethod<Uint8List>('smoothMaskEdges', {
+        'maskBytes': maskBytes,
+        'width': width,
+        'height': height,
+        'blurSigma': blurSigma,
+      });
       return result;
     } catch (e) {
       debugPrint('NativeBlurBindings error in mask edge smoothing: $e');
@@ -277,15 +263,12 @@ class NativeBlurBindings {
     int minArea = 100,
   }) async {
     try {
-      final result = await _channel.invokeMethod<Uint8List>(
-        'optimizeMask',
-        {
-          'maskBytes': maskBytes,
-          'width': width,
-          'height': height,
-          'minArea': minArea,
-        },
-      );
+      final result = await _channel.invokeMethod<Uint8List>('optimizeMask', {
+        'maskBytes': maskBytes,
+        'width': width,
+        'height': height,
+        'minArea': minArea,
+      });
       return result;
     } catch (e) {
       debugPrint('NativeBlurBindings error in mask optimization: $e');
@@ -301,15 +284,13 @@ class NativeBlurBindings {
     int featherRadius = 5,
   }) async {
     try {
-      final result = await _channel.invokeMethod<Uint8List>(
-        'createFeatheredMask',
-        {
-          'maskBytes': maskBytes,
-          'width': width,
-          'height': height,
-          'featherRadius': featherRadius,
-        },
-      );
+      final result = await _channel
+          .invokeMethod<Uint8List>('createFeatheredMask', {
+            'maskBytes': maskBytes,
+            'width': width,
+            'height': height,
+            'featherRadius': featherRadius,
+          });
       return result;
     } catch (e) {
       debugPrint('NativeBlurBindings error in mask feathering: $e');
@@ -342,7 +323,8 @@ class NativeBlurBindings {
         );
         if (processedMask == null) return null;
         debugPrint(
-            'NativeBlurBindings: Applied morphological operation: $morphOperation');
+          'NativeBlurBindings: Applied morphological operation: $morphOperation',
+        );
       }
 
       // Step 2: Optimize mask with connected components if specified
@@ -355,7 +337,8 @@ class NativeBlurBindings {
         );
         if (processedMask == null) return null;
         debugPrint(
-            'NativeBlurBindings: Optimized mask with min area: $minArea');
+          'NativeBlurBindings: Optimized mask with min area: $minArea',
+        );
       }
 
       // Step 3: Smooth edges
@@ -367,7 +350,8 @@ class NativeBlurBindings {
       );
       if (processedMask == null) return null;
       debugPrint(
-          'NativeBlurBindings: Smoothed mask edges with sigma: $edgeBlurSigma');
+        'NativeBlurBindings: Smoothed mask edges with sigma: $edgeBlurSigma',
+      );
 
       // Step 4: Apply feathering if specified
       if (featherRadius != null) {
@@ -379,7 +363,8 @@ class NativeBlurBindings {
         );
         if (processedMask == null) return null;
         debugPrint(
-            'NativeBlurBindings: Applied feathering with radius: $featherRadius');
+          'NativeBlurBindings: Applied feathering with radius: $featherRadius',
+        );
       }
 
       return processedMask;
@@ -428,8 +413,12 @@ class HybridBlurPipeline {
 
     // Fallback to existing Dart implementation
     debugPrint('HybridBlurPipeline: Using Dart fallback');
-    return BlurPipeline.applyBlur(imageBytes, type, strength,
-        isPreview: isPreview);
+    return BlurPipeline.applyBlur(
+      imageBytes,
+      type,
+      strength,
+      isPreview: isPreview,
+    );
   }
 
   /// Process with automatic segmentation if available

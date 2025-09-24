@@ -12,15 +12,21 @@ class BlurPipeline {
       512; // For preview/real-time processing
 
   /// Apply blur with automatic memory management and performance optimization
-  static Uint8List applyBlur(Uint8List imageBytes, BlurType type, int strength,
-      {bool isPreview = false}) {
+  static Uint8List applyBlur(
+    Uint8List imageBytes,
+    BlurType type,
+    int strength, {
+    bool isPreview = false,
+  }) {
     try {
       final image = img.decodeImage(imageBytes);
       if (image == null) return imageBytes;
 
       // Memory safety: Check image size and downsample if needed
-      final processImage =
-          _prepareImageForProcessing(image, isPreview: isPreview);
+      final processImage = _prepareImageForProcessing(
+        image,
+        isPreview: isPreview,
+      );
 
       img.Image processedImage;
 
@@ -42,7 +48,8 @@ class BlurPipeline {
       // Encode with appropriate quality for memory efficiency
       final quality = isPreview ? 75 : 90;
       return Uint8List.fromList(
-          img.encodeJpg(processedImage, quality: quality));
+        img.encodeJpg(processedImage, quality: quality),
+      );
     } catch (e) {
       debugPrint('BlurPipeline error: $e');
       // If blur fails, return original image
@@ -51,8 +58,10 @@ class BlurPipeline {
   }
 
   /// Prepare image for processing with memory constraints
-  static img.Image _prepareImageForProcessing(img.Image image,
-      {bool isPreview = false}) {
+  static img.Image _prepareImageForProcessing(
+    img.Image image, {
+    bool isPreview = false,
+  }) {
     final maxDimension = isPreview ? _previewMaxDimension : _maxImageDimension;
     final maxPixels = isPreview
         ? _previewMaxDimension * _previewMaxDimension
@@ -60,7 +69,8 @@ class BlurPipeline {
 
     // Check if image is too large
     final totalPixels = image.width * image.height;
-    final needsResize = image.width > maxDimension ||
+    final needsResize =
+        image.width > maxDimension ||
         image.height > maxDimension ||
         totalPixels > maxPixels;
 
@@ -72,7 +82,8 @@ class BlurPipeline {
     double scale = 1.0;
 
     if (image.width > maxDimension || image.height > maxDimension) {
-      scale = maxDimension /
+      scale =
+          maxDimension /
           (image.width > image.height ? image.width : image.height);
     }
 
@@ -85,7 +96,8 @@ class BlurPipeline {
     final newHeight = (image.height * scale).round();
 
     debugPrint(
-        'BlurPipeline: Resizing ${image.width}x${image.height} to ${newWidth}x$newHeight for processing');
+      'BlurPipeline: Resizing ${image.width}x${image.height} to ${newWidth}x$newHeight for processing',
+    );
 
     return img.copyResize(image, width: newWidth, height: newHeight);
   }
@@ -128,14 +140,18 @@ class BlurPipeline {
     final smallWidth = (image.width / blockSize).round();
     final smallHeight = (image.height / blockSize).round();
 
-    final small = img.copyResize(image,
-        width: smallWidth,
-        height: smallHeight,
-        interpolation: img.Interpolation.nearest);
-    return img.copyResize(small,
-        width: image.width,
-        height: image.height,
-        interpolation: img.Interpolation.nearest);
+    final small = img.copyResize(
+      image,
+      width: smallWidth,
+      height: smallHeight,
+      interpolation: img.Interpolation.nearest,
+    );
+    return img.copyResize(
+      small,
+      width: image.width,
+      height: image.height,
+      interpolation: img.Interpolation.nearest,
+    );
   }
 
   static img.Image _mosaic(img.Image image, int strength) {

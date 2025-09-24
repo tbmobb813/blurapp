@@ -1,0 +1,51 @@
+﻿2025-09-24T00:33:37.8515740Z ##[group]Run cd app
+2025-09-24T00:33:37.8516003Z [36;1mcd app[0m
+2025-09-24T00:33:37.8516236Z [36;1m/opt/flutter/bin/flutter build apk --debug[0m
+2025-09-24T00:33:37.8547372Z shell: /usr/bin/bash -e {0}
+2025-09-24T00:33:37.8547615Z ##[endgroup]
+2025-09-24T00:35:36.6194030Z Running Gradle task 'assembleDebug'...                          
+2025-09-24T00:35:36.6221262Z Warning: Flutter support for your project's Gradle version (8.4.0) will soon be dropped. Please upgrade your Gradle version to a version of at least 8.7.0 soon.
+2025-09-24T00:35:36.6241045Z Alternatively, use the flag "--android-skip-build-dependency-validation" to bypass this check.
+2025-09-24T00:35:36.6241738Z 
+2025-09-24T00:35:36.6242859Z Potential fix: Your project's gradle version is typically defined in the gradle wrapper file. By default, this can be found at /home/runner/work/blurapp/blurapp/app/android/gradle/wrapper/gradle-wrapper.properties. 
+2025-09-24T00:35:36.6244517Z For more information, see https://docs.gradle.org/current/userguide/gradle_wrapper.html.
+2025-09-24T00:35:36.6245296Z 
+2025-09-24T00:35:36.6272967Z Warning: Flutter support for your project's Android Gradle Plugin version (Android Gradle Plugin version 8.3.0) will soon be dropped. Please upgrade your Android Gradle Plugin version to a version of at least Android Gradle Plugin version 8.6.0 soon.
+2025-09-24T00:35:36.6281591Z Alternatively, use the flag "--android-skip-build-dependency-validation" to bypass this check.
+2025-09-24T00:35:36.6282267Z 
+2025-09-24T00:35:36.6283685Z Potential fix: Your project's AGP version is typically defined in the plugins block of the `settings.gradle` file (/home/runner/work/blurapp/blurapp/app/android/settings.gradle), by a plugin with the id of com.android.application. 
+2025-09-24T00:35:36.6287031Z If you don't see a plugins block, your project was likely created with an older template version. In this case it is most likely defined in the top-level build.gradle file (/home/runner/work/blurapp/blurapp/app/android/build.gradle) by the following line in the dependencies block of the buildscript: "classpath 'com.android.tools.build:gradle:<version>'".
+2025-09-24T00:35:36.6289327Z 
+2025-09-24T00:35:36.6290116Z Warning: Flutter support for your project's Kotlin version (1.8.10) will soon be dropped. Please upgrade your Kotlin version to a version of at least 2.1.0 soon.
+2025-09-24T00:35:36.6291502Z Alternatively, use the flag "--android-skip-build-dependency-validation" to bypass this check.
+2025-09-24T00:35:36.6292140Z 
+2025-09-24T00:35:36.6293432Z Potential fix: Your project's KGP version is typically defined in the plugins block of the `settings.gradle` file (/home/runner/work/blurapp/blurapp/app/android/settings.gradle), by a plugin with the id of org.jetbrains.kotlin.android. 
+2025-09-24T00:35:36.6296276Z If you don't see a plugins block, your project was likely created with an older template version, in which case it is most likely defined in the top-level build.gradle file (/home/runner/work/blurapp/blurapp/app/android/build.gradle) by the ext.kotlin_version property.
+2025-09-24T00:35:36.6297854Z 
+2025-09-24T00:35:40.7995263Z Checking the license for package NDK (Side by side) 27.0.12077973 in /usr/local/lib/android/sdk/licenses
+2025-09-24T00:35:40.8000842Z License for package NDK (Side by side) 27.0.12077973 accepted.
+2025-09-24T00:35:40.8010970Z Preparing "Install NDK (Side by side) 27.0.12077973 v.27.0.12077973".
+2025-09-24T00:35:57.9981622Z "Install NDK (Side by side) 27.0.12077973 v.27.0.12077973" ready.
+2025-09-24T00:35:57.9982240Z Installing NDK (Side by side) 27.0.12077973 in /usr/local/lib/android/sdk/ndk/27.0.12077973
+2025-09-24T00:35:57.9983065Z "Install NDK (Side by side) 27.0.12077973 v.27.0.12077973" complete.
+2025-09-24T00:35:58.6000276Z "Install NDK (Side by side) 27.0.12077973 v.27.0.12077973" finished.
+2025-09-24T00:37:18.8000334Z 
+2025-09-24T00:37:18.8006081Z FAILURE: Build failed with an exception.
+2025-09-24T00:37:18.8007819Z 
+2025-09-24T00:37:18.8008951Z * What went wrong:
+2025-09-24T00:37:18.8010409Z Execution failed for task ':app:checkDebugDuplicateClasses'.
+2025-09-24T00:37:18.8011624Z > Could not resolve all files for configuration ':app:debugRuntimeClasspath'.
+2025-09-24T00:37:18.8017659Z    > Failed to transform x86_64_debug-1.0.0-c29809135135e262a912cf583b2c90deb9ded610.jar (io.flutter:x86_64_debug:1.0.0-c29809135135e262a912cf583b2c90deb9ded610) to match attributes {artifactType=enumerated-runtime-classes, org.gradle.category=library, org.gradle.libraryelements=jar, org.gradle.status=release, org.gradle.usage=java-runtime}.
+2025-09-24T00:37:18.8025651Z       > Execution failed for JetifyTransform: /home/runner/.gradle/caches/modules-2/files-2.1/io.flutter/x86_64_debug/1.0.0-c29809135135e262a912cf583b2c90deb9ded610/6a2aaef705f84988c8fae9086bb9d6148c414c91/x86_64_debug-1.0.0-c29809135135e262a912cf583b2c90deb9ded610.jar.
+2025-09-24T00:37:18.8026703Z          > Java heap space
+2025-09-24T00:37:18.8026839Z 
+2025-09-24T00:37:18.8026901Z * Try:
+2025-09-24T00:37:18.8027116Z > Run with --stacktrace option to get the stack trace.
+2025-09-24T00:37:18.8027474Z > Run with --info or --debug option to get more log output.
+2025-09-24T00:37:18.8027770Z > Run with --scan to get full insights.
+2025-09-24T00:37:18.8028055Z > Get more help at https://help.gradle.org.
+2025-09-24T00:37:18.8028237Z 
+2025-09-24T00:37:18.8028310Z BUILD FAILED in 3m 29s
+2025-09-24T00:37:19.2205418Z Running Gradle task 'assembleDebug'...                            220.7s
+2025-09-24T00:37:19.2301524Z Gradle task assembleDebug failed with exit code 1
+2025-09-24T00:37:19.2370650Z ##[error]Process completed with exit code 1.

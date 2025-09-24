@@ -19,8 +19,11 @@ pluginManagement {
 
 plugins {
     id "dev.flutter.flutter-plugin-loader" version "1.0.0"
-    id "com.android.application" version "8.3.0" apply false
-    id "org.jetbrains.kotlin.android" version "1.8.10" apply false
+    // Bump AGP to 8.6 to stay current with Gradle and Flutter toolchain
+    id "com.android.application" version "8.6.0" apply false
+    // Upgrade Kotlin Gradle Plugin to 2.1.0 per Flutter guidance (KGP 1.8.x will be deprecated).
+    // Kotlin 2.1.x offers compatibility improvements and aligns with newer Flutter toolchain warnings.
+    id "org.jetbrains.kotlin.android" version "2.1.0" apply false
 }
 
 include ":app"

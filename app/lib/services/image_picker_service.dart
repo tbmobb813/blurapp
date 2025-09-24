@@ -84,7 +84,9 @@ class ImagePickerService {
 
   /// Show permission dialog to help user understand why we need access
   static void showPermissionDialog(
-      BuildContext context, String permissionType) {
+    BuildContext context,
+    String permissionType,
+  ) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(

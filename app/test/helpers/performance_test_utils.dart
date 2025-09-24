@@ -37,14 +37,16 @@ class PerformanceTestUtils {
     return MemoryMeasurement(
       before: memoryBefore,
       after: memoryAfter,
-      difference:
-          memoryBefore > 0 && memoryAfter > 0 ? memoryAfter - memoryBefore : 0,
+      difference: memoryBefore > 0 && memoryAfter > 0
+          ? memoryAfter - memoryBefore
+          : 0,
     );
   }
 
   /// Measure async memory usage before and after an operation
   static Future<MemoryMeasurement> measureAsyncMemoryUsage(
-      Future Function() operation) async {
+    Future Function() operation,
+  ) async {
     final memoryBefore = getCurrentMemoryUsage();
     await operation();
     final memoryAfter = getCurrentMemoryUsage();
@@ -52,8 +54,9 @@ class PerformanceTestUtils {
     return MemoryMeasurement(
       before: memoryBefore,
       after: memoryAfter,
-      difference:
-          memoryBefore > 0 && memoryAfter > 0 ? memoryAfter - memoryBefore : 0,
+      difference: memoryBefore > 0 && memoryAfter > 0
+          ? memoryAfter - memoryBefore
+          : 0,
     );
   }
 
@@ -71,7 +74,8 @@ class PerformanceTestUtils {
 
   /// Measure async execution time of an operation
   static Future<TimeMeasurement> measureAsyncExecutionTime(
-      Future Function() operation) async {
+    Future Function() operation,
+  ) async {
     final stopwatch = Stopwatch()..start();
     await operation();
     stopwatch.stop();
@@ -83,8 +87,11 @@ class PerformanceTestUtils {
   }
 
   /// Validate that memory usage is within acceptable limits
-  static void validateMemoryUsage(MemoryMeasurement measurement, int limitBytes,
-      {String? context}) {
+  static void validateMemoryUsage(
+    MemoryMeasurement measurement,
+    int limitBytes, {
+    String? context,
+  }) {
     if (measurement.difference > 0) {
       expect(
         measurement.difference,
@@ -98,8 +105,10 @@ class PerformanceTestUtils {
 
   /// Validate that execution time is within acceptable limits
   static void validateExecutionTime(
-      TimeMeasurement measurement, int limitMilliseconds,
-      {String? context}) {
+    TimeMeasurement measurement,
+    int limitMilliseconds, {
+    String? context,
+  }) {
     expect(
       measurement.milliseconds,
       lessThan(limitMilliseconds),
