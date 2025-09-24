@@ -1,7 +1,9 @@
 name: Flutter CI
 
 env:
-  FLUTTER_VERSION: '3.20.6'
+  # Use the named channel/branch to avoid pinning to a tag that may not exist on upstream.
+  # 'stable' will track the current stable branch of Flutter and is suitable for CI.
+  FLUTTER_VERSION: 'stable'
 
 on:
   push:
