@@ -50,27 +50,30 @@ Since the direct URLs are no longer available, follow these steps:
 2. Download the `.tflite` files
 3. Copy them to your project:
 
-```powershell
-# Navigate to your Flutter app's assets/models directory
-cd "C:\Users\jsnni\StudioProjects\blurapp\app\assets\models"
+```bash
+# Navigate to your Flutter app's assets/models directory (example)
+cd ~/Projects/blurapp/app/assets/models
 
 # Copy your downloaded files here (adjust paths as needed)
-# For example, if you downloaded to your Downloads folder:
-# Copy-Item "$env:USERPROFILE\Downloads\face_detection_short_range.tflite" .
-# Copy-Item "$env:USERPROFILE\Downloads\selfie_segmentation.tflite" .
-```image blur core)
+# Example (Linux/macOS):
+# mv ~/Downloads/face_detection_short_range.tflite .
+# mv ~/Downloads/selfie_segmentation.tflite .
+```
+
 - **State Management:** Riverpod (recommended) or Bloc
 - **Database:** Isar or Hive (lightweight, offline)
 - **Media IO:** ffmpeg_kit_flutter, image, exif, camera
 - **Permissions:** permission_handler
 
 ## App IDs & Package Names
+
 - **Android:**
   - Application ID: `com.blurapp.free` (free), `com.blurapp.pro` (pro)
 - **iOS:**
   - Bundle ID: `com.blurapp.free` (free), `com.blurapp.pro` (pro)
 
 ## Build Flavors
+
 - **Android:**
   - Configure flavors in `android/app/build.gradle`:
     - `free` (default)
@@ -79,7 +82,9 @@ cd "C:\Users\jsnni\StudioProjects\blurapp\app\assets\models"
   - Set up schemes for `Free` and `Pro` in Xcode
 
 ## Dependencies
+
 Add these to your `pubspec.yaml`:
+
 ```yaml
 dependencies:
   flutter:
@@ -117,7 +122,7 @@ Expected to find project root in current working directory.
 
 Fix: change directory into the `app/` folder first, for example:
 
-```powershell
+```bash
 cd app
 flutter pub get
 ```
@@ -132,15 +137,17 @@ For optional on-device auto-detection (to auto-blur faces or background), you ne
 
 **✅ Working direct downloads from Google Cloud Storage:**
 
-```powershell
-# Navigate to your Flutter app's assets/models directory
-cd "C:\Users\jsnni\StudioProjects\blurapp\app\assets\models"
+```bash
+# Navigate to your Flutter app's assets/models directory (example)
+cd ~/Projects/blurapp/app/assets/models
 
 # Download face detection model (short-range, ~224KB)
-Invoke-WebRequest -Uri "https://storage.googleapis.com/mediapipe-assets/face_detection_short_range.tflite" -OutFile "face_detection_short_range.tflite"
+curl -L -o face_detection_short_range.tflite \
+  "https://storage.googleapis.com/mediapipe-assets/face_detection_short_range.tflite"
 
 # Download selfie segmentation model (~244KB)
-Invoke-WebRequest -Uri "https://storage.googleapis.com/mediapipe-assets/selfie_segmentation.tflite" -OutFile "selfie_segmentation.tflite"
+curl -L -o selfie_segmentation.tflite \
+  "https://storage.googleapis.com/mediapipe-assets/selfie_segmentation.tflite"
 ```
 
 ### Models included

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/utils/color_utils.dart';
 import '../services/image_saver_service.dart';
 
 class PrivacySettingsScreen extends StatefulWidget {
@@ -52,10 +53,10 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
         Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: theme.colorScheme.surface.withValues(alpha: 0.5),
+            color: withOpacitySafe(theme.colorScheme.surface, 0.5),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: theme.colorScheme.outline.withValues(alpha: 0.3),
+              color: withOpacitySafe(theme.colorScheme.outline, 0.3),
             ),
           ),
           child: Column(

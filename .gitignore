@@ -1,0 +1,16 @@
+.secrets/
+
+# Ignore Flutter / Android build artifacts and local tool state
+/app/build/
+/app/.gradle/
+/app/.dart_tool/
+/app/.pub/
+
+# Editor / OS files
+.idea/
+*.iml
+
+# Temp / local caches
+.dart_tool/
+build/
+pubspec.lock

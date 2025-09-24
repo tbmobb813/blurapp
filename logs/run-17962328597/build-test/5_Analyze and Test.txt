@@ -1,0 +1,14 @@
+﻿2025-09-24T00:23:18.5884571Z ##[group]Run cd app
+2025-09-24T00:23:18.5884833Z [36;1mcd app[0m
+2025-09-24T00:23:18.5885026Z [36;1m/opt/flutter/bin/flutter analyze[0m
+2025-09-24T00:23:18.5885286Z [36;1m/opt/flutter/bin/flutter test[0m
+2025-09-24T00:23:18.5915681Z shell: /usr/bin/bash -e {0}
+2025-09-24T00:23:18.5915923Z ##[endgroup]
+2025-09-24T00:23:34.0366309Z Analyzing app...                                                
+2025-09-24T00:23:34.0373528Z 
+2025-09-24T00:23:34.0394668Z    info • 'red' is deprecated and shouldn't be used. Use (*.r * 255.0).round() & 0xff • lib/core/utils/color_utils.dart:14:34 • deprecated_member_use
+2025-09-24T00:23:34.0396318Z    info • 'green' is deprecated and shouldn't be used. Use (*.g * 255.0).round() & 0xff • lib/core/utils/color_utils.dart:14:45 • deprecated_member_use
+2025-09-24T00:23:34.0398565Z    info • 'blue' is deprecated and shouldn't be used. Use (*.b * 255.0).round() & 0xff • lib/core/utils/color_utils.dart:14:58 • deprecated_member_use
+2025-09-24T00:23:34.0407002Z 
+2025-09-24T00:23:34.0545272Z 3 issues found. (ran in 14.7s)
+2025-09-24T00:23:34.0617483Z ##[error]Process completed with exit code 1.

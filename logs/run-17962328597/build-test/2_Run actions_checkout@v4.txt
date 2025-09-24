@@ -1,0 +1,85 @@
+﻿2025-09-24T00:21:54.1697740Z ##[group]Run actions/checkout@v4
+2025-09-24T00:21:54.1699132Z with:
+2025-09-24T00:21:54.1699774Z   repository: tbmobb813/blurapp
+2025-09-24T00:21:54.1700967Z   token: ***
+2025-09-24T00:21:54.1701588Z   ssh-strict: true
+2025-09-24T00:21:54.1702238Z   ssh-user: git
+2025-09-24T00:21:54.1702886Z   persist-credentials: true
+2025-09-24T00:21:54.1703648Z   clean: true
+2025-09-24T00:21:54.1704304Z   sparse-checkout-cone-mode: true
+2025-09-24T00:21:54.1705075Z   fetch-depth: 1
+2025-09-24T00:21:54.1705705Z   fetch-tags: false
+2025-09-24T00:21:54.1706344Z   show-progress: true
+2025-09-24T00:21:54.1706991Z   lfs: false
+2025-09-24T00:21:54.1707576Z   submodules: false
+2025-09-24T00:21:54.1708212Z   set-safe-directory: true
+2025-09-24T00:21:54.1709226Z ##[endgroup]
+2025-09-24T00:21:54.2850750Z Syncing repository: tbmobb813/blurapp
+2025-09-24T00:21:54.2852612Z ##[group]Getting Git version info
+2025-09-24T00:21:54.2853414Z Working directory is '/home/runner/work/blurapp/blurapp'
+2025-09-24T00:21:54.2854339Z [command]/usr/bin/git version
+2025-09-24T00:21:54.4697451Z git version 2.51.0
+2025-09-24T00:21:54.4724397Z ##[endgroup]
+2025-09-24T00:21:54.4743505Z Temporarily overriding HOME='/home/runner/work/_temp/a28d3609-20b8-400f-a7fd-0fa61ad7efbb' before making global git config changes
+2025-09-24T00:21:54.4746276Z Adding repository directory to the temporary git global config as a safe directory
+2025-09-24T00:21:54.4748269Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/blurapp/blurapp
+2025-09-24T00:21:54.4785205Z Deleting the contents of '/home/runner/work/blurapp/blurapp'
+2025-09-24T00:21:54.4789239Z ##[group]Initializing the repository
+2025-09-24T00:21:54.4794503Z [command]/usr/bin/git init /home/runner/work/blurapp/blurapp
+2025-09-24T00:21:54.4919649Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-09-24T00:21:54.4925509Z hint: is subject to change. To configure the initial branch name to use in all
+2025-09-24T00:21:54.4927016Z hint: of your new repositories, which will suppress this warning, call:
+2025-09-24T00:21:54.4928340Z hint:
+2025-09-24T00:21:54.4929223Z hint: 	git config --global init.defaultBranch <name>
+2025-09-24T00:21:54.4930450Z hint:
+2025-09-24T00:21:54.4931468Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-09-24T00:21:54.4933148Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-09-24T00:21:54.4934795Z hint:
+2025-09-24T00:21:54.4935553Z hint: 	git branch -m <name>
+2025-09-24T00:21:54.4936363Z hint:
+2025-09-24T00:21:54.4937390Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-09-24T00:21:54.4939065Z Initialized empty Git repository in /home/runner/work/blurapp/blurapp/.git/
+2025-09-24T00:21:54.4942150Z [command]/usr/bin/git remote add origin https://github.com/tbmobb813/blurapp
+2025-09-24T00:21:54.4977564Z ##[endgroup]
+2025-09-24T00:21:54.4978811Z ##[group]Disabling automatic garbage collection
+2025-09-24T00:21:54.4982619Z [command]/usr/bin/git config --local gc.auto 0
+2025-09-24T00:21:54.5014945Z ##[endgroup]
+2025-09-24T00:21:54.5016249Z ##[group]Setting up auth
+2025-09-24T00:21:54.5022940Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-09-24T00:21:54.5055158Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-09-24T00:21:54.5396525Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-09-24T00:21:54.5434452Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-09-24T00:21:54.5679767Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-09-24T00:21:54.5728196Z ##[endgroup]
+2025-09-24T00:21:54.5729677Z ##[group]Fetching the repository
+2025-09-24T00:21:54.5738892Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +c764c431ca899e4e802b6860582de5a9de7bc392:refs/remotes/pull/1/merge
+2025-09-24T00:21:58.1468687Z From https://github.com/tbmobb813/blurapp
+2025-09-24T00:21:58.1470868Z  * [new ref]         c764c431ca899e4e802b6860582de5a9de7bc392 -> pull/1/merge
+2025-09-24T00:21:58.1499062Z ##[endgroup]
+2025-09-24T00:21:58.1500562Z ##[group]Determining the checkout info
+2025-09-24T00:21:58.1502174Z ##[endgroup]
+2025-09-24T00:21:58.1506101Z [command]/usr/bin/git sparse-checkout disable
+2025-09-24T00:21:58.1547677Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-09-24T00:21:58.1577429Z ##[group]Checking out the ref
+2025-09-24T00:21:58.1581459Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/1/merge
+2025-09-24T00:21:58.4118976Z Note: switching to 'refs/remotes/pull/1/merge'.
+2025-09-24T00:21:58.4119579Z 
+2025-09-24T00:21:58.4120075Z You are in 'detached HEAD' state. You can look around, make experimental
+2025-09-24T00:21:58.4121144Z changes and commit them, and you can discard any commits you make in this
+2025-09-24T00:21:58.4121980Z state without impacting any branches by switching back to a branch.
+2025-09-24T00:21:58.4122520Z 
+2025-09-24T00:21:58.4122934Z If you want to create a new branch to retain commits you create, you may
+2025-09-24T00:21:58.4123736Z do so (now or later) by using -c with the switch command. Example:
+2025-09-24T00:21:58.4124225Z 
+2025-09-24T00:21:58.4124431Z   git switch -c <new-branch-name>
+2025-09-24T00:21:58.4124776Z 
+2025-09-24T00:21:58.4124986Z Or undo this operation with:
+2025-09-24T00:21:58.4125306Z 
+2025-09-24T00:21:58.4125490Z   git switch -
+2025-09-24T00:21:58.4125761Z 
+2025-09-24T00:21:58.4126169Z Turn off this advice by setting config variable advice.detachedHead to false
+2025-09-24T00:21:58.4126764Z 
+2025-09-24T00:21:58.4127415Z HEAD is now at c764c43 Merge 51d5899d23e3b6f74f692da386ecbb172c9ad27d into 32f0128cf6e380c1a90784019777021a2d0e6fc6
+2025-09-24T00:21:58.4133025Z ##[endgroup]
+2025-09-24T00:21:58.4173788Z [command]/usr/bin/git log -1 --format=%H
+2025-09-24T00:21:58.4197055Z c764c431ca899e4e802b6860582de5a9de7bc392

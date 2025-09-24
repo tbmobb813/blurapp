@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import '../core/utils/color_utils.dart';
 
 import '../features/editor/blur_pipeline.dart';
 import '../native/hybrid_blur_bindings.dart';
@@ -35,6 +36,7 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
 
   Future<void> _loadProcessingInfo() async {
     final info = await HybridBlurPipeline.getProcessingModeInfo();
+    if (!mounted) return;
     setState(() {
       _modeInfo = info;
     });
@@ -54,19 +56,23 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
         preferNative: true,
         isPreview: false,
       );
-
+      if (!mounted) return;
       setState(() {
         _processedImage = result;
         _lastProcessingMethod = _modeInfo?.displayMode ?? 'Unknown';
       });
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Processing error: $e')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Processing error: $e')),
+        );
+      }
     } finally {
-      setState(() {
-        _isProcessing = false;
-      });
+      if (mounted) {
+        setState(() {
+          _isProcessing = false;
+        });
+      }
     }
   }
 
@@ -81,7 +87,7 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
         20,
         isPreview: false,
       );
-
+      if (!mounted) return;
       setState(() {
         _processedImage = result;
         _lastProcessingMethod = _modeInfo?.hasAutoSegmentation == true
@@ -89,13 +95,17 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
             : 'Manual Fallback';
       });
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Segmentation error: $e')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Segmentation error: $e')),
+        );
+      }
     } finally {
-      setState(() {
-        _isProcessing = false;
-      });
+      if (mounted) {
+        setState(() {
+          _isProcessing = false;
+        });
+      }
     }
   }
 
@@ -212,8 +222,8 @@ class _ProcessingModeDemoState extends State<ProcessingModeDemo> {
         ),
       ),
       backgroundColor: available
-          ? Colors.green.withOpacity(0.1)
-          : Colors.grey.withOpacity(0.1),
+          ? withOpacitySafe(Colors.green, 0.1)
+          : withOpacitySafe(Colors.grey, 0.1),
     );
   }
 

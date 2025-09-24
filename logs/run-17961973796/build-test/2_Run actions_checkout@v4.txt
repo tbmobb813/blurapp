@@ -1,0 +1,69 @@
+﻿2025-09-23T23:51:30.2175372Z ##[group]Run actions/checkout@v4
+2025-09-23T23:51:30.2176221Z with:
+2025-09-23T23:51:30.2176631Z   repository: tbmobb813/blurapp
+2025-09-23T23:51:30.2177295Z   token: ***
+2025-09-23T23:51:30.2177680Z   ssh-strict: true
+2025-09-23T23:51:30.2178074Z   ssh-user: git
+2025-09-23T23:51:30.2178475Z   persist-credentials: true
+2025-09-23T23:51:30.2178952Z   clean: true
+2025-09-23T23:51:30.2179347Z   sparse-checkout-cone-mode: true
+2025-09-23T23:51:30.2180224Z   fetch-depth: 1
+2025-09-23T23:51:30.2180610Z   fetch-tags: false
+2025-09-23T23:51:30.2181004Z   show-progress: true
+2025-09-23T23:51:30.2181407Z   lfs: false
+2025-09-23T23:51:30.2181767Z   submodules: false
+2025-09-23T23:51:30.2182160Z   set-safe-directory: true
+2025-09-23T23:51:30.2182896Z ##[endgroup]
+2025-09-23T23:51:30.3294320Z Syncing repository: tbmobb813/blurapp
+2025-09-23T23:51:30.3296288Z ##[group]Getting Git version info
+2025-09-23T23:51:30.3297026Z Working directory is '/home/runner/work/blurapp/blurapp'
+2025-09-23T23:51:30.3298014Z [command]/usr/bin/git version
+2025-09-23T23:51:30.3366809Z git version 2.51.0
+2025-09-23T23:51:30.3393456Z ##[endgroup]
+2025-09-23T23:51:30.3408148Z Temporarily overriding HOME='/home/runner/work/_temp/19eb9a19-82de-4799-ba97-3b21344a305d' before making global git config changes
+2025-09-23T23:51:30.3409786Z Adding repository directory to the temporary git global config as a safe directory
+2025-09-23T23:51:30.3422144Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/blurapp/blurapp
+2025-09-23T23:51:30.3459800Z Deleting the contents of '/home/runner/work/blurapp/blurapp'
+2025-09-23T23:51:30.3463366Z ##[group]Initializing the repository
+2025-09-23T23:51:30.3467670Z [command]/usr/bin/git init /home/runner/work/blurapp/blurapp
+2025-09-23T23:51:30.3565241Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-09-23T23:51:30.3566908Z hint: is subject to change. To configure the initial branch name to use in all
+2025-09-23T23:51:30.3568417Z hint: of your new repositories, which will suppress this warning, call:
+2025-09-23T23:51:30.3569752Z hint:
+2025-09-23T23:51:30.3570505Z hint: 	git config --global init.defaultBranch <name>
+2025-09-23T23:51:30.3571399Z hint:
+2025-09-23T23:51:30.3572040Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-09-23T23:51:30.3572930Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-09-23T23:51:30.3573929Z hint:
+2025-09-23T23:51:30.3574318Z hint: 	git branch -m <name>
+2025-09-23T23:51:30.3574766Z hint:
+2025-09-23T23:51:30.3575340Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2025-09-23T23:51:30.3576859Z Initialized empty Git repository in /home/runner/work/blurapp/blurapp/.git/
+2025-09-23T23:51:30.3582459Z [command]/usr/bin/git remote add origin https://github.com/tbmobb813/blurapp
+2025-09-23T23:51:30.3620677Z ##[endgroup]
+2025-09-23T23:51:30.3621430Z ##[group]Disabling automatic garbage collection
+2025-09-23T23:51:30.3624870Z [command]/usr/bin/git config --local gc.auto 0
+2025-09-23T23:51:30.3655681Z ##[endgroup]
+2025-09-23T23:51:30.3656843Z ##[group]Setting up auth
+2025-09-23T23:51:30.3663780Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-09-23T23:51:30.3695820Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-09-23T23:51:30.4037626Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-09-23T23:51:30.4068799Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-09-23T23:51:30.4308517Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-09-23T23:51:30.4343779Z ##[endgroup]
+2025-09-23T23:51:30.4345048Z ##[group]Fetching the repository
+2025-09-23T23:51:30.4362372Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +18e3fdac65263df089bcbeae8b476e6c28d7232c:refs/remotes/origin/comp/implement
+2025-09-23T23:51:34.1157583Z From https://github.com/tbmobb813/blurapp
+2025-09-23T23:51:34.1161843Z  * [new ref]         18e3fdac65263df089bcbeae8b476e6c28d7232c -> origin/comp/implement
+2025-09-23T23:51:34.1193833Z ##[endgroup]
+2025-09-23T23:51:34.1195735Z ##[group]Determining the checkout info
+2025-09-23T23:51:34.1197749Z ##[endgroup]
+2025-09-23T23:51:34.1201960Z [command]/usr/bin/git sparse-checkout disable
+2025-09-23T23:51:34.1243918Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-09-23T23:51:34.1272869Z ##[group]Checking out the ref
+2025-09-23T23:51:34.1277166Z [command]/usr/bin/git checkout --progress --force -B comp/implement refs/remotes/origin/comp/implement
+2025-09-23T23:51:34.3854712Z Switched to a new branch 'comp/implement'
+2025-09-23T23:51:34.3856455Z branch 'comp/implement' set up to track 'origin/comp/implement'.
+2025-09-23T23:51:34.3868654Z ##[endgroup]
+2025-09-23T23:51:34.3908911Z [command]/usr/bin/git log -1 --format=%H
+2025-09-23T23:51:34.3931594Z 18e3fdac65263df089bcbeae8b476e6c28d7232c

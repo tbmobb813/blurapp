@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import 'package:image/image.dart' as img;
 
@@ -125,7 +124,7 @@ class BlurPipeline {
 
   static img.Image _pixelate(img.Image image, int strength) {
     // Create pixelate effect by scaling down and back up
-    final blockSize = strength.clamp(1, 32);
+    final blockSize = strength.clamp(1, 32).toInt();
     final smallWidth = (image.width / blockSize).round();
     final smallHeight = (image.height / blockSize).round();
 
@@ -151,16 +150,26 @@ class BlurPipeline {
 
         for (int dy = 0; dy < blockSize && y + dy < image.height; dy++) {
           for (int dx = 0; dx < blockSize && x + dx < image.width; dx++) {
-            final pixel = image.getPixel(x + dx, y + dy);
-            r += pixel.r.toInt();
-            g += pixel.g.toInt();
-            b += pixel.b.toInt();
+            final px = image.getPixel(x + dx, y + dy);
+            // image.getPixel returns a 32-bit int in ARGB format. Extract channels.
+            // Pixel is an object with channel getters; convert to int
+            final int red = px.r.toInt();
+            final int green = px.g.toInt();
+            final int blue = px.b.toInt();
+            r += red;
+            g += green;
+            b += blue;
             count++;
           }
         }
 
         if (count > 0) {
-          final avgColor = img.ColorRgb8(r ~/ count, g ~/ count, b ~/ count);
+          final avgR = r ~/ count;
+          final avgG = g ~/ count;
+          final avgB = b ~/ count;
+          // Compose ARGB (opaque) pixel
+          // Use image package Color type
+          final avgColor = img.ColorRgb8(avgR, avgG, avgB);
 
           // Fill the block with average color
           for (int dy = 0; dy < blockSize && y + dy < image.height; dy++) {

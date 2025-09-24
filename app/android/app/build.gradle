@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.blurapp"
-    compileSdk 35
+    compileSdk 36
     ndkVersion "27.0.12077973"
 
     compileOptions {
@@ -42,11 +42,12 @@ android {
 
     defaultConfig {
         applicationId "com.example.blurapp"
-        minSdkVersion 26
-        targetSdkVersion 35
+    minSdkVersion 26
+    targetSdkVersion 36
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        externalNativeBuild.cmake { cppFlags "-std=c++17" }
+        // Native build disabled for MVP - pure Flutter implementation
+        // externalNativeBuild.cmake { cppFlags "-std=c++17" }
         ndkVersion "27.0.12077973"
     }
 
@@ -56,11 +57,12 @@ android {
         }
     }
 
-    externalNativeBuild { 
-        cmake { 
-            path "../blurcore/CMakeLists.txt" 
-        } 
-    }
+    // Native build disabled for MVP - pure Flutter implementation
+    // externalNativeBuild { 
+    //     cmake { 
+    //         path "../blurcore/CMakeLists.txt" 
+    //     } 
+    // }
     
     packagingOptions { 
         jniLibs { 

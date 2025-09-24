@@ -1,0 +1,24 @@
+﻿2025-09-23T23:49:05.7070329Z ##[group]Run actions/cache@v4
+2025-09-23T23:49:05.7070806Z with:
+2025-09-23T23:49:05.7071010Z   path: ~/.pub-cache
+.dart_tool
+
+2025-09-23T23:49:05.7071436Z   key: Linux-pub-0a68e32fd6621510f90b80d47d1b0d58e9d8d621a99145c6d9f5c4deb12150f9
+2025-09-23T23:49:05.7071883Z   enableCrossOsArchive: false
+2025-09-23T23:49:05.7072127Z   fail-on-cache-miss: false
+2025-09-23T23:49:05.7072359Z   lookup-only: false
+2025-09-23T23:49:05.7072559Z   save-always: false
+2025-09-23T23:49:05.7072769Z ##[endgroup]
+2025-09-23T23:49:06.1479609Z Cache hit for: Linux-pub-0a68e32fd6621510f90b80d47d1b0d58e9d8d621a99145c6d9f5c4deb12150f9
+2025-09-23T23:49:07.5215154Z Received 1702178 of 22673698 (7.5%), 1.6 MBs/sec
+2025-09-23T23:49:08.5237694Z Received 18479394 of 22673698 (81.5%), 8.8 MBs/sec
+2025-09-23T23:49:09.5244731Z Received 18479394 of 22673698 (81.5%), 5.9 MBs/sec
+2025-09-23T23:49:10.5252806Z Received 18479394 of 22673698 (81.5%), 4.4 MBs/sec
+2025-09-23T23:49:11.5254354Z Received 18479394 of 22673698 (81.5%), 3.5 MBs/sec
+2025-09-23T23:49:12.5251429Z Received 18479394 of 22673698 (81.5%), 2.9 MBs/sec
+2025-09-23T23:49:13.5251932Z Received 18479394 of 22673698 (81.5%), 2.5 MBs/sec
+2025-09-23T23:49:13.7714569Z Received 22673698 of 22673698 (100.0%), 3.0 MBs/sec
+2025-09-23T23:49:13.7717337Z Cache Size: ~22 MB (22673698 B)
+2025-09-23T23:49:13.7751676Z [command]/usr/bin/tar -xf /home/runner/work/_temp/05480de3-03a5-4a62-a9cb-9771f556417a/cache.tzst -P -C /home/runner/work/blurapp/blurapp --use-compress-program unzstd
+2025-09-23T23:49:14.6078401Z Cache restored successfully
+2025-09-23T23:49:14.6241604Z Cache restored from key: Linux-pub-0a68e32fd6621510f90b80d47d1b0d58e9d8d621a99145c6d9f5c4deb12150f9

@@ -1,0 +1,218 @@
+﻿2025-09-23T23:48:13.3725893Z ##[group]Run sudo apt-get update
+2025-09-23T23:48:13.3727348Z [36;1msudo apt-get update[0m
+2025-09-23T23:48:13.3728715Z [36;1msudo apt-get install -y git curl unzip xz-utils[0m
+2025-09-23T23:48:13.3730955Z [36;1mgit clone https://github.com/flutter/flutter.git -b stable --depth 1 /opt/flutter[0m
+2025-09-23T23:48:13.3733381Z [36;1mecho "/opt/flutter/bin" >> $GITHUB_PATH[0m
+2025-09-23T23:48:13.3735086Z [36;1mecho "/opt/flutter/bin/cache/dart-sdk/bin" >> $GITHUB_PATH[0m
+2025-09-23T23:48:13.3736743Z [36;1m/opt/flutter/bin/flutter --version[0m
+2025-09-23T23:48:13.3796214Z shell: /usr/bin/bash -e {0}
+2025-09-23T23:48:13.3797320Z ##[endgroup]
+2025-09-23T23:48:13.5391587Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2025-09-23T23:48:13.5869736Z Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+2025-09-23T23:48:13.5875255Z Hit:6 https://packages.microsoft.com/repos/azure-cli noble InRelease
+2025-09-23T23:48:13.5879116Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+2025-09-23T23:48:13.5919478Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2025-09-23T23:48:13.5969362Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2025-09-23T23:48:13.6304114Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2025-09-23T23:48:13.8582489Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [53.7 kB]
+2025-09-23T23:48:13.8699482Z Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [36.2 kB]
+2025-09-23T23:48:13.8736616Z Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [10.3 kB]
+2025-09-23T23:48:13.9075994Z Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1436 kB]
+2025-09-23T23:48:13.9155366Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [281 kB]
+2025-09-23T23:48:13.9182061Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [175 kB]
+2025-09-23T23:48:13.9205263Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 c-n-f Metadata [15.3 kB]
+2025-09-23T23:48:13.9222088Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1485 kB]
+2025-09-23T23:48:13.9313287Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [299 kB]
+2025-09-23T23:48:13.9343806Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [377 kB]
+2025-09-23T23:48:13.9374163Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 c-n-f Metadata [31.1 kB]
+2025-09-23T23:48:13.9390831Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1941 kB]
+2025-09-23T23:48:13.9519459Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [436 kB]
+2025-09-23T23:48:13.9995283Z Get:21 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Components [212 B]
+2025-09-23T23:48:14.0002377Z Get:22 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 c-n-f Metadata [544 B]
+2025-09-23T23:48:14.0016538Z Get:23 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [32.0 kB]
+2025-09-23T23:48:14.0030214Z Get:24 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [5500 B]
+2025-09-23T23:48:14.0042453Z Get:25 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+2025-09-23T23:48:14.0053504Z Get:26 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 c-n-f Metadata [488 B]
+2025-09-23T23:48:14.0066345Z Get:27 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [7084 B]
+2025-09-23T23:48:14.0080015Z Get:28 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [19.2 kB]
+2025-09-23T23:48:14.0092796Z Get:29 http://azure.archive.ubuntu.com/ubuntu noble-backports/restricted amd64 Components [216 B]
+2025-09-23T23:48:14.0120128Z Get:30 http://azure.archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Components [212 B]
+2025-09-23T23:48:14.0236192Z Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1164 kB]
+2025-09-23T23:48:14.0309596Z Get:32 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [197 kB]
+2025-09-23T23:48:14.0333484Z Get:33 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [21.5 kB]
+2025-09-23T23:48:14.0348276Z Get:34 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 c-n-f Metadata [8744 B]
+2025-09-23T23:48:14.0794168Z Get:35 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [880 kB]
+2025-09-23T23:48:14.0862766Z Get:36 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [195 kB]
+2025-09-23T23:48:14.0887101Z Get:37 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [52.3 kB]
+2025-09-23T23:48:14.0997114Z Get:38 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 c-n-f Metadata [18.0 kB]
+2025-09-23T23:48:14.1011249Z Get:39 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1855 kB]
+2025-09-23T23:48:14.1178424Z Get:40 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [419 kB]
+2025-09-23T23:48:14.1212370Z Get:41 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Components [212 B]
+2025-09-23T23:48:14.1225007Z Get:42 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 c-n-f Metadata [520 B]
+2025-09-23T23:48:14.1239203Z Get:43 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [28.0 kB]
+2025-09-23T23:48:14.1251795Z Get:44 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [5228 B]
+2025-09-23T23:48:14.1263187Z Get:45 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Components [208 B]
+2025-09-23T23:48:14.1275353Z Get:46 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 c-n-f Metadata [384 B]
+2025-09-23T23:48:23.1617094Z Fetched 11.9 MB in 2s (7552 kB/s)
+2025-09-23T23:48:23.9668386Z Reading package lists...
+2025-09-23T23:48:24.0001951Z Reading package lists...
+2025-09-23T23:48:24.2109993Z Building dependency tree...
+2025-09-23T23:48:24.2118025Z Reading state information...
+2025-09-23T23:48:24.4380452Z git is already the newest version (1:2.51.0-0ppa2~ubuntu24.04.1).
+2025-09-23T23:48:24.4381552Z git set to manually installed.
+2025-09-23T23:48:24.4382070Z curl is already the newest version (8.5.0-2ubuntu10.6).
+2025-09-23T23:48:24.4382669Z unzip is already the newest version (6.0-28ubuntu4.1).
+2025-09-23T23:48:24.4383307Z xz-utils is already the newest version (5.6.1+really5.4.5-1ubuntu0.2).
+2025-09-23T23:48:24.4383969Z 0 upgraded, 0 newly installed, 0 to remove and 69 not upgraded.
+2025-09-23T23:48:24.4416037Z Cloning into '/opt/flutter'...
+2025-09-23T23:48:27.1140488Z Updating files:  85% (12743/14891)
+2025-09-23T23:48:27.1218535Z Updating files:  86% (12807/14891)
+2025-09-23T23:48:27.1357133Z Updating files:  87% (12956/14891)
+2025-09-23T23:48:27.1429525Z Updating files:  88% (13105/14891)
+2025-09-23T23:48:27.1534179Z Updating files:  89% (13253/14891)
+2025-09-23T23:48:27.1636460Z Updating files:  90% (13402/14891)
+2025-09-23T23:48:27.1766621Z Updating files:  91% (13551/14891)
+2025-09-23T23:48:27.1908633Z Updating files:  92% (13700/14891)
+2025-09-23T23:48:27.1997794Z Updating files:  93% (13849/14891)
+2025-09-23T23:48:27.2086312Z Updating files:  94% (13998/14891)
+2025-09-23T23:48:27.2224399Z Updating files:  95% (14147/14891)
+2025-09-23T23:48:27.2355742Z Updating files:  96% (14296/14891)
+2025-09-23T23:48:27.2466326Z Updating files:  97% (14445/14891)
+2025-09-23T23:48:27.2556212Z Updating files:  98% (14594/14891)
+2025-09-23T23:48:27.2642789Z Updating files:  99% (14743/14891)
+2025-09-23T23:48:27.2643305Z Updating files: 100% (14891/14891)
+2025-09-23T23:48:27.2643944Z Updating files: 100% (14891/14891), done.
+2025-09-23T23:48:27.3276363Z Downloading Linux x64 Dart SDK from Flutter engine c29809135135e262a912cf583b2c90deb9ded610...
+2025-09-23T23:48:27.3384649Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2025-09-23T23:48:27.3385461Z                                  Dload  Upload   Total   Spent    Left  Speed
+2025-09-23T23:48:27.3385918Z 
+2025-09-23T23:48:28.0950737Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2025-09-23T23:48:29.0953173Z   3  207M    3 7903k    0     0  10.2M      0  0:00:20 --:--:--  0:00:20 10.1M
+2025-09-23T23:48:30.0986175Z   9  207M    9 20.1M    0     0  11.4M      0  0:00:18  0:00:01  0:00:17 11.4M
+2025-09-23T23:48:31.0999165Z  15  207M   15 32.4M    0     0  11.7M      0  0:00:17  0:00:02  0:00:15 11.7M
+2025-09-23T23:48:32.0975489Z  21  207M   21 44.7M    0     0  11.8M      0  0:00:17  0:00:03  0:00:14 11.8M
+2025-09-23T23:48:33.0986870Z  27  207M   27 57.1M    0     0  12.0M      0  0:00:17  0:00:04  0:00:13 12.0M
+2025-09-23T23:48:34.0953678Z  33  207M   33 69.4M    0     0  12.0M      0  0:00:17  0:00:05  0:00:12 12.3M
+2025-09-23T23:48:35.0964260Z  39  207M   39 80.9M    0     0  11.9M      0  0:00:17  0:00:06  0:00:11 12.1M
+2025-09-23T23:48:36.0974716Z  44  207M   44 93.3M    0     0  12.0M      0  0:00:17  0:00:07  0:00:10 12.1M
+2025-09-23T23:48:37.0990085Z  50  207M   50  105M    0     0  12.0M      0  0:00:17  0:00:08  0:00:09 12.1M
+2025-09-23T23:48:38.0964152Z  56  207M   56  117M    0     0  12.0M      0  0:00:17  0:00:09  0:00:08 12.0M
+2025-09-23T23:48:39.0983475Z  62  207M   62  129M    0     0  12.0M      0  0:00:17  0:00:10  0:00:07 12.0M
+2025-09-23T23:48:40.0964947Z  68  207M   68  141M    0     0  12.0M      0  0:00:17  0:00:11  0:00:06 12.0M
+2025-09-23T23:48:41.0954358Z  74  207M   74  153M    0     0  12.0M      0  0:00:17  0:00:12  0:00:05 12.0M
+2025-09-23T23:48:42.0957077Z  80  207M   80  166M    0     0  12.0M      0  0:00:17  0:00:13  0:00:04 12.1M
+2025-09-23T23:48:43.0950450Z  85  207M   85  178M    0     0  12.0M      0  0:00:17  0:00:14  0:00:03 12.1M
+2025-09-23T23:48:44.0950369Z  91  207M   91  190M    0     0  12.0M      0  0:00:17  0:00:15  0:00:02 12.1M
+2025-09-23T23:48:44.5072522Z  97  207M   97  202M    0     0  12.0M      0  0:00:17  0:00:16  0:00:01 12.2M
+2025-09-23T23:48:44.5073327Z 100  207M  100  207M    0     0  12.0M      0  0:00:17  0:00:17 --:--:-- 12.2M
+2025-09-23T23:48:49.0847658Z Building flutter tool...
+2025-09-23T23:48:49.2151747Z Resolving dependencies...
+2025-09-23T23:48:50.2396863Z Downloading packages...
+2025-09-23T23:48:53.5164582Z + _fe_analyzer_shared 82.0.0 (89.0.0 available)
+2025-09-23T23:48:53.5166653Z + analyzer 7.4.5 (8.2.0 available)
+2025-09-23T23:48:53.5169207Z + archive 3.6.1 (4.0.7 available)
+2025-09-23T23:48:53.5170889Z + args 2.7.0
+2025-09-23T23:48:53.5171559Z + async 2.13.0
+2025-09-23T23:48:53.5171895Z + boolean_selector 2.1.2
+2025-09-23T23:48:53.5172226Z + browser_launcher 1.1.3
+2025-09-23T23:48:53.5172608Z + built_collection 5.1.1
+2025-09-23T23:48:53.5172964Z + built_value 8.10.1 (8.12.0 available)
+2025-09-23T23:48:53.5173400Z + checked_yaml 2.0.4
+2025-09-23T23:48:53.5173725Z + cli_config 0.2.0
+2025-09-23T23:48:53.5174045Z + clock 1.1.2
+2025-09-23T23:48:53.5174350Z + code_assets 0.19.4 (0.19.7 available)
+2025-09-23T23:48:53.5174752Z + code_builder 4.10.1 (4.11.0 available)
+2025-09-23T23:48:53.5175144Z + collection 1.19.1
+2025-09-23T23:48:53.5175486Z + completion 1.0.1 (1.0.2 available)
+2025-09-23T23:48:53.5175891Z + convert 3.1.2
+2025-09-23T23:48:53.5176189Z + coverage 1.14.1 (1.15.0 available)
+2025-09-23T23:48:53.5176565Z + crypto 3.0.6
+2025-09-23T23:48:53.5176853Z + csslib 1.0.2
+2025-09-23T23:48:53.5177138Z + dap 1.4.0
+2025-09-23T23:48:53.5177430Z + dart_service_protocol_shared 0.0.3
+2025-09-23T23:48:53.5177831Z + dart_style 3.1.0 (3.1.2 available)
+2025-09-23T23:48:53.5178218Z + dds 5.0.3 (5.1.0 available)
+2025-09-23T23:48:53.5178633Z + dds_service_extensions 2.0.2 (2.1.0 available)
+2025-09-23T23:48:53.5179098Z + devtools_shared 12.0.0
+2025-09-23T23:48:53.5179447Z + dtd 4.0.0
+2025-09-23T23:48:53.5180164Z + dwds 24.4.0+2 (25.1.0 available)
+2025-09-23T23:48:53.5180578Z + extension_discovery 2.1.0
+2025-09-23T23:48:53.5180953Z + fake_async 1.3.3
+2025-09-23T23:48:53.5181485Z + ffi 2.1.4
+2025-09-23T23:48:53.5181763Z + file 7.0.1
+2025-09-23T23:48:53.5182035Z + file_testing 3.0.2
+2025-09-23T23:48:53.5182342Z + fixnum 1.1.1
+2025-09-23T23:48:53.5182655Z + flutter_template_images 5.0.0
+2025-09-23T23:48:53.5183117Z + frontend_server_client 4.0.0
+2025-09-23T23:48:53.5183465Z + glob 2.1.3
+2025-09-23T23:48:53.5183757Z + graphs 2.3.2
+2025-09-23T23:48:53.5184057Z + hooks 0.19.5 (0.20.1 available)
+2025-09-23T23:48:53.5184432Z + hooks_runner 0.21.0 (0.22.1 available)
+2025-09-23T23:48:53.5184825Z + html 0.15.6
+2025-09-23T23:48:53.5185141Z + http 1.4.0 (1.5.0 available)
+2025-09-23T23:48:53.5185519Z + http_multi_server 3.2.2
+2025-09-23T23:48:53.5185870Z + http_parser 4.1.2
+2025-09-23T23:48:53.5186162Z + intl 0.20.2
+2025-09-23T23:48:53.5186747Z + io 1.0.5
+2025-09-23T23:48:53.5187040Z + js 0.7.2 (discontinued)
+2025-09-23T23:48:53.5187398Z + json_annotation 4.9.0
+2025-09-23T23:48:53.5187737Z + json_rpc_2 3.0.3 (4.0.0 available)
+2025-09-23T23:48:53.5188132Z + logging 1.3.0
+2025-09-23T23:48:53.5188437Z + matcher 0.12.17
+2025-09-23T23:48:53.5188737Z + meta 1.17.0
+2025-09-23T23:48:53.5189031Z + mime 2.0.0
+2025-09-23T23:48:53.5189321Z + multicast_dns 0.3.3
+2025-09-23T23:48:53.5189679Z + mustache_template 2.0.0 (2.0.1 available)
+2025-09-23T23:48:53.5190102Z + native_stack_traces 0.6.1
+2025-09-23T23:48:53.5190439Z + node_preamble 2.0.2
+2025-09-23T23:48:53.5190771Z + package_config 2.2.0
+2025-09-23T23:48:53.5191344Z + path 1.9.1
+2025-09-23T23:48:53.5191666Z + petitparser 6.1.0 (7.0.1 available)
+2025-09-23T23:48:53.5192063Z + platform 3.1.6
+2025-09-23T23:48:53.5192370Z + pool 1.5.1 (1.5.2 available)
+2025-09-23T23:48:53.5192715Z + process 5.0.4 (5.0.5 available)
+2025-09-23T23:48:53.5193106Z + pub_semver 2.2.0
+2025-09-23T23:48:53.5193432Z + pubspec_parse 1.5.0
+2025-09-23T23:48:53.5193796Z + shelf 1.4.2
+2025-09-23T23:48:53.5194203Z + shelf_packages_handler 3.0.2
+2025-09-23T23:48:53.5194587Z + shelf_proxy 1.0.4
+2025-09-23T23:48:53.5194904Z + shelf_static 1.1.3
+2025-09-23T23:48:53.5195245Z + shelf_web_socket 2.0.1 (3.0.0 available)
+2025-09-23T23:48:53.5195682Z + source_map_stack_trace 2.1.2
+2025-09-23T23:48:53.5196067Z + source_maps 0.10.13
+2025-09-23T23:48:53.5196383Z + source_span 1.10.1
+2025-09-23T23:48:53.5196706Z + sprintf 7.0.0
+2025-09-23T23:48:53.5197003Z + sse 4.1.8
+2025-09-23T23:48:53.5197307Z + stack_trace 1.12.1
+2025-09-23T23:48:53.5197635Z + standard_message_codec 0.0.1+4
+2025-09-23T23:48:53.5198030Z + stream_channel 2.1.4
+2025-09-23T23:48:53.5198352Z + string_scanner 1.4.1
+2025-09-23T23:48:53.5198659Z + sync_http 0.3.1
+2025-09-23T23:48:53.5198964Z + term_glyph 1.2.2
+2025-09-23T23:48:53.5199264Z + test 1.26.2 (1.26.3 available)
+2025-09-23T23:48:53.5199598Z + test_api 0.7.6 (0.7.7 available)
+2025-09-23T23:48:53.5199964Z + test_core 0.6.11 (0.6.12 available)
+2025-09-23T23:48:53.5200338Z + typed_data 1.4.0
+2025-09-23T23:48:53.5200623Z + unified_analytics 8.0.5
+2025-09-23T23:48:53.5200950Z + usage 4.1.1 (discontinued)
+2025-09-23T23:48:53.5201490Z + uuid 4.5.1
+2025-09-23T23:48:53.5201765Z + vm_service 15.0.2
+2025-09-23T23:48:53.5202081Z + vm_service_interface 2.0.1
+2025-09-23T23:48:53.5202430Z + vm_snapshot_analysis 0.7.6
+2025-09-23T23:48:53.5202758Z + watcher 1.1.2 (1.1.3 available)
+2025-09-23T23:48:53.5203089Z + web 1.1.1
+2025-09-23T23:48:53.5203346Z + web_socket 1.0.1
+2025-09-23T23:48:53.5203640Z + web_socket_channel 3.0.3
+2025-09-23T23:48:53.5203950Z + webdriver 3.1.0
+2025-09-23T23:48:53.5204280Z + webkit_inspection_protocol 1.2.1
+2025-09-23T23:48:53.5204689Z + xml 6.5.0 (6.6.1 available)
+2025-09-23T23:48:53.5205063Z + yaml 3.1.3
+2025-09-23T23:48:53.5205376Z + yaml_edit 2.2.2
+2025-09-23T23:48:53.5205771Z Changed 100 dependencies!
+2025-09-23T23:48:53.5206150Z 2 packages are discontinued.
+2025-09-23T23:48:53.5208029Z 26 packages have newer versions incompatible with dependency constraints.
+2025-09-23T23:48:53.5209080Z Try `dart pub outdated` for more information.
+2025-09-23T23:49:09.9738822Z Flutter 3.35.4 • channel stable • https://github.com/flutter/flutter.git
+2025-09-23T23:49:09.9739695Z Framework • revision d693b4b9db (7 days ago) • 2025-09-16 14:27:41 +0000
+2025-09-23T23:49:09.9740667Z Engine • hash feee8ee8fb8b975dd9990f86d3bda11e6e75faf3 (revision c298091351) (8 days ago) • 2025-09-15 14:04:24.000Z
+2025-09-23T23:49:09.9741589Z Tools • Dart 3.9.2 • DevTools 2.48.0

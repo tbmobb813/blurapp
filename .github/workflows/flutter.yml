@@ -2,30 +2,190 @@ name: Flutter CI
 
 on:
   push:
-    branches: [main]
+    branches: [ main, 'comp/**', 'feat/**', 'fix/**' ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
-  build-test:
+  analyze-and-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: subosito/flutter-action@v2
+
+      - name: Set up Flutter
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git curl unzip xz-utils
+          git clone https://github.com/flutter/flutter.git -b stable --depth 1 /opt/flutter
+          echo "/opt/flutter/bin" >> $GITHUB_PATH
+          echo "/opt/flutter/bin/cache/dart-sdk/bin" >> $GITHUB_PATH
+          /opt/flutter/bin/flutter --version
+
+      - name: Cache Pub
+        uses: actions/cache@v4
         with:
-          channel: stable
+          path: |
+            ~/.pub-cache
+            .dart_tool
+          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.yaml') }}
+
       - name: Install dependencies
-        run: flutter pub get
-      - name: Analyze
-        run: flutter analyze
-      - name: Test
-        run: flutter test
-      - name: Build APK (free flavor)
-        run: flutter build apk --debug --flavor free
-      - name: Build APK (pro flavor)
-        run: flutter build apk --debug --flavor pro
-      # Add iOS build steps if macOS runners are available
-      # - name: Build iOS (free flavor)
-      #   run: flutter build ios --simulator --flavor free
-      # - name: Build iOS (pro flavor)
-      #   run: flutter build ios --simulator --flavor pro
+        run: |
+          cd app
+          # Ensure Flutter tool has cached artifacts (may download engine artifacts)
+          /opt/flutter/bin/flutter precache || true
+
+          # Retry pub get up to 3 times to mitigate transient network/package server issues
+          attempt=0
+          until [ $attempt -ge 3 ]; do
+            /opt/flutter/bin/flutter pub get && break
+            attempt=$((attempt+1))
+            echo "flutter pub get failed, retry #$attempt"
+            sleep $((attempt*5))
+          done
+          if [ $attempt -ge 3 ]; then
+            echo "flutter pub get failed after $attempt attempts"; exit 1
+          fi
+
+      - name: Privacy checks (fail if INTERNET permission or analytics deps)
+        run: |
+          set -e
+          # Check only the known production AndroidManifest(s) to avoid false positives from plugin/example folders
+          prod_manifests=(
+            "app/android/app/src/main/AndroidManifest.xml"
+          )
+          matches=""
+          for mf in "${prod_manifests[@]}"; do
+            if [ -f "$mf" ]; then
+              m=$(grep -n "android.permission.INTERNET" "$mf" || true)
+              if [ -n "$m" ]; then
+                matches="$matches\n$mf:$m"
+              fi
+            fi
+          done
+          if [ -n "$matches" ]; then
+            echo "ERROR: INTERNET permission found in AndroidManifest.xml (prod paths). This project is privacy-first and must not request INTERNET."
+            echo "Matches found (path:line:content):"
+            printf "%b\n" "$matches"
+            exit 1
+          fi
+
+          # --- Debug: print the production manifest(s) to help CI debugging ---
+          for mf in "${prod_manifests[@]}"; do
+            if [ -f "$mf" ]; then
+              echo "--- Production manifest: $mf ---"
+              sed -n '1,240p' "$mf" || true
+              echo "--- end manifest ---"
+            fi
+          done
+
+          # Check iOS Info.plist for NSAllowsArbitraryLoads or other network allow-all keys
+          itms=$(grep -R --include="Info.plist" -n "NSAppTransportSecurity\|NSAllowsArbitraryLoads" app ios 2>/dev/null | grep -v "temp_project" || true)
+          if [ -n "$itms" ]; then
+            echo "WARNING: Potential network-related keys found in Info.plist. Please verify they are required. Matches:"
+            echo "$itms"
+            exit 1
+          fi
+
+          # Check pubspec.yaml for common analytics/crash packages
+          if grep -E "analytics|sentry|crashlytics|firebase_analytics|appcenter|rollbar" -n app/pubspec.yaml; then
+            echo "ERROR: Found analytics/crash packages in pubspec.yaml. Privacy policy requires no telemetry."; exit 1
+          fi
+
+      - name: Format check
+        run: |
+          cd app
+          /opt/flutter/bin/dart format --set-exit-if-changed .
+
+      - name: Static analysis (verbose)
+        run: |
+          cd app
+          echo "=== Flutter version ==="
+          /opt/flutter/bin/flutter --version || true
+          echo "=== Running flutter analyze (verbose) ==="
+          /opt/flutter/bin/flutter analyze -v || true
+
+          echo "=== prod AndroidManifest (if present) ==="
+          MF="android/app/src/main/AndroidManifest.xml"
+          if [ -f "$MF" ]; then
+            echo "--- $MF ---"
+            sed -n '1,240p' "$MF" || true
+            echo "--- end $MF ---"
+          fi
+
+          echo "=== Search for deprecated withOpacity occurrences in lib ==="
+          grep -n --color=never "withOpacity" lib || true
+
+      - name: Run tests
+        run: |
+          cd app
+          /opt/flutter/bin/flutter test --coverage
+
+  build-test:
+    runs-on: ubuntu-latest
+    needs: analyze-and-test
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git curl unzip xz-utils
+          git clone https://github.com/flutter/flutter.git -b stable --depth 1 /opt/flutter
+          echo "/opt/flutter/bin" >> $GITHUB_PATH
+          echo "/opt/flutter/bin/cache/dart-sdk/bin" >> $GITHUB_PATH
+          /opt/flutter/bin/flutter --version
+
+      - name: Install dependencies
+        run: |
+          cd app
+          /opt/flutter/bin/flutter precache || true
+
+          attempt=0
+          until [ $attempt -ge 3 ]; do
+            /opt/flutter/bin/flutter pub get && break
+            attempt=$((attempt+1))
+            echo "flutter pub get failed, retry #$attempt"
+            sleep $((attempt*5))
+          done
+          if [ $attempt -ge 3 ]; then
+            echo "flutter pub get failed after $attempt attempts"; exit 1
+          fi
+
+      - name: Analyze and Test
+        run: |
+          cd app
+          /opt/flutter/bin/flutter analyze
+          /opt/flutter/bin/flutter test
+
+      - name: Build APK (debug)
+        env:
+          # Request more heap for the Gradle/JVM steps (Jetify/transform can be memory-hungry)
+          JAVA_TOOL_OPTIONS: -Xmx4096m -XX:MaxMetaspaceSize=512m -Dfile.encoding=UTF-8 -XX:+HeapDumpOnOutOfMemoryError
+          GRADLE_OPTS: -Xmx4096m
+        run: |
+          cd app
+          # Also export these for subprocesses in case Gradle picks them up differently
+          export JAVA_TOOL_OPTIONS="$JAVA_TOOL_OPTIONS"
+          export GRADLE_OPTS="$GRADLE_OPTS"
+          /opt/flutter/bin/flutter build apk --debug
+
+  native-build-test:
+    name: Native build & test
+    runs-on: ubuntu-latest
+    needs: build-test
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install build essentials
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake
+
+      - name: Build native blurcore and run native test
+        working-directory: native
+        run: |
+          mkdir -p build && cd build
+          cmake ..
+          cmake --build . --target blurcore_test -j$(nproc)
+          ./blurcore_test

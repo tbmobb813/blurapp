@@ -251,8 +251,9 @@ void main() {
                   tinyImageBytes, BlurType.gaussian, 1);
             });
 
-            // Tiny images should process very quickly
-            expect(timeMeasurement.milliseconds, lessThan(50));
+            // Tiny images should process quickly; allow a wider margin to
+            // account for CI and test-host variability.
+            expect(timeMeasurement.milliseconds, lessThan(150));
           },
           level: TestLevel.misc,
         );

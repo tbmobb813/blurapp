@@ -1,0 +1,12 @@
+﻿2025-09-23T23:53:36.7542004Z ##[group]Run cd app
+2025-09-23T23:53:36.7542273Z [36;1mcd app[0m
+2025-09-23T23:53:36.7542470Z [36;1m/opt/flutter/bin/flutter analyze[0m
+2025-09-23T23:53:36.7542726Z [36;1m/opt/flutter/bin/flutter test[0m
+2025-09-23T23:53:36.7573448Z shell: /usr/bin/bash -e {0}
+2025-09-23T23:53:36.7573686Z ##[endgroup]
+2025-09-23T23:53:51.8757972Z Analyzing app...                                                
+2025-09-23T23:53:51.8764976Z 
+2025-09-23T23:53:51.8784520Z    info • 'value' is deprecated and shouldn't be used. Use component accessors like .r or .g, or toARGB32 for an explicit conversion • lib/core/utils/color_utils.dart:11:26 • deprecated_member_use
+2025-09-23T23:53:51.8793093Z 
+2025-09-23T23:53:51.8935483Z 1 issue found. (ran in 14.4s)
+2025-09-23T23:53:51.9015572Z ##[error]Process completed with exit code 1.

@@ -1,0 +1,327 @@
+﻿2025-09-23T23:50:27.7055944Z ##[group]Run cd app
+2025-09-23T23:50:27.7056204Z [36;1mcd app[0m
+2025-09-23T23:50:27.7056410Z [36;1mecho "=== Flutter version ==="[0m
+2025-09-23T23:50:27.7056713Z [36;1m/opt/flutter/bin/flutter --version || true[0m
+2025-09-23T23:50:27.7057049Z [36;1mecho "=== Running flutter analyze (verbose) ==="[0m
+2025-09-23T23:50:27.7057382Z [36;1m/opt/flutter/bin/flutter analyze -v || true[0m
+2025-09-23T23:50:27.7057656Z [36;1m[0m
+2025-09-23T23:50:27.7057887Z [36;1mecho "=== prod AndroidManifest (if present) ==="[0m
+2025-09-23T23:50:27.7058231Z [36;1mMF="android/app/src/main/AndroidManifest.xml"[0m
+2025-09-23T23:50:27.7058537Z [36;1mif [ -f "$MF" ]; then[0m
+2025-09-23T23:50:27.7058772Z [36;1m  echo "--- $MF ---"[0m
+2025-09-23T23:50:27.7058993Z [36;1m  sed -n '1,240p' "$MF" || true[0m
+2025-09-23T23:50:27.7059243Z [36;1m  echo "--- end $MF ---"[0m
+2025-09-23T23:50:27.7059460Z [36;1mfi[0m
+2025-09-23T23:50:27.7059620Z [36;1m[0m
+2025-09-23T23:50:27.7059879Z [36;1mecho "=== Search for deprecated withOpacity occurrences in lib ==="[0m
+2025-09-23T23:50:27.7060303Z [36;1mgrep -n --color=never "withOpacity" lib || true[0m
+2025-09-23T23:50:27.7089672Z shell: /usr/bin/bash -e {0}
+2025-09-23T23:50:27.7089910Z ##[endgroup]
+2025-09-23T23:50:27.7138412Z === Flutter version ===
+2025-09-23T23:50:27.8386316Z Flutter 3.35.4 • channel stable • https://github.com/flutter/flutter.git
+2025-09-23T23:50:27.8387091Z Framework • revision d693b4b9db (7 days ago) • 2025-09-16 14:27:41 +0000
+2025-09-23T23:50:27.8387981Z Engine • hash feee8ee8fb8b975dd9990f86d3bda11e6e75faf3 (revision c298091351) (8 days ago) • 2025-09-15 14:04:24.000Z
+2025-09-23T23:50:27.8388926Z Tools • Dart 3.9.2 • DevTools 2.48.0
+2025-09-23T23:50:27.8432020Z === Running flutter analyze (verbose) ===
+2025-09-23T23:50:27.9602151Z [  +48 ms] executing: uname -m
+2025-09-23T23:50:27.9645101Z [   +5 ms] Exit code 0 from: uname -m
+2025-09-23T23:50:27.9646004Z [        ] x86_64
+2025-09-23T23:50:27.9713804Z [   +6 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+2025-09-23T23:50:27.9714965Z [        ] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+2025-09-23T23:50:27.9715931Z [        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9716958Z [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9719488Z [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9720761Z [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+2025-09-23T23:50:27.9723275Z [        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+2025-09-23T23:50:27.9724323Z [        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+2025-09-23T23:50:27.9725478Z [        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9726566Z [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9727655Z [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9728786Z [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9729872Z [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9731436Z [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9732543Z [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+2025-09-23T23:50:27.9733623Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9736772Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9737989Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9739783Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9741920Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9742785Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9743615Z [        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9744458Z [        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+2025-09-23T23:50:27.9827465Z [   +8 ms] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9831467Z [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9832487Z [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9833349Z [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+2025-09-23T23:50:27.9834210Z [        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+2025-09-23T23:50:27.9835099Z [        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+2025-09-23T23:50:27.9848218Z [   +1 ms] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9849292Z [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9850223Z [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9851599Z [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9852623Z [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9853622Z [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+2025-09-23T23:50:27.9854639Z [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+2025-09-23T23:50:28.0152653Z [  +29 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+2025-09-23T23:50:28.0153602Z [        ] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+2025-09-23T23:50:28.0154533Z [        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+2025-09-23T23:50:28.0156897Z [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+2025-09-23T23:50:28.0157914Z [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:28.0158790Z [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+2025-09-23T23:50:28.0159634Z [        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+2025-09-23T23:50:28.0160544Z [        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+2025-09-23T23:50:28.0161684Z [        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+2025-09-23T23:50:28.0162573Z [        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:28.0163503Z [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:28.0164416Z [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+2025-09-23T23:50:28.0165337Z [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+2025-09-23T23:50:28.0166308Z [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+2025-09-23T23:50:28.0169160Z [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+2025-09-23T23:50:28.0170200Z [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+2025-09-23T23:50:28.0171340Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:28.0172794Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:28.0173620Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:28.0174460Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:28.0175243Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:28.0176004Z [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+2025-09-23T23:50:28.0176858Z [        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+2025-09-23T23:50:28.0177726Z [        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+2025-09-23T23:50:28.0268458Z [   +9 ms] Skipping pub get: version match.
+2025-09-23T23:50:28.0880073Z [  +61 ms] Found plugin share_plus at /home/runner/.pub-cache/hosted/pub.dev/share_plus-10.1.4/
+2025-09-23T23:50:28.1014116Z [  +13 ms] Found plugin url_launcher_windows at /home/runner/.pub-cache/hosted/pub.dev/url_launcher_windows-3.1.4/
+2025-09-23T23:50:28.1070413Z [   +5 ms] Found plugin url_launcher_web at /home/runner/.pub-cache/hosted/pub.dev/url_launcher_web-2.3.3/
+2025-09-23T23:50:28.1100142Z [   +3 ms] Found plugin url_launcher_linux at /home/runner/.pub-cache/hosted/pub.dev/url_launcher_linux-3.2.1/
+2025-09-23T23:50:28.1192491Z [   +9 ms] Found plugin path_provider at /home/runner/.pub-cache/hosted/pub.dev/path_provider-2.1.5/
+2025-09-23T23:50:28.1210126Z [   +1 ms] Found plugin path_provider_windows at /home/runner/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/
+2025-09-23T23:50:28.1247956Z [   +3 ms] Found plugin path_provider_linux at /home/runner/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
+2025-09-23T23:50:28.1273965Z [   +2 ms] Found plugin path_provider_foundation at /home/runner/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/
+2025-09-23T23:50:28.1289172Z [   +1 ms] Found plugin path_provider_android at /home/runner/.pub-cache/hosted/pub.dev/path_provider_android-2.2.15/
+2025-09-23T23:50:28.1331572Z [   +4 ms] Found plugin permission_handler at /home/runner/.pub-cache/hosted/pub.dev/permission_handler-11.4.0/
+2025-09-23T23:50:28.1345430Z [   +1 ms] Found plugin permission_handler_windows at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_windows-0.2.1/
+2025-09-23T23:50:28.1377312Z [   +3 ms] Found plugin permission_handler_html at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_html-0.1.3+5/
+2025-09-23T23:50:28.1394845Z [   +1 ms] Found plugin permission_handler_apple at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_apple-9.4.7/
+2025-09-23T23:50:28.1409890Z [   +1 ms] Found plugin permission_handler_android at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_android-12.1.0/
+2025-09-23T23:50:28.1452706Z [   +4 ms] Found plugin image_picker at /home/runner/.pub-cache/hosted/pub.dev/image_picker-1.1.2/
+2025-09-23T23:50:28.1476324Z [   +2 ms] Found plugin image_picker_windows at /home/runner/.pub-cache/hosted/pub.dev/image_picker_windows-0.2.1+1/
+2025-09-23T23:50:28.1575984Z [   +9 ms] Found plugin file_selector_windows at /home/runner/.pub-cache/hosted/pub.dev/file_selector_windows-0.9.3+4/
+2025-09-23T23:50:28.1609110Z [   +3 ms] Found plugin image_picker_macos at /home/runner/.pub-cache/hosted/pub.dev/image_picker_macos-0.2.1+2/
+2025-09-23T23:50:28.1626208Z [   +1 ms] Found plugin file_selector_macos at /home/runner/.pub-cache/hosted/pub.dev/file_selector_macos-0.9.4+2/
+2025-09-23T23:50:28.1641724Z [   +1 ms] Found plugin image_picker_linux at /home/runner/.pub-cache/hosted/pub.dev/image_picker_linux-0.2.1+2/
+2025-09-23T23:50:28.1657239Z [   +1 ms] Found plugin file_selector_linux at /home/runner/.pub-cache/hosted/pub.dev/file_selector_linux-0.9.3+2/
+2025-09-23T23:50:28.1673365Z [   +1 ms] Found plugin image_picker_ios at /home/runner/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.12+2/
+2025-09-23T23:50:28.1691260Z [   +1 ms] Found plugin image_picker_for_web at /home/runner/.pub-cache/hosted/pub.dev/image_picker_for_web-3.0.6/
+2025-09-23T23:50:28.1707251Z [   +1 ms] Found plugin image_picker_android at /home/runner/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+21/
+2025-09-23T23:50:28.1722160Z [   +1 ms] Found plugin flutter_plugin_android_lifecycle at /home/runner/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.26/
+2025-09-23T23:50:28.1850267Z [  +12 ms] Found plugin gal at /home/runner/.pub-cache/hosted/pub.dev/gal-2.3.2/
+2025-09-23T23:50:28.2313672Z [  +46 ms] Found plugin share_plus at /home/runner/.pub-cache/hosted/pub.dev/share_plus-10.1.4/
+2025-09-23T23:50:28.2352131Z [   +3 ms] Found plugin url_launcher_windows at /home/runner/.pub-cache/hosted/pub.dev/url_launcher_windows-3.1.4/
+2025-09-23T23:50:28.2375895Z [   +2 ms] Found plugin url_launcher_web at /home/runner/.pub-cache/hosted/pub.dev/url_launcher_web-2.3.3/
+2025-09-23T23:50:28.2399607Z [   +2 ms] Found plugin url_launcher_linux at /home/runner/.pub-cache/hosted/pub.dev/url_launcher_linux-3.2.1/
+2025-09-23T23:50:28.2452802Z [   +5 ms] Found plugin path_provider at /home/runner/.pub-cache/hosted/pub.dev/path_provider-2.1.5/
+2025-09-23T23:50:28.2462982Z [   +1 ms] Found plugin path_provider_windows at /home/runner/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/
+2025-09-23T23:50:28.2493722Z [   +3 ms] Found plugin path_provider_linux at /home/runner/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
+2025-09-23T23:50:28.2511965Z [   +1 ms] Found plugin path_provider_foundation at /home/runner/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/
+2025-09-23T23:50:28.2523800Z [   +1 ms] Found plugin path_provider_android at /home/runner/.pub-cache/hosted/pub.dev/path_provider_android-2.2.15/
+2025-09-23T23:50:28.2564254Z [   +4 ms] Found plugin permission_handler at /home/runner/.pub-cache/hosted/pub.dev/permission_handler-11.4.0/
+2025-09-23T23:50:28.2574521Z [   +1 ms] Found plugin permission_handler_windows at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_windows-0.2.1/
+2025-09-23T23:50:28.2594739Z [   +2 ms] Found plugin permission_handler_html at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_html-0.1.3+5/
+2025-09-23T23:50:28.2605966Z [   +1 ms] Found plugin permission_handler_apple at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_apple-9.4.7/
+2025-09-23T23:50:28.2616434Z [   +1 ms] Found plugin permission_handler_android at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_android-12.1.0/
+2025-09-23T23:50:28.2625568Z [        ] Found plugin image_picker at /home/runner/.pub-cache/hosted/pub.dev/image_picker-1.1.2/
+2025-09-23T23:50:28.2634186Z [        ] Found plugin image_picker_windows at /home/runner/.pub-cache/hosted/pub.dev/image_picker_windows-0.2.1+1/
+2025-09-23T23:50:28.2662290Z [   +2 ms] Found plugin file_selector_windows at /home/runner/.pub-cache/hosted/pub.dev/file_selector_windows-0.9.3+4/
+2025-09-23T23:50:28.2676053Z [   +1 ms] Found plugin image_picker_macos at /home/runner/.pub-cache/hosted/pub.dev/image_picker_macos-0.2.1+2/
+2025-09-23T23:50:28.2683761Z [        ] Found plugin file_selector_macos at /home/runner/.pub-cache/hosted/pub.dev/file_selector_macos-0.9.4+2/
+2025-09-23T23:50:28.2693729Z [   +1 ms] Found plugin image_picker_linux at /home/runner/.pub-cache/hosted/pub.dev/image_picker_linux-0.2.1+2/
+2025-09-23T23:50:28.2702405Z [        ] Found plugin file_selector_linux at /home/runner/.pub-cache/hosted/pub.dev/file_selector_linux-0.9.3+2/
+2025-09-23T23:50:28.2711394Z [        ] Found plugin image_picker_ios at /home/runner/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.12+2/
+2025-09-23T23:50:28.2722240Z [   +1 ms] Found plugin image_picker_for_web at /home/runner/.pub-cache/hosted/pub.dev/image_picker_for_web-3.0.6/
+2025-09-23T23:50:28.2730713Z [        ] Found plugin image_picker_android at /home/runner/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+21/
+2025-09-23T23:50:28.2739126Z [        ] Found plugin flutter_plugin_android_lifecycle at /home/runner/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.26/
+2025-09-23T23:50:28.2777688Z [   +3 ms] Found plugin gal at /home/runner/.pub-cache/hosted/pub.dev/gal-2.3.2/
+2025-09-23T23:50:28.2886162Z [  +10 ms] Skipping generating web_plugin_registrant.dart because it is up-to-date.
+2025-09-23T23:50:28.3092737Z [  +20 ms] Found plugin share_plus at /home/runner/.pub-cache/hosted/pub.dev/share_plus-10.1.4/
+2025-09-23T23:50:28.3124074Z [   +3 ms] Found plugin url_launcher_windows at /home/runner/.pub-cache/hosted/pub.dev/url_launcher_windows-3.1.4/
+2025-09-23T23:50:28.3144034Z [   +2 ms] Found plugin url_launcher_web at /home/runner/.pub-cache/hosted/pub.dev/url_launcher_web-2.3.3/
+2025-09-23T23:50:28.3184416Z [   +1 ms] Found plugin url_launcher_linux at /home/runner/.pub-cache/hosted/pub.dev/url_launcher_linux-3.2.1/
+2025-09-23T23:50:28.3198164Z [   +4 ms] Found plugin path_provider at /home/runner/.pub-cache/hosted/pub.dev/path_provider-2.1.5/
+2025-09-23T23:50:28.3205946Z [        ] Found plugin path_provider_windows at /home/runner/.pub-cache/hosted/pub.dev/path_provider_windows-2.3.0/
+2025-09-23T23:50:28.3223930Z [   +1 ms] Found plugin path_provider_linux at /home/runner/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
+2025-09-23T23:50:28.3236538Z [   +1 ms] Found plugin path_provider_foundation at /home/runner/.pub-cache/hosted/pub.dev/path_provider_foundation-2.4.1/
+2025-09-23T23:50:28.3244383Z [        ] Found plugin path_provider_android at /home/runner/.pub-cache/hosted/pub.dev/path_provider_android-2.2.15/
+2025-09-23T23:50:28.3275272Z [   +3 ms] Found plugin permission_handler at /home/runner/.pub-cache/hosted/pub.dev/permission_handler-11.4.0/
+2025-09-23T23:50:28.3283343Z [        ] Found plugin permission_handler_windows at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_windows-0.2.1/
+2025-09-23T23:50:28.3296052Z [   +1 ms] Found plugin permission_handler_html at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_html-0.1.3+5/
+2025-09-23T23:50:28.3303340Z [        ] Found plugin permission_handler_apple at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_apple-9.4.7/
+2025-09-23T23:50:28.3310342Z [        ] Found plugin permission_handler_android at /home/runner/.pub-cache/hosted/pub.dev/permission_handler_android-12.1.0/
+2025-09-23T23:50:28.3318329Z [        ] Found plugin image_picker at /home/runner/.pub-cache/hosted/pub.dev/image_picker-1.1.2/
+2025-09-23T23:50:28.3328369Z [        ] Found plugin image_picker_windows at /home/runner/.pub-cache/hosted/pub.dev/image_picker_windows-0.2.1+1/
+2025-09-23T23:50:28.3355822Z [   +2 ms] Found plugin file_selector_windows at /home/runner/.pub-cache/hosted/pub.dev/file_selector_windows-0.9.3+4/
+2025-09-23T23:50:28.3371618Z [   +1 ms] Found plugin image_picker_macos at /home/runner/.pub-cache/hosted/pub.dev/image_picker_macos-0.2.1+2/
+2025-09-23T23:50:28.3379546Z [        ] Found plugin file_selector_macos at /home/runner/.pub-cache/hosted/pub.dev/file_selector_macos-0.9.4+2/
+2025-09-23T23:50:28.3386531Z [        ] Found plugin image_picker_linux at /home/runner/.pub-cache/hosted/pub.dev/image_picker_linux-0.2.1+2/
+2025-09-23T23:50:28.3395308Z [        ] Found plugin file_selector_linux at /home/runner/.pub-cache/hosted/pub.dev/file_selector_linux-0.9.3+2/
+2025-09-23T23:50:28.3403782Z [        ] Found plugin image_picker_ios at /home/runner/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.12+2/
+2025-09-23T23:50:28.3412570Z [        ] Found plugin image_picker_for_web at /home/runner/.pub-cache/hosted/pub.dev/image_picker_for_web-3.0.6/
+2025-09-23T23:50:28.3423529Z [        ] Found plugin image_picker_android at /home/runner/.pub-cache/hosted/pub.dev/image_picker_android-0.8.12+21/
+2025-09-23T23:50:28.3429766Z [        ] Found plugin flutter_plugin_android_lifecycle at /home/runner/.pub-cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.26/
+2025-09-23T23:50:28.3456319Z [   +2 ms] Found plugin gal at /home/runner/.pub-cache/hosted/pub.dev/gal-2.3.2/
+2025-09-23T23:50:28.3484429Z [   +2 ms] Generating /home/runner/work/blurapp/blurapp/app/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
+2025-09-23T23:50:28.3496682Z [   +1 ms] Skipping generating GeneratedPluginRegistrant.java because it is up-to-date.
+2025-09-23T23:50:28.3553824Z [   +5 ms] Skipping generating generated_plugin_registrant.h because it is up-to-date.
+2025-09-23T23:50:28.3563103Z [        ] Skipping generating generated_plugin_registrant.cc because it is up-to-date.
+2025-09-23T23:50:28.3573869Z [   +1 ms] Skipping generating generated_plugins.cmake because it is up-to-date.
+2025-09-23T23:50:28.3592182Z [   +1 ms] Skipping generating GeneratedPluginRegistrant.h because it is up-to-date.
+2025-09-23T23:50:28.3600459Z [        ] Skipping generating GeneratedPluginRegistrant.m because it is up-to-date.
+2025-09-23T23:50:28.6345730Z [ +274 ms] dart /opt/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot --disable-server-feature-completion --disable-server-feature-search --sdk /opt/flutter/bin/cache/dart-sdk --suppress-analytics
+2025-09-23T23:50:28.6450089Z [  +10 ms] ==> {"id":"1","method":"server.setSubscriptions","params":{"subscriptions":["STATUS"]}}
+2025-09-23T23:50:28.6452125Z [        ] ==> {"id":"2","method":"analysis.setAnalysisRoots","params":{"included":["/home/runner/work/blurapp/blurapp/app"],"excluded":[]}}
+2025-09-23T23:50:28.6460589Z [        ] Analyzing app...
+2025-09-23T23:50:28.7435015Z [  +97 ms] <== {"event":"server.connected","params":{"version":"1.40.0","pid":3111}}
+2025-09-23T23:50:28.7555657Z [  +12 ms] <== {"id":"1"}
+2025-09-23T23:50:28.8422151Z [  +86 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/pubspec.yaml","errors":[]}}
+2025-09-23T23:50:28.8521928Z [  +10 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/analysis_options.yaml","errors":[]}}
+2025-09-23T23:50:28.8556853Z [   +3 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/temp_project/pubspec.yaml","errors":[]}}
+2025-09-23T23:50:28.8640055Z [   +8 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/temp_project/analysis_options.yaml","errors":[]}}
+2025-09-23T23:50:28.8721804Z [   +8 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/temp_project/android/app/src/main/AndroidManifest.xml","errors":[]}}
+2025-09-23T23:50:28.8744122Z [   +2 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/temp_project/android/app/src/profile/AndroidManifest.xml","errors":[]}}
+2025-09-23T23:50:28.8747743Z [        ] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/temp_project/android/app/src/debug/AndroidManifest.xml","errors":[]}}
+2025-09-23T23:50:28.8816145Z [   +6 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/android/app/src/main/AndroidManifest.xml","errors":[]}}
+2025-09-23T23:50:28.8864753Z [   +4 ms] <== {"event":"server.status","params":{"analysis":{"isAnalyzing":true}}}
+2025-09-23T23:50:38.6710157Z [+9784 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/temp_project/test/widget_test.dart","errors":[]}}
+2025-09-23T23:50:38.7342196Z [  +63 ms] <== {"id":"2"}
+2025-09-23T23:50:38.8604548Z [ +126 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/temp_project/lib/main.dart","errors":[]}}
+2025-09-23T23:50:38.9475306Z [  +86 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/helpers/performance_test_utils.dart","errors":[]}}
+2025-09-23T23:50:40.4838679Z [+1536 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/test_setup.dart","errors":[]}}
+2025-09-23T23:50:40.5728367Z [  +88 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/phase2/opencv_blur_test.dart","errors":[]}}
+2025-09-23T23:50:40.6833405Z [ +110 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/test_runner.dart","errors":[]}}
+2025-09-23T23:50:40.7546304Z [  +71 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/performance/memory_management_test.dart","errors":[]}}
+2025-09-23T23:50:40.8131866Z [  +58 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/performance/core_performance_test.dart","errors":[]}}
+2025-09-23T23:50:40.8362413Z [  +23 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/performance/memory_performance_test.dart","errors":[]}}
+2025-09-23T23:50:40.8502788Z [  +14 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/integration/user_workflow_test.dart","errors":[]}}
+2025-09-23T23:50:40.8605015Z [  +10 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/widget_test.dart","errors":[]}}
+2025-09-23T23:50:40.8738959Z [  +13 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/widget/home_screen_mvp_test.dart","errors":[]}}
+2025-09-23T23:50:40.8920354Z [  +18 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/phase1/mediapipe_foundation_test.dart","errors":[]}}
+2025-09-23T23:50:40.8997311Z [   +7 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/unit/blur_engine_mvp_test.dart","errors":[]}}
+2025-09-23T23:50:40.9029197Z [   +3 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/unit/test_gallery_provider.dart","errors":[]}}
+2025-09-23T23:50:40.9117164Z [   +8 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/unit/auto_detect_service_test.dart","errors":[]}}
+2025-09-23T23:50:40.9160842Z [   +4 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/unit/blur_pipeline_test.dart","errors":[]}}
+2025-09-23T23:50:43.0876321Z [+2171 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/unit/home_screen_test.dart","errors":[]}}
+2025-09-23T23:50:43.1369928Z [  +49 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/unit/image_saver_service_test.dart","errors":[]}}
+2025-09-23T23:50:43.1569373Z [  +19 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/test_framework.dart","errors":[]}}
+2025-09-23T23:50:43.1856314Z [  +28 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/templates/core_test_template.dart","errors":[]}}
+2025-09-23T23:50:43.2062937Z [  +20 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/templates/misc_test_template.dart","errors":[]}}
+2025-09-23T23:50:43.2223587Z [  +16 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/test/templates/critical_test_template.dart","errors":[]}}
+2025-09-23T23:50:43.2260266Z [   +3 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/app.dart","errors":[]}}
+2025-09-23T23:50:43.2789889Z [  +52 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/demo/processing_mode_demo.dart","errors":[]}}
+2025-09-23T23:50:43.2846385Z [   +5 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/services/gallery_provider.dart","errors":[]}}
+2025-09-23T23:50:43.2946332Z [  +10 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/services/image_picker_service.dart","errors":[]}}
+2025-09-23T23:50:43.3082306Z [  +13 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/services/image_saver_service.dart","errors":[]}}
+2025-09-23T23:50:43.3232271Z [  +14 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/services/auto_detect_service.dart","errors":[]}}
+2025-09-23T23:50:43.3321946Z [   +8 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/native/blur_bindings.dart","errors":[{"severity":"INFO","type":"TODO","location":{"file":"/home/runner/work/blurapp/blurapp/app/lib/native/blur_bindings.dart","offset":78,"length":61,"startLine":4,"startColumn":4,"endLine":4,"endColumn":65},"message":"TODO: Implement proper FFI bindings when native blur is ready","code":"todo","hasFix":false}]}}
+2025-09-23T23:50:43.3497537Z [  +17 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/native/hybrid_blur_bindings.dart","errors":[]}}
+2025-09-23T23:50:43.3540698Z [   +4 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/theme/typography_scale.dart","errors":[]}}
+2025-09-23T23:50:43.3607492Z [   +6 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/theme/toolbar_layout_spec.dart","errors":[]}}
+2025-09-23T23:50:43.3672113Z [   +6 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/theme/app_icons.dart","errors":[]}}
+2025-09-23T23:50:43.3748398Z [   +7 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/theme/app_theme.dart","errors":[]}}
+2025-09-23T23:50:43.3908557Z [  +15 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/main.dart","errors":[]}}
+2025-09-23T23:50:43.4035105Z [  +12 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/features/editor/blur_pipeline.dart","errors":[]}}
+2025-09-23T23:50:43.4486952Z [  +45 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/features/editor/editor_screen.dart","errors":[]}}
+2025-09-23T23:50:43.4896980Z [  +40 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/features/editor/editor_screen_mvp.dart","errors":[{"severity":"INFO","type":"TODO","location":{"file":"/home/runner/work/blurapp/blurapp/app/lib/features/editor/editor_screen_mvp.dart","offset":8110,"length":42,"startLine":304,"startColumn":12,"endLine":304,"endColumn":54},"message":"TODO: Convert mask bitmap to brush strokes","code":"todo","hasFix":false}]}}
+2025-09-23T23:50:43.4925941Z [   +3 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/features/editor/preview_controller.dart","errors":[]}}
+2025-09-23T23:50:43.5009445Z [   +8 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/features/editor/painter_mask.dart","errors":[]}}
+2025-09-23T23:50:43.5152977Z [  +14 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/features/editor/blur_engine_mvp.dart","errors":[{"severity":"INFO","type":"TODO","location":{"file":"/home/runner/work/blurapp/blurapp/app/lib/features/editor/blur_engine_mvp.dart","offset":4963,"length":40,"startLine":167,"startColumn":8,"endLine":167,"endColumn":48},"message":"TODO: Integrate MediaPipe Face Detection","code":"todo","hasFix":false}]}}
+2025-09-23T23:50:43.5352941Z [  +20 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/features/home/home_screen_mvp.dart","errors":[]}}
+2025-09-23T23:50:43.5554628Z [  +20 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/features/home/home_screen.dart","errors":[]}}
+2025-09-23T23:50:43.5800407Z [  +24 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/settings/privacy_settings_screen.dart","errors":[]}}
+2025-09-23T23:50:43.5865216Z [   +6 ms] <== {"event":"analysis.errors","params":{"file":"/home/runner/work/blurapp/blurapp/app/lib/core/utils/color_utils.dart","errors":[{"severity":"INFO","type":"HINT","location":{"file":"/home/runner/work/blurapp/blurapp/app/lib/core/utils/color_utils.dart","offset":525,"length":5,"startLine":11,"startColumn":26,"endLine":11,"endColumn":31},"message":"'value' is deprecated and shouldn't be used. Use component accessors like .r or .g, or toARGB32 for an explicit conversion.","correction":"Try replacing the use of the deprecated member with the replacement.","code":"deprecated_member_use","url":"https://dart.dev/diagnostics/deprecated_member_use","hasFix":false}]}}
+2025-09-23T23:50:43.5888111Z [   +2 ms] <== {"event":"server.status","params":{"analysis":{"isAnalyzing":false}}}
+2025-09-23T23:50:43.5918460Z [   +3 ms] Analyzing app... (completed in 14.9s)
+2025-09-23T23:50:43.5938842Z [   +1 ms]    info • 'value' is deprecated and shouldn't be used. Use component accessors like .r or .g, or toARGB32 for an explicit conversion • lib/core/utils/color_utils.dart:11:26 • deprecated_member_use
+2025-09-23T23:50:43.5961690Z [   +2 ms] "flutter analyze" took 15,620ms.
+2025-09-23T23:50:43.6055533Z [   +8 ms] 1 issue found. (ran in 14.9s)
+2025-09-23T23:50:43.6060299Z [   +1 ms] 
+2025-09-23T23:50:43.6061000Z            #0      throwToolExit (package:flutter_tools/src/base/common.dart:34:3)
+2025-09-23T23:50:43.6063033Z            #1      AnalyzeOnce.analyze (package:flutter_tools/src/commands/analyze_once.dart:150:7)
+2025-09-23T23:50:43.6063750Z            <asynchronous suspension>
+2025-09-23T23:50:43.6064481Z            #2      AnalyzeCommand.runCommand (package:flutter_tools/src/commands/analyze.dart:381:7)
+2025-09-23T23:50:43.6065164Z            <asynchronous suspension>
+2025-09-23T23:50:43.6066116Z            #3      FlutterCommand.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command.dart:1581:27)
+2025-09-23T23:50:43.6066921Z            <asynchronous suspension>
+2025-09-23T23:50:43.6067603Z            #4      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+2025-09-23T23:50:43.6068298Z            <asynchronous suspension>
+2025-09-23T23:50:43.6068881Z            #5      CommandRunner.runCommand (package:args/command_runner.dart:212:13)
+2025-09-23T23:50:43.6069526Z            <asynchronous suspension>
+2025-09-23T23:50:43.6070427Z            #6      FlutterCommandRunner.runCommand.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:503:9)
+2025-09-23T23:50:43.6071513Z            <asynchronous suspension>
+2025-09-23T23:50:43.6072180Z            #7      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+2025-09-23T23:50:43.6072870Z            <asynchronous suspension>
+2025-09-23T23:50:43.6073665Z            #8      FlutterCommandRunner.runCommand (package:flutter_tools/src/runner/flutter_command_runner.dart:438:5)
+2025-09-23T23:50:43.6074479Z            <asynchronous suspension>
+2025-09-23T23:50:43.6075066Z            #9      run.<anonymous closure>.<anonymous closure> (package:flutter_tools/runner.dart:98:11)
+2025-09-23T23:50:43.6075680Z            <asynchronous suspension>
+2025-09-23T23:50:43.6076278Z            #10     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+2025-09-23T23:50:43.6076973Z            <asynchronous suspension>
+2025-09-23T23:50:43.6077419Z            #11     main (package:flutter_tools/executable.dart:101:3)
+2025-09-23T23:50:43.6077878Z            <asynchronous suspension>
+2025-09-23T23:50:43.6078116Z 
+2025-09-23T23:50:43.6078123Z 
+2025-09-23T23:50:43.6078248Z [        ] Running 1 shutdown hook
+2025-09-23T23:50:43.6078620Z [        ] Shutdown hooks complete
+2025-09-23T23:50:43.6078976Z [        ] exiting with code 1
+2025-09-23T23:50:43.6134396Z === prod AndroidManifest (if present) ===
+2025-09-23T23:50:43.6134968Z --- android/app/src/main/AndroidManifest.xml ---
+2025-09-23T23:50:43.6150123Z <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+2025-09-23T23:50:43.6150751Z     
+2025-09-23T23:50:43.6151212Z     <!-- Permissions -->
+2025-09-23T23:50:43.6151718Z     <uses-permission android:name="android.permission.CAMERA" />
+2025-09-23T23:50:43.6152489Z     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+2025-09-23T23:50:43.6153870Z     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+2025-09-23T23:50:43.6154473Z     
+2025-09-23T23:50:43.6154831Z     <!-- Modern gallery access permissions (Android 10+) -->
+2025-09-23T23:50:43.6155510Z     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+2025-09-23T23:50:43.6156329Z     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
+2025-09-23T23:50:43.6156929Z     
+2025-09-23T23:50:43.6157190Z     <application
+2025-09-23T23:50:43.6157521Z         android:name="${applicationName}"
+2025-09-23T23:50:43.6157960Z         android:icon="@mipmap/ic_launcher"
+2025-09-23T23:50:43.6158385Z         android:label="BlurApp">
+2025-09-23T23:50:43.6158734Z         
+2025-09-23T23:50:43.6158988Z         <activity
+2025-09-23T23:50:43.6159302Z             android:name=".MainActivity"
+2025-09-23T23:50:43.6159726Z             android:theme="@style/LaunchTheme"
+2025-09-23T23:50:43.6160215Z             android:windowSoftInputMode="adjustResize"
+2025-09-23T23:50:43.6160677Z             android:exported="true">
+2025-09-23T23:50:43.6161191Z             
+2025-09-23T23:50:43.6161598Z             <!-- Specifies an Android theme to apply to this Activity as soon as
+2025-09-23T23:50:43.6162294Z                  the Android process has started. This theme is visible to the user
+2025-09-23T23:50:43.6162981Z                  while the Flutter UI initializes. After that, this theme continues
+2025-09-23T23:50:43.6163659Z                  to determine the Window background behind the Flutter UI. -->
+2025-09-23T23:50:43.6164182Z             <meta-data
+2025-09-23T23:50:43.6164642Z                 android:name="io.flutter.embedding.android.NormalTheme"
+2025-09-23T23:50:43.6165225Z                 android:resource="@style/NormalTheme" />
+2025-09-23T23:50:43.6165644Z                 
+2025-09-23T23:50:43.6166092Z             <!-- Displays an Android View that continues showing the launch screen
+2025-09-23T23:50:43.6166805Z                  Drawable until Flutter paints its first frame, then this splash
+2025-09-23T23:50:43.6167472Z                  screen fades out. A splash screen is useful to avoid any visual
+2025-09-23T23:50:43.6168143Z                  gap between the end of Android's launch screen and the painting of
+2025-09-23T23:50:43.6168753Z                  Flutter's first frame. -->
+2025-09-23T23:50:43.6169166Z             <meta-data
+2025-09-23T23:50:43.6169678Z                 android:name="io.flutter.embedding.android.SplashScreenDrawable"
+2025-09-23T23:50:43.6170359Z                 android:resource="@drawable/launch_background" />
+2025-09-23T23:50:43.6170822Z                 
+2025-09-23T23:50:43.6171383Z             <intent-filter android:autoVerify="true">
+2025-09-23T23:50:43.6171923Z                 <action android:name="android.intent.action.MAIN"/>
+2025-09-23T23:50:43.6172556Z                 <category android:name="android.intent.category.LAUNCHER"/>
+2025-09-23T23:50:43.6173100Z             </intent-filter>
+2025-09-23T23:50:43.6173444Z         </activity>
+2025-09-23T23:50:43.6173725Z         
+2025-09-23T23:50:43.6174014Z         <!-- Don't delete the meta-data below.
+2025-09-23T23:50:43.6174656Z              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
+2025-09-23T23:50:43.6175256Z         <meta-data
+2025-09-23T23:50:43.6175582Z             android:name="flutterEmbedding"
+2025-09-23T23:50:43.6175999Z             android:value="2" />
+2025-09-23T23:50:43.6176348Z     </application>
+2025-09-23T23:50:43.6176665Z grep: lib: Is a directory
+2025-09-23T23:50:43.6177155Z </manifest>--- end android/app/src/main/AndroidManifest.xml ---
+2025-09-23T23:50:43.6177798Z === Search for deprecated withOpacity occurrences in lib ===
