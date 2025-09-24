@@ -50,9 +50,7 @@ class _EditorScreenState extends State<EditorScreen> {
     setState(() => _loading = true);
 
     try {
-      final service = await AutoDetectService.create(
-        modelPath: 'assets/models/face_detection_short_range.tflite',
-      );
+      final service = await AutoDetectService.create(modelPath: 'assets/models/face_detection_short_range.tflite');
 
       final rects = await service.detect(_imageBytes!);
       for (final rect in rects) {
@@ -62,15 +60,11 @@ class _EditorScreenState extends State<EditorScreen> {
       service.close();
 
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Detected ${rects.length} face(s)')),
-        );
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Detected ${rects.length} face(s)')));
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Face detection failed: $e')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Face detection failed: $e')));
       }
     } finally {
       setState(() => _loading = false);
@@ -82,9 +76,7 @@ class _EditorScreenState extends State<EditorScreen> {
     setState(() => _loading = true);
 
     try {
-      final service = await AutoDetectService.create(
-        modelPath: 'assets/models/selfie_segmentation.tflite',
-      );
+      final service = await AutoDetectService.create(modelPath: 'assets/models/selfie_segmentation.tflite');
 
       final maskBytes = await service.detectSegmentation(_imageBytes!);
       if (maskBytes != null) {
@@ -92,18 +84,14 @@ class _EditorScreenState extends State<EditorScreen> {
         _mask.applySegmentationMask(maskBytes);
 
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Background detected successfully')),
-          );
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Background detected successfully')));
         }
       }
 
       service.close();
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Background detection failed: $e')),
-        );
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Background detection failed: $e')));
       }
     } finally {
       setState(() => _loading = false);
@@ -113,11 +101,7 @@ class _EditorScreenState extends State<EditorScreen> {
   void _applyBlur() {
     if (_imageBytes == null) return;
     setState(() {
-      _imageBytes = BlurPipeline.applyBlur(
-        _imageBytes!,
-        _blurType,
-        _blurStrength,
-      );
+      _imageBytes = BlurPipeline.applyBlur(_imageBytes!, _blurType, _blurStrength);
     });
   }
 
@@ -126,38 +110,27 @@ class _EditorScreenState extends State<EditorScreen> {
     setState(() => _loading = true);
 
     try {
-      final path = await ImageSaverService.saveImage(
-        _imageBytes!,
-        asPng: _exportAsPng,
-        quality: _exportQuality,
-      );
+      final path = await ImageSaverService.saveImage(_imageBytes!, asPng: _exportAsPng, quality: _exportQuality);
 
       if (path == null) {
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Export failed: could not save image'),
-            ),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(const SnackBar(content: Text('Export failed: could not save image')));
         }
         return;
       }
 
-      await Share.shareXFiles([XFile(path)], text: 'Blurred image');
+      await SharePlus.instance.share(ShareParams(text: 'Blurred image', files: [XFile(path)]));
 
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Image shared successfully!'),
-            backgroundColor: Colors.green,
-          ),
-        );
-      }
-    } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(SnackBar(content: Text('Export failed: $e')));
+        ).showSnackBar(const SnackBar(content: Text('Image shared successfully!'), backgroundColor: Colors.green));
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Export failed: $e')));
       }
     } finally {
       setState(() => _loading = false);
@@ -186,18 +159,13 @@ class _EditorScreenState extends State<EditorScreen> {
           );
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Save failed: could not write image'),
-              backgroundColor: Colors.orange,
-            ),
+            const SnackBar(content: Text('Save failed: could not write image'), backgroundColor: Colors.orange),
           );
         }
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Save failed: $e')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Save failed: $e')));
       }
     } finally {
       setState(() => _loading = false);
@@ -209,9 +177,7 @@ class _EditorScreenState extends State<EditorScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Blur Editor', style: TypographyScale.title),
-        actions: [
-          IconButton(icon: const Icon(AppIcons.settings), onPressed: () {}),
-        ],
+        actions: [IconButton(icon: const Icon(AppIcons.settings), onPressed: () {})],
       ),
       body: Center(
         child: _loading
@@ -284,10 +250,7 @@ class _EditorScreenState extends State<EditorScreen> {
             child: AnimatedBuilder(
               animation: _mask,
               builder: (context, _) {
-                return CustomPaint(
-                  painter: _MaskPainter(_mask),
-                  child: Container(),
-                );
+                return CustomPaint(painter: _MaskPainter(_mask), child: Container());
               },
             ),
           ),
@@ -366,18 +329,9 @@ class _EditorScreenState extends State<EditorScreen> {
               DropdownButton<BlurType>(
                 value: _blurType,
                 items: const [
-                  DropdownMenuItem(
-                    value: BlurType.gaussian,
-                    child: Text('Gaussian'),
-                  ),
-                  DropdownMenuItem(
-                    value: BlurType.pixelate,
-                    child: Text('Pixelate'),
-                  ),
-                  DropdownMenuItem(
-                    value: BlurType.mosaic,
-                    child: Text('Mosaic'),
-                  ),
+                  DropdownMenuItem(value: BlurType.gaussian, child: Text('Gaussian')),
+                  DropdownMenuItem(value: BlurType.pixelate, child: Text('Pixelate')),
+                  DropdownMenuItem(value: BlurType.mosaic, child: Text('Mosaic')),
                 ],
                 onChanged: (v) {
                   HapticFeedback.selectionClick();
@@ -402,10 +356,7 @@ class _EditorScreenState extends State<EditorScreen> {
                   _applyBlur();
                 },
               ),
-              Switch(
-                value: _exportAsPng,
-                onChanged: (v) => setState(() => _exportAsPng = v),
-              ),
+              Switch(value: _exportAsPng, onChanged: (v) => setState(() => _exportAsPng = v)),
               const Text('PNG'),
               SizedBox(
                 width: 100,
@@ -451,9 +402,7 @@ class _MaskPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     for (final stroke in mask.strokes) {
       final paint = Paint()
-        ..color = stroke.erase
-            ? Colors.transparent
-            : withOpacitySafe(Colors.blue, 0.4)
+        ..color = stroke.erase ? Colors.transparent : withOpacitySafe(Colors.blue, 0.4)
         ..strokeWidth = stroke.size
         ..style = PaintingStyle.stroke
         ..strokeCap = StrokeCap.round;
