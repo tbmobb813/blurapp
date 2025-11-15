@@ -1,4 +1,65 @@
 {
-    "cmake.sourceDirectory": "/home/jason/Projects/blurapp/app/temp_project/linux/runner",
-    "java.configuration.updateBuildConfiguration": "automatic"
+  // Dart & Flutter settings
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [80],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": false,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
+    }
+  },
+
+  // Dart SDK
+  "dart.flutterSdkPath": null,
+  "dart.debugExternalPackageLibraries": false,
+  "dart.debugSdkLibraries": false,
+  "dart.showLogs": true,
+
+  // File associations
+  "files.associations": {
+    "*.dart": "dart"
+  },
+
+  // Exclude certain directories from search
+  "search.exclude": {
+    "**/.dart_tool": true,
+    "**/build": true,
+    "**/.gradle": true,
+    "**/coverage": true,
+    "**/.flutter-plugins": true,
+    "**/.flutter-plugins-dependencies": true
+  },
+
+  // File watcher exclude
+  "files.watcherExclude": {
+    "**/.dart_tool/**": true,
+    "**/build/**": true,
+    "**/.gradle/**": true
+  },
+
+  // Editor settings
+  "editor.minimap.enabled": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+
+  // Terminal
+  "terminal.integrated.cwd": "${workspaceFolder}/app",
+
+  // Git
+  "git.ignoreLimitWarning": true,
+
+  // Formatting
+  "editor.formatOnSave": true,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+
+  // Privacy: Disable telemetry
+  "telemetry.telemetryLevel": "off",
+  "dart.allowAnalytics": false
 }
