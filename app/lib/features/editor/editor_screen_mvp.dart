@@ -718,7 +718,12 @@ class ImageDisplayPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true; // Always repaint for real-time updates
+  bool shouldRepaint(covariant ImageDisplayPainter oldDelegate) {
+    // Only repaint when content actually changes
+    return oldDelegate.originalImage != originalImage ||
+        oldDelegate.previewImage != previewImage ||
+        oldDelegate.brushStrokes.length != brushStrokes.length ||
+        oldDelegate.brushSize != brushSize ||
+        oldDelegate.isProcessing != isProcessing;
   }
 }

@@ -33,11 +33,15 @@ class BlurEngineMVP {
     int? workingWidth,
     int? workingHeight,
   }) async {
+    ui.Image? originalImage;
+    ui.Image? blurredImage;
+    ui.Image? result;
+
     try {
       // Decode image
       final ui.Codec codec = await ui.instantiateImageCodec(imageBytes);
       final ui.FrameInfo frameInfo = await codec.getNextFrame();
-      final ui.Image originalImage = frameInfo.image;
+      originalImage = frameInfo.image;
 
       // Get dimensions
       final int imageWidth = originalImage.width;
@@ -52,7 +56,6 @@ class BlurEngineMVP {
       );
 
       // Create blur effect based on type
-      ui.Image blurredImage;
       switch (blurType) {
         case BlurType.gaussian:
           blurredImage = await _applyGaussianBlur(originalImage, strength);
@@ -66,7 +69,7 @@ class BlurEngineMVP {
       }
 
       // Composite with mask
-      final ui.Image result = await _compositeWithMask(
+      result = await _compositeWithMask(
         originalImage,
         blurredImage,
         mask,
@@ -83,16 +86,16 @@ class BlurEngineMVP {
         return null;
       }
 
-      // Cleanup
-      originalImage.dispose();
-      blurredImage.dispose();
-      result.dispose();
-
       debugPrint('$_tag: Blur processing completed');
       return byteData.buffer.asUint8List();
     } catch (e) {
       debugPrint('$_tag: Error applying blur: $e');
       return null;
+    } finally {
+      // Ensure cleanup happens regardless of success or failure
+      originalImage?.dispose();
+      blurredImage?.dispose();
+      result?.dispose();
     }
   }
 
