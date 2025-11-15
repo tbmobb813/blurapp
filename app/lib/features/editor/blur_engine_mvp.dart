@@ -17,6 +17,20 @@ enum BlurType { gaussian, pixelate, mosaic }
 class BlurEngineMVP {
   static const String _tag = 'BlurEngineMVP';
 
+  /// Simple image cache to avoid repeated decoding
+  /// Limited to 3 entries to prevent excessive memory use
+  static final Map<int, ui.Image> _imageCache = {};
+  static const int _maxCacheSize = 3;
+
+  /// Clear the image decode cache (call when memory pressure is detected)
+  static void clearImageCache() {
+    for (final image in _imageCache.values) {
+      image.dispose();
+    }
+    _imageCache.clear();
+    debugPrint('$_tag: Image cache cleared');
+  }
+
   /// Apply blur to an image with mask
   ///
   /// [imageBytes] - Original image as JPEG/PNG bytes
@@ -36,12 +50,30 @@ class BlurEngineMVP {
     ui.Image? originalImage;
     ui.Image? blurredImage;
     ui.Image? result;
+    bool usedCachedImage = false;
 
     try {
-      // Decode image
-      final ui.Codec codec = await ui.instantiateImageCodec(imageBytes);
-      final ui.FrameInfo frameInfo = await codec.getNextFrame();
-      originalImage = frameInfo.image;
+      // Check cache first to avoid repeated decoding
+      final int cacheKey = imageBytes.hashCode;
+      if (_imageCache.containsKey(cacheKey)) {
+        originalImage = _imageCache[cacheKey]!;
+        usedCachedImage = true;
+        debugPrint('$_tag: Using cached decoded image');
+      } else {
+        // Decode image
+        final ui.Codec codec = await ui.instantiateImageCodec(imageBytes);
+        final ui.FrameInfo frameInfo = await codec.getNextFrame();
+        originalImage = frameInfo.image;
+
+        // Add to cache (with LRU eviction if full)
+        if (_imageCache.length >= _maxCacheSize) {
+          final oldestKey = _imageCache.keys.first;
+          _imageCache[oldestKey]?.dispose();
+          _imageCache.remove(oldestKey);
+        }
+        _imageCache[cacheKey] = originalImage;
+        debugPrint('$_tag: Cached decoded image');
+      }
 
       // Get dimensions
       final int imageWidth = originalImage.width;
@@ -93,7 +125,10 @@ class BlurEngineMVP {
       return null;
     } finally {
       // Ensure cleanup happens regardless of success or failure
-      originalImage?.dispose();
+      // Don't dispose cached images - they're managed by the cache
+      if (!usedCachedImage) {
+        originalImage?.dispose();
+      }
       blurredImage?.dispose();
       result?.dispose();
     }
@@ -357,11 +392,16 @@ class BrushStroke {
   final double size;
   final int opacity; // 0-255
 
-  const BrushStroke({
+  BrushStroke({
     required this.points,
     required this.size,
     required this.opacity,
   });
+
+  /// Add a point to this stroke (for efficient in-place updates during drawing)
+  void addPoint(Point point) {
+    points.add(point);
+  }
 }
 
 /// Point in brush stroke

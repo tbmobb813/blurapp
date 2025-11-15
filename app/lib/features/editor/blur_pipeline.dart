@@ -155,43 +155,24 @@ class BlurPipeline {
   }
 
   static img.Image _mosaic(img.Image image, int strength) {
-    // Similar to pixelate but with a different algorithm
+    // Optimized mosaic: sample center pixel instead of averaging entire block
     final blockSize = strength.clamp(1, 32);
     final result = img.Image.from(image);
 
     for (int y = 0; y < image.height; y += blockSize) {
       for (int x = 0; x < image.width; x += blockSize) {
-        // Get average color of the block
-        int r = 0, g = 0, b = 0, count = 0;
+        // Sample center pixel of block (much faster than averaging)
+        final centerX = (x + blockSize ~/ 2).clamp(x, image.width - 1);
+        final centerY = (y + blockSize ~/ 2).clamp(y, image.height - 1);
+        final centerColor = image.getPixel(centerX, centerY);
 
-        for (int dy = 0; dy < blockSize && y + dy < image.height; dy++) {
-          for (int dx = 0; dx < blockSize && x + dx < image.width; dx++) {
-            final px = image.getPixel(x + dx, y + dy);
-            // image.getPixel returns a 32-bit int in ARGB format. Extract channels.
-            // Pixel is an object with channel getters; convert to int
-            final int red = px.r.toInt();
-            final int green = px.g.toInt();
-            final int blue = px.b.toInt();
-            r += red;
-            g += green;
-            b += blue;
-            count++;
-          }
-        }
+        // Fill the entire block with the center pixel color
+        final maxDx = (blockSize < image.width - x) ? blockSize : image.width - x;
+        final maxDy = (blockSize < image.height - y) ? blockSize : image.height - y;
 
-        if (count > 0) {
-          final avgR = r ~/ count;
-          final avgG = g ~/ count;
-          final avgB = b ~/ count;
-          // Compose ARGB (opaque) pixel
-          // Use image package Color type
-          final avgColor = img.ColorRgb8(avgR, avgG, avgB);
-
-          // Fill the block with average color
-          for (int dy = 0; dy < blockSize && y + dy < image.height; dy++) {
-            for (int dx = 0; dx < blockSize && x + dx < image.width; dx++) {
-              result.setPixel(x + dx, y + dy, avgColor);
-            }
+        for (int dy = 0; dy < maxDy; dy++) {
+          for (int dx = 0; dx < maxDx; dx++) {
+            result.setPixel(x + dx, y + dy, centerColor);
           }
         }
       }

@@ -50,6 +50,9 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
   static const int _previewWidth = 512;
   static const int _previewHeight = 512;
 
+  // Memory management
+  static const int _maxImageMemoryBytes = 50 * 1024 * 1024; // 50MB limit
+
   @override
   void initState() {
     super.initState();
@@ -60,7 +63,14 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
   void dispose() {
     _originalImage?.dispose();
     _previewImage?.dispose();
+    BlurEngineMVP.clearImageCache(); // Clear cache on dispose
     super.dispose();
+  }
+
+  /// Check if image is within memory bounds
+  bool _isImageWithinMemoryBounds(ui.Image image) {
+    final sizeBytes = image.width * image.height * 4; // RGBA = 4 bytes per pixel
+    return sizeBytes <= _maxImageMemoryBytes;
   }
 
   Future<void> _loadImage() async {
@@ -69,7 +79,17 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
       final ui.FrameInfo frameInfo = await codec.getNextFrame();
       final ui.Image image = frameInfo.image;
 
+      // Check memory bounds
+      if (!_isImageWithinMemoryBounds(image)) {
+        final sizeMB = (image.width * image.height * 4) / (1024 * 1024);
+        debugPrint('$_tag: Warning - Large image loaded: ${sizeMB.toStringAsFixed(1)}MB');
+        // Clear cache to free up memory
+        BlurEngineMVP.clearImageCache();
+      }
+
       setState(() {
+        // Dispose old image before assigning new one
+        _originalImage?.dispose();
         _originalImage = image;
       });
 
@@ -255,15 +275,8 @@ class _EditorScreenMVPState extends State<EditorScreenMVP> {
     if (!_isBrushMode || _brushStrokes.isEmpty) return;
 
     setState(() {
-      final lastStroke = _brushStrokes.last;
-      _brushStrokes[_brushStrokes.length - 1] = BrushStroke(
-        points: [
-          ...lastStroke.points,
-          Point(localPosition.dx, localPosition.dy),
-        ],
-        size: lastStroke.size,
-        opacity: lastStroke.opacity,
-      );
+      // Efficient in-place update - no list copying
+      _brushStrokes.last.addPoint(Point(localPosition.dx, localPosition.dy));
     });
   }
 

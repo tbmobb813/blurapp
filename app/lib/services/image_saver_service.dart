@@ -221,10 +221,10 @@ class ImageSaverService {
     try {
       final gp = provider ?? ProductionGalleryProvider();
       final tempDir = await gp.getTemporaryDirectory();
-      final files = tempDir.listSync();
       int deletedCount = 0;
 
-      for (final file in files) {
+      // Use async stream instead of blocking listSync()
+      await for (final file in tempDir.list()) {
         if (file is File &&
             (file.path.contains('blurred_') ||
                 file.path.contains('blur_export') ||
@@ -249,10 +249,10 @@ class ImageSaverService {
     try {
       final gp = provider ?? ProductionGalleryProvider();
       final tempDir = await gp.getTemporaryDirectory();
-      final files = tempDir.listSync();
       int totalSize = 0;
 
-      for (final file in files) {
+      // Use async stream instead of blocking listSync()
+      await for (final file in tempDir.list()) {
         if (file is File &&
             (file.path.contains('blurred_') ||
                 file.path.contains('blur_export') ||
