@@ -7,25 +7,42 @@ environment:
 
 dependencies:
   flutter: { sdk: flutter }
+
+  # State Management
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+
+  # Local Storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+  # Code Generation
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
+
+  # Existing dependencies
   ffi: ^2.1.4
   path_provider: ^2.1.5
   image_picker: ^1.2.0
   permission_handler: ^12.0.1
   share_plus: ^12.0.0
   image: ^4.5.4
-  gal: ^2.3.2  # Gallery saver for MVP export functionality
-  # TensorFlow Lite for on-device inference (optional - graceful fallback in code)
-  # Use a newer tflite_flutter that declares an Android namespace (fixes
-  # AGP 8.6+ configuration-time "Namespace not specified" failures).
-  # See: https://pub.dev/packages/tflite_flutter
+  gal: ^2.3.2
   tflite_flutter: ^0.11.0
-  # Optional later: camera, photo_manager
-  # Note: TensorFlow Lite removed for MVP to keep app lightweight
-  # Can be re-added later when better platform support is available
 
 dev_dependencies:
   flutter_test: { sdk: flutter }
   flutter_lints: ^4.0.0
+
+  # Code Generation
+  build_runner: ^2.4.13
+  riverpod_generator: ^2.6.2
+  freezed: ^2.5.7
+  json_serializable: ^6.8.0
+  hive_generator: ^2.0.1
+
+  # Testing
+  mocktail: ^1.0.4
 
 flutter:
   uses-material-design: true
