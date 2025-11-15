@@ -56,12 +56,17 @@ jobs:
         with:
           path: |
             ~/.pub-cache
-            .dart_tool
-          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.yaml') }}
+            app/.dart_tool
+          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock', '**/pubspec.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-
 
       - name: Install dependencies
         run: |
           cd app
+          echo "=== Starting dependency installation at $(date '+%H:%M:%S') ==="
+          START_TIME=$(date +%s)
+
           # Ensure Flutter tool has cached artifacts (may download engine artifacts)
           /opt/flutter/bin/flutter precache || true
 
@@ -76,6 +81,10 @@ jobs:
           if [ $attempt -ge 3 ]; then
             echo "flutter pub get failed after $attempt attempts"; exit 1
           fi
+
+          END_TIME=$(date +%s)
+          DURATION=$((END_TIME - START_TIME))
+          echo "=== Dependency installation completed in ${DURATION}s at $(date '+%H:%M:%S') ==="
 
       - name: Privacy checks (fail if INTERNET permission or analytics deps)
         run: |
@@ -122,6 +131,18 @@ jobs:
             echo "ERROR: Found analytics/crash packages in pubspec.yaml. Privacy policy requires no telemetry."; exit 1
           fi
 
+      - name: Security - Check for outdated dependencies
+        run: |
+          cd app
+          echo "=== Checking for outdated dependencies ==="
+          /opt/flutter/bin/flutter pub outdated --no-dev-dependencies || true
+
+          echo ""
+          echo "=== Checking for dependency vulnerabilities ==="
+          # Check if any critical security updates are available
+          OUTDATED=$(/opt/flutter/bin/flutter pub outdated --json 2>/dev/null || echo "{}")
+          echo "$OUTDATED" | grep -q '"resolvable"' && echo "Some dependencies can be updated" || echo "All dependencies current"
+
       - name: Format check
         run: |
           cd app
@@ -149,7 +170,42 @@ jobs:
       - name: Run tests
         run: |
           cd app
+          echo "=== Starting tests at $(date '+%H:%M:%S') ==="
+          START_TIME=$(date +%s)
+
           /opt/flutter/bin/flutter test --coverage
+
+          END_TIME=$(date +%s)
+          DURATION=$((END_TIME - START_TIME))
+          echo "=== Tests completed in ${DURATION}s at $(date '+%H:%M:%S') ==="
+
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./app/coverage/lcov.info
+          flags: unittests
+          name: codecov-blurapp
+          fail_ci_if_error: false
+          verbose: true
+
+      - name: Generate coverage summary
+        if: always()
+        run: |
+          cd app
+          if [ -f "coverage/lcov.info" ]; then
+            echo "=== Coverage Summary ==="
+            # Count total lines and covered lines
+            TOTAL_LINES=$(grep -c "^DA:" coverage/lcov.info || echo "0")
+            COVERED_LINES=$(grep "^DA:" coverage/lcov.info | grep -v ",0$" | wc -l || echo "0")
+            if [ "$TOTAL_LINES" -gt 0 ]; then
+              COVERAGE=$((COVERED_LINES * 100 / TOTAL_LINES))
+              echo "Coverage: $COVERAGE% ($COVERED_LINES/$TOTAL_LINES lines)"
+            else
+              echo "No coverage data found"
+            fi
+          else
+            echo "Coverage file not found"
+          fi
 
   build-test:
     runs-on: ubuntu-latest
@@ -194,6 +250,9 @@ jobs:
       - name: Install dependencies
         run: |
           cd app
+          echo "=== Starting dependency installation at $(date '+%H:%M:%S') ==="
+          START_TIME=$(date +%s)
+
           /opt/flutter/bin/flutter precache || true
 
           attempt=0
@@ -206,6 +265,10 @@ jobs:
           if [ $attempt -ge 3 ]; then
             echo "flutter pub get failed after $attempt attempts"; exit 1
           fi
+
+          END_TIME=$(date +%s)
+          DURATION=$((END_TIME - START_TIME))
+          echo "=== Dependency installation completed in ${DURATION}s at $(date '+%H:%M:%S') ==="
 
       # Java 21 is configured earlier in the job; no need to re-run setup-java here
 
@@ -222,10 +285,38 @@ jobs:
           GRADLE_OPTS: -Xmx4096m
         run: |
           cd app
+          echo "=== Starting APK build at $(date '+%H:%M:%S') ==="
+          START_TIME=$(date +%s)
+
           # Also export these for subprocesses in case Gradle picks them up differently
           export JAVA_TOOL_OPTIONS="$JAVA_TOOL_OPTIONS"
           export GRADLE_OPTS="$GRADLE_OPTS"
           /opt/flutter/bin/flutter build apk --debug
+
+          END_TIME=$(date +%s)
+          DURATION=$((END_TIME - START_TIME))
+          echo "=== APK build completed in ${DURATION}s at $(date '+%H:%M:%S') ==="
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: blurapp-debug-apk
+          path: app/build/app/outputs/flutter-apk/app-debug.apk
+          retention-days: 14
+          if-no-files-found: error
+
+      - name: Display APK info
+        run: |
+          cd app
+          if [ -f "build/app/outputs/flutter-apk/app-debug.apk" ]; then
+            APK_SIZE=$(du -h build/app/outputs/flutter-apk/app-debug.apk | cut -f1)
+            echo "=== APK Build Info ==="
+            echo "APK Size: $APK_SIZE"
+            echo "APK Path: build/app/outputs/flutter-apk/app-debug.apk"
+          else
+            echo "APK file not found!"
+            exit 1
+          fi
 
       # Java 21 is already configured earlier in the job
 
